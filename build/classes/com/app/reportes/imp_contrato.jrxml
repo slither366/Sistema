@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="impresion_contrato" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="32b8cb8e-5cdf-49ca-9bbe-041e39d5679d">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="sql" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     contratos."codigo" AS contratos_codigo,
+     contratos."fecha" AS contratos_fecha,
+     contratos."vencimiento" AS contratos_vencimiento,
+     contratos."socios_codigo" AS contratos_socios_codigo,
+     contratos."usuarios_codigo" AS contratos_usuarios_codigo,
+     usuarios."nombre_apellidos" AS usuarios_encargado,
+     usuarios."ci" AS usuarios_encargado_ci,
+     socios."razonsocial" AS socios_razonsocial,
+     contratos."estado" AS contratos_estado,
+     socios."rucci" AS socios_rucci,
+     socios."direccion" AS socios_direccion,
+     socios."celular" AS socios_celular,
+     contratos."vehiculos_codigo" AS contratos_vehiculos_codigo,
+     vehiculos."chasis" AS vehiculos_chasis,
+     vehiculos."modelo" AS vehiculos_modelo,
+     vehiculos."chapa" AS vehiculos_chapa,
+     vehiculos."color" AS vehiculos_color,
+     vehiculos."marcas_codigo" AS vehiculos_marcas_codigo,
+     marcas."descri" AS marcas_descri,
+     vehiculos."clasevehiculos_codigo" AS vehiculos_clasevehiculos_codigo,
+     clasevehiculos."descri" AS clasevehiculos_descri,
+     detacontratos."conceptcontratos_codigo" AS detacontratos_conceptcontratos_codigo,
+     conceptcontratos."descri" AS conceptcontratos_descri,
+     detacontratos."valordeclarado" AS detacontratos_valordeclarado,
+     detacontratos."porc" AS detacontratos_porc,
+     detacontratos."valoraporte" AS detacontratos_valoraporte
+FROM
+     "public"."socios" socios INNER JOIN "public"."contratos" contratos ON socios."codigo" = contratos."socios_codigo"
+     INNER JOIN "public"."vehiculos" vehiculos ON contratos."vehiculos_codigo" = vehiculos."codigo"
+     INNER JOIN "public"."detacontratos" detacontratos ON contratos."codigo" = detacontratos."contratos_codigo"
+     INNER JOIN "public"."conceptcontratos" conceptcontratos ON detacontratos."conceptcontratos_codigo" = conceptcontratos."codigo"
+     INNER JOIN "public"."marcas" marcas ON vehiculos."marcas_codigo" = marcas."codigo"
+     INNER JOIN "public"."clasevehiculos" clasevehiculos ON vehiculos."clasevehiculos_codigo" = clasevehiculos."codigo"
+     INNER JOIN "public"."usuarios" usuarios ON contratos."usuarios_codigo" = usuarios."codigo"
+WHERE 
+     $P!{sql}]]>
+	</queryString>
+	<field name="contratos_codigo" class="java.lang.Integer"/>
+	<field name="contratos_fecha" class="java.sql.Date"/>
+	<field name="contratos_vencimiento" class="java.sql.Date"/>
+	<field name="contratos_socios_codigo" class="java.lang.Integer"/>
+	<field name="contratos_usuarios_codigo" class="java.lang.Integer"/>
+	<field name="usuarios_encargado" class="java.lang.String"/>
+	<field name="usuarios_encargado_ci" class="java.lang.String"/>
+	<field name="socios_razonsocial" class="java.lang.String"/>
+	<field name="contratos_estado" class="java.lang.Boolean"/>
+	<field name="socios_rucci" class="java.lang.String"/>
+	<field name="socios_direccion" class="java.lang.String"/>
+	<field name="socios_celular" class="java.lang.String"/>
+	<field name="contratos_vehiculos_codigo" class="java.lang.Integer"/>
+	<field name="vehiculos_chasis" class="java.lang.String"/>
+	<field name="vehiculos_modelo" class="java.lang.String"/>
+	<field name="vehiculos_chapa" class="java.lang.String"/>
+	<field name="vehiculos_color" class="java.lang.String"/>
+	<field name="vehiculos_marcas_codigo" class="java.lang.Integer"/>
+	<field name="marcas_descri" class="java.lang.String"/>
+	<field name="vehiculos_clasevehiculos_codigo" class="java.lang.Integer"/>
+	<field name="clasevehiculos_descri" class="java.lang.String"/>
+	<field name="detacontratos_conceptcontratos_codigo" class="java.lang.Integer"/>
+	<field name="conceptcontratos_descri" class="java.lang.String"/>
+	<field name="detacontratos_valordeclarado" class="java.lang.Double"/>
+	<field name="detacontratos_porc" class="java.lang.Double"/>
+	<field name="detacontratos_valoraporte" class="java.lang.Double"/>
+	<variable name="detacontratos_valoraporte_1" class="java.lang.Double" resetType="Group" resetGroup="contratos_codigo" calculation="Sum">
+		<variableExpression><![CDATA[$F{detacontratos_valoraporte}]]></variableExpression>
+	</variable>
+	<group name="contratos_codigo">
+		<groupExpression><![CDATA[$F{contratos_codigo}]]></groupExpression>
+		<groupHeader>
+			<band height="321">
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="300" width="555" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="9b7ae17d-4963-43ba-8ab1-91745b21ca7f"/>
+					<graphicElement>
+						<pen lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="207" width="555" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="3ab430ad-d11f-4216-9348-ed87dc6ef45d"/>
+					<graphicElement>
+						<pen lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="86" width="555" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="b25aa1b9-0818-47e9-9784-6b126231115b"/>
+					<graphicElement>
+						<pen lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="5" width="555" height="25" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="0da5d301-9a9b-4394-bd1e-a13657fd4f7f"/>
+					<graphicElement>
+						<pen lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement style="SubTitle" x="71" y="10" width="77" height="15" forecolor="#000000" uuid="ce47cff4-af02-4291-a561-1ddf4394e80e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contratos_codigo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="10" width="74" height="15" forecolor="#000000" uuid="e1042850-e85a-4896-ae3f-77c21cc1ef89"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CONTRATO N°:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="35" width="555" height="50" uuid="4cb3880f-1d5f-4dbd-9a81-da7af6831eb1"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA["       La CAJA MUTUAL DE AUTOMOVILISTAS  de la Colonia Bergthal - Sommerfeld por una parte, representado por el Señor Ysacc Kehler Friesen, domiciliado en la colonia Sommerfeld y por la otra parte el Señor/a; "+$F{socios_razonsocial}+" con Documento de Identidad N°: "+$F{socios_rucci}+" convienen el celebrar el presente contrato en la fecha "+new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy").format($F{contratos_fecha})+", en la Colonia Sommerfeld, bajo las siguientes cláusulas y condiciones, un contrato de ayuda mutua de automovilistas."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitle" x="124" y="89" width="50" height="15" forecolor="#000000" uuid="f9539dfe-bb34-491f-9622-e04256d2fa86"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contratos_socios_codigo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="89" width="117" height="15" forecolor="#000000" uuid="f1c50e37-a5a3-4248-82ee-b3df3bb286f0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[1° - DATOS DEL SOCIO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="110" width="101" height="15" forecolor="#000000" uuid="b73432d7-196b-4c37-8d20-916417e9389d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Apellidos y Nombre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="136" width="101" height="15" forecolor="#000000" uuid="5ed75841-3131-4215-8e6a-752f8a21349d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Documento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="161" width="101" height="15" forecolor="#000000" uuid="14da56d1-38aa-4951-89e3-62537513402c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Dirección]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="188" width="101" height="15" forecolor="#000000" uuid="cd0a304f-cd1b-425b-b36e-15f301df2429"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Celular]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="107" y="110" width="419" height="15" uuid="47851fab-e89b-44f9-b619-25120ea6b242"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{socios_razonsocial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="107" y="136" width="217" height="15" uuid="d6ae8130-ded3-4eb5-8bef-368dc1e46edd"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{socios_rucci}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="107" y="161" width="419" height="15" uuid="5b82de56-b7af-4c57-9a79-4f42ddf8c343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{socios_direccion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="361" y="232" width="192" height="15" uuid="256f13e7-08ba-4c61-8505-e66753f34ffd"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{vehiculos_chasis}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="107" y="188" width="217" height="15" uuid="ae22c5b3-3338-4555-b1fc-206805debe8f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{socios_celular}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="210" width="141" height="15" forecolor="#000000" uuid="4578fbb2-96db-48ed-8bad-e8a1eb1b042b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[2° - DATOS DEL VEHICULO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="SubTitle" x="148" y="210" width="49" height="15" forecolor="#000000" uuid="3f6a49a3-9ec0-4ca5-b038-c9cf2235894a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{contratos_vehiculos_codigo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="232" width="40" height="15" forecolor="#000000" uuid="7b83e388-f88d-4aed-9c12-5b57b2cd524f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Marca]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="324" y="232" width="37" height="15" forecolor="#000000" uuid="7025a490-75f5-40f2-a1a7-ecd527daedb6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Chasis]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="282" width="40" height="15" forecolor="#000000" uuid="ff72c55e-7744-4283-a382-030dd9a7f2e9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Modelo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="324" y="282" width="37" height="15" forecolor="#000000" uuid="a4a29f25-bdb3-4512-9719-ed4a277a3814"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Color]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="47" y="232" width="168" height="15" uuid="f602dbbc-e180-49b3-a3f8-ac2e34e2569d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{marcas_descri}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="47" y="282" width="168" height="15" uuid="71d64827-dcc9-46a8-acee-7bc3abf0d56b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{vehiculos_modelo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="361" y="282" width="192" height="15" uuid="1cf1b8d4-1340-4805-8be6-bef608af2b63"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{vehiculos_color}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="324" y="257" width="37" height="15" forecolor="#000000" uuid="a0186125-de55-4afe-a0e1-3e835728bd43"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Chapa]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="361" y="257" width="192" height="15" uuid="5708a85b-0c71-41c5-b8af-82c883423e72"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{vehiculos_chapa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="257" width="40" height="15" forecolor="#000000" uuid="e344818d-3ff8-4760-ae00-3e36e0a4269a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Clase]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Detail" x="47" y="257" width="168" height="15" uuid="dd0c8856-e198-4ba1-b10e-e6b3221c21d9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{clasevehiculos_descri}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="303" width="117" height="15" forecolor="#000000" uuid="0e0f24b8-514f-4ac0-96ef-0ad648f62b10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[3° - COBERTURAS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="275" y="303" width="117" height="15" forecolor="#000000" uuid="9668f760-7346-4e0a-88d1-50e9ef99e599"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="409" y="303" width="117" height="15" forecolor="#000000" uuid="d2aa8537-74fa-41cc-b6fb-4af92868d45d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[APORTE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="168">
+				<staticText>
+					<reportElement style="Column header" x="328" y="3" width="82" height="15" forecolor="#000000" uuid="08f6ef1f-9a02-4c4b-a4b4-bbff129b8ec0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL APORTE:]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="1" width="555" height="1" uuid="2e34d3b8-2f98-4d87-828d-6f7ffa01a009"/>
+					<graphicElement>
+						<pen lineWidth="1.0" lineColor="#000000"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="410" y="3" width="116" height="15" uuid="0710cf1c-b64b-4d72-ae6a-2403a9a510d0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("##,###,##0.###").format($V{detacontratos_valoraporte_1})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="22" width="555" height="31" uuid="017222f8-2c71-4aaa-85fa-480701ffc002"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA["        El pago por la presente cobertura es vigente hasta el "+new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy").format($F{contratos_vencimiento})+", robo se rige por porcentaje al valor de vehiculo. A fijar anualmente por el Consejo de Administración."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="54" width="555" height="38" uuid="e3000359-efd7-4043-aeb4-6f0ff1d65bbb"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA["         Este contrato puede ser rescindido unilateralmente por cualquiera de las partes y en cualquier momento. La rescisión de este contrato por parte de la Caja Mutual de Automovilistas requiere de una resolución del Consejo de Administración. De conformidad con lo estipulado en el presente contrato, lo firmo en dos ejemplares de un mismo tenor."]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="47" y="127" width="161" height="1" uuid="5d872f8a-0627-45b9-a81e-61d34d044416"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed" lineColor="#000000"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement style="Detail" x="47" y="128" width="161" height="11" uuid="461a37de-d90c-41d4-995b-9aaba51847b7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{socios_razonsocial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="47" y="139" width="161" height="11" uuid="6b6dde6b-81f3-4b66-94fe-811beb18e76a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{socios_rucci}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="348" y="127" width="161" height="1" uuid="6d421729-7ecf-4274-b1b0-52491953126c"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed" lineColor="#000000"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement style="Detail" x="47" y="150" width="161" height="11" uuid="d7e8c874-d3b1-48d6-a2b3-a9cadb56984e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Firma de Socio"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="348" y="150" width="161" height="11" uuid="6354e08f-e68f-47c7-b43f-50ec25893b77"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Encargado"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="348" y="139" width="161" height="11" uuid="1cf3df01-dc2c-4380-ba18-a65f895ba598"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{usuarios_encargado_ci}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="348" y="128" width="161" height="11" uuid="3d380809-a358-4298-bbe7-f66ff3372f74"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{usuarios_encargado}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="124" splitType="Stretch">
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement x="186" y="1" width="203" height="122" uuid="10fd9924-74d2-4b43-8f1f-96ff47380386"/>
+				<imageExpression><![CDATA[getClass().getResource("Imag/_logo.png")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Column header" x="447" y="107" width="36" height="15" forecolor="#000000" uuid="cc903fbc-e019-4797-89bf-e0944f20125a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Telefax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="483" y="107" width="72" height="15" forecolor="#000000" uuid="3d32f476-3188-4d13-bb9b-5787d9b283fa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[(0528) 222-232]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="107" width="47" height="15" forecolor="#000000" uuid="ad9a51a6-fc7b-47c8-b2f2-b72d7c377456"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="47" y="107" width="88" height="15" forecolor="#000000" uuid="049694b4-4b73-4558-b8b4-9065f88ba586"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Calle 4 J.M.Frutos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="409" y="0" width="117" height="15" uuid="00606a3b-c51d-4e29-b679-3e22d2c27221"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###,##0.###").format($F{detacontratos_valoraporte})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="7" y="0" width="222" height="15" uuid="b004137d-2bf8-4081-b885-fc2805cd51a3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conceptcontratos_descri}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="275" y="0" width="117" height="15" uuid="29a94769-6e46-47f6-84e8-efbec91777e3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###,##0.###").format($F{detacontratos_valordeclarado})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
