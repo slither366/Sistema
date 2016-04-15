@@ -18,11 +18,10 @@ public class frm_Usuarios extends frm_Padre {
      * @param cod_ventana
      * @param conexion
      */
-    public frm_Usuarios(int cod_ventana, ConexionBD conexion) {
+    public frm_Usuarios(int cod_ventana) {
         initComponents();
         this.setResizable(false);
         this.setName("frm_usuarios");
-        this.getConexion = conexion;
         this.Cod_Ventana = cod_ventana;
         this.textTitulo.setText("Mantenimiento de Usuarios...");
         this.tablaConsutada = "acc_usuarios";
@@ -503,7 +502,7 @@ public class frm_Usuarios extends frm_Padre {
         this.Listar("vst_" + tablaConsutada, true, false, idConsultada, descripcionConsultada, tituloVentanaActual,
                 "/Reportes/listadosUsuarios.jasper",
                 new String[]{"cod_usuario", "nom_usuario", "alias", "nom_perfil", "comentario"},
-                new String[]{"Codigo", "Nombre", "Alias", "Perfil", "Comentario"}, getConexion);
+                new String[]{"Codigo", "Nombre", "Alias", "Perfil", "Comentario"});
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed

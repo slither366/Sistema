@@ -2,7 +2,7 @@ package com.app.form.Especiales;
 
 import com.app.clases.ClaseTeclas;
 import com.app.clases.ClaseCampos;
-import com.app.clases.ClaseTableModel;
+import com.app.clases.ClaseTable;
 import com.app.config.MensajeSistema;
 import com.app.config.Configuracion;
 import com.app.config.ConexionBD;
@@ -44,7 +44,7 @@ public class Buscar extends javax.swing.JDialog {
             ConsultaBase = ConsultaSQL.getSelect(tabla, campo, nombres, orderBy);
         }
         this.jTableConsulta.cargarDatos(conexion, ConsultaBase);
-        ClaseTableModel.ordernar(jTableConsulta);
+        ClaseTable.ordernar(jTableConsulta);
         this.CambiarTamañoColumnas();
         this.txtNombreConsulta.setText("");
         this.txtNombreConsulta.setTextTransparente("Ingrese algún texto");
@@ -85,8 +85,8 @@ public class Buscar extends javax.swing.JDialog {
     }
 
     private boolean cargarCuadrosConsulta() {
-        String codigo = jTableConsulta.getSeleccion(1);
-        String descri = jTableConsulta.getSeleccion(0);
+        String codigo = jTableConsulta.getValorSeleccionado(1);
+        String descri = jTableConsulta.getValorSeleccionado(0);
         if (jCheckCodigo.isSelected()) {
             this.txtNombreConsulta.setText(codigo);
         } else {
@@ -350,9 +350,9 @@ public class Buscar extends javax.swing.JDialog {
 
     private void txtNombreConsultaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNombreConsultaCaretUpdate
         if (jCheckCodigo.isSelected()) {
-            ClaseTableModel.filtrar(jTableConsulta, this.txtNombreConsulta.getText(), 1);
+            ClaseTable.filtrar(jTableConsulta, this.txtNombreConsulta.getText(), 1);
         } else {
-            ClaseTableModel.filtrar(jTableConsulta, this.txtNombreConsulta.getText(), 0);
+            ClaseTable.filtrar(jTableConsulta, this.txtNombreConsulta.getText(), 0);
         }
         this.cantidadRegistro();
     }//GEN-LAST:event_txtNombreConsultaCaretUpdate

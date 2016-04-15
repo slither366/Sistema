@@ -24,7 +24,7 @@ public class frm_Padre extends JInternalFrame {
     public int Cod_Ventana;
     public boolean Autorizado_ok = false, Agrega_OK = false, Modifica_OK = false, Borra_OK = false, Listar_OK = false;
     public char operacion;
-    public ConexionBD getConexion;
+    public static ConexionBD getConexion;
     public Propiedades getPropiedades;
     public Image getIcono;
 
@@ -79,30 +79,30 @@ public class frm_Padre extends JInternalFrame {
     }
 
     public void Listar(String tabla, boolean Empresa, boolean Sucursal,
-            String codigo, String descripcion, String titulo, ConexionBD conexion) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, conexion);
+            String codigo, String descripcion, String titulo) {
+        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
-            String descripcion2, String tituloDescri2, ConexionBD conexion) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, descripcion2, tituloDescri2, conexion);
+            String descripcion2, String tituloDescri2) {
+        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, descripcion2, tituloDescri2);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
-            String idForaneo, String descripcionForaneo, String tituloForaneo, ConexionBD conexion) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, idForaneo, descripcionForaneo, tituloForaneo, conexion);
+            String idForaneo, String descripcionForaneo, String tituloForaneo) {
+        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, idForaneo, descripcionForaneo, tituloForaneo);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
-            String reporte, String[] campos, String[] nombres, ConexionBD conexion) {
+            String reporte, String[] campos, String[] nombres) {
         Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion,
-                titulo, reporte, campos, nombres, conexion);
+                titulo, reporte, campos, nombres);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 

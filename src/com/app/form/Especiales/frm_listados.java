@@ -5,7 +5,6 @@ import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.ClaseUtilidades;
 import com.app.clases.GenerarReportes;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -22,10 +21,9 @@ public final class frm_listados extends frm_Padre {
 
     GenerarReportes reportes = new GenerarReportes();
 
-    public frm_listados(int cod_ventana, ConexionBD conexion) {
+    public frm_listados(int cod_ventana) {
         initComponents();
         this.setName("frm_listado");
-        getConexion = conexion;
         this.cargarCombos();
         this.cargarTablas();
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);

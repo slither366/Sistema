@@ -4,7 +4,6 @@ import com.app.clases.utilidades.Excel;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.GenerarReportes;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -35,14 +34,13 @@ public class Productos_Farm_Lst extends frm_Padre {
      * @param nomDesc1
      * @param titulo1
      * @param nomDesc2
-     * @param conexion
      * @param tituloPrincipal
      * @param Observacion
      * @param titulo2
      */
     public Productos_Farm_Lst(String tablaPrin, boolean empresa, boolean sucursal,
             String codigo, String nomDesc1, String titulo1, String nomDesc2, String titulo2,
-            String Observacion, String tituloPrincipal, ConexionBD conexion) {
+            String Observacion, String tituloPrincipal) {
         initComponents();
         this.setName("listar" + tablaPrin);
         this.tablaConsutada = tablaPrin;
@@ -55,7 +53,6 @@ public class Productos_Farm_Lst extends frm_Padre {
         this.Titulo2 = titulo2;
         this.descripcionConsultada = Observacion;
         this.tituloVentanaActual = tituloPrincipal;
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.Inicializar();

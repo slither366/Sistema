@@ -20,7 +20,7 @@ public class Acceso_Empresa extends frm_Padre {
     public Acceso_Empresa(ConexionBD conexion, Propiedades pro) {
         initComponents();
         this.setName("acceso_empresa");
-        this.getConexion = conexion;
+        frm_Padre.getConexion = conexion;
         this.getPropiedades = pro;
         this.setLocation((escritorio.getSize().width - this.getSize().width) / 2,
                 (escritorio.getSize().height - this.getSize().height) / 2);

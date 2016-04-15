@@ -4,7 +4,6 @@ import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.ClaseUtilidades;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -18,7 +17,7 @@ import static com.app.form.Especiales.frm_Padre.cod_empresa;
  */
 public final class Contactos extends frm_Padre implements Metodos {
 
-    public Contactos(int cod_ventana, ConexionBD conexion) {
+    public Contactos(int cod_ventana) {
         initComponents();
         this.setName("contactos");
         this.textTitulo.setText("Mantenimiento de Contactos...");
@@ -28,7 +27,6 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.idConsultada = "Cont_Codigo";
         this.descripcionConsultada = "razon_social";
         this.tituloVentanaActual = "Contactos";
-        this.getConexion = conexion;
         this.getPermisos(cod_ventana);
         this.txtRazonSocial.setEnMayuscula(true);
         this.txtCINumero.setFormato(false);
@@ -709,7 +707,7 @@ public final class Contactos extends frm_Padre implements Metodos {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         Listar(tablaConsutada, UsarEmpresa, UsarSucursal, this.idConsultada, descripcionConsultada, tituloVentanaActual,
-                idForaneo, descripcionForaneo, tituloVentanaForaneo, getConexion);
+                idForaneo, descripcionForaneo, tituloVentanaForaneo);
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void cboEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboEstadoFocusGained

@@ -105,7 +105,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         frm_Principal.jPanelDatos.setVisible(false);
         llamarFormulario.CloseAllFrame(escritorio);
         frm_Principal.MenuBar.setVisible(false);
-        Acceso acceso = new Acceso(Conexion);
+        Acceso acceso = new Acceso();
         acceso.setLocation((escritorio.getSize().width - acceso.getSize().width) / 2,
                 (escritorio.getSize().height - acceso.getSize().height) / 2);
         escritorio.add(acceso);
@@ -642,59 +642,59 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu5130ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5130ActionPerformed
-        llamarFormulario.llamarInternalFrame(new frm_Usuarios(5130, Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new frm_Usuarios(5130), escritorio);
     }//GEN-LAST:event_jMenu5130ActionPerformed
 
     private void jMenu3100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3100ActionPerformed
-        llamarFormulario.llamarInternalFrame(new frm_listados(3100, Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new frm_listados(3100), escritorio);
     }//GEN-LAST:event_jMenu3100ActionPerformed
 
     private void jMenu5240ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5240ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("ref_ciudades", 5240, false, false,
-                        "cod_ciudad", "nom_ciudad", "Ciudades", Conexion), escritorio);
+                        "cod_ciudad", "nom_ciudad", "Ciudades"), escritorio);
     }//GEN-LAST:event_jMenu5240ActionPerformed
 
     private void jMenu5110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5110ActionPerformed
-        llamarFormulario.llamarInternalFrame(new MantenimientoMenu(Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new MantenimientoMenu(), escritorio);
     }//GEN-LAST:event_jMenu5110ActionPerformed
 
     private void jMenu5250ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5250ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("ref_nacionalidades", 5250, true, false,
-                        "cod_nacionalidad", "nom_nacionalidad", "Nacionalidades", Conexion), escritorio);
+                        "cod_nacionalidad", "nom_nacionalidad", "Nacionalidades"), escritorio);
     }//GEN-LAST:event_jMenu5250ActionPerformed
 
     private void jMenu5230ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5230ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("ref_bancos", 5230, true, false,
-                        "cod_banco", "nom_banco", "Bancos", Conexion), escritorio);
+                        "cod_banco", "nom_banco", "Bancos"), escritorio);
     }//GEN-LAST:event_jMenu5230ActionPerformed
 
     private void jMenu5120ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5120ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Mantenimiento_Permisos(Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new Mantenimiento_Permisos(), escritorio);
     }//GEN-LAST:event_jMenu5120ActionPerformed
 
     private void jMenu1140ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1140ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos(1140, Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new Productos(1140), escritorio);
     }//GEN-LAST:event_jMenu1140ActionPerformed
 
     private void jMenu1110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1110ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Marcas", 1110, true, false,
-                        "Mar_Codigo", "Mar_Descrip", "Marcas", Conexion), escritorio);
+                        "Mar_Codigo", "Mar_Descrip", "Marcas"), escritorio);
     }//GEN-LAST:event_jMenu1110ActionPerformed
 
     private void jMenu1120ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1120ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Lineas", 1120, true, false,
-                        "Lin_Codigo", "Lin_Descrip", "Lineas", Conexion), escritorio);
+                        "Lin_Codigo", "Lin_Descrip", "Lineas"), escritorio);
     }//GEN-LAST:event_jMenu1120ActionPerformed
 
     private void jMenu1130ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1130ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Envaces", 1130, true, false,
-                        "Env_Codigo", "Env_Descrip", "Envaces", Conexion), escritorio);
+                        "Env_Codigo", "Env_Descrip", "Envaces"), escritorio);
     }//GEN-LAST:event_jMenu1130ActionPerformed
 
     private void jMenu5320ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5320ActionPerformed
@@ -704,7 +704,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu5310ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5310ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMTresCampos("contribuyentes", 5310, false, false,
-                        "ruc", "razon_social", "dv", "Contribuyentes", Conexion), escritorio);
+                        "ruc", "razon_social", "dv", "Contribuyentes"), escritorio);
     }//GEN-LAST:event_jMenu5310ActionPerformed
 
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
@@ -714,49 +714,49 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu1300ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1300ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMTresCampos("Ref_Sintomas", 1300, true, false,
-                        "Sint_Codigo", "Sint_Descrip", "observacion", "Sintomas", Conexion), escritorio);
+                        "Sint_Codigo", "Sint_Descrip", "observacion", "Sintomas"), escritorio);
     }//GEN-LAST:event_jMenu1300ActionPerformed
 
     private void jMenu1400ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1400ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMTresCampos("Ref_Enfermedades", 1400, true, false,
-                        "Enf_Codigo", "Enf_Descrip", "observacion", "Enfermedades", Conexion), escritorio);
+                        "Enf_Codigo", "Enf_Descrip", "observacion", "Enfermedades"), escritorio);
     }//GEN-LAST:event_jMenu1400ActionPerformed
 
     private void jMenu1500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1500ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Tratamientos", 1500, true, false, "Trat_Codigo",
                 "Ref_Enfermedades", "Enf_Codigo", "Enf_Descrip", "Enfermedades",
                 "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas",
-                "observacion", "Tratamientos", Conexion), escritorio);
+                "observacion", "Tratamientos"), escritorio);
     }//GEN-LAST:event_jMenu1500ActionPerformed
 
     private void jMenu1150ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1150ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Componentes", 1150, true, false, "Comp_Codigo",
                 "Mant_Productos", "Prod_Codigo", "Prod_Descrip", "Productos",
                 "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas", "observacion",
-                "Componentes", Conexion), escritorio);
+                "Componentes"), escritorio);
     }//GEN-LAST:event_jMenu1150ActionPerformed
 
     private void jMenu1600ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1600ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Diagnosticos", 1600, true, false, "Diag_Codigo",
                 "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
                 "ref_sintomas", "cod_sintoma", "nom_sintoma", "Sintomas",
-                "observacion", "Diagnosticos", Conexion), escritorio);
+                "observacion", "Diagnosticos"), escritorio);
     }//GEN-LAST:event_jMenu1600ActionPerformed
 
     private void jMenu1160ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1160ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("farm_contraindicaciones", 1160, true, false, "Cont_Codigo",
                 "mant_productos", "cod_producto", "nombre_producto", "Productos",
                 "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
-                "observacion", "Contraindicaciones", Conexion), escritorio);
+                "observacion", "Contraindicaciones"), escritorio);
     }//GEN-LAST:event_jMenu1160ActionPerformed
 
     private void jMenu5210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5210ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Empresas(5210, Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new Empresas(5210), escritorio);
     }//GEN-LAST:event_jMenu5210ActionPerformed
 
     private void jMenu1700ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1700ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Contactos(1700, Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(new Contactos(1700), escritorio);
     }//GEN-LAST:event_jMenu1700ActionPerformed
 
     private void jMenu6000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6000MouseClicked
@@ -772,11 +772,15 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenu5400ActionPerformed
 
     private void jMenu1210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1210ActionPerformed
-        llamarFormulario.llamarInternalFrame(new ABMDosCampos("ref_drogas", 1210, true, false, "Dro_Codigo", "Dro_Descrip", "Drogas", Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(
+                new ABMDosCampos("ref_drogas", 1210, true, false, 
+                        "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
     }//GEN-LAST:event_jMenu1210ActionPerformed
 
     private void jMenu1220ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1220ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Listar("ref_drogas", true, false, "Dro_Codigo", "Dro_Descrip", "Drogas", Conexion), escritorio);
+        llamarFormulario.llamarInternalFrame(
+                new Listar("ref_drogas", true, false, 
+                        "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
     }//GEN-LAST:event_jMenu1220ActionPerformed
     /**
      * @param args the command line arguments

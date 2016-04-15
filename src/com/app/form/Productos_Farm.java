@@ -5,7 +5,6 @@ import com.app.form.Especiales.frm_Padre;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 
@@ -19,7 +18,7 @@ public class Productos_Farm extends frm_Padre {
     public Productos_Farm(String tablaPrin, int cod_ventana, boolean empresa, boolean sucursal,
             String codigo, String tabla1, String idCod1, String nomDesc1, String titulo1,
             String tabla2, String idCod2, String nomDesc2, String titulo2,
-            String Observacion, String tituloPrincipal, ConexionBD conexion) {
+            String Observacion, String tituloPrincipal) {
         initComponents();
         this.setResizable(false);
         this.setName(tablaPrin);
@@ -40,7 +39,6 @@ public class Productos_Farm extends frm_Padre {
         this.tituloVentanaActual = tituloPrincipal;
         this.jLabeltitulo1.setText(Titulo1);
         this.jLabeltitulo2.setText(Titulo2);
-        this.getConexion = conexion;
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         this.getPermisos(this.Cod_Ventana);
@@ -651,7 +649,7 @@ public class Productos_Farm extends frm_Padre {
     }
 
     private void Listar() {
-        Productos_Farm_Lst listar = new Productos_Farm_Lst("vst_" + tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, NomDesc1, Titulo1, NomDesc2, Titulo2, descripcionConsultada, tituloVentanaActual, getConexion);
+        Productos_Farm_Lst listar = new Productos_Farm_Lst("vst_" + tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, NomDesc1, Titulo1, NomDesc2, Titulo2, descripcionConsultada, tituloVentanaActual);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 }

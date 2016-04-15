@@ -4,7 +4,6 @@ import com.app.clases.utilidades.DigitoVerificador;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
-import com.app.config.ConexionBD;
 import com.app.config.MensajeSistema;
 
 /**
@@ -13,16 +12,9 @@ import com.app.config.MensajeSistema;
  */
 public class Empresas extends frm_Padre {
 
-    /**
-     * Creates new form Empresa
-     *
-     * @param codigo
-     * @param conexion
-     */
-    public Empresas(int codigo, ConexionBD conexion) {
+    public Empresas(int codigo) {
         initComponents();
         this.setName("Empresas");
-        this.getConexion = conexion;
         this.Cod_Ventana = codigo;
         this.UsarEmpresa = false;
         this.UsarSucursal = false;

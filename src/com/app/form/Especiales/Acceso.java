@@ -1,7 +1,6 @@
 package com.app.form.Especiales;
 
 import com.app.clases.ClaseCampos;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.clases.ClaseTeclas;
@@ -15,14 +14,13 @@ public class Acceso extends frm_Padre {
 
     private int contador;
 
-    public Acceso(ConexionBD conexion) {
+    public Acceso() {
         initComponents();
         this.setName("acceso");
         this.tablaConsutada = "acc_usuarios";
         this.idConsultada = "Usu_Codigo";
         this.descripcionConsultada = "Usu_Nombre";
         this.tituloVentanaActual = "Usuarios";
-        this.getConexion = conexion;
         this.inicializar();
     }
 

@@ -3,7 +3,6 @@ package com.app.form.Especiales;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre.Metodos;
@@ -20,7 +19,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
 
     public ABMTresCampos(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion,
-            String descripcion2, String titulo, ConexionBD conexion) {
+            String descripcion2, String titulo ) {
         initComponents();
         this.setResizable(false);
         this.setName(titulo);
@@ -32,7 +31,6 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
         this.descripcionConsultada = descripcion;
         this.descripcion2 = descripcion2;
         this.tituloVentanaActual = titulo;
-        this.getConexion = conexion;
         this.getPermisos(this.Cod_Ventana);
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
@@ -310,7 +308,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        Listar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual, descripcion2, "Denominación", getConexion);
+        Listar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual, descripcion2, "Denominación");
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed

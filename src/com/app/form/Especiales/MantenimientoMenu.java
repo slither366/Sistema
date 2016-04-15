@@ -3,7 +3,6 @@ package com.app.form.Especiales;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 
@@ -13,7 +12,7 @@ import com.app.config.MensajeSistema;
  */
 public class MantenimientoMenu extends frm_Padre {
 
-    public MantenimientoMenu(ConexionBD conexion) {
+    public MantenimientoMenu() {
         initComponents();
         this.setName("menus");
         this.tablaConsutada = "Acc_Menus";
@@ -22,7 +21,6 @@ public class MantenimientoMenu extends frm_Padre {
         this.idConsultada = "Men_Codigo";
         this.descripcionConsultada = "Men_Descrip";
         this.tituloVentanaActual = "Menús";
-        this.getConexion = conexion;
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
         this.txtDescripcion.setEnMayuscula(true);        
@@ -313,7 +311,7 @@ public class MantenimientoMenu extends frm_Padre {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        this.Listar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual, getConexion);
+        this.Listar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed

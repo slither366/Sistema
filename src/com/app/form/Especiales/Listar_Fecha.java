@@ -4,7 +4,6 @@ import com.app.clases.utilidades.Excel;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseFecha;
 import com.app.clases.GenerarReportes;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -33,11 +32,10 @@ public class Listar_Fecha extends frm_Padre {
      * @param titulo
      * @param reporte
      * @param campos
-     * @param conexion
      * @param nombres
      */
     public Listar_Fecha(String tabla, boolean Empresa, boolean Sucursal, String CampoFecha, String titulo,
-            String reporte, String[] campos, String[] nombres, ConexionBD conexion) {
+            String reporte, String[] campos, String[] nombres) {
         initComponents();
         this.setName("listar" + titulo);
         this.tablaConsutada = tabla;
@@ -48,7 +46,6 @@ public class Listar_Fecha extends frm_Padre {
         this.ubicacionRep = reporte;
         this.campos = campos;
         this.nombres = nombres;
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.Inicializar();

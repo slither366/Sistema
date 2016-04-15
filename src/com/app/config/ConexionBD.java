@@ -1,7 +1,6 @@
 package com.app.config;
 
 import com.app.paleta.txtCodigo;
-import com.app.clases.ClaseEncriptacion;
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

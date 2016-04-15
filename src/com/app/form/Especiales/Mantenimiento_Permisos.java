@@ -1,7 +1,7 @@
 package com.app.form.Especiales;
 
 import com.app.clases.ClaseBotones;
-import com.app.clases.ClaseTableModel;
+import com.app.clases.ClaseTable;
 import com.app.clases.ClaseTeclas;
 import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
@@ -23,16 +23,14 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private boolean v_borrar = false, v_listar = false;
     private boolean v_todos = false;
 
-    public Mantenimiento_Permisos(ConexionBD conexion) {
+    public Mantenimiento_Permisos() {
         initComponents();
-        this.setName("Mant_Permisos");
-        this.getConexion = conexion;
-        this.getConexion.getConexion();
+        this.setName("Mant_Permisos");                
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
-        ClaseTableModel.setAncho(jTablePermisos, new int[]{0, 1, 2, 3, 4, 5, 6}, new int[]{50, 300, 30, 30, 30, 30, 30});
+        jTablePermisos.setAncho(new int[]{0, 1, 2, 3, 4, 5, 6}, new int[]{50, 300, 30, 30, 30, 30, 30});
         this.ModeloPermisos = (DefaultTableModel) jTablePermisos.getModel();
         this.ModeloMenus = (DefaultTableModel) jTableMenus.getModel();
-        ClaseTableModel.setAncho(jTableMenus, new int[]{0, 1, 2}, new int[]{50, 200, 30});
+        jTablePermisos.setAncho(new int[]{0, 1, 2}, new int[]{50, 200, 30});
         this.Inicializar();
     }
 
@@ -49,14 +47,14 @@ public class Mantenimiento_Permisos extends frm_Padre {
         pnlTitulo = new javax.swing.JPanel();
         textTitulo = new javax.swing.JLabel();
         jPanelPermisos = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePermisos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButtonAutorizado = new javax.swing.JButton();
         jButtonAgregar = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonBorrar = new javax.swing.JButton();
         jButtonListar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTablePermisos = new com.app.paleta.tbl();
         jPanelDatos = new javax.swing.JPanel();
         btnNuevo = new com.app.botones.btnNuevo();
         btnModificar = new com.app.botones.btnModificar();
@@ -70,12 +68,10 @@ public class Mantenimiento_Permisos extends frm_Padre {
         jLabel4 = new javax.swing.JLabel();
         jComboPerfil = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableMenus = new javax.swing.JTable();
         jButtonTodos = new javax.swing.JButton();
         jButtonPasar = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableMenus = new com.app.paleta.tbl();
 
         pnlTitulo.setBackground(new java.awt.Color(204, 204, 204));
         pnlTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -105,32 +101,6 @@ public class Mantenimiento_Permisos extends frm_Padre {
         );
 
         jPanelPermisos.setBorder(javax.swing.BorderFactory.createTitledBorder("Permisos"));
-
-        jTablePermisos.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jTablePermisos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Código", "Menú", "Autorizado", "Agregar", "Modificar", "Borrar", "Listar"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTablePermisos);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Todos:");
@@ -170,6 +140,31 @@ public class Mantenimiento_Permisos extends frm_Padre {
             }
         });
 
+        jTablePermisos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Menú", "Autorizado", "Agregar", "Modificar", "Borrar", "Listar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTablePermisos);
+
         javax.swing.GroupLayout jPanelPermisosLayout = new javax.swing.GroupLayout(jPanelPermisos);
         jPanelPermisos.setLayout(jPanelPermisosLayout);
         jPanelPermisosLayout.setHorizontalGroup(
@@ -177,7 +172,6 @@ public class Mantenimiento_Permisos extends frm_Padre {
             .addGroup(jPanelPermisosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelPermisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanelPermisosLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -189,14 +183,14 @@ public class Mantenimiento_Permisos extends frm_Padre {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         jPanelPermisosLayout.setVerticalGroup(
             jPanelPermisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPermisosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPermisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -317,7 +311,20 @@ public class Mantenimiento_Permisos extends frm_Padre {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Menús"));
 
-        jTableMenus.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButtonTodos.setText("Todos");
+        jButtonTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTodosActionPerformed(evt);
+            }
+        });
+
+        jButtonPasar.setText("<< Pasar");
+        jButtonPasar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPasarActionPerformed(evt);
+            }
+        });
+
         jTableMenus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -341,21 +348,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTableMenus);
-
-        jButtonTodos.setText("Todos");
-        jButtonTodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTodosActionPerformed(evt);
-            }
-        });
-
-        jButtonPasar.setText("<< Pasar");
-        jButtonPasar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPasarActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jTableMenus);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -364,17 +357,18 @@ public class Mantenimiento_Permisos extends frm_Padre {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonPasar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonTodos)))
+                        .addComponent(jButtonTodos))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonTodos)
@@ -611,9 +605,9 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelPermisos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableMenus;
-    private javax.swing.JTable jTablePermisos;
+    private javax.swing.JScrollPane jScrollPane3;
+    private com.app.paleta.tbl jTableMenus;
+    private com.app.paleta.tbl jTablePermisos;
     private javax.swing.JPanel pnlTitulo;
     private javax.swing.JLabel textTitulo;
     // End of variables declaration//GEN-END:variables
@@ -651,7 +645,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
             int cantidadRow = this.ModeloPermisos.getRowCount();
             for (int i = cantidadRow - 1; i >= 0; i--) {
                 if ("false".equals(this.ModeloPermisos.getValueAt(i, 2).toString())) {
-                    ClaseTableModel.removeRowjTable(jTablePermisos, i);
+                    ClaseTable.removeRowjTable(jTablePermisos, i);
                 }
             }
             cantidadRow = this.ModeloPermisos.getRowCount();
@@ -774,7 +768,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
         return false;
     }
 
-    private boolean CargarPermisos() {        
+    private boolean CargarPermisos() {
         this.ModeloPermisos.setRowCount(0);
         String consulta = ConsultaSQL.getSelect("vst_Acc_Principal",
                 new String[]{"Men_Codigo", "Men_Descrip", "autorizado_ok", "agrega_ok", "modifica_ok", "borra_ok", "listar_ok"},
@@ -838,7 +832,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
         }
         for (int i = cantidadRow - 1; i >= 0; i--) {
             if ("".equals(ModeloMenus.getValueAt(i, 0))) {
-                ClaseTableModel.removeRowjTable(jTableMenus, i);
+                ClaseTable.removeRowjTable(jTableMenus, i);
             }
         }
     }

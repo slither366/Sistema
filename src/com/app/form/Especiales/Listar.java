@@ -4,7 +4,6 @@ import com.app.clases.utilidades.Excel;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.GenerarReportes;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -33,10 +32,9 @@ public class Listar extends frm_Padre {
      * @param codigo
      * @param descripcion
      * @param titulo
-     * @param conexion
      */
     public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo,
-            String descripcion, String titulo, ConexionBD conexion) {
+            String descripcion, String titulo) {
         initComponents();
         this.setName("listar" + titulo);
         this.tablaConsutada = tabla;
@@ -46,7 +44,6 @@ public class Listar extends frm_Padre {
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
         this.ubicacionRep = "";
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
@@ -64,10 +61,9 @@ public class Listar extends frm_Padre {
      * @param titulo
      * @param descripcion2
      * @param tituloDescri2
-     * @param conexion
      */
     public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
-            String descripcion2, String tituloDescri2, ConexionBD conexion) {
+            String descripcion2, String tituloDescri2) {
         initComponents();
         this.setName("listar" + titulo);
         this.tablaConsutada = tabla;
@@ -79,7 +75,6 @@ public class Listar extends frm_Padre {
         this.ubicacionRep = "";
         this.descripcionForaneo = descripcion2;
         this.tituloVentanaForaneo = tituloDescri2;
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 2;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
@@ -98,10 +93,9 @@ public class Listar extends frm_Padre {
      * @param idForaneo
      * @param descripcionForaneo
      * @param tituloForaneo
-     * @param conexion
      */
     public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
-            String idForaneo, String descripcionForaneo, String tituloForaneo, ConexionBD conexion) {
+            String idForaneo, String descripcionForaneo, String tituloForaneo) {
         initComponents();
         this.setName("listar" + titulo);
         this.tablaConsutada = tabla;
@@ -113,7 +107,6 @@ public class Listar extends frm_Padre {
         this.descripcionConsultada = descripcion;
         this.descripcionForaneo = descripcionForaneo;
         this.tituloVentanaForaneo = tituloForaneo;
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 3;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
@@ -131,11 +124,10 @@ public class Listar extends frm_Padre {
      * @param titulo
      * @param reporte
      * @param campos
-     * @param conexion
      * @param nombres
      */
     public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
-            String reporte, String[] campos, String[] nombres, ConexionBD conexion) {
+            String reporte, String[] campos, String[] nombres) {
         initComponents();
         this.setName("listar" + titulo);
         this.tablaConsutada = tabla;
@@ -147,7 +139,6 @@ public class Listar extends frm_Padre {
         this.ubicacionRep = reporte;
         this.campos = campos;
         this.nombres = nombres;
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 0;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);

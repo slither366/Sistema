@@ -1,17 +1,8 @@
 package com.app.paleta;
 
-import com.app.clases.ClaseNumeros;
-import com.app.clases.ClaseTableModel;
+import com.app.clases.ClaseTable;
 import com.app.config.ConexionBD;
-import com.app.config.MensajeSistema;
-import java.awt.print.PrinterException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.text.MessageFormat;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,58 +15,21 @@ public class tbl extends javax.swing.JTable {
     }
 
     public void cargarDatos(ConexionBD con, String sql) {
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        modelo.setRowCount(0);
-        try {
-            ResultSet rs = con.ejecutaQuery(sql);
-            ResultSetMetaData metaDatos = rs.getMetaData();
-            if (rs.next()) {
-                do {
-                    Object[] datos = new Object[metaDatos.getColumnCount()];
-                    for (int i = 0; i < modelo.getColumnCount(); i++) {
-                        try {
-                            datos[i] = rs.getString(i + 1);
-                        } catch (Exception ex) {
-                        }
-                    }
-                    modelo.addRow(datos);
-                } while (rs.next());
-                this.setModel(modelo);
-                this.ordernar();
-            }
-        } catch (SQLException ex) {
-            MensajeSistema.setSQLException(ex);
-        }
+        ResultSet rs = con.ejecutaQuery(sql);
+        ClaseTable.cargarDatos(this, rs);
+        this.ordernar();
+    }
+
+    public boolean isEmptyJtable() {
+        return ClaseTable.isEmptyJtable(this);
     }
 
     public void setSeleccionarRegistro(int codigo) {
-        int valorCelda;
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int fila = 0; fila < modelo.getRowCount(); fila++) {
-            try {
-                valorCelda = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-                if (valorCelda == codigo) {
-                    this.getSelectionModel().setSelectionInterval(fila, fila);
-                    break;
-                }
-            } catch (NumberFormatException ex) {
-            }
-        }
+        ClaseTable.setSeleccionarRegistro(this, codigo);
     }
 
     public void setSeleccionarRegistro(String registro) {
-        String valorCelda;
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int fila = 0; fila < modelo.getRowCount(); fila++) {
-            try {
-                valorCelda = modelo.getValueAt(fila, 0).toString();
-                if (valorCelda.equals(registro)) {
-                    this.getSelectionModel().setSelectionInterval(fila, fila);
-                    break;
-                }
-            } catch (Exception ex) {
-            }
-        }
+        ClaseTable.setSeleccionarRegistro(this, registro);
     }
 
     /**
@@ -86,18 +40,7 @@ public class tbl extends javax.swing.JTable {
      * @return
      */
     public double getMIN(int column) {
-        double valor = getMAX(column);
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            try {
-                double columna = Double.parseDouble(modelo.getValueAt(i, column).toString().replaceAll(",", ""));
-                if (valor > columna) {
-                    valor = columna;
-                }
-            } catch (Exception ex) {
-            }
-        }
-        return valor;
+        return ClaseTable.getMIN(this, column);
     }
 
     /**
@@ -108,18 +51,7 @@ public class tbl extends javax.swing.JTable {
      * @return
      */
     public double getMAX(int column) {
-        double valor = 0;
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            try {
-                double columna = Double.parseDouble(modelo.getValueAt(i, column).toString().replaceAll(",", ""));
-                if (valor < columna) {
-                    valor = columna;
-                }
-            } catch (Exception ex) {
-            }
-        }
-        return valor;
+        return ClaseTable.getMAX(this, column);
     }
 
     /**
@@ -130,15 +62,7 @@ public class tbl extends javax.swing.JTable {
      * @return
      */
     public double getAVG(int column) {
-        double valor = 0;
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            try {
-                valor += Double.parseDouble(modelo.getValueAt(i, column).toString().replaceAll(",", ""));
-            } catch (Exception ex) {
-            }
-        }
-        return valor / this.getRowCount();
+        return ClaseTable.getAVG(this, column);
     }
 
     /**
@@ -149,15 +73,19 @@ public class tbl extends javax.swing.JTable {
      * @return
      */
     public double getSUM(int column) {
-        int valor = 0;
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            try {
-                valor += Double.parseDouble(modelo.getValueAt(i, column).toString().replaceAll(",", ""));
-            } catch (Exception ex) {
-            }
-        }
-        return valor;
+        return ClaseTable.getSUM(this, column);
+    }
+
+    /**
+     * A partir de una columna (dentro de un jtable) lo convierte en un vector
+     * de String. Ejemplo: String[]vedat = comJTable.getColumnaToVector(jTable1,
+     * 3);
+     *
+     * @param column
+     * @return
+     */
+    public String[] getColumnaToVector(int column) {
+        return ClaseTable.getColumnaToVector(this, column);
     }
 
     /**
@@ -166,8 +94,8 @@ public class tbl extends javax.swing.JTable {
      * @return el codigo seleccionado de la primera columna obs: Solo funciona
      * con numeros enteros
      */
-    public String getSeleccion() {
-        return getSeleccion(0);
+    public String getValorSeleccionado() {
+        return getValorSeleccionado(0);
     }
 
     /**
@@ -177,17 +105,8 @@ public class tbl extends javax.swing.JTable {
      * @return el codigo seleccionado de la primera columna obs: Solo funciona
      * con numeros enteros
      */
-    public String getSeleccion(int col) {
-        int fila = this.getSelectedRow(); // devuelve el numero de fila del registro seleccionado         
-        if (fila == -1) {
-            return "";
-        } else { // devuelve el valor de la fila seleccionada
-            try {
-                return this.getValueAt(fila, col).toString();
-            } catch (Exception ex) {
-                return "";
-            }
-        }
+    public String getValorSeleccionado(int col) {
+        return ClaseTable.getValorSeleccionado(this, col);
     }
 
     /**
@@ -195,32 +114,20 @@ public class tbl extends javax.swing.JTable {
      *
      */
     public void vaciar() {
-        DefaultTableModel m = (DefaultTableModel) this.getModel();
-        m.setRowCount(0);
-        this.setModel(m);
+        ClaseTable.vaciarJtable(this);
     }
 
-    /**
-     *
-     * @param column
-     * @param decimal
-     */
+    public void enTextoValorSeleccionado(txtTexto texto, int columna) {
+        ClaseTable.enTextoValorSelect(texto, this, columna);
+    }
+
     public void formatearColumna(int column, int decimal) {
-        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
-        for (int fila = 0; fila < modelo.getRowCount(); fila++) {
-            try {
-                String xnum = modelo.getValueAt(fila, column).toString();
-                String valor = ClaseNumeros.formatoMiles(xnum, decimal);
-                modelo.setValueAt(valor, fila, column);
-            } catch (NumberFormatException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+        ClaseTable.formatearColumna(this, column, decimal);
     }
 
     public void formatearColumna(int[] column, int decimal) {
         for (int i = 0; i < column.length; i++) {
-            formatearColumna(column[i], decimal);
+            ClaseTable.formatearColumna(this, column[i], decimal);
         }
     }
 
@@ -230,38 +137,7 @@ public class tbl extends javax.swing.JTable {
      * @param Columna
      */
     public void setAlinearDerecha(int Columna) {
-        try {
-            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-            tcr.setHorizontalAlignment(SwingConstants.RIGHT);
-            this.getColumnModel().getColumn(Columna).setCellRenderer(tcr);
-            this.repaint();
-        } catch (Exception ex) {
-            ex.getMessage();
-        }
-    }
-
-    /**
-     * Permite alinear a una columna en el centro
-     *
-     * @param Columna
-     */
-    public void setAlinearCentro(int Columna) {
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        this.getColumnModel().getColumn(Columna).setCellRenderer(tcr);
-        this.repaint();
-    }
-
-    /**
-     * Permite alinear a una columna en el lado izquierdo
-     *
-     * @param Columna
-     */
-    public void setAlinearIzquierdo(int Columna) {
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.LEFT);
-        this.getColumnModel().getColumn(Columna).setCellRenderer(tcr);
-        this.repaint();
+        ClaseTable.setAlinearDerecha(this, Columna);
     }
 
     /**
@@ -271,8 +147,17 @@ public class tbl extends javax.swing.JTable {
      */
     public void setAlinearDerecha(int[] Columna) {
         for (int i = 0; i < Columna.length; i++) {
-            setAlinearDerecha(Columna[i]);
+            ClaseTable.setAlinearDerecha(this, Columna[i]);
         }
+    }
+
+    /**
+     * Permite alinear a una columna en el centro
+     *
+     * @param Columna
+     */
+    public void setAlinearCentro(int Columna) {
+        ClaseTable.setAlinearCentro(this, Columna);
     }
 
     /**
@@ -282,8 +167,17 @@ public class tbl extends javax.swing.JTable {
      */
     public void setAlinearCentro(int[] Columna) {
         for (int i = 0; i < Columna.length; i++) {
-            setAlinearCentro(Columna[i]);
+            ClaseTable.setAlinearCentro(this, Columna[i]);
         }
+    }
+
+    /**
+     * Permite alinear a una columna en el lado izquierdo
+     *
+     * @param Columna
+     */
+    public void setAlinearIzquierdo(int Columna) {
+        ClaseTable.setAlinearIzquierdo(this, Columna);
     }
 
     /**
@@ -293,7 +187,7 @@ public class tbl extends javax.swing.JTable {
      */
     public void setAlinearIzquierda(int[] Columna) {
         for (int i = 0; i < Columna.length; i++) {
-            setAlinearIzquierdo(Columna[i]);
+            ClaseTable.setAlinearIzquierdo(this, i);
         }
     }
 
@@ -304,14 +198,8 @@ public class tbl extends javax.swing.JTable {
      * @param columna
      */
     public void setOcultar(int[] columna) {
-        try {
-            for (int i = 0; i < columna.length; i++) {
-                this.getColumnModel().getColumn(columna[i]).setMaxWidth(0);
-                this.getColumnModel().getColumn(columna[i]).setMinWidth(0);
-                this.getTableHeader().getColumnModel().getColumn(columna[i]).setMaxWidth(0);
-                this.getTableHeader().getColumnModel().getColumn(columna[i]).setMinWidth(0);
-            }
-        } catch (Exception e) {
+        for (int i = 0; i < columna.length; i++) {
+            ClaseTable.setOcultar(this, columna[i]);
         }
     }
 
@@ -321,13 +209,7 @@ public class tbl extends javax.swing.JTable {
      * @param columna
      */
     public void setOcultar(int columna) {
-        try {
-            this.getColumnModel().getColumn(columna).setMaxWidth(0);
-            this.getColumnModel().getColumn(columna).setMinWidth(0);
-            this.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
-            this.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
-        } catch (Exception e) {
-        }
+        ClaseTable.setOcultar(this, columna);
     }
 
     /**
@@ -340,11 +222,7 @@ public class tbl extends javax.swing.JTable {
      */
     public void setMostrar(int[] columna) {
         for (int i = 0; i < columna.length; i++) {
-            this.getColumnModel().getColumn(columna[i]).setMaxWidth(450);
-            this.getColumnModel().getColumn(columna[i]).setMinWidth(15);
-            this.getTableHeader().getColumnModel().getColumn(columna[i]).setMaxWidth(450);
-            this.getTableHeader().getColumnModel().getColumn(columna[i]).setMinWidth(15);
-            this.getColumnModel().getColumn(columna[i]).setPreferredWidth(75); //en vez de la utilizacion del setWidth que tiene otra funcion para su uso
+            ClaseTable.setMostrar(this, columna[i]);
         }
     }
 
@@ -360,16 +238,14 @@ public class tbl extends javax.swing.JTable {
      * @param tamaño
      */
     public void setAncho(int[] columna, int[] tamaño) {
-        if (columna.length != tamaño.length) {
-            return;
-        }
         for (int i = 0; i < columna.length; i++) {
-            this.setAncho(columna[i], tamaño[i]);
+            ClaseTable.setAncho(this, i, i);
         }
+
     }
 
     public void setAncho(int columna, int tamaño) {
-        this.getColumnModel().getColumn(columna).setPreferredWidth(tamaño); //en vez de la utilizacion del setWidth que tiene otra funcion para su uso        
+        ClaseTable.setAncho(this, columna, tamaño);
     }
 
     /**
@@ -378,20 +254,15 @@ public class tbl extends javax.swing.JTable {
      * @param tamaño
      */
     public void setAnchoTodos(int tamaño) {
-        for (int i = 0; i < this.getColumnCount(); i++) {
-            this.getColumnModel().getColumn(i).setPreferredWidth(tamaño); //en vez de la utilizacion del setWidth que tiene otra funcion para su uso
-        }
+        ClaseTable.setAnchoTodos(this, tamaño);
     }
 
     public void ordernar() {
-        ClaseTableModel.ordernar(this);
-//        TableModel dtm = (TableModel) this.getModel();
-//        TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(dtm);
-//        this.setRowSorter(rowSorter);
+        ClaseTable.ordernar(this);
     }
 
     public void filtrar(String buscar, int posicion) {
-        ClaseTableModel.filtrar(this, buscar, posicion);
+        ClaseTable.filtrar(this, buscar, posicion);
     }
 
     /**
@@ -400,13 +271,6 @@ public class tbl extends javax.swing.JTable {
      * @param titulo
      */
     public void print(String titulo) {
-        try {            
-            // tabla1.print();//envia los datos de la tabla a la impresora
-            MessageFormat headerFormat = new MessageFormat(titulo);
-            MessageFormat footerFormat = new MessageFormat("- Página {0} -");
-            this.print(PrintMode.FIT_WIDTH, headerFormat, footerFormat);
-        } catch (PrinterException ex) {
-            MensajeSistema.setException("No se ha podido imprimir correctamente, intentalo más tarde.", ex);
-        }
+        ClaseTable.print(this, titulo);
     }
 }

@@ -3,7 +3,6 @@ package com.app.form;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -19,7 +18,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private int vTipo;
     private boolean recuperado;
 
-    public Productos(int cod_ventana, ConexionBD conexion) {
+    public Productos(int cod_ventana) {
         initComponents();
         this.setName("productos");
         this.tablaConsutada = "Mant_Productos";
@@ -27,7 +26,6 @@ public final class Productos extends frm_Padre implements Metodos {
         this.descripcionConsultada = "Prod_Descrip";
         this.tituloVentanaActual = "Productos";
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
-        this.getConexion = conexion;
         this.getPermisos(cod_ventana);
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
         this.txtCod_Producto.setTextTransparente("Ingrese el codigo del Producto");
@@ -786,7 +784,7 @@ public final class Productos extends frm_Padre implements Metodos {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         Listar(tablaConsutada, true, false, idConsultada, descripcionConsultada, tituloVentanaActual,
-                "Bar_Codigo", "Codigo de Barra", getConexion);
+                "Bar_Codigo", "Codigo de Barra");
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed

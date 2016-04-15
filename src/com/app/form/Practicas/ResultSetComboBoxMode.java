@@ -13,8 +13,8 @@ import javax.swing.event.ListDataListener;
  */
 public class ResultSetComboBoxMode implements ComboBoxModel {
 
-    private final Vector<ResultSetComboBoxModelObject> data = new Vector<ResultSetComboBoxModelObject>();
-    private final Vector<ListDataListener> list = new Vector<ListDataListener>();
+    private final Vector<ResultSetComboBoxModelObject> data = new Vector<>();
+    private final Vector<ListDataListener> list = new Vector<>();
     private ResultSetComboBoxModelObject selectedItem;
 
     public ResultSetComboBoxMode(ResultSet r, String codigo, String descri) throws SQLException {
@@ -85,7 +85,7 @@ public class ResultSetComboBoxMode implements ComboBoxModel {
 
     public class ResultSetComboBoxModelObject {
 
-        private Integer codigo;
+        private int codigo;
         private String descri;
 
         public ResultSetComboBoxModelObject(Integer codigo, String descri) {
@@ -98,11 +98,11 @@ public class ResultSetComboBoxMode implements ComboBoxModel {
             return this.getDescri();
         }
 
-        public Integer getCodigo() {
+        public int getCodigo() {
             return codigo;
         }
 
-        public void setCodigo(Integer codigo) {
+        public void setCodigo(int codigo) {
             this.codigo = codigo;
         }
 

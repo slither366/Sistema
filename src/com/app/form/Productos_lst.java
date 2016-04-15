@@ -4,7 +4,6 @@ import com.app.form.Especiales.frm_Padre;
 import com.app.clases.utilidades.Excel;
 import com.app.clases.ClaseBotones;
 import com.app.clases.GenerarReportes;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
@@ -21,18 +20,12 @@ public class Productos_lst extends frm_Padre {
     GenerarReportes reportes = new GenerarReportes();
     int foraneo;//1: dos campos, 2: tres campos sin FK, 3:tres campos con FK
 
-    /**
-     * Listar para dos campos
-     *
-     * @param conexion
-     */
-    public Productos_lst(ConexionBD conexion) {
+    public Productos_lst() {
         initComponents();
         this.setName("listar_productos");
         this.tablaConsutada = "productos";
         this.idConsultada = "cod_producto";
         this.tituloVentanaActual = "Productos";
-        this.getConexion = conexion;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
