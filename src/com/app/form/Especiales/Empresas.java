@@ -22,7 +22,7 @@ public class Empresas extends frm_Padre {
         this.idConsultada = "Emp_Codigo";
         this.descripcionConsultada = "Emp_Descrip";
         this.tituloVentanaActual = "Empresas";
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
+        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.Inicializar();
     }
 
@@ -54,13 +54,11 @@ public class Empresas extends frm_Padre {
         jCheckAgenteRetentor = new javax.swing.JCheckBox();
         jPanelBotones = new javax.swing.JPanel();
         btnNuevo = new com.app.botones.btnNuevo();
-        btnImagen = new com.app.botones.btnImagen();
+        btnModificar = new com.app.botones.btnEditar();
+        btnBorrar = new com.app.botones.btnBorrar();
         btnGrabar = new com.app.botones.btnGrabar();
         btnCancelar = new com.app.botones.btnCancelar();
         btnSalir = new com.app.botones.btnSalir();
-        btnModificar = new com.app.botones.btnModificar();
-        btnBorrar = new com.app.botones.btnBorrar();
-        btnListar = new com.app.botones.btnListar();
 
         pnlTitulo.setBackground(new java.awt.Color(204, 204, 204));
         pnlTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -87,8 +85,6 @@ public class Empresas extends frm_Padre {
                 .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -236,24 +232,6 @@ public class Empresas extends frm_Padre {
             }
         });
 
-        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrabarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
@@ -266,9 +244,23 @@ public class Empresas extends frm_Padre {
             }
         });
 
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
+        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
+                btnGrabarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setMaximumSize(new java.awt.Dimension(90, 30));
+        btnSalir.setMinimumSize(new java.awt.Dimension(90, 30));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -278,23 +270,17 @@ public class Empresas extends frm_Padre {
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                        .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBotonesLayout.setVerticalGroup(
@@ -305,14 +291,9 @@ public class Empresas extends frm_Padre {
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,11 +303,11 @@ public class Empresas extends frm_Padre {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 482, Short.MAX_VALUE)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,34 +334,6 @@ public class Empresas extends frm_Padre {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        Agregar();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        Grabar();
-    }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Inicializar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Salir(this);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        Editar('M');
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        Editar('E');
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        MensajeSistema.MensajeVarios(this, "En desarrollo...", MensajeSistema.INFORMATION_MESSAGE());
-    }//GEN-LAST:event_btnListarActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         if (this.txtCodigo.verificarVacioSinMsj()) {
@@ -447,13 +400,35 @@ public class Empresas extends frm_Padre {
         }
     }//GEN-LAST:event_jCheckAgenteRetentorKeyPressed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.Agregar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        this.Editar('M');
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        this.Editar('E');
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
+        this.Grabar();
+    }//GEN-LAST:event_btnGrabarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Inicializar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Salir(this);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.btnBorrar btnBorrar;
     private com.app.botones.btnCancelar btnCancelar;
     private com.app.botones.btnGrabar btnGrabar;
-    private com.app.botones.btnImagen btnImagen;
-    private com.app.botones.btnListar btnListar;
-    private com.app.botones.btnModificar btnModificar;
+    private com.app.botones.btnEditar btnModificar;
     private com.app.botones.btnNuevo btnNuevo;
     private com.app.botones.btnSalir btnSalir;
     private javax.swing.JCheckBox jCheckAgenteRetentor;
@@ -478,7 +453,7 @@ public class Empresas extends frm_Padre {
 
     private void Inicializar() {
         this.getPermisos(Cod_Ventana);
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, true);
+        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);
         ClaseCampos.SetTextNull(jPanelDatos);
         ClaseCampos.setEnabled(jPanelDatos, false);
         this.jCheckAgenteRetentor.setEnabled(false);
@@ -487,23 +462,20 @@ public class Empresas extends frm_Padre {
         this.btnNuevo.setEnabled(Agrega_OK);
         this.btnModificar.setEnabled(Modifica_OK);
         this.btnBorrar.setEnabled(Borra_OK);
-        this.btnListar.setEnabled(Listar_OK);
         if (this.btnNuevo.isEnabled()) {
             this.btnNuevo.grabFocus();
         } else if (this.btnModificar.isEnabled()) {
             this.btnModificar.grabFocus();
         } else if (this.btnBorrar.isEnabled()) {
             this.btnBorrar.grabFocus();
-        } else if (this.btnListar.isEnabled()) {
-            this.btnListar.grabFocus();
-        } else {
+        }else {
             this.btnSalir.grabFocus();
         }
     }
 
     private void Agregar() {
         if (getConexion.autoNumerico(tablaConsutada, idConsultada, null, null, this.txtCodigo)) {
-            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, false);
+            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             this.btnGrabar.setEnabled(false);
             this.txtDenominacion.setEnabled(true);
             operacion = 'A';
@@ -515,7 +487,7 @@ public class Empresas extends frm_Padre {
 
     private void Editar(char c) {
         operacion = c;
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, false);
+        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCodigo.setEnabled(true);
         this.btnGrabar.setEnabled(false);
         this.txtCodigo.grabFocus();

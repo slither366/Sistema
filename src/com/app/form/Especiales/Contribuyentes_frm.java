@@ -44,7 +44,7 @@ public class Contribuyentes_frm extends frm_Padre {
         jPanelTitulo = new javax.swing.JPanel();
         textTitulo = new javax.swing.JLabel();
         btnSalir1 = new com.app.botones.btnSalir();
-        btnModificar1 = new com.app.botones.btnModificar();
+        btnModificar1 = new com.app.botones.btnEditar();
         btnGrabar1 = new com.app.botones.btnGrabar();
         btnCancelar1 = new com.app.botones.btnCancelar();
         jPanel2 = new javax.swing.JPanel();
@@ -208,7 +208,7 @@ public class Contribuyentes_frm extends frm_Padre {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.btnCancelar btnCancelar1;
     private com.app.botones.btnGrabar btnGrabar1;
-    private com.app.botones.btnModificar btnModificar1;
+    private com.app.botones.btnEditar btnModificar1;
     private com.app.botones.btnSalir btnSalir1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

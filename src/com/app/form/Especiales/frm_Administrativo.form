@@ -449,7 +449,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="com.app.botones.btnModificar" name="btnModificarConfGeneral">
+                <Component class="com.app.botones.btnEditar" name="btnModificarConfGeneral">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarConfGeneralActionPerformed"/>
                   </Events>

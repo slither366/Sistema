@@ -59,7 +59,7 @@ public class frm_Administrativo extends frm_Padre {
         pnlConfGralProv = new javax.swing.JPanel();
         pnlConfGralCliente = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnModificarConfGeneral = new com.app.botones.btnModificar();
+        btnModificarConfGeneral = new com.app.botones.btnEditar();
         btnGrabarConfGeneral = new com.app.botones.btnGrabar();
         btnSalirConfGeneral = new com.app.botones.btnSalir();
         pnlConfServer = new javax.swing.JPanel();
@@ -571,7 +571,7 @@ public class frm_Administrativo extends frm_Padre {
     private javax.swing.JTabbedPane Paneles;
     private com.app.botones.btnGrabar btnGrabarConfGeneral;
     private com.app.botones.btnGrabar btnGrabarHost;
-    private com.app.botones.btnModificar btnModificarConfGeneral;
+    private com.app.botones.btnEditar btnModificarConfGeneral;
     private com.app.botones.btnSalir btnSalirConfGeneral;
     private javax.swing.JCheckBox cheHost_Server;
     private javax.swing.JLabel jLabel11;

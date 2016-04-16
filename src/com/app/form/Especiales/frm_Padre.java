@@ -24,7 +24,7 @@ public class frm_Padre extends JInternalFrame {
     public boolean Autorizado_ok = false, Agrega_OK = false, Modifica_OK = false, Borra_OK = false, Listar_OK = false;
     public char operacion;
     public static ConexionBD getConexion;
-    public Propiedades getPropiedades;
+    public static Propiedades getPropiedades;
     public Image getIcono;
 
     public frm_Padre() {
