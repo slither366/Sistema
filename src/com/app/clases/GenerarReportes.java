@@ -131,6 +131,7 @@ public class GenerarReportes {
     public void mostrarReporteVentana(HashMap parameters, JRResultSetDataSource jrRS,
             String reporte, char tipo, String tituloVentanaActual) {
         try {
+            reporte = this.ubicacionReport + reporte;
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
             mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
@@ -145,6 +146,7 @@ public class GenerarReportes {
             resu.last();
             int cantidadRow = resu.getRow();
             resu.beforeFirst();
+            reporte = this.ubicacionReport + reporte;
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
@@ -152,7 +154,7 @@ public class GenerarReportes {
             resu.beforeFirst();
             JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
 
-            JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));            
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
             mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
         } catch (JRException ex) {
@@ -171,7 +173,7 @@ public class GenerarReportes {
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
                         Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
-            JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);            
+            JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
             URL in = this.getClass().getResource(reporte);
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(in);
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);

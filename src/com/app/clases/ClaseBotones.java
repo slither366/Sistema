@@ -10,7 +10,7 @@ import com.app.botones.btnExportar;
 import com.app.botones.btnGrabar;
 import com.app.botones.btnImpresora;
 import com.app.botones.btnListar;
-import com.app.botones.btnModificar;
+import com.app.botones.btnEditar;
 import com.app.botones.btnNuevo;
 import com.app.botones.btnPantalla;
 import com.app.botones.btnSalir;
@@ -28,18 +28,16 @@ public class ClaseBotones {
      * @param Nuevo
      * @param Modificar
      * @param Borrar
-     * @param Listar
      * @param Grabar
      * @param Cancelar
      * @param Salir
      * @param bl
      */
-    public static final void modoEdicionABM(btnNuevo Nuevo, btnModificar Modificar, btnBorrar Borrar,
-            btnListar Listar, btnGrabar Grabar, btnCancelar Cancelar, btnSalir Salir, boolean bl) {
+    public static final void modoEdicionABM(btnNuevo Nuevo, btnEditar Modificar, btnBorrar Borrar,
+             btnGrabar Grabar, btnCancelar Cancelar, btnSalir Salir, boolean bl) {
         Nuevo.setEnabled(bl);
         Modificar.setEnabled(bl);
         Borrar.setEnabled(bl);
-        Listar.setEnabled(bl);
         Grabar.setEnabled(!bl);
         Cancelar.setEnabled(!bl);
         Salir.setEnabled(bl);
@@ -71,14 +69,13 @@ public class ClaseBotones {
      *
      * @param Nuevo
      * @param Modificar
-     * @param Borrar
-     * @param Listar
+     * @param Borrar     
      * @param Grabar
      * @param Cancelar
      * @param Salir
      */
-    public static void botonesABMKeyPressed(final btnNuevo Nuevo, final btnModificar Modificar, final btnBorrar Borrar,
-            final btnListar Listar, final btnGrabar Grabar, final btnCancelar Cancelar, final btnSalir Salir) {
+    public static void botonesABMKeyPressed(final btnNuevo Nuevo, final btnEditar Modificar, final btnBorrar Borrar,
+            final btnGrabar Grabar, final btnCancelar Cancelar, final btnSalir Salir) {
         Nuevo.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -90,9 +87,7 @@ public class ClaseBotones {
                         if (Modificar.isEnabled()) {
                             Modificar.grabFocus();
                         } else if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();
-                        } else if (Listar.isEnabled()) {
-                            Listar.grabFocus();
+                            Borrar.grabFocus();                       
                         } else {
                             Salir.grabFocus();
                         }
@@ -117,10 +112,7 @@ public class ClaseBotones {
                         break;
                     case 39://siguiente
                         if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();
-                        } else if (Listar.isEnabled()) {
-                            Listar.grabFocus();
-                        } else {
+                            Borrar.grabFocus();                       
                             Salir.grabFocus();
                         }
                         break;
@@ -145,8 +137,8 @@ public class ClaseBotones {
                         }
                         break;
                     case 39://siguiente
-                        if (Listar.isEnabled()) {
-                            Listar.grabFocus();
+                        if (Borrar.isEnabled()) {
+                            Borrar.grabFocus();
                         } else {
                             Salir.grabFocus();
                         }
@@ -156,32 +148,7 @@ public class ClaseBotones {
                         break;
                 }
             }
-        });
-
-        Listar.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                switch (evt.getKeyCode()) {
-                    case 37://Atras
-                        if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();
-                        } else if (Modificar.isEnabled()) {
-                            Modificar.grabFocus();
-                        } else if (Nuevo.isEnabled()) {
-                            Nuevo.grabFocus();
-                        } else {
-                            Salir.grabFocus();
-                        }
-                        break;
-                    case 39://siguiente                        
-                        Salir.grabFocus();
-                        break;
-                    case 10://Enter
-                        Listar.doClick();
-                        break;
-                }
-            }
-        });
+        });        
 
         Grabar.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -222,9 +189,7 @@ public class ClaseBotones {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 switch (evt.getKeyCode()) {
                     case 37://Atras
-                        if (Listar.isEnabled()) {
-                            Listar.grabFocus();
-                        } else if (Borrar.isEnabled()) {
+                        if (Borrar.isEnabled()) {
                             Borrar.grabFocus();
                         } else if (Modificar.isEnabled()) {
                             Modificar.grabFocus();
@@ -240,9 +205,7 @@ public class ClaseBotones {
                         } else if (Modificar.isEnabled()) {
                             Modificar.grabFocus();
                         } else if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();
-                        } else if (Listar.isEnabled()) {
-                            Listar.grabFocus();
+                            Borrar.grabFocus();                        
                         } else {
                             Salir.grabFocus();
                         }

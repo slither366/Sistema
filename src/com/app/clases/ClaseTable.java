@@ -415,7 +415,9 @@ public class ClaseTable {
      * @param tamaño
      */
     public static void setAncho(JTable tbl, int columna, int tamaño) {
-        tbl.getColumnModel().getColumn(columna).setPreferredWidth(tamaño);
+        //tbl.getColumnModel().getColumn(columna).setMinWidth(tamaño);
+        //tbl.getColumnModel().getColumn(columna).setMaxWidth(tamaño);
+        tbl.getColumnModel().getColumn(columna).setPreferredWidth(tamaño);        
     }
 
     /**
