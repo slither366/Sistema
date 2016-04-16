@@ -30,7 +30,7 @@ public class frm_Usuarios extends frm_Padre {
         this.txtCod_Perfil.setBdCodigo("Perf_Codigo");
         this.txtCod_Perfil.setBdDescrip("Perf_Descrip");
         this.txtCod_Perfil.setBdTitulo("Perfiles");
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
+        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.Inicializar();
     }
 
@@ -62,10 +62,8 @@ public class frm_Usuarios extends frm_Padre {
         textClave2 = new javax.swing.JLabel();
         jPanelBotones = new javax.swing.JPanel();
         btnNuevo = new com.app.botones.btnNuevo();
-        btnModificar = new com.app.botones.btnModificar();
+        btnModificar = new com.app.botones.btnEditar();
         btnBorrar = new com.app.botones.btnBorrar();
-        btnListar = new com.app.botones.btnListar();
-        btnImagen = new com.app.botones.btnImagen();
         btnGrabar = new com.app.botones.btnGrabar();
         btnCancelar = new com.app.botones.btnCancelar();
         btnSalir = new com.app.botones.btnSalir();
@@ -187,9 +185,12 @@ public class frm_Usuarios extends frm_Padre {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNom_User, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10))
+                            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                                .addComponent(txtNom_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
                     .addGroup(jPanelDatosLayout.createSequentialGroup()
                         .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
@@ -263,12 +264,6 @@ public class frm_Usuarios extends frm_Padre {
             }
         });
 
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
-
         btnGrabar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGrabarActionPerformed(evt);
@@ -281,6 +276,8 @@ public class frm_Usuarios extends frm_Padre {
             }
         });
 
+        btnSalir.setMaximumSize(new java.awt.Dimension(90, 30));
+        btnSalir.setMinimumSize(new java.awt.Dimension(90, 30));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -293,23 +290,17 @@ public class frm_Usuarios extends frm_Padre {
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                        .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBotonesLayout.setVerticalGroup(
@@ -320,14 +311,9 @@ public class frm_Usuarios extends frm_Padre {
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -337,11 +323,11 @@ public class frm_Usuarios extends frm_Padre {
             pnlManteUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlManteUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlManteUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlManteUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlManteUsuarioLayout.setVerticalGroup(
             pnlManteUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,14 +376,9 @@ public class frm_Usuarios extends frm_Padre {
                     new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Perfil.getText()});
             if (rs != null) {
                 this.textNomPerfil.setText(rs);
-                if (operacion == 'A') {
-                    this.txtPass1_User.setEnabled(true);
-                    this.txtPass1_User.setSelectionEnd(this.txtPass1_User.getText().length());
-                    this.txtPass1_User.grabFocus();
-                } else {
-                    this.btnGrabar.setEnabled(true);
-                    this.btnGrabar.grabFocus();
-                }
+                this.txtPass1_User.setEnabled(true);
+                this.txtPass1_User.setSelectionEnd(this.txtPass1_User.getText().length());
+                this.txtPass1_User.grabFocus();
             } else {
                 MensajeSistema.ConsultaSQLVacio(this);
                 this.txtCod_Perfil.setText("");
@@ -408,18 +389,34 @@ public class frm_Usuarios extends frm_Padre {
     }//GEN-LAST:event_txtCod_PerfilActionPerformed
 
     private void txtPass1_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass1_UserActionPerformed
-        int valor = txtPass1_User.verificarVacioConMsj();
-        if (valor == 0) {
-            if (this.txtPass1_User.verificarCantidadMinima()) {
-                this.txtPass1_User.setEnabled(false);
-                this.txtPass2_User.setEnabled(true);
-                this.txtPass2_User.setSelectionStart(0);
-                this.txtPass2_User.setSelectionEnd(this.txtPass2_User.getText().length());
-                this.txtPass2_User.grabFocus();
+        if (operacion == 'A') {
+            int valor = txtPass1_User.verificarVacioConMsj();
+            if (valor == 0) {
+                if (this.txtPass1_User.verificarCantidadMinima()) {
+                    this.txtPass1_User.setEnabled(false);
+                    this.txtPass2_User.setEnabled(true);
+                    this.txtPass2_User.setSelectionStart(0);
+                    this.txtPass2_User.setSelectionEnd(this.txtPass2_User.getText().length());
+                    this.txtPass2_User.grabFocus();
+                }
+            } else if (valor == 1) {
+                this.Inicializar();
             }
-        } else if (valor == 1) {
-            this.Inicializar();
+        } else {
+            if (this.txtPass1_User.isEmpty()) {
+                this.btnGrabar.setEnabled(true);
+                this.btnGrabar.grabFocus();
+            } else {
+                if (this.txtPass1_User.verificarCantidadMinima()) {
+                    this.txtPass1_User.setEnabled(false);
+                    this.txtPass2_User.setEnabled(true);
+                    this.txtPass2_User.setSelectionStart(0);
+                    this.txtPass2_User.setSelectionEnd(this.txtPass2_User.getText().length());
+                    this.txtPass2_User.grabFocus();
+                }
+            }
         }
+
     }//GEN-LAST:event_txtPass1_UserActionPerformed
 
     private void txtPass2_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass2_UserActionPerformed
@@ -446,37 +443,6 @@ public class frm_Usuarios extends frm_Padre {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtPass2_UserActionPerformed
-
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        this.Agregar();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        this.Editar('M');
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        this.Editar('E');
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        this.Listar("vst_" + tablaConsutada, true, false, idConsultada, descripcionConsultada, tituloVentanaActual,
-                "listadosUsuarios.jasper",
-                new String[]{idConsultada, descripcionConsultada, this.txtCod_Perfil.getBdDescrip(), "comentario"},
-                new String[]{"Codigo", "Nombre", "Alias", "Perfil", "Comentario"});
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        this.Grabar();
-    }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Inicializar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.Salir(this);
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         if (txtCodigo.verificarVacioSinMsj()) {
@@ -511,13 +477,35 @@ public class frm_Usuarios extends frm_Padre {
         }
     }//GEN-LAST:event_txtCod_PerfilKeyPressed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.Agregar();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        this.Editar('M');
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        this.Editar('E');
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
+        this.Grabar();
+    }//GEN-LAST:event_btnGrabarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Inicializar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Salir(this);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.btnBorrar btnBorrar;
     private com.app.botones.btnCancelar btnCancelar;
     private com.app.botones.btnGrabar btnGrabar;
-    private com.app.botones.btnImagen btnImagen;
-    private com.app.botones.btnListar btnListar;
-    private com.app.botones.btnModificar btnModificar;
+    private com.app.botones.btnEditar btnModificar;
     private com.app.botones.btnNuevo btnNuevo;
     private com.app.botones.btnSalir btnSalir;
     private javax.swing.JLabel jLabel2;
@@ -543,22 +531,19 @@ public class frm_Usuarios extends frm_Padre {
     private void Inicializar() {
         ClaseCampos.setEnabled(jPanelDatos, false);
         ClaseCampos.SetTextNull(this.jPanelDatos);
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, true);
+        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);
         this.textClave1.setVisible(false);
         this.textClave2.setVisible(false);
         this.textNomPerfil.setText("");
         this.btnNuevo.setEnabled(Agrega_OK);
         this.btnModificar.setEnabled(Modifica_OK);
         this.btnBorrar.setEnabled(Borra_OK);
-        this.btnListar.setEnabled(Listar_OK);
         if (this.btnNuevo.isEnabled()) {
             this.btnNuevo.grabFocus();
         } else if (this.btnModificar.isEnabled()) {
             this.btnModificar.grabFocus();
         } else if (this.btnBorrar.isEnabled()) {
             this.btnBorrar.grabFocus();
-        } else if (this.btnListar.isEnabled()) {
-            this.btnListar.grabFocus();
         } else {
             this.btnSalir.grabFocus();
         }
@@ -566,7 +551,7 @@ public class frm_Usuarios extends frm_Padre {
 
     private void Editar(char c) {
         this.txtCodigo.setEnabled(true);
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, false);
+        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtPass1_User.setEnabled(false);
         this.txtPass2_User.setEnabled(false);
         operacion = c;
@@ -577,7 +562,7 @@ public class frm_Usuarios extends frm_Padre {
         String[] campos = new String[]{cod_empresa};
         String[] valores = new String[]{Configuracion.getCOD_EMPRESA()};
         if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
-            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir, false);
+            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(jPanelDatos, true);
             this.txtNom_User.setEnabled(true);
             operacion = 'A';
@@ -620,17 +605,25 @@ public class frm_Usuarios extends frm_Padre {
     private void Grabar() {
         if (operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
-                this.getConexion.insertar(tablaConsutada,
-                        new String[]{cod_empresa, idConsultada, this.txtCod_Perfil.getBdDescrip(), "clave", this.txtCod_Perfil.getBdCodigo()},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo.getText(), this.txtNom_User.getText(), "PASSWORD(" + this.txtPass1_User.getText() + ")", this.txtCod_Perfil.getText()});
+                String sql = "INSERT INTO " + tablaConsutada + " ";
+                sql += "(" + cod_empresa + ", " + idConsultada + ", " + descripcionConsultada + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";
+                sql += "VALUES ('" + Configuracion.getCOD_EMPRESA() + "', '" + this.txtCodigo.getText() + "', '";
+                sql += this.txtNom_User.getText() + "', PASSWORD('" + this.txtPass1_User.getText() + "'), '" + this.txtCod_Perfil.getText() + "');";
+                this.getConexion.ejecutaUpdate(sql);
             }
         } else {
             if (MensajeSistema.Modificar(this)) {
-                this.getConexion.actualizar(tablaConsutada,
-                        new String[]{descripcionConsultada, this.txtCod_Perfil.getBdCodigo()},
-                        new String[]{this.txtNom_User.getText(), this.txtCod_Perfil.getText()},
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo.getText()});
+                String sql = "UPDATE " + tablaConsutada;
+                sql += " SET " + descripcionConsultada + "='" + this.txtNom_User.getText();
+                sql += "', " + this.txtCod_Perfil.getBdCodigo() + "='" + this.txtCod_Perfil.getText() + "'";
+                if (this.txtPass1_User.isEmpty()) {
+                    sql += " ";
+                } else {
+                    sql += ", clave=PASSWORD('" + this.txtPass1_User.getText() + "') ";
+                }
+                sql += "WHERE " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA();
+                sql += " AND " + idConsultada + "=" + this.txtCodigo.getText() + ";";
+                this.getConexion.ejecutaUpdate(sql);
             }
         }
         this.Inicializar();
