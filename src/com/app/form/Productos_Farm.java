@@ -507,7 +507,7 @@ public class Productos_Farm extends frm_Padre {
     private com.app.paleta.txtTexto txtObservacion;
     // End of variables declaration//GEN-END:variables
 
-    private void Inicializar() {        
+    private void Inicializar() {
         ClaseCampos.setEnabled(pnlDatos, false);
         ClaseCampos.SetTextNull(pnlDatos);
         this.textDescripcion1.setText("");
@@ -649,7 +649,10 @@ public class Productos_Farm extends frm_Padre {
     }
 
     private void Listar() {
-        Productos_Farm_Lst listar = new Productos_Farm_Lst("vst_" + tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, NomDesc1, Titulo1, NomDesc2, Titulo2, descripcionConsultada, tituloVentanaActual);
+        Productos_Farm_Lst listar = new Productos_Farm_Lst(
+                "vst_" + tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada,
+                NomDesc1, Titulo1, NomDesc2, Titulo2,
+                descripcionConsultada, tituloVentanaActual);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 }

@@ -16,7 +16,6 @@ import javax.swing.JInternalFrame;
 public class frm_Padre extends JInternalFrame {
 
     public String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual, codigoFormulario;
-    public String tablaForaneo, idForaneo, descripcionForaneo, tituloVentanaForaneo;
     public static String cod_empresa = "Emp_Codigo";
     public static String cod_sucursal = "Suc_Codigo";
     public boolean UsarEmpresa = false;

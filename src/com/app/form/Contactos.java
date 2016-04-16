@@ -706,8 +706,7 @@ public final class Contactos extends frm_Padre implements Metodos {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        Listar(tablaConsutada, UsarEmpresa, UsarSucursal, this.idConsultada, descripcionConsultada, tituloVentanaActual,
-                idForaneo, descripcionForaneo, tituloVentanaForaneo);
+        MensajeSistema.MensajeVarios(this, "Listado de contactos en proceso...", MensajeSistema.INFORMATION_MESSAGE());
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void cboEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboEstadoFocusGained

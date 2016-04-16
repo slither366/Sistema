@@ -16,7 +16,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
 
     public ABMTresCamposFK(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
-            String codigoForaneo, String descripcionForaneo, String tituloForaneo) {
+            String tablaForaneo, String codigoForaneo, String descripcionForaneo, String tituloForaneo) {
         initComponents();
         this.setResizable(false);
         this.setName(titulo);
@@ -27,9 +27,10 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
-        this.idForaneo = codigoForaneo;
-        this.descripcionForaneo = descripcionForaneo;
-        this.tituloVentanaForaneo = tituloForaneo;
+        this.txtCod_Referencia.setBdTabla(tablaForaneo);
+        this.txtCod_Referencia.setBdCodigo(codigoForaneo);
+        this.txtCod_Referencia.setBdDescrip(descripcionForaneo);
+        this.txtCod_Referencia.setBdTitulo(tituloForaneo);
         this.getPermisos(this.Cod_Ventana);
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnListar, btnGrabar, btnCancelar, btnSalir);
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
@@ -324,7 +325,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         Listar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual,
-                idForaneo, descripcionForaneo, tituloVentanaForaneo);
+                this.txtCod_Referencia.getBdCodigo(), this.txtCod_Referencia.getBdDescrip(), this.txtCod_Referencia.getBdTitulo());
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
@@ -343,15 +344,16 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         if (txtCod_Referencia.verificarVacioSinMsj()) {
             String consulta;
             if (UsarEmpresa && UsarSucursal) {
-                consulta = getConexion.getDescripcion(tablaForaneo, descripcionForaneo,
-                        new String[]{cod_empresa, cod_sucursal, idForaneo},
+                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+                        new String[]{cod_empresa, cod_sucursal, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Referencia.getText()});
             } else if (UsarEmpresa) {
-                consulta = getConexion.getDescripcion(tablaForaneo, descripcionForaneo,
-                        new String[]{cod_empresa, idForaneo},
+                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+                        new String[]{cod_empresa, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Referencia.getText()});
             } else {
-                consulta = getConexion.getDescripcion(tablaForaneo, descripcionForaneo, new String[]{idForaneo},
+                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+                        new String[]{this.txtCod_Referencia.getBdCodigo()},
                         new String[]{this.txtCod_Referencia.getText()});
             }
             if (consulta != null) {
@@ -400,7 +402,8 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
 
     private void txtCod_ReferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ReferenciaKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            Buscar(tablaForaneo, UsarEmpresa, UsarSucursal, idForaneo, descripcionForaneo, tituloVentanaForaneo);
+            Buscar(this.txtCod_Referencia.getBdTabla(), UsarEmpresa, UsarSucursal,
+                    this.txtCod_Referencia.getBdCodigo(), this.txtCod_Referencia.getBdDescrip(), this.txtCod_Referencia.getBdTitulo());
             this.txtCod_Referencia.requestFocus();
         }
     }//GEN-LAST:event_txtCod_ReferenciaKeyPressed
@@ -465,33 +468,33 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         if (operacion == 'A') {
             if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                 getConexion.insertar(tablaConsutada,
-                        new String[]{cod_empresa, cod_sucursal, idConsultada, descripcionConsultada, idForaneo},
+                        new String[]{cod_empresa, cod_sucursal, idConsultada, descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), xide, xdes, xfor});
             } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                 getConexion.insertar(tablaConsutada,
-                        new String[]{cod_empresa, idConsultada, descripcionConsultada, idForaneo},
+                        new String[]{cod_empresa, idConsultada, descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{Configuracion.getCOD_EMPRESA(), xide, xdes, xfor});
             } else { // Cuando no se usar Ni empresa Ni sucursal
                 getConexion.insertar(tablaConsutada,
-                        new String[]{idConsultada, descripcionConsultada, idForaneo},
+                        new String[]{idConsultada, descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{xide, xdes, xfor});
             }
         } else if (operacion == 'M') {
             if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                 getConexion.actualizar(tablaConsutada,
-                        new String[]{descripcionConsultada, idForaneo},
+                        new String[]{descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{xdes, xfor},
                         new String[]{cod_empresa, cod_sucursal, idConsultada},
                         new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), xide});
             } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                 getConexion.actualizar(tablaConsutada,
-                        new String[]{descripcionConsultada, idForaneo},
+                        new String[]{descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{xdes, xfor},
                         new String[]{cod_empresa, idConsultada},
                         new String[]{Configuracion.getCOD_EMPRESA(), xide});
             } else { // Cuando no se usar Ni empresa Ni sucursal
                 getConexion.actualizar(tablaConsutada,
-                        new String[]{descripcionConsultada, idForaneo},
+                        new String[]{descripcionConsultada, this.txtCod_Referencia.getBdCodigo()},
                         new String[]{xdes, xfor},
                         idConsultada, xide);
             }

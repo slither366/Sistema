@@ -17,11 +17,12 @@ import java.sql.SQLException;
 public class Listar extends frm_Padre {
 
     String desde, hasta;
+    String descripcionForaneo, tituloVentanaForaneo;
     GenerarReportes reportes = new GenerarReportes();
     String ubicacionRep;
     int foraneo;//1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
-    private String[] campos;
-    private String[] nombres;
+    private String[] Campos;
+    private String[] Nombres;
 
     /**
      * Listar para dos campos
@@ -137,8 +138,8 @@ public class Listar extends frm_Padre {
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
         this.ubicacionRep = reporte;
-        this.campos = campos;
-        this.nombres = nombres;
+        this.Campos = campos;
+        this.Nombres = nombres;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 0;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
@@ -568,7 +569,7 @@ public class Listar extends frm_Padre {
                     String xhasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                     Inicializar();
                     if (foraneo == 0) {//Reporte especiales, donde se envia la ubicacion del reporte
-                        reportes.mostrarReporteVentana(resu, this.ubicacionRep, xdesde, xhasta, modalidad, tituloVentanaActual);                        
+                        reportes.mostrarReporteVentana(resu, this.ubicacionRep, xdesde, xhasta, modalidad, tituloVentanaActual);
                     } else {// Reportes predetermiandos de campos predefinidos
                         if (foraneo == 1) {
                             reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
@@ -609,8 +610,8 @@ public class Listar extends frm_Padre {
             nombre = new String[]{"codigo", "descripcion", "referencia"};
             tabla = "vst_" + tablaConsutada;
         } else {
-            campo = campos;
-            nombre = nombres;
+            campo = this.Campos;
+            nombre = this.Nombres;
             tabla = tablaConsutada;
         }
         String consulta;
