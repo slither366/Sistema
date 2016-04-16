@@ -7,10 +7,9 @@ import com.app.clases.ClaseTextoIO;
 import com.app.config.MensajeSistema;
 import com.app.config.Propiedades;
 import com.app.form.Especiales.frm_Padre;
+import static com.app.form.Especiales.frm_Padre.cod_empresa;
 import com.app.form.Especiales.frm_Principal;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -40,11 +39,31 @@ public class frm_Configuracion extends frm_Padre {
             try {
                 propiedades = new Propiedades();
             } catch (IOException ex) {
-                MensajeSistema.setIOException(this, "No se pudo abrir el archivo de configuracion", ex);
+                MensajeSistema.setIOException("No se pudo abrir el archivo de configuracion", ex);
             }
         }
-        this.limpiarHoja2();
+        this.tablaConsutada = "acc_usuarios";
+        this.idConsultada = "Usu_Codigo";
+        this.descripcionConsultada = "Usu_Nombre";
+        this.tituloVentanaActual = "Usuarios";
+
+        this.txtCod_Empresa.setBdTabla("adm_empresas");
+        this.txtCod_Empresa.setBdCodigo("Emp_Codigo");
+        this.txtCod_Empresa.setBdDescrip("Emp_Descrip");
+        this.txtCod_Empresa.setBdTitulo("Empresas");
+
+        this.txtCod_Perfil.setBdTabla("acc_perfiles");
+        this.txtCod_Perfil.setBdCodigo("Perf_Codigo");
+        this.txtCod_Perfil.setBdDescrip("Perf_Descrip");
+        this.txtCod_Perfil.setBdTitulo("Perfiles");
+
+        this.limpiarPag2();
+        this.limpiarPag3();
         this.cargarCombo();
+//        boolean actPag3 = getConexion.getCOUNTFila(tablaConsutada,
+//                new String[]{cod_empresa},
+//                new String[]{this.txtCod_Empresa.getText()}) > 0;
+        this.jTabbedPane1.setEnabledAt(2, false);
         this.jTabbedPane1.setSelectedIndex(0);
     }
 
@@ -83,8 +102,24 @@ public class frm_Configuracion extends frm_Padre {
         jLabel8 = new javax.swing.JLabel();
         txtImpresora = new com.app.paleta.txtTexto();
         jLabel9 = new javax.swing.JLabel();
-        cboDecoracion = new javax.swing.JComboBox();
+        cboDecoracion = new com.app.paleta.cbo();
         jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        txtCod_Empresa = new com.app.paleta.txtCodigo();
+        textEmpresa = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtNom_User = new com.app.paleta.txtTexto();
+        jLabel12 = new javax.swing.JLabel();
+        txtCod_Perfil = new com.app.paleta.txtCodigo();
+        textNomPerfil = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtPass1_User = new com.app.paleta.txtPassword();
+        textClave1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtPass2_User = new com.app.paleta.txtPassword();
+        textClave2 = new javax.swing.JLabel();
+        btnGrabarUser = new com.app.botones.btnGrabar();
+        btnCancelarUser = new com.app.botones.btnCancelar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -291,7 +326,7 @@ public class frm_Configuracion extends frm_Padre {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtImpresora, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                            .addComponent(cboDecoracion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cboDecoracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -321,7 +356,7 @@ public class frm_Configuracion extends frm_Padre {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
                     .addComponent(btnLimpiar))
@@ -330,15 +365,168 @@ public class frm_Configuracion extends frm_Padre {
 
         jTabbedPane1.addTab("Archivo de Configuración", jPanel3);
 
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Empresa:");
+
+        txtCod_Empresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCod_EmpresaActionPerformed(evt);
+            }
+        });
+        txtCod_Empresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCod_EmpresaKeyPressed(evt);
+            }
+        });
+
+        textEmpresa.setText("jLabel15");
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("Nombre:");
+
+        txtNom_User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNom_UserActionPerformed(evt);
+            }
+        });
+        txtNom_User.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNom_UserKeyTyped(evt);
+            }
+        });
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Perfil:");
+
+        txtCod_Perfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCod_PerfilActionPerformed(evt);
+            }
+        });
+        txtCod_Perfil.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCod_PerfilKeyPressed(evt);
+            }
+        });
+
+        textNomPerfil.setText("jLabel10");
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("Clave:");
+
+        txtPass1_User.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPass1_UserFocusGained(evt);
+            }
+        });
+        txtPass1_User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPass1_UserActionPerformed(evt);
+            }
+        });
+
+        textClave1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        textClave1.setText("La Clave tiene que ser, min. 5 y max. 15 caracteres. ");
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Repita:");
+
+        txtPass2_User.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPass2_UserFocusGained(evt);
+            }
+        });
+        txtPass2_User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPass2_UserActionPerformed(evt);
+            }
+        });
+
+        textClave2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        textClave2.setText("Repita la contraseña por favor...");
+
+        btnGrabarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrabarUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtCod_Empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNom_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtCod_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textNomPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtPass1_User, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPass2_User, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textClave1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                    .addComponent(textClave2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnGrabarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCod_Empresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(textEmpresa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtNom_User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textNomPerfil)
+                    .addComponent(txtCod_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPass1_User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textClave1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtPass2_User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textClave2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGrabarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Configuracion de Usuarios", jPanel4);
@@ -406,7 +594,7 @@ public class frm_Configuracion extends frm_Padre {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        this.limpiarHoja2();
+        this.limpiarPag2();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHostActionPerformed
@@ -415,7 +603,7 @@ public class frm_Configuracion extends frm_Padre {
             this.txtPort.setNumero("3306");
             this.txtPort.grabFocus();
         } else if (valor == 1) {
-            this.limpiarHoja2();
+            this.limpiarPag2();
         }
     }//GEN-LAST:event_txtHostActionPerformed
 
@@ -427,7 +615,7 @@ public class frm_Configuracion extends frm_Padre {
                 this.txtPort.setNumero("3306");
                 this.txtPort.grabFocus();
             } else {
-                this.limpiarHoja2();
+                this.limpiarPag2();
             }
         } else {
             this.txtUser.grabFocus();
@@ -439,7 +627,7 @@ public class frm_Configuracion extends frm_Padre {
         if (valor == 0) {
             this.txtPass.grabFocus();
         } else if (valor == 1) {
-            this.limpiarHoja2();
+            this.limpiarPag2();
         }
     }//GEN-LAST:event_txtUserActionPerformed
 
@@ -448,7 +636,7 @@ public class frm_Configuracion extends frm_Padre {
         if (valor == 0) {
             this.txtBD.grabFocus();
         } else if (valor == 1) {
-            this.limpiarHoja2();
+            this.limpiarPag2();
         }
     }//GEN-LAST:event_txtPassActionPerformed
 
@@ -457,7 +645,7 @@ public class frm_Configuracion extends frm_Padre {
         if (valor == 0) {
             this.txtImpresora.grabFocus();
         } else if (valor == 1) {
-            this.limpiarHoja2();
+            this.limpiarPag2();
         }
     }//GEN-LAST:event_txtBDActionPerformed
 
@@ -466,9 +654,130 @@ public class frm_Configuracion extends frm_Padre {
         if (valor == 0) {
             this.cboDecoracion.grabFocus();
         } else if (valor == 1) {
-            this.limpiarHoja2();
+            this.limpiarPag2();
         }
     }//GEN-LAST:event_txtImpresoraActionPerformed
+
+    private void txtPass1_UserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPass1_UserFocusGained
+        this.textClave1.setVisible(true);
+    }//GEN-LAST:event_txtPass1_UserFocusGained
+
+    private void txtPass1_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass1_UserActionPerformed
+        int valor = txtPass1_User.verificarVacioConMsj();
+        if (valor == 0) {
+            if (this.txtPass1_User.verificarCantidadMinima()) {
+                this.txtPass1_User.setEnabled(false);
+                this.txtPass2_User.setEnabled(true);
+                this.txtPass2_User.setSelectionStart(0);
+                this.txtPass2_User.setSelectionEnd(this.txtPass2_User.getText().length());
+                this.txtPass2_User.grabFocus();
+            }
+        } else if (valor == 1) {
+            this.limpiarPag3();
+        }
+    }//GEN-LAST:event_txtPass1_UserActionPerformed
+
+    private void txtPass2_UserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPass2_UserFocusGained
+        this.textClave2.setVisible(true);
+    }//GEN-LAST:event_txtPass2_UserFocusGained
+
+    private void txtPass2_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass2_UserActionPerformed
+        int valor = txtPass2_User.verificarVacioConMsj();
+        if (valor == 0) {
+            if (txtPass2_User.verificarCantidadMinima()) {
+                if (this.txtPass1_User.getText().equals(this.txtPass2_User.getText())) {
+                    this.btnGrabarUser.setEnabled(true);
+                    this.textClave2.setVisible(false);
+                    this.btnGrabarUser.grabFocus();
+                } else {
+                    int preg = MensajeSistema.Pregunta_YES_NO(this, "No coiciden las contraseñas...\nQuiere volver a intentar?...");
+                    if (preg == MensajeSistema.YES_OPTION()) {
+                        this.txtPass1_User.setText("");
+                        this.txtPass2_User.setText("");
+                        this.txtPass1_User.setEnabled(true);
+                        this.txtPass1_User.grabFocus();
+                    } else {
+                        this.limpiarPag3();
+                    }
+                }
+            }
+        } else if (valor == 1) {
+            this.limpiarPag3();
+        }
+    }//GEN-LAST:event_txtPass2_UserActionPerformed
+
+    private void txtCod_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_PerfilActionPerformed
+        if (this.txtCod_Perfil.verificarVacioSinMsj()) {
+            String rs = this.getConexion.getDescripcion(this.txtCod_Perfil.getBdTabla(), this.txtCod_Perfil.getBdDescrip(),
+                    new String[]{cod_empresa, this.txtCod_Perfil.getBdCodigo()},
+                    new String[]{this.txtCod_Empresa.getText(), this.txtCod_Perfil.getText()});
+            if (rs != null) {
+                this.textNomPerfil.setText(rs);
+                this.txtPass1_User.setEnabled(true);
+                this.txtPass1_User.setSelectionEnd(this.txtPass1_User.getText().length());
+                this.txtPass1_User.grabFocus();
+            } else {
+                MensajeSistema.ConsultaSQLVacio(this);
+                this.txtCod_Perfil.setText("");
+                this.textNomPerfil.setText("");
+                this.txtCod_Perfil.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_txtCod_PerfilActionPerformed
+
+    private void txtCod_PerfilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_PerfilKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
+            Buscar(this.txtCod_Perfil.getBdTabla(), true, false, this.txtCod_Perfil.getBdDescrip(), this.txtCod_Perfil.getBdDescrip(), this.txtCod_Perfil.getBdTitulo());
+            this.txtCod_Perfil.requestFocus();
+        }
+    }//GEN-LAST:event_txtCod_PerfilKeyPressed
+
+    private void txtNom_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNom_UserActionPerformed
+        int valor = this.txtNom_User.verificarVacioConMsj();
+        if (valor == 0) {
+            this.txtCod_Perfil.setEnabled(true);
+            this.txtCod_Perfil.grabFocus();
+        } else if (valor == 1) {
+            this.limpiarPag2();
+        }
+    }//GEN-LAST:event_txtNom_UserActionPerformed
+
+    private void txtNom_UserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNom_UserKeyTyped
+        this.txtNom_User.CantidadLetras(evt, 25);
+    }//GEN-LAST:event_txtNom_UserKeyTyped
+
+    private void txtCod_EmpresaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_EmpresaKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
+            Buscar(this.txtCod_Empresa.getBdTabla(), true, false, this.txtCod_Empresa.getBdCodigo(), this.txtCod_Empresa.getBdDescrip(), this.txtCod_Empresa.getBdTitulo());
+            this.txtCod_Empresa.requestFocus();
+        }
+    }//GEN-LAST:event_txtCod_EmpresaKeyPressed
+
+    private void txtCod_EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_EmpresaActionPerformed
+        int valor = this.txtCod_Empresa.verificarVacioConMsj();
+        if (valor == 0) {
+            String descri = getConexion.getDescripcion(this.txtCod_Empresa.getBdTabla(), this.txtCod_Empresa.getBdDescrip(),
+                    new String[]{this.txtCod_Empresa.getBdCodigo()}, new String[]{this.txtCod_Empresa.getText()});
+            if (descri != null) {
+                this.textEmpresa.setText(descri);
+                this.txtNom_User.grabFocus();
+            } else {
+                if (MensajeSistema.ConsultaSQLVacio()) {
+                    this.txtCod_Empresa.setText("");
+                    this.textEmpresa.setText("");
+                    this.txtCod_Empresa.grabFocus();
+                } else {
+                    this.limpiarPag3();
+                }
+            }
+        } else if (valor == 1) {
+            this.limpiarPag3();
+        }
+    }//GEN-LAST:event_txtCod_EmpresaActionPerformed
+
+    private void btnGrabarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarUserActionPerformed
+        this.GrabarUser();
+    }//GEN-LAST:event_btnGrabarUserActionPerformed
 
     private void cboDecoracionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboDecoracionFocusLost
         this.btnCrear.grabFocus();
@@ -481,12 +790,19 @@ public class frm_Configuracion extends frm_Padre {
     }//GEN-LAST:event_cboDecoracionKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.app.botones.btnCancelar btnCancelarUser;
     private javax.swing.JButton btnConexion;
     private javax.swing.JButton btnCrear;
+    private com.app.botones.btnGrabar btnGrabarUser;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox cboDecoracion;
+    private com.app.paleta.cbo cboDecoracion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -502,43 +818,35 @@ public class frm_Configuracion extends frm_Padre {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel textClave1;
+    private javax.swing.JLabel textClave2;
+    private javax.swing.JLabel textEmpresa;
+    private javax.swing.JLabel textNomPerfil;
     private javax.swing.JLabel textTitulo;
     private com.app.paleta.txtTexto txtBD;
+    private com.app.paleta.txtCodigo txtCod_Empresa;
+    private com.app.paleta.txtCodigo txtCod_Perfil;
     private com.app.paleta.txtTexto txtHost;
     private com.app.paleta.txtTexto txtImpresora;
+    private com.app.paleta.txtTexto txtNom_User;
     private com.app.paleta.txtPassword txtPass;
+    private com.app.paleta.txtPassword txtPass1_User;
+    private com.app.paleta.txtPassword txtPass2_User;
     private com.app.paleta.txtNumeros txtPort;
     private com.app.paleta.txtTexto txtUser;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
         this.cboDecoracion.removeAllItems();
-        this.cboDecoracion.addItem("AutumnSkin");
-        this.cboDecoracion.addItem("BusinessSkin");
-        this.cboDecoracion.addItem("BusinessBlueSteelSkin");
-        this.cboDecoracion.addItem("BusinessBlackSteelSkin");
-        this.cboDecoracion.addItem("ChallengerDeepSkin");
-        this.cboDecoracion.addItem("CremeCoffeeSkin");
-        this.cboDecoracion.addItem("CremeSkin");
-        this.cboDecoracion.addItem("EmeraldDuskSkin");
-        this.cboDecoracion.addItem("FieldOfWheatSkin");
-        this.cboDecoracion.addItem("FindingNemoSkin");
-        this.cboDecoracion.addItem("GreenMagicSkin");
-        this.cboDecoracion.addItem("MagmaSkin");
-        this.cboDecoracion.addItem("MangoSkin");
-        this.cboDecoracion.addItem("MistAquaSkin");
-        this.cboDecoracion.addItem("MistSilverSkin");
-        this.cboDecoracion.addItem("ModerateSkin");
-        this.cboDecoracion.addItem("NebulaSkin");
-        this.cboDecoracion.addItem("OfficeBlue2007Skin");
-        this.cboDecoracion.addItem("OfficeSilver2007Skin");
-        this.cboDecoracion.addItem("RavenSkin");
-        this.cboDecoracion.addItem("SaharaSkin");
-        this.cboDecoracion.addItem("SubstanceSkin");
+        String[] deco = {"AutumnSkin", "BusinessSkin", "BusinessBlueSteelSkin", "BusinessBlackSteelSkin",
+            "ChallengerDeepSkin", "CremeSkin", "EmeraldDuskSkin", "FieldOfWheatSkin", "FindingNemoSkin",
+            "GreenMagicSkin", "MagmaSkin", "MangoSkin", "MistAquaSkin", "MistSilverSkin", "ModerateSkin",
+            "NebulaSkin", "OfficeBlue2007Skin", "OfficeSilver2007Skin", "RavenSkin", "SaharaSkin", "SubstanceSkin"};
+        this.cboDecoracion.addItem(deco);
         this.cboDecoracion.setSelectedIndex(0);
     }
 
-    private void limpiarHoja2() {
+    private void limpiarPag2() {
         if (this.Archivo) {
             this.txtHost.setText(propiedades.getHost());
             this.txtPort.setText(propiedades.getPort());
@@ -547,7 +855,7 @@ public class frm_Configuracion extends frm_Padre {
             this.txtBD.setText(propiedades.getBD());
             this.txtImpresora.setText(propiedades.getImpresora());
             try {
-                this.cboDecoracion.setSelectedItem(propiedades.getDecoracion());
+                this.cboDecoracion.setSelecDescri(propiedades.getDecoracion().trim());
             } catch (Exception ex) {
                 this.cboDecoracion.setSelectedIndex(0);
             }
@@ -562,6 +870,16 @@ public class frm_Configuracion extends frm_Padre {
         }
     }
 
+    private void limpiarPag3() {
+        ClaseCampos.SetTextNull(jPanel4);
+        this.textEmpresa.setText("");
+        this.textNomPerfil.setText("");
+        this.textClave1.setVisible(false);
+        this.textClave2.setVisible(false);
+        this.btnGrabarUser.setEnabled(false);
+        this.jTabbedPane1.setSelectedIndex(0);
+    }
+
     private void crearArchiConfiguracion() {
         if (ClaseCampos.setValidate(jPanel3)) {
             MensajeSistema.MensajeVarios(this, "Existen campos que estan vacios...", MensajeSistema.ERROR_MESSAGE());
@@ -574,7 +892,7 @@ public class frm_Configuracion extends frm_Padre {
                 propiedades.setPass(ClaseEncriptacion.cifrarTexto(this.txtPass.getText().trim()));
                 propiedades.setBD(this.txtBD.getText().trim());
                 propiedades.setImpresora(this.txtImpresora.getText().trim());
-                propiedades.setDecoracion(this.cboDecoracion.getSelectedItem().toString().trim());
+                propiedades.setDecoracion(this.cboDecoracion.getSelecDescri());
                 MensajeSistema.MensajeVarios(this, "Archivo de Configuración Actualizado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());
                 this.jTabbedPane1.setSelectedIndex(0);
             } else {
@@ -584,7 +902,7 @@ public class frm_Configuracion extends frm_Padre {
                         + "pass=" + ClaseEncriptacion.cifrarTexto(this.txtPass.getText().trim()) + "\n"
                         + "bd=" + this.txtBD.getText().trim() + "\n"
                         + "impresora=" + this.txtImpresora.getText().trim() + "\n"
-                        + "decoracion=" + this.cboDecoracion.getSelectedItem().toString().trim();
+                        + "decoracion=" + this.cboDecoracion.getSelecDescri();
                 try {
                     ClaseTextoIO.escribirArchivoNuevo("configuracion.properties", texto);
                     MensajeSistema.MensajeVarios(this, "Archivo de Configuración creado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());
@@ -594,5 +912,17 @@ public class frm_Configuracion extends frm_Padre {
                 }
             }
         }
+    }
+
+    private void GrabarUser() {
+        if (MensajeSistema.Guardar(this)) {
+            int vCod = getConexion.getMAX(tablaConsutada, idConsultada,
+                    new String[]{cod_empresa},
+                    new String[]{this.txtCod_Empresa.getText()});
+            this.getConexion.insertar(tablaConsutada,
+                    new String[]{cod_empresa, idConsultada, this.txtCod_Perfil.getBdDescrip(), "clave", this.txtCod_Perfil.getBdCodigo()},
+                    new String[]{this.txtCod_Empresa.getText(), String.valueOf(vCod), this.txtNom_User.getText(), "PASSWORD(" + this.txtPass1_User.getText() + ")", this.txtCod_Perfil.getText()});
+        }
+        this.limpiarPag3();
     }
 }
