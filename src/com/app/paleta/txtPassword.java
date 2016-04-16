@@ -40,17 +40,7 @@ public class txtPassword extends javax.swing.JPasswordField {
             public void focusGained(FocusEvent e) {
                 setCaretPosition(0);
                 selectAll();
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (isEmpty()) {
-                    MensajeSistema.MensajeVarios("Este campo no se puede dejar vacio!!!", MensajeSistema.ERROR_MESSAGE());
-                    grabFocus();
-                } else {
-                    verificarCantidadMinima();
-                }
-            }
+            }            
         });
 
     }

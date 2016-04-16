@@ -239,7 +239,7 @@ public class tbl extends javax.swing.JTable {
      */
     public void setAncho(int[] columna, int[] tamaño) {
         for (int i = 0; i < columna.length; i++) {
-            ClaseTable.setAncho(this, i, i);
+            ClaseTable.setAncho(this, columna[i], tamaño[i]);
         }
 
     }

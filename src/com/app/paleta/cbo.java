@@ -1,6 +1,5 @@
 package com.app.paleta;
 
-import com.app.clases.ClaseComboBox;
 import com.app.config.MensajeSistema;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +11,7 @@ import java.sql.SQLException;
 public class cbo extends javax.swing.JComboBox {
 
     public cbo() {
+
     }
 
     /**
@@ -115,6 +115,14 @@ public class cbo extends javax.swing.JComboBox {
         } catch (Exception ex) {
             return "";
         }
+    }
+
+    /**
+     * Metodo que muestra el contenido del comboBox<br>
+     * setPopupVisible(true)
+     */
+    public void MostrarContenido() {
+        this.setPopupVisible(true);
     }
 
     public class ClassComboBox {
