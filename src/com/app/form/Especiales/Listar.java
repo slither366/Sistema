@@ -20,7 +20,7 @@ public class Listar extends frm_Padre {
     String descripcionForaneo, tituloVentanaForaneo;
     GenerarReportes reportes = new GenerarReportes();
     String ubicacionRep;
-    int foraneo;//1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
+    int foraneo;//0:listado cualquiera, 1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
     private String[] Campos;
     private String[] Nombres;
 
@@ -173,8 +173,6 @@ public class Listar extends frm_Padre {
         btnReporCancelar = new com.app.botones.btnCancelar();
         btnReporSalir = new com.app.botones.btnSalir();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelTitulo.setMaximumSize(new java.awt.Dimension(552, 60));
@@ -274,41 +272,54 @@ public class Listar extends frm_Padre {
 
         jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnReporNuevo.setPreferredSize(new java.awt.Dimension(88, 30));
+        btnReporNuevo.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporNuevo.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporNuevo.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporNuevoActionPerformed(evt);
             }
         });
 
-        btnReporPantalla.setPreferredSize(new java.awt.Dimension(88, 30));
+        btnReporPantalla.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporPantalla.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporPantalla.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporPantallaActionPerformed(evt);
             }
         });
 
-        btnReporImpresora.setPreferredSize(new java.awt.Dimension(88, 30));
+        btnReporImpresora.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporImpresora.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporImpresora.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporImpresora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporImpresoraActionPerformed(evt);
             }
         });
 
+        btnReporExportar.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporExportar.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporExportar.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporExportarActionPerformed(evt);
             }
         });
 
-        btnReporCancelar.setPreferredSize(new java.awt.Dimension(88, 30));
+        btnReporCancelar.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporCancelar.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporCancelar.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporCancelarActionPerformed(evt);
             }
         });
 
-        btnReporSalir.setPreferredSize(new java.awt.Dimension(88, 30));
+        btnReporSalir.setMaximumSize(new java.awt.Dimension(80, 30));
+        btnReporSalir.setMinimumSize(new java.awt.Dimension(80, 30));
+        btnReporSalir.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporSalirActionPerformed(evt);
@@ -321,17 +332,17 @@ public class Listar extends frm_Padre {
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnReporNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporExportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBotonesLayout.setVerticalGroup(
@@ -354,10 +365,10 @@ public class Listar extends frm_Padre {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -619,21 +630,21 @@ public class Listar extends frm_Padre {
             String[] campoCondicion = {cod_empresa, cod_sucursal, idConsultada, idConsultada};
             String[] igual = {"=", "=", ">=", "<="};
             String[] valores = {Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {descripcionConsultada, idConsultada};
+            String[] ordenBy = {idConsultada, descripcionConsultada};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
         } else if (UsarEmpresa) {
             String[] campoCondicion = {cod_empresa, idConsultada, idConsultada};
             String[] igual = {"=", ">=", "<="};
             String[] valores = {Configuracion.getCOD_EMPRESA(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {descripcionConsultada, idConsultada};
+            String[] ordenBy = {idConsultada, descripcionConsultada};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
         } else {
             String[] campoCondicion = {idConsultada, idConsultada};
             String[] igual = {">=", "<="};
             String[] valores = {this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {descripcionConsultada, idConsultada};
+            String[] ordenBy = {idConsultada, descripcionConsultada};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
         }
