@@ -407,7 +407,7 @@ public class Productos_lst extends frm_Padre {
                         if (foraneo == 1) {
                             reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
                         } else {
-                            reportes.listadoTresCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad, tituloVentanaForaneo);
+                            reportes.listadoTresCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad, tituloVentanaActual);
                         }
                     }
                 } else {

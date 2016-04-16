@@ -22,7 +22,7 @@ public class Productos_Farm_Lst extends frm_Padre {
     private String desde, hasta;
     private final GenerarReportes reportes = new GenerarReportes();
     private final String NomDesc1, NomDesc2, Titulo1, Titulo2;
-    private final String reporte = "/Reportes/Productos_Esp_Lst.jasper";
+    private final String reporte = "Productos_Esp_Lst.jasper";
 
     /**
      * Listar para dos campos
