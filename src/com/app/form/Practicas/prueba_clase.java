@@ -12,7 +12,7 @@ public class prueba_clase {
         //        Graphics pagina= pj.getGraphics();
 //        new Backup().CrearBackup("localhost", "3306", "root", "secreto", "bd_repuestos",
 //                "C:\\Users\\Diego\\Desktop\\bd_repuestos.sql");
-
+        
         
     }
 }

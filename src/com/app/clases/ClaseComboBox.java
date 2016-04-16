@@ -77,8 +77,8 @@ public class ClaseComboBox {
      */
     public static void cargarDatos(JComboBox comboBox, String[] veDatos) {
         comboBox.removeAllItems();
-        for (int i = 0; i < veDatos.length; i++) {
-            comboBox.addItem(veDatos[i]);
+        for (String veDato : veDatos) {
+            comboBox.addItem(veDato);
         }
     }
 

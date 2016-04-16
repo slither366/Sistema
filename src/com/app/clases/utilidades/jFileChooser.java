@@ -20,9 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class jFileChooser extends javax.swing.JFileChooser {
 
-    public final FileNameExtensionFilter filtroFotos, filtroSQL, filtroDoc, filtroXLS, filtroTXT;
-    private String PATH = "";
-    private final File iconGuardar, iconBuscar;
+    private final FileNameExtensionFilter filtroFotos, filtroSQL, filtroDoc, filtroXLS, filtroTXT;
 
     public jFileChooser() {
         this.filtroTXT = new FileNameExtensionFilter("Archivos TXT", "txt");
@@ -30,8 +28,6 @@ public class jFileChooser extends javax.swing.JFileChooser {
         this.filtroDoc = new FileNameExtensionFilter("Archivos DOC, DOCX", "doc", "docx");
         this.filtroSQL = new FileNameExtensionFilter("Archivos SQL", "sql");
         this.filtroFotos = new FileNameExtensionFilter("Archivos JPG, JPEG, BMP, PNG", "jpg", "jpeg", "bmp", "png");
-        this.iconGuardar = new File("Iconos", "Iconos/save.png");
-        this.iconBuscar = new File("Iconos", "Iconos/document-preview.png");
     }
 
     /**
@@ -46,47 +42,42 @@ public class jFileChooser extends javax.swing.JFileChooser {
         this.filtroDoc = new FileNameExtensionFilter("Archivos DOC, DOCX", "doc", "docx");
         this.filtroSQL = new FileNameExtensionFilter("Archivos SQL", "sql");
         this.filtroFotos = new FileNameExtensionFilter("Archivos JPG, JPEG, BMP, PNG", "jpg", "jpeg", "bmp", "png");
-        this.iconGuardar = new File("Iconos", "Iconos/save.png");
-        this.iconBuscar = new File("Iconos", "Iconos/document-preview.png");
         this.setCurrentDirectory(new File(path));
     }
 
     public String getDirectorioGuardar() {
         this.setApproveButtonText("Guardar");
         this.setDialogTitle(Configuracion.getTITULO_VENTANA() + " - Guardar Archivo");
-        this.getIcon(iconGuardar);
         int seleccion = this.showSaveDialog(null);
         if (seleccion == this.APPROVE_OPTION) {
             File fileDB = this.getSelectedFile();
-            PATH = fileDB.getAbsolutePath();
+            return fileDB.getAbsolutePath();
         } else if (seleccion == this.CANCEL_OPTION) {
-            PATH = "";
+            return null;
         } else {
             MensajeSistema.MensajeVarios("Se produjo un error al seleccionar la ruta", MensajeSistema.ERROR_MESSAGE());
+            return null;
         }
-        return PATH;
     }
 
     public String getDirectorioGuardar(String archivo) {
         this.setApproveButtonText("Guardar");
         this.setDialogTitle(Configuracion.getTITULO_VENTANA() + " - Guardar Archivo");
         this.setSelectedFile(new File(archivo));
-        this.getIcon(iconGuardar);
         int seleccion = this.showSaveDialog(null);
         if (seleccion == this.APPROVE_OPTION) {
             File fileDB = this.getSelectedFile();
-            PATH = fileDB.getPath();
+            return fileDB.getPath();
         } else if (seleccion == this.CANCEL_OPTION) {
-            PATH = "";
+            return null;
         } else {
             MensajeSistema.MensajeVarios("Se produjo un error al seleccionar la ruta", MensajeSistema.ERROR_MESSAGE());
+            return null;
         }
-        return PATH;
     }
 
     public String getAbrirArchivo() {
         this.setApproveButtonText("Abrir");
-        this.getIcon(iconBuscar);
         this.setDialogTitle("Busqueda de Archivos");
         this.addChoosableFileFilter(filtroDoc);
         this.addChoosableFileFilter(filtroXLS);
@@ -96,12 +87,12 @@ public class jFileChooser extends javax.swing.JFileChooser {
         int seleccion = this.showOpenDialog(null);
         if (seleccion == this.APPROVE_OPTION) {
             File fileDB = this.getSelectedFile();
-            PATH = fileDB.getAbsolutePath();
+            return fileDB.getAbsolutePath();
         } else if (seleccion == this.CANCEL_OPTION) {
-            PATH = "";
+            return null;
         } else {
             MensajeSistema.MensajeVarios("Se produjo un error al seleccionar la ruta", MensajeSistema.ERROR_MESSAGE());
+            return null;
         }
-        return PATH;
     }
 }
