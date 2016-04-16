@@ -54,19 +54,41 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1000.setEnabled(Configuracion.BuscarMenu(1000));
         jMenu1100.setEnabled(Configuracion.BuscarMenu(1100));
         jMenu1110.setEnabled(Configuracion.BuscarMenu(1110));
+        jMenu1111.setEnabled(Configuracion.BuscarMenu(1111));
+        jMenu1112.setEnabled(Configuracion.BuscarMenu(1112));
         jMenu1120.setEnabled(Configuracion.BuscarMenu(1120));
+        jMenu1121.setEnabled(Configuracion.BuscarMenu(1121));
+        jMenu1122.setEnabled(Configuracion.BuscarMenu(1122));
         jMenu1130.setEnabled(Configuracion.BuscarMenu(1130));
+        jMenu1131.setEnabled(Configuracion.BuscarMenu(1131));
+        jMenu1132.setEnabled(Configuracion.BuscarMenu(1132));
         jMenu1140.setEnabled(Configuracion.BuscarMenu(1140));
-        jMenu1150.setEnabled(Configuracion.BuscarMenu(1150));
-        jMenu1160.setEnabled(Configuracion.BuscarMenu(1160));
+        jMenu1141.setEnabled(Configuracion.BuscarMenu(1141));
+        jMenu1142.setEnabled(Configuracion.BuscarMenu(1141));
+
         jMenu1200.setEnabled(Configuracion.BuscarMenu(1200));
         jMenu1210.setEnabled(Configuracion.BuscarMenu(1210));
+        jMenu1211.setEnabled(Configuracion.BuscarMenu(1211));
+        jMenu1212.setEnabled(Configuracion.BuscarMenu(1212));
         jMenu1220.setEnabled(Configuracion.BuscarMenu(1220));
-        jMenu1300.setEnabled(Configuracion.BuscarMenu(1300));
-        jMenu1400.setEnabled(Configuracion.BuscarMenu(1400));
-        jMenu1500.setEnabled(Configuracion.BuscarMenu(1500));
-        jMenu1600.setEnabled(Configuracion.BuscarMenu(1600));
-        jMenu1700.setEnabled(Configuracion.BuscarMenu(1700));
+        jMenu1221.setEnabled(Configuracion.BuscarMenu(1221));
+        jMenu1222.setEnabled(Configuracion.BuscarMenu(1222));
+        jMenu1230.setEnabled(Configuracion.BuscarMenu(1230));
+        jMenu1231.setEnabled(Configuracion.BuscarMenu(1231));
+        jMenu1232.setEnabled(Configuracion.BuscarMenu(1232));
+        jMenu1240.setEnabled(Configuracion.BuscarMenu(1240));
+        jMenu1241.setEnabled(Configuracion.BuscarMenu(1241));
+        jMenu1242.setEnabled(Configuracion.BuscarMenu(1242));
+        jMenu1250.setEnabled(Configuracion.BuscarMenu(1250));
+        jMenu1251.setEnabled(Configuracion.BuscarMenu(1251));
+        jMenu1252.setEnabled(Configuracion.BuscarMenu(1252));
+        jMenu1260.setEnabled(Configuracion.BuscarMenu(1260));
+        jMenu1261.setEnabled(Configuracion.BuscarMenu(1261));
+        jMenu1262.setEnabled(Configuracion.BuscarMenu(1262));
+        jMenu1271.setEnabled(Configuracion.BuscarMenu(1270));
+        jMenu1271.setEnabled(Configuracion.BuscarMenu(1271));
+        jMenu1272.setEnabled(Configuracion.BuscarMenu(1272));
+
         jMenu2000.setEnabled(Configuracion.BuscarMenu(2000));
         jMenu3000.setEnabled(Configuracion.BuscarMenu(3000));
         jMenu3100.setEnabled(Configuracion.BuscarMenu(3100));
@@ -151,19 +173,40 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         MenuBar = new javax.swing.JMenuBar();
         jMenu1000 = new javax.swing.JMenu();
         jMenu1100 = new javax.swing.JMenu();
-        jMenu1110 = new javax.swing.JMenuItem();
-        jMenu1120 = new javax.swing.JMenuItem();
-        jMenu1130 = new javax.swing.JMenuItem();
-        jMenu1140 = new javax.swing.JMenuItem();
-        jMenu1150 = new javax.swing.JMenuItem();
-        jMenu1160 = new javax.swing.JMenuItem();
+        jMenu1110 = new javax.swing.JMenu();
+        jMenu1111 = new javax.swing.JMenuItem();
+        jMenu1112 = new javax.swing.JMenuItem();
+        jMenu1120 = new javax.swing.JMenu();
+        jMenu1121 = new javax.swing.JMenuItem();
+        jMenu1122 = new javax.swing.JMenuItem();
+        jMenu1130 = new javax.swing.JMenu();
+        jMenu1131 = new javax.swing.JMenuItem();
+        jMenu1132 = new javax.swing.JMenuItem();
+        jMenu1140 = new javax.swing.JMenu();
+        jMenu1141 = new javax.swing.JMenuItem();
+        jMenu1142 = new javax.swing.JMenuItem();
         jMenu1200 = new javax.swing.JMenu();
-        jMenu1210 = new javax.swing.JMenuItem();
-        jMenu1220 = new javax.swing.JMenuItem();
-        jMenu1300 = new javax.swing.JMenuItem();
-        jMenu1400 = new javax.swing.JMenuItem();
-        jMenu1500 = new javax.swing.JMenuItem();
-        jMenu1600 = new javax.swing.JMenuItem();
+        jMenu1210 = new javax.swing.JMenu();
+        jMenu1211 = new javax.swing.JMenuItem();
+        jMenu1212 = new javax.swing.JMenuItem();
+        jMenu1220 = new javax.swing.JMenu();
+        jMenu1221 = new javax.swing.JMenuItem();
+        jMenu1222 = new javax.swing.JMenuItem();
+        jMenu1230 = new javax.swing.JMenu();
+        jMenu1231 = new javax.swing.JMenuItem();
+        jMenu1232 = new javax.swing.JMenuItem();
+        jMenu1240 = new javax.swing.JMenu();
+        jMenu1241 = new javax.swing.JMenuItem();
+        jMenu1242 = new javax.swing.JMenuItem();
+        jMenu1250 = new javax.swing.JMenu();
+        jMenu1251 = new javax.swing.JMenuItem();
+        jMenu1252 = new javax.swing.JMenuItem();
+        jMenu1260 = new javax.swing.JMenu();
+        jMenu1261 = new javax.swing.JMenuItem();
+        jMenu1262 = new javax.swing.JMenuItem();
+        jMenu1270 = new javax.swing.JMenu();
+        jMenu1271 = new javax.swing.JMenuItem();
+        jMenu1272 = new javax.swing.JMenuItem();
         jMenu1700 = new javax.swing.JMenuItem();
         jMenu2000 = new javax.swing.JMenu();
         jMenu3000 = new javax.swing.JMenu();
@@ -357,114 +400,216 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1110.setMnemonic('1');
         jMenu1110.setText("1.1.1- Marcas");
-        jMenu1110.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenu1111.setMnemonic('1');
+        jMenu1111.setText("1.1.1.1- Mantenimiento");
+        jMenu1111.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1110ActionPerformed(evt);
+                jMenu1111ActionPerformed(evt);
             }
         });
+        jMenu1110.add(jMenu1111);
+
+        jMenu1112.setMnemonic('2');
+        jMenu1112.setText("1.1.1.2- Consulta & Listado");
+        jMenu1110.add(jMenu1112);
+
         jMenu1100.add(jMenu1110);
 
         jMenu1120.setMnemonic('2');
         jMenu1120.setText("1.1.2- Lineas");
-        jMenu1120.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenu1121.setMnemonic('1');
+        jMenu1121.setText("1.1.2.1- Matenimiento");
+        jMenu1121.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1120ActionPerformed(evt);
+                jMenu1121ActionPerformed(evt);
             }
         });
+        jMenu1120.add(jMenu1121);
+
+        jMenu1122.setMnemonic('2');
+        jMenu1122.setText("1.1.2.2- Consulta & Listado");
+        jMenu1120.add(jMenu1122);
+
         jMenu1100.add(jMenu1120);
 
         jMenu1130.setMnemonic('3');
         jMenu1130.setText("1.1.3- Envaces");
-        jMenu1130.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenu1131.setMnemonic('1');
+        jMenu1131.setText("1.1.3.1- Matenimiento");
+        jMenu1131.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1130ActionPerformed(evt);
+                jMenu1131ActionPerformed(evt);
             }
         });
+        jMenu1130.add(jMenu1131);
+
+        jMenu1132.setMnemonic('2');
+        jMenu1132.setText("1.1.3.2- Consulta & Listado");
+        jMenu1130.add(jMenu1132);
+
         jMenu1100.add(jMenu1130);
 
         jMenu1140.setMnemonic('4');
         jMenu1140.setText("1.1.4- Productos");
-        jMenu1140.addActionListener(new java.awt.event.ActionListener() {
+
+        jMenu1141.setMnemonic('1');
+        jMenu1141.setText("1.1.4.1- Matenimiento");
+        jMenu1141.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1140ActionPerformed(evt);
+                jMenu1141ActionPerformed(evt);
             }
         });
+        jMenu1140.add(jMenu1141);
+
+        jMenu1142.setMnemonic('2');
+        jMenu1142.setText("1.1.4.2- Consulta & Listado");
+        jMenu1140.add(jMenu1142);
+
         jMenu1100.add(jMenu1140);
-
-        jMenu1150.setText("1.1.5- Componentes");
-        jMenu1150.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1150ActionPerformed(evt);
-            }
-        });
-        jMenu1100.add(jMenu1150);
-
-        jMenu1160.setText("1.1.6- Contraindicaciones");
-        jMenu1160.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1160ActionPerformed(evt);
-            }
-        });
-        jMenu1100.add(jMenu1160);
 
         jMenu1000.add(jMenu1100);
 
-        jMenu1200.setText("1.2- Drogas");
+        jMenu1200.setMnemonic('2');
+        jMenu1200.setText("1.2- Farmacia");
 
-        jMenu1210.setText("1.2.1- Mantenimiento");
-        jMenu1210.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1210.setMnemonic('1');
+        jMenu1210.setText("1.2.1- Drogas");
+
+        jMenu1211.setMnemonic('1');
+        jMenu1211.setText("1.2.1.1- Mantenimiento");
+        jMenu1211.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1210ActionPerformed(evt);
+                jMenu1211ActionPerformed(evt);
             }
         });
+        jMenu1210.add(jMenu1211);
+
+        jMenu1212.setMnemonic('2');
+        jMenu1212.setText("1.2.1.2- Consulta & Listado");
+        jMenu1212.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1212ActionPerformed(evt);
+            }
+        });
+        jMenu1210.add(jMenu1212);
+
         jMenu1200.add(jMenu1210);
 
-        jMenu1220.setText("1.2.2- Consulta & Listado");
-        jMenu1220.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1220.setMnemonic('2');
+        jMenu1220.setText("1.2.2- Sintomas");
+
+        jMenu1221.setMnemonic('1');
+        jMenu1221.setText("1.2.2.1- Mantenimiento");
+        jMenu1221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1220ActionPerformed(evt);
+                jMenu1221ActionPerformed(evt);
             }
         });
+        jMenu1220.add(jMenu1221);
+
+        jMenu1222.setMnemonic('2');
+        jMenu1222.setText("1.2.2.2- Consulta & Listado");
+        jMenu1220.add(jMenu1222);
+
         jMenu1200.add(jMenu1220);
+
+        jMenu1230.setMnemonic('3');
+        jMenu1230.setText("1.2.3- Enfermedades");
+
+        jMenu1231.setMnemonic('1');
+        jMenu1231.setText("1.2.3.1- Matenimiento");
+        jMenu1231.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1231ActionPerformed(evt);
+            }
+        });
+        jMenu1230.add(jMenu1231);
+
+        jMenu1232.setMnemonic('2');
+        jMenu1232.setText("1.2.3.2- Consulta & Listado");
+        jMenu1230.add(jMenu1232);
+
+        jMenu1200.add(jMenu1230);
+
+        jMenu1240.setMnemonic('4');
+        jMenu1240.setText("1.2.4- Tratamientos");
+
+        jMenu1241.setMnemonic('1');
+        jMenu1241.setText("1.2.4.1- Matenimiento");
+        jMenu1241.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1241ActionPerformed(evt);
+            }
+        });
+        jMenu1240.add(jMenu1241);
+
+        jMenu1242.setMnemonic('2');
+        jMenu1242.setText("1.2.4.2- Consulta & Listado");
+        jMenu1240.add(jMenu1242);
+
+        jMenu1200.add(jMenu1240);
+
+        jMenu1250.setMnemonic('5');
+        jMenu1250.setText("1.2.5- Diagnosticos");
+
+        jMenu1251.setMnemonic('1');
+        jMenu1251.setText("1.2.5.1- Matenimiento");
+        jMenu1251.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1251ActionPerformed(evt);
+            }
+        });
+        jMenu1250.add(jMenu1251);
+
+        jMenu1252.setMnemonic('2');
+        jMenu1252.setText("1.2.5.2- Consulta & Listado");
+        jMenu1250.add(jMenu1252);
+
+        jMenu1200.add(jMenu1250);
+
+        jMenu1260.setMnemonic('6');
+        jMenu1260.setText("1.2.6- Componentes");
+
+        jMenu1261.setMnemonic('1');
+        jMenu1261.setText("1.2.6.1- Componentes");
+        jMenu1261.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1261ActionPerformed(evt);
+            }
+        });
+        jMenu1260.add(jMenu1261);
+
+        jMenu1262.setMnemonic('2');
+        jMenu1262.setText("1.2.6.2- Consulta & Listado");
+        jMenu1260.add(jMenu1262);
+
+        jMenu1200.add(jMenu1260);
+
+        jMenu1270.setMnemonic('7');
+        jMenu1270.setText("1.2.7- Contraindicaciones");
+
+        jMenu1271.setMnemonic('1');
+        jMenu1271.setText("1.2.7.1- Contraindicaciones");
+        jMenu1271.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1271ActionPerformed(evt);
+            }
+        });
+        jMenu1270.add(jMenu1271);
+
+        jMenu1272.setMnemonic('2');
+        jMenu1272.setText("1.2.7.2- Consulta & Listado");
+        jMenu1270.add(jMenu1272);
+
+        jMenu1200.add(jMenu1270);
 
         jMenu1000.add(jMenu1200);
 
-        jMenu1300.setMnemonic('5');
-        jMenu1300.setText("1.3- Sintomas");
-        jMenu1300.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1300ActionPerformed(evt);
-            }
-        });
-        jMenu1000.add(jMenu1300);
-
-        jMenu1400.setMnemonic('6');
-        jMenu1400.setText("1.4- Enfermedades");
-        jMenu1400.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1400ActionPerformed(evt);
-            }
-        });
-        jMenu1000.add(jMenu1400);
-
-        jMenu1500.setMnemonic('7');
-        jMenu1500.setText("1.5- Tratamientos");
-        jMenu1500.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1500ActionPerformed(evt);
-            }
-        });
-        jMenu1000.add(jMenu1500);
-
-        jMenu1600.setText("1.6- Diagnosticos");
-        jMenu1600.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1600ActionPerformed(evt);
-            }
-        });
-        jMenu1000.add(jMenu1600);
-
-        jMenu1700.setText("1.7- Contactos");
+        jMenu1700.setMnemonic('3');
+        jMenu1700.setText("1.3- Contactos");
         jMenu1700.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1700ActionPerformed(evt);
@@ -675,27 +820,28 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         llamarFormulario.llamarInternalFrame(new Mantenimiento_Permisos(), escritorio);
     }//GEN-LAST:event_jMenu5120ActionPerformed
 
-    private void jMenu1140ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1140ActionPerformed
+    private void jMenu1141ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1141ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos(1140), escritorio);
-    }//GEN-LAST:event_jMenu1140ActionPerformed
+    }//GEN-LAST:event_jMenu1141ActionPerformed
 
-    private void jMenu1110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1110ActionPerformed
+    private void jMenu1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1111ActionPerformed
+//        callMenus.Marcas(1111);
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Marcas", 1110, true, false,
                         "Mar_Codigo", "Mar_Descrip", "Marcas"), escritorio);
-    }//GEN-LAST:event_jMenu1110ActionPerformed
+    }//GEN-LAST:event_jMenu1111ActionPerformed
 
-    private void jMenu1120ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1120ActionPerformed
+    private void jMenu1121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1121ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Lineas", 1120, true, false,
                         "Lin_Codigo", "Lin_Descrip", "Lineas"), escritorio);
-    }//GEN-LAST:event_jMenu1120ActionPerformed
+    }//GEN-LAST:event_jMenu1121ActionPerformed
 
-    private void jMenu1130ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1130ActionPerformed
+    private void jMenu1131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1131ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMDosCampos("Ref_Envaces", 1130, true, false,
                         "Env_Codigo", "Env_Descrip", "Envaces"), escritorio);
-    }//GEN-LAST:event_jMenu1130ActionPerformed
+    }//GEN-LAST:event_jMenu1131ActionPerformed
 
     private void jMenu5320ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5320ActionPerformed
         llamarFormulario.llamarInternalFrame(new Contribuyentes_frm(Conexion), escritorio);
@@ -711,45 +857,45 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         this.iniciarSecion();
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
 
-    private void jMenu1300ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1300ActionPerformed
+    private void jMenu1221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1221ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMTresCampos("Ref_Sintomas", 1300, true, false,
                         "Sint_Codigo", "Sint_Descrip", "observacion", "Sintomas"), escritorio);
-    }//GEN-LAST:event_jMenu1300ActionPerformed
+    }//GEN-LAST:event_jMenu1221ActionPerformed
 
-    private void jMenu1400ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1400ActionPerformed
+    private void jMenu1231ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1231ActionPerformed
         llamarFormulario.llamarInternalFrame(
                 new ABMTresCampos("Ref_Enfermedades", 1400, true, false,
                         "Enf_Codigo", "Enf_Descrip", "observacion", "Enfermedades"), escritorio);
-    }//GEN-LAST:event_jMenu1400ActionPerformed
+    }//GEN-LAST:event_jMenu1231ActionPerformed
 
-    private void jMenu1500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1500ActionPerformed
+    private void jMenu1241ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1241ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Tratamientos", 1500, true, false, "Trat_Codigo",
                 "Ref_Enfermedades", "Enf_Codigo", "Enf_Descrip", "Enfermedades",
                 "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas",
                 "observacion", "Tratamientos"), escritorio);
-    }//GEN-LAST:event_jMenu1500ActionPerformed
+    }//GEN-LAST:event_jMenu1241ActionPerformed
 
-    private void jMenu1150ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1150ActionPerformed
+    private void jMenu1261ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1261ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Componentes", 1150, true, false, "Comp_Codigo",
                 "Mant_Productos", "Prod_Codigo", "Prod_Descrip", "Productos",
                 "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas", "observacion",
                 "Componentes"), escritorio);
-    }//GEN-LAST:event_jMenu1150ActionPerformed
+    }//GEN-LAST:event_jMenu1261ActionPerformed
 
-    private void jMenu1600ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1600ActionPerformed
+    private void jMenu1251ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1251ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Diagnosticos", 1600, true, false, "Diag_Codigo",
                 "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
                 "ref_sintomas", "cod_sintoma", "nom_sintoma", "Sintomas",
                 "observacion", "Diagnosticos"), escritorio);
-    }//GEN-LAST:event_jMenu1600ActionPerformed
+    }//GEN-LAST:event_jMenu1251ActionPerformed
 
-    private void jMenu1160ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1160ActionPerformed
+    private void jMenu1271ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1271ActionPerformed
         llamarFormulario.llamarInternalFrame(new Productos_Farm("farm_contraindicaciones", 1160, true, false, "Cont_Codigo",
                 "mant_productos", "cod_producto", "nombre_producto", "Productos",
                 "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
                 "observacion", "Contraindicaciones"), escritorio);
-    }//GEN-LAST:event_jMenu1160ActionPerformed
+    }//GEN-LAST:event_jMenu1271ActionPerformed
 
     private void jMenu5210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5210ActionPerformed
         llamarFormulario.llamarInternalFrame(new Empresas(5210), escritorio);
@@ -771,17 +917,17 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         llamarFormulario.llamarInternalFrame(new GenTesaka(Conexion), escritorio);
     }//GEN-LAST:event_jMenu5400ActionPerformed
 
-    private void jMenu1210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1210ActionPerformed
+    private void jMenu1211ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1211ActionPerformed
         llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("ref_drogas", 1210, true, false, 
+                new ABMDosCampos("ref_drogas", 1210, true, false,
                         "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
-    }//GEN-LAST:event_jMenu1210ActionPerformed
+    }//GEN-LAST:event_jMenu1211ActionPerformed
 
-    private void jMenu1220ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1220ActionPerformed
+    private void jMenu1212ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1212ActionPerformed
         llamarFormulario.llamarInternalFrame(
-                new Listar("ref_drogas", true, false, 
+                new Listar("ref_drogas", true, false,
                         "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
-    }//GEN-LAST:event_jMenu1220ActionPerformed
+    }//GEN-LAST:event_jMenu1212ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -823,19 +969,40 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private static javax.swing.JLabel jLabelUsuario;
     public static javax.swing.JMenu jMenu1000;
     public static javax.swing.JMenu jMenu1100;
-    public static javax.swing.JMenuItem jMenu1110;
-    public static javax.swing.JMenuItem jMenu1120;
-    public static javax.swing.JMenuItem jMenu1130;
-    public static javax.swing.JMenuItem jMenu1140;
-    public static javax.swing.JMenuItem jMenu1150;
-    public static javax.swing.JMenuItem jMenu1160;
-    private static javax.swing.JMenu jMenu1200;
-    private static javax.swing.JMenuItem jMenu1210;
-    private static javax.swing.JMenuItem jMenu1220;
-    public static javax.swing.JMenuItem jMenu1300;
-    public static javax.swing.JMenuItem jMenu1400;
-    public static javax.swing.JMenuItem jMenu1500;
-    public static javax.swing.JMenuItem jMenu1600;
+    public static javax.swing.JMenu jMenu1110;
+    public static javax.swing.JMenuItem jMenu1111;
+    public static javax.swing.JMenuItem jMenu1112;
+    public static javax.swing.JMenu jMenu1120;
+    public static javax.swing.JMenuItem jMenu1121;
+    public static javax.swing.JMenuItem jMenu1122;
+    public static javax.swing.JMenu jMenu1130;
+    public static javax.swing.JMenuItem jMenu1131;
+    public static javax.swing.JMenuItem jMenu1132;
+    public static javax.swing.JMenu jMenu1140;
+    public static javax.swing.JMenuItem jMenu1141;
+    public static javax.swing.JMenuItem jMenu1142;
+    public static javax.swing.JMenu jMenu1200;
+    private static javax.swing.JMenu jMenu1210;
+    private static javax.swing.JMenuItem jMenu1211;
+    private static javax.swing.JMenuItem jMenu1212;
+    public static javax.swing.JMenu jMenu1220;
+    public static javax.swing.JMenuItem jMenu1221;
+    public static javax.swing.JMenuItem jMenu1222;
+    public static javax.swing.JMenu jMenu1230;
+    public static javax.swing.JMenuItem jMenu1231;
+    public static javax.swing.JMenuItem jMenu1232;
+    public static javax.swing.JMenu jMenu1240;
+    public static javax.swing.JMenuItem jMenu1241;
+    public static javax.swing.JMenuItem jMenu1242;
+    public static javax.swing.JMenu jMenu1250;
+    public static javax.swing.JMenuItem jMenu1251;
+    public static javax.swing.JMenuItem jMenu1252;
+    public static javax.swing.JMenu jMenu1260;
+    public static javax.swing.JMenuItem jMenu1261;
+    public static javax.swing.JMenuItem jMenu1262;
+    public static javax.swing.JMenu jMenu1270;
+    public static javax.swing.JMenuItem jMenu1271;
+    public static javax.swing.JMenuItem jMenu1272;
     public static javax.swing.JMenuItem jMenu1700;
     public static javax.swing.JMenu jMenu2000;
     public static javax.swing.JMenu jMenu3000;
