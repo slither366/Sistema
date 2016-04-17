@@ -29,12 +29,13 @@ public class Listar extends frm_Padre {
      *
      * @param tabla
      * @param Empresa
+     * @param cod_ventana
      * @param Sucursal
      * @param codigo
      * @param descripcion
      * @param titulo
      */
-    public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo,
+    public Listar(String tabla,int cod_ventana, boolean Empresa, boolean Sucursal, String codigo,
             String descripcion, String titulo) {
         initComponents();
         this.setName("listar" + titulo);
@@ -48,6 +49,7 @@ public class Listar extends frm_Padre {
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
@@ -55,6 +57,7 @@ public class Listar extends frm_Padre {
      * Listar para tres campos SIN Campos Foraneos
      *
      * @param tabla
+     * @param cod_ventana
      * @param Empresa
      * @param Sucursal
      * @param codigo
@@ -63,7 +66,7 @@ public class Listar extends frm_Padre {
      * @param descripcion2
      * @param tituloDescri2
      */
-    public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
+    public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String descripcion2, String tituloDescri2) {
         initComponents();
         this.setName("listar" + titulo);
@@ -79,11 +82,14 @@ public class Listar extends frm_Padre {
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 2;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
     /**
-     * Listar para tres campos CON Campo Foraneo
+     * Listar para tres campos
+     *
+     * @param cod_ventana CON Campo Foraneo
      *
      * @param tabla
      * @param Empresa
@@ -95,7 +101,7 @@ public class Listar extends frm_Padre {
      * @param descripcionForaneo
      * @param tituloForaneo
      */
-    public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
+    public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String idForaneo, String descripcionForaneo, String tituloForaneo) {
         initComponents();
         this.setName("listar" + titulo);
@@ -111,11 +117,14 @@ public class Listar extends frm_Padre {
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 3;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
     /**
-     * Listar para tres campos CON Campo Foraneo
+     * Listar para tres campos
+     *
+     * @param cod_ventana CON Campo Foraneo
      *
      * @param tabla
      * @param Empresa
@@ -127,7 +136,7 @@ public class Listar extends frm_Padre {
      * @param campos
      * @param nombres
      */
-    public Listar(String tabla, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
+    public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String reporte, String[] campos, String[] nombres) {
         initComponents();
         this.setName("listar" + titulo);
@@ -143,6 +152,7 @@ public class Listar extends frm_Padre {
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 0;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
@@ -530,6 +540,9 @@ public class Listar extends frm_Padre {
         this.textDesde.setText("");
         this.textHasta.setText("");
         ModoEdicion(false);
+        if (this.Listar_OK == false) {
+            this.btnReporNuevo.setEnabled(Listar_OK);
+        }
         desde = "";
         hasta = "";
         this.btnReporNuevo.grabFocus();

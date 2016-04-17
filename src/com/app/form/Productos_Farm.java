@@ -1,6 +1,5 @@
 package com.app.form;
 
-import com.app.form.Especiales.frm_Principal;
 import com.app.form.Especiales.frm_Padre;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
@@ -618,13 +617,5 @@ public class Productos_Farm extends frm_Padre {
                 this.Inicializar();
             }
         }
-    }
-
-    private void Listar() {
-        Productos_Farm_Lst listar = new Productos_Farm_Lst(
-                "vst_" + tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada,
-                NomDesc1, Titulo1, NomDesc2, Titulo2,
-                descripcionConsultada, tituloVentanaActual);
-        frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 }

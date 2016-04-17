@@ -20,7 +20,7 @@ public class Productos_lst extends frm_Padre {
     GenerarReportes reportes = new GenerarReportes();
     int foraneo;//1: dos campos, 2: tres campos sin FK, 3:tres campos con FK
 
-    public Productos_lst() {
+    public Productos_lst(int cod_ventana) {
         initComponents();
         this.setName("listar_productos");
         this.tablaConsutada = "productos";
@@ -29,6 +29,7 @@ public class Productos_lst extends frm_Padre {
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
@@ -352,6 +353,9 @@ public class Productos_lst extends frm_Padre {
         this.textDesde.setText("");
         this.textHasta.setText("");
         ModoEdicion(false);
+        if (this.Listar_OK == false) {
+            this.btnReporNuevo.setEnabled(Listar_OK);
+        }
         desde = "";
         hasta = "";
         this.btnReporNuevo.grabFocus();

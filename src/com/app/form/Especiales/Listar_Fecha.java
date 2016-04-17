@@ -26,6 +26,7 @@ public class Listar_Fecha extends frm_Padre {
      * Listar para tres campos CON Campo Foraneo
      *
      * @param tabla
+     * @param cod_ventana
      * @param Empresa
      * @param Sucursal
      * @param CampoFecha
@@ -34,7 +35,7 @@ public class Listar_Fecha extends frm_Padre {
      * @param campos
      * @param nombres
      */
-    public Listar_Fecha(String tabla, boolean Empresa, boolean Sucursal, String CampoFecha, String titulo,
+    public Listar_Fecha(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String CampoFecha, String titulo,
             String reporte, String[] campos, String[] nombres) {
         initComponents();
         this.setName("listar" + titulo);
@@ -48,6 +49,7 @@ public class Listar_Fecha extends frm_Padre {
         this.nombres = nombres;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
@@ -337,6 +339,9 @@ public class Listar_Fecha extends frm_Padre {
         this.txtFecha1.setText("");
         this.txtFecha2.setText("");
         ModoEdicion(false);
+        if (this.Listar_OK == false) {
+            this.btnReporNuevo.setEnabled(Listar_OK);
+        }
         this.btnReporNuevo.grabFocus();
     }
 

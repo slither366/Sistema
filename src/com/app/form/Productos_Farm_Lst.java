@@ -38,7 +38,7 @@ public class Productos_Farm_Lst extends frm_Padre {
      * @param Observacion
      * @param titulo2
      */
-    public Productos_Farm_Lst(String tablaPrin, boolean empresa, boolean sucursal,
+    public Productos_Farm_Lst(String tablaPrin, int cod_ventana, boolean empresa, boolean sucursal,
             String codigo, String nomDesc1, String titulo1, String nomDesc2, String titulo2,
             String Observacion, String tituloPrincipal) {
         initComponents();
@@ -55,6 +55,7 @@ public class Productos_Farm_Lst extends frm_Padre {
         this.tituloVentanaActual = tituloPrincipal;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
+        this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
 
@@ -425,6 +426,9 @@ public class Productos_Farm_Lst extends frm_Padre {
         this.textDesde.setText("");
         this.textHasta.setText("");
         ModoEdicion(false);
+        if (this.Listar_OK == false) {
+            this.btnReporNuevo.setEnabled(Listar_OK);
+        }
         desde = "";
         hasta = "";
         this.btnReporNuevo.grabFocus();
