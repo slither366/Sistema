@@ -10,8 +10,6 @@ import com.app.config.ConexionBD;
 import com.app.config.Propiedades;
 import com.app.form.cont.json.GenTesaka;
 import com.app.form.Contactos;
-import com.app.form.Productos;
-import com.app.form.Productos_Farm;
 import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.JLabel;
@@ -24,7 +22,7 @@ import javax.swing.JProgressBar;
 public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
     public ConexionBD Conexion;// = new ConexionBD();
-    public static LlamarFormulario llamarFormulario = new LlamarFormulario();
+    public static UbicarVentana llamarFormulario = new UbicarVentana();
 
     public frm_Principal() {
         initComponents();
@@ -412,6 +410,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1112.setMnemonic('2');
         jMenu1112.setText("1.1.1.2- Consulta & Listado");
+        jMenu1112.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1112ActionPerformed(evt);
+            }
+        });
         jMenu1110.add(jMenu1112);
 
         jMenu1100.add(jMenu1110);
@@ -430,6 +433,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1122.setMnemonic('2');
         jMenu1122.setText("1.1.2.2- Consulta & Listado");
+        jMenu1122.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1122ActionPerformed(evt);
+            }
+        });
         jMenu1120.add(jMenu1122);
 
         jMenu1100.add(jMenu1120);
@@ -448,6 +456,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1132.setMnemonic('2');
         jMenu1132.setText("1.1.3.2- Consulta & Listado");
+        jMenu1132.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1132ActionPerformed(evt);
+            }
+        });
         jMenu1130.add(jMenu1132);
 
         jMenu1100.add(jMenu1130);
@@ -466,6 +479,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1142.setMnemonic('2');
         jMenu1142.setText("1.1.4.2- Consulta & Listado");
+        jMenu1142.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1142ActionPerformed(evt);
+            }
+        });
         jMenu1140.add(jMenu1142);
 
         jMenu1100.add(jMenu1140);
@@ -512,6 +530,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1222.setMnemonic('2');
         jMenu1222.setText("1.2.2.2- Consulta & Listado");
+        jMenu1222.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1222ActionPerformed(evt);
+            }
+        });
         jMenu1220.add(jMenu1222);
 
         jMenu1200.add(jMenu1220);
@@ -530,6 +553,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1232.setMnemonic('2');
         jMenu1232.setText("1.2.3.2- Consulta & Listado");
+        jMenu1232.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1232ActionPerformed(evt);
+            }
+        });
         jMenu1230.add(jMenu1232);
 
         jMenu1200.add(jMenu1230);
@@ -548,6 +576,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1242.setMnemonic('2');
         jMenu1242.setText("1.2.4.2- Consulta & Listado");
+        jMenu1242.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1242ActionPerformed(evt);
+            }
+        });
         jMenu1240.add(jMenu1242);
 
         jMenu1200.add(jMenu1240);
@@ -566,6 +599,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1252.setMnemonic('2');
         jMenu1252.setText("1.2.5.2- Consulta & Listado");
+        jMenu1252.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1252ActionPerformed(evt);
+            }
+        });
         jMenu1250.add(jMenu1252);
 
         jMenu1200.add(jMenu1250);
@@ -584,6 +622,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1262.setMnemonic('2');
         jMenu1262.setText("1.2.6.2- Consulta & Listado");
+        jMenu1262.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1262ActionPerformed(evt);
+            }
+        });
         jMenu1260.add(jMenu1262);
 
         jMenu1200.add(jMenu1260);
@@ -593,11 +636,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1271.setMnemonic('1');
         jMenu1271.setText("1.2.7.1- Contraindicaciones");
-        jMenu1271.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1271ActionPerformed(evt);
-            }
-        });
         jMenu1270.add(jMenu1271);
 
         jMenu1272.setMnemonic('2');
@@ -820,29 +858,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         llamarFormulario.llamarInternalFrame(new Mantenimiento_Permisos(), escritorio);
     }//GEN-LAST:event_jMenu5120ActionPerformed
 
-    private void jMenu1141ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1141ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos(1140), escritorio);
-    }//GEN-LAST:event_jMenu1141ActionPerformed
-
-    private void jMenu1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1111ActionPerformed
-//        callMenus.Marcas(1111);
-        llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("Ref_Marcas", 1110, true, false,
-                        "Mar_Codigo", "Mar_Descrip", "Marcas"), escritorio);
-    }//GEN-LAST:event_jMenu1111ActionPerformed
-
-    private void jMenu1121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1121ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("Ref_Lineas", 1120, true, false,
-                        "Lin_Codigo", "Lin_Descrip", "Lineas"), escritorio);
-    }//GEN-LAST:event_jMenu1121ActionPerformed
-
-    private void jMenu1131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1131ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("Ref_Envaces", 1130, true, false,
-                        "Env_Codigo", "Env_Descrip", "Envaces"), escritorio);
-    }//GEN-LAST:event_jMenu1131ActionPerformed
-
     private void jMenu5320ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5320ActionPerformed
         llamarFormulario.llamarInternalFrame(new Contribuyentes_frm(Conexion), escritorio);
     }//GEN-LAST:event_jMenu5320ActionPerformed
@@ -856,46 +871,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         this.iniciarSecion();
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
-
-    private void jMenu1221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1221ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMTresCampos("Ref_Sintomas", 1300, true, false,
-                        "Sint_Codigo", "Sint_Descrip", "observacion", "Sintomas"), escritorio);
-    }//GEN-LAST:event_jMenu1221ActionPerformed
-
-    private void jMenu1231ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1231ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMTresCampos("Ref_Enfermedades", 1400, true, false,
-                        "Enf_Codigo", "Enf_Descrip", "observacion", "Enfermedades"), escritorio);
-    }//GEN-LAST:event_jMenu1231ActionPerformed
-
-    private void jMenu1241ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1241ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Tratamientos", 1500, true, false, "Trat_Codigo",
-                "Ref_Enfermedades", "Enf_Codigo", "Enf_Descrip", "Enfermedades",
-                "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas",
-                "observacion", "Tratamientos"), escritorio);
-    }//GEN-LAST:event_jMenu1241ActionPerformed
-
-    private void jMenu1261ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1261ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Componentes", 1150, true, false, "Comp_Codigo",
-                "Mant_Productos", "Prod_Codigo", "Prod_Descrip", "Productos",
-                "Ref_Drogas", "Dro_Codigo", "Dro_Descrip", "Drogas", "observacion",
-                "Componentes"), escritorio);
-    }//GEN-LAST:event_jMenu1261ActionPerformed
-
-    private void jMenu1251ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1251ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos_Farm("Farm_Diagnosticos", 1600, true, false, "Diag_Codigo",
-                "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
-                "ref_sintomas", "cod_sintoma", "nom_sintoma", "Sintomas",
-                "observacion", "Diagnosticos"), escritorio);
-    }//GEN-LAST:event_jMenu1251ActionPerformed
-
-    private void jMenu1271ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1271ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Productos_Farm("farm_contraindicaciones", 1160, true, false, "Cont_Codigo",
-                "mant_productos", "cod_producto", "nombre_producto", "Productos",
-                "ref_enfermedades", "cod_enfermedad", "nom_enfermedad", "Enfermedades",
-                "observacion", "Contraindicaciones"), escritorio);
-    }//GEN-LAST:event_jMenu1271ActionPerformed
 
     private void jMenu5210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5210ActionPerformed
         llamarFormulario.llamarInternalFrame(new Empresas(5210), escritorio);
@@ -917,17 +892,85 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         llamarFormulario.llamarInternalFrame(new GenTesaka(Conexion), escritorio);
     }//GEN-LAST:event_jMenu5400ActionPerformed
 
+    private void jMenu1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1111ActionPerformed
+        callMenus.Marcas(1111);
+    }//GEN-LAST:event_jMenu1111ActionPerformed
+
+    private void jMenu1112ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1112ActionPerformed
+        callMenus.Marcas_Lst(1112);
+    }//GEN-LAST:event_jMenu1112ActionPerformed
+
+    private void jMenu1121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1121ActionPerformed
+        callMenus.Lineas(1121);
+    }//GEN-LAST:event_jMenu1121ActionPerformed
+
+    private void jMenu1122ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1122ActionPerformed
+        callMenus.Lineas_Lst(1122);
+    }//GEN-LAST:event_jMenu1122ActionPerformed
+
+    private void jMenu1131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1131ActionPerformed
+        callMenus.Envaces(1131);
+    }//GEN-LAST:event_jMenu1131ActionPerformed
+
+    private void jMenu1132ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1132ActionPerformed
+        callMenus.Envaces_Lst(1132);
+    }//GEN-LAST:event_jMenu1132ActionPerformed
+
+    private void jMenu1141ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1141ActionPerformed
+        callMenus.Productos(1141);
+    }//GEN-LAST:event_jMenu1141ActionPerformed
+
+    private void jMenu1142ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1142ActionPerformed
+        callMenus.Productos_Lst(1142);
+    }//GEN-LAST:event_jMenu1142ActionPerformed
+
     private void jMenu1211ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1211ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("ref_drogas", 1210, true, false,
-                        "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
+        callMenus.Drogas(1221);
     }//GEN-LAST:event_jMenu1211ActionPerformed
 
     private void jMenu1212ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1212ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new Listar("ref_drogas", true, false,
-                        "Dro_Codigo", "Dro_Descrip", "Drogas"), escritorio);
+        callMenus.Drogas_Lst(1212);
     }//GEN-LAST:event_jMenu1212ActionPerformed
+
+    private void jMenu1221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1221ActionPerformed
+        callMenus.Sintomas(1221);
+    }//GEN-LAST:event_jMenu1221ActionPerformed
+
+    private void jMenu1222ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1222ActionPerformed
+        callMenus.Sintomas_Lst(1222);
+    }//GEN-LAST:event_jMenu1222ActionPerformed
+
+    private void jMenu1231ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1231ActionPerformed
+        callMenus.Enfermedades(1231);
+    }//GEN-LAST:event_jMenu1231ActionPerformed
+
+    private void jMenu1232ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1232ActionPerformed
+        callMenus.Enfermedades_Lst(1232);
+    }//GEN-LAST:event_jMenu1232ActionPerformed
+
+    private void jMenu1241ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1241ActionPerformed
+        callMenus.Tratamientos(1241);
+    }//GEN-LAST:event_jMenu1241ActionPerformed
+
+    private void jMenu1242ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1242ActionPerformed
+        callMenus.Tratamientos_Lst(1242);
+    }//GEN-LAST:event_jMenu1242ActionPerformed
+
+    private void jMenu1251ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1251ActionPerformed
+        callMenus.Diagnosticos(1251);
+    }//GEN-LAST:event_jMenu1251ActionPerformed
+
+    private void jMenu1252ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1252ActionPerformed
+        callMenus.Diagnosticos_Lst(1252);
+    }//GEN-LAST:event_jMenu1252ActionPerformed
+
+    private void jMenu1261ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1261ActionPerformed
+        callMenus.Componentes(1261);
+    }//GEN-LAST:event_jMenu1261ActionPerformed
+
+    private void jMenu1262ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1262ActionPerformed
+        callMenus.Componentes_Lst(1262);
+    }//GEN-LAST:event_jMenu1262ActionPerformed
     /**
      * @param args the command line arguments
      */
