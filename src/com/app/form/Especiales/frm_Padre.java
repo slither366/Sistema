@@ -77,30 +77,30 @@ public class frm_Padre extends JInternalFrame {
         buscar.setVisible(true);
     }
 
-    public void Listar(String tabla, boolean Empresa, boolean Sucursal,
+    public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo);
+        Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
-    public void Listar(String tabla, boolean Empresa, boolean Sucursal,
+    public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
             String descripcion2, String tituloDescri2) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, descripcion2, tituloDescri2);
+        Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo, descripcion2, tituloDescri2);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
-    public void Listar(String tabla, boolean Empresa, boolean Sucursal,
+    public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
             String idForaneo, String descripcionForaneo, String tituloForaneo) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion, titulo, idForaneo, descripcionForaneo, tituloForaneo);
+        Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo, idForaneo, descripcionForaneo, tituloForaneo);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
-    public void Listar(String tabla, boolean Empresa, boolean Sucursal,
+    public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
             String reporte, String[] campos, String[] nombres) {
-        Listar listar = new Listar(tabla, Empresa, Sucursal, codigo, descripcion,
+        Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion,
                 titulo, reporte, campos, nombres);
         frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
@@ -112,16 +112,33 @@ public class frm_Padre extends JInternalFrame {
      */
     public void getPermisos(int cod_ventana) {
         String[] resu = getConexion.getDescripciones("acc_principal",
-                new String[]{"autorizado_ok", "agrega_ok", "borra_ok", "modifica_ok", "listar_ok"},
+                new String[]{"autorizado_ok", "agrega_ok", "borra_ok", "modifica_ok"},
                 new String[]{cod_empresa, cod_sucursal, "Perf_Codigo", "Men_Codigo"},
                 new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(),
-                    Configuracion.getCOD_PERFIL(), cod_ventana + ""});
+                    Configuracion.getCOD_PERFIL(), String.valueOf(cod_ventana)});
         if (resu[0] != null) {
             this.Autorizado_ok = "1".equals(resu[0]);
             this.Agrega_OK = "1".equals(resu[1]);
             this.Borra_OK = "1".equals(resu[2]);
             this.Modifica_OK = "1".equals(resu[3]);
-            this.Listar_OK = "1".equals(resu[4]);
+        }
+    }
+
+    /**
+     * Metodo que verifica los permisos de un formulario de listado en la Base
+     * de Datos
+     *
+     * @param cod_ventana
+     */
+    public void getPermisosListar(int cod_ventana) {
+        String[] resu = getConexion.getDescripciones("acc_principal",
+                new String[]{"autorizado_ok", "listar_ok"},
+                new String[]{cod_empresa, cod_sucursal, "Perf_Codigo", "Men_Codigo"},
+                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(),
+                    Configuracion.getCOD_PERFIL(), String.valueOf(cod_ventana)});
+        if (resu[0] != null) {
+            this.Autorizado_ok = "1".equals(resu[0]);
+            this.Listar_OK = "1".equals(resu[1]);
         }
     }
 
