@@ -30,7 +30,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="165" splitType="Stretch">
+		<band height="146" splitType="Stretch">
 			<staticText>
 				<reportElement x="1" y="125" width="57" height="20" uuid="e8759e9f-26d4-4506-b5a8-f89a6937ee7e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
