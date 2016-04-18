@@ -410,6 +410,9 @@
                         <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1.2.7.1- Contraindicaciones"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu1271ActionPerformed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
@@ -419,6 +422,9 @@
                         <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="1.2.7.2- Consulta &amp; Listado"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu1272ActionPerformed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>

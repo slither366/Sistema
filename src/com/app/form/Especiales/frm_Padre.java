@@ -26,6 +26,7 @@ public class frm_Padre extends JInternalFrame {
     public static ConexionBD getConexion;
     public static Propiedades getPropiedades;
     public Image getIcono;
+    public static String ubicacionReport = "/com/app/Reportes/";
 
     public frm_Padre() {
         initComponents();

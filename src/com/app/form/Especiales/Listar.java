@@ -19,7 +19,7 @@ public class Listar extends frm_Padre {
     String desde, hasta;
     String descripcionForaneo, tituloVentanaForaneo;
     GenerarReportes reportes = new GenerarReportes();
-    String ubicacionRep;
+    String Reporte;
     int foraneo;//0:listado cualquiera, 1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
     private String[] Campos;
     private String[] Nombres;
@@ -35,7 +35,7 @@ public class Listar extends frm_Padre {
      * @param descripcion
      * @param titulo
      */
-    public Listar(String tabla,int cod_ventana, boolean Empresa, boolean Sucursal, String codigo,
+    public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo,
             String descripcion, String titulo) {
         initComponents();
         this.setName("listar" + titulo);
@@ -45,7 +45,7 @@ public class Listar extends frm_Padre {
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
-        this.ubicacionRep = "";
+        this.Reporte = "";
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
         ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
@@ -76,7 +76,7 @@ public class Listar extends frm_Padre {
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
-        this.ubicacionRep = "";
+        this.Reporte = "";
         this.descripcionForaneo = descripcion2;
         this.tituloVentanaForaneo = tituloDescri2;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
@@ -110,7 +110,7 @@ public class Listar extends frm_Padre {
         this.UsarSucursal = Sucursal;
         this.idConsultada = codigo;
         this.tituloVentanaActual = titulo;
-        this.ubicacionRep = "";
+        this.Reporte = "";
         this.descripcionConsultada = descripcion;
         this.descripcionForaneo = descripcionForaneo;
         this.tituloVentanaForaneo = tituloForaneo;
@@ -146,7 +146,7 @@ public class Listar extends frm_Padre {
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
-        this.ubicacionRep = reporte;
+        this.Reporte = reporte;
         this.Campos = campos;
         this.Nombres = nombres;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
@@ -198,8 +198,8 @@ public class Listar extends frm_Padre {
         jPanelTituloLayout.setHorizontalGroup(
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelTituloLayout.setVerticalGroup(
@@ -282,54 +282,36 @@ public class Listar extends frm_Padre {
 
         jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnReporNuevo.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporNuevo.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporNuevo.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporNuevoActionPerformed(evt);
             }
         });
 
-        btnReporPantalla.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporPantalla.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporPantalla.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporPantalla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporPantallaActionPerformed(evt);
             }
         });
 
-        btnReporImpresora.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporImpresora.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporImpresora.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporImpresora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporImpresoraActionPerformed(evt);
             }
         });
 
-        btnReporExportar.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporExportar.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporExportar.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporExportarActionPerformed(evt);
             }
         });
 
-        btnReporCancelar.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporCancelar.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporCancelar.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporCancelarActionPerformed(evt);
             }
         });
 
-        btnReporSalir.setMaximumSize(new java.awt.Dimension(80, 30));
-        btnReporSalir.setMinimumSize(new java.awt.Dimension(80, 30));
-        btnReporSalir.setPreferredSize(new java.awt.Dimension(80, 30));
         btnReporSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporSalirActionPerformed(evt);
@@ -593,7 +575,7 @@ public class Listar extends frm_Padre {
                     String xhasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                     Inicializar();
                     if (foraneo == 0) {//Reporte especiales, donde se envia la ubicacion del reporte
-                        reportes.mostrarReporteVentana(resu, this.ubicacionRep, xdesde, xhasta, modalidad, tituloVentanaActual);
+                        reportes.mostrarReporteVentana(resu, frm_Padre.ubicacionReport + this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
                     } else {// Reportes predetermiandos de campos predefinidos
                         if (foraneo == 1) {
                             reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);

@@ -636,10 +636,20 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1271.setMnemonic('1');
         jMenu1271.setText("1.2.7.1- Contraindicaciones");
+        jMenu1271.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1271ActionPerformed(evt);
+            }
+        });
         jMenu1270.add(jMenu1271);
 
         jMenu1272.setMnemonic('2');
         jMenu1272.setText("1.2.7.2- Consulta & Listado");
+        jMenu1272.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1272ActionPerformed(evt);
+            }
+        });
         jMenu1270.add(jMenu1272);
 
         jMenu1200.add(jMenu1270);
@@ -971,6 +981,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu1262ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1262ActionPerformed
         callMenus.Componentes_Lst(1262);
     }//GEN-LAST:event_jMenu1262ActionPerformed
+
+    private void jMenu1271ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1271ActionPerformed
+        callMenus.Contraindicaciones(1271);
+    }//GEN-LAST:event_jMenu1271ActionPerformed
+
+    private void jMenu1272ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1272ActionPerformed
+        callMenus.Contraindicaciones_Lst(1272);
+    }//GEN-LAST:event_jMenu1272ActionPerformed
     /**
      * @param args the command line arguments
      */

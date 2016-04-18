@@ -2,6 +2,7 @@ package com.app.clases;
 
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
+import com.app.form.Especiales.frm_Padre;
 import com.app.form.Especiales.frm_Principal;
 import com.app.form.Especiales.frm_reporte;
 import java.awt.BorderLayout;
@@ -27,8 +28,6 @@ import net.sf.jasperreports.view.JRViewer;
  */
 public class GenerarReportes {
 
-    private final String ubicacionReport = "/com/app/Reportes/";
-
     /**
      *
      * @param rs
@@ -39,7 +38,7 @@ public class GenerarReportes {
      */
     public void listadoDosCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo) {
-        String reporte = ubicacionReport + "listadosDosCampos.jasper";
+        String reporte = frm_Padre.ubicacionReport + "listadosDosCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         try {
             if (rs.last()) {
@@ -67,7 +66,7 @@ public class GenerarReportes {
      */
     public void listadoTresCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo, String tituloForaneo) {
-        String reporte = ubicacionReport + "listadosTresCampos.jasper";
+        String reporte = frm_Padre.ubicacionReport + "listadosTresCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         try {
             if (rs.last()) {
@@ -131,7 +130,6 @@ public class GenerarReportes {
     public void mostrarReporteVentana(HashMap parameters, JRResultSetDataSource jrRS,
             String reporte, char tipo, String tituloVentanaActual) {
         try {
-            reporte = this.ubicacionReport + reporte;
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
             mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
@@ -146,7 +144,6 @@ public class GenerarReportes {
             resu.last();
             int cantidadRow = resu.getRow();
             resu.beforeFirst();
-            reporte = this.ubicacionReport + reporte;
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),

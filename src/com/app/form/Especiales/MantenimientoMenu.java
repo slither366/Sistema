@@ -45,7 +45,7 @@ public class MantenimientoMenu extends frm_Padre {
         txtCodigo = new com.app.paleta.txtCodigo();
         txtDescripcion = new com.app.paleta.txtTexto();
         jPanelBotones2 = new javax.swing.JPanel();
-        btnNuevo2 = new com.app.botones.btnNuevo();
+        btnNuevo = new com.app.botones.btnNuevo();
         btnModificar = new com.app.botones.btnEditar();
         btnBorrar = new com.app.botones.btnBorrar();
         btnGrabar = new com.app.botones.btnGrabar();
@@ -136,9 +136,9 @@ public class MantenimientoMenu extends frm_Padre {
 
         jPanelBotones2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnNuevo2.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevo2ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -180,7 +180,7 @@ public class MantenimientoMenu extends frm_Padre {
             jPanelBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotones2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,7 +198,7 @@ public class MantenimientoMenu extends frm_Padre {
             .addGroup(jPanelBotones2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,9 +239,7 @@ public class MantenimientoMenu extends frm_Padre {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -287,9 +285,9 @@ public class MantenimientoMenu extends frm_Padre {
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
-    private void btnNuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo2ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.Agregar();
-    }//GEN-LAST:event_btnNuevo2ActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         this.Editar('M');
@@ -317,14 +315,10 @@ public class MantenimientoMenu extends frm_Padre {
     private com.app.botones.btnGrabar btnGrabar;
     private com.app.botones.btnEditar btnModificar;
     private com.app.botones.btnNuevo btnNuevo;
-    private com.app.botones.btnNuevo btnNuevo1;
-    private com.app.botones.btnNuevo btnNuevo2;
     private com.app.botones.btnSalir btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelBotones;
-    private javax.swing.JPanel jPanelBotones1;
     private javax.swing.JPanel jPanelBotones2;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelTitulo;

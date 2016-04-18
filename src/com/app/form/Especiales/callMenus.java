@@ -14,7 +14,7 @@ public class callMenus {
     static UbicarVentana menu = new UbicarVentana();
 
     public static void Marcas(int cod_ventana) {
-        menu.llamarInternalFrame(new ABMDosCampos("Ref_Marcas", 1110, true, false,
+        menu.llamarInternalFrame(new ABMDosCampos("Ref_Marcas", cod_ventana, true, false,
                 "Mar_Codigo", "Mar_Descrip", "Marcas"), frm_Principal.escritorio);
     }
 
@@ -30,7 +30,7 @@ public class callMenus {
 
     public static void Lineas_Lst(int cod_ventana) {
         menu.llamarInternalFrame(new Listar("Ref_Lineas", cod_ventana, true, false,
-                "Lin_Codigo", "Lin_Descrip", "L"), frm_Principal.escritorio);
+                "Lin_Codigo", "Lin_Descrip", "Lineas"), frm_Principal.escritorio);
     }
 
     public static void Envaces(int cod_ventana) {
@@ -124,7 +124,7 @@ public class callMenus {
     }
 
     public static void Contraindicaciones(int cod_ventana) {
-        menu.llamarInternalFrame(new Productos_Farm("farm_contraindicaciones", 1160, true, false, "Cont_Codigo",
+        menu.llamarInternalFrame(new Productos_Farm("farm_contraindicaciones", cod_ventana, true, false, "Cont_Codigo",
                 "mant_productos", "Prod_Codigo", "Prod_Descrip", "Productos",
                 "ref_enfermedades", "Enf_Codigo", "Enf_Desrip", "Enfermedades",
                 "observacion", "Contraindicaciones"), frm_Principal.escritorio);

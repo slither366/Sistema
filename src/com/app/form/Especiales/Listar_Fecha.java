@@ -18,7 +18,7 @@ import java.util.Date;
 public class Listar_Fecha extends frm_Padre {
 
     private final GenerarReportes reportes = new GenerarReportes();
-    private final String ubicacionRep;
+    private final String Reporte;
     private final String[] campos;
     private final String[] nombres;
 
@@ -44,7 +44,7 @@ public class Listar_Fecha extends frm_Padre {
         this.UsarSucursal = Sucursal;
         this.idConsultada = CampoFecha;
         this.tituloVentanaActual = titulo;
-        this.ubicacionRep = reporte;
+        this.Reporte = reporte;
         this.campos = campos;
         this.nombres = nombres;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
@@ -95,7 +95,7 @@ public class Listar_Fecha extends frm_Padre {
             .addGroup(jPanelTituloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelTituloLayout.setVerticalGroup(
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +381,7 @@ public class Listar_Fecha extends frm_Padre {
                     String xdesde = this.txtFecha1.getText();
                     String xhasta = this.txtFecha2.getText();
                     Inicializar();
-                    reportes.mostrarReporteVentana(resu, this.ubicacionRep, xdesde, xhasta, modalidad, tituloVentanaActual);
+                    reportes.mostrarReporteVentana(resu, frm_Padre.ubicacionReport + this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
                 }
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {

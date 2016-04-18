@@ -9,7 +9,6 @@ import com.app.botones.btnCancelar;
 import com.app.botones.btnExportar;
 import com.app.botones.btnGrabar;
 import com.app.botones.btnImpresora;
-import com.app.botones.btnListar;
 import com.app.botones.btnEditar;
 import com.app.botones.btnNuevo;
 import com.app.botones.btnPantalla;
@@ -34,14 +33,14 @@ public class ClaseBotones {
      * @param bl
      */
     public static final void modoEdicionABM(btnNuevo Nuevo, btnEditar Modificar, btnBorrar Borrar,
-             btnGrabar Grabar, btnCancelar Cancelar, btnSalir Salir, boolean bl) {
+            btnGrabar Grabar, btnCancelar Cancelar, btnSalir Salir, boolean bl) {
         Nuevo.setEnabled(bl);
         Modificar.setEnabled(bl);
         Borrar.setEnabled(bl);
         Grabar.setEnabled(!bl);
         Cancelar.setEnabled(!bl);
         Salir.setEnabled(bl);
-    }    
+    }
 
     /**
      * Metodo para habilidar botones Buscar
@@ -69,7 +68,7 @@ public class ClaseBotones {
      *
      * @param Nuevo
      * @param Modificar
-     * @param Borrar     
+     * @param Borrar
      * @param Grabar
      * @param Cancelar
      * @param Salir
@@ -87,7 +86,7 @@ public class ClaseBotones {
                         if (Modificar.isEnabled()) {
                             Modificar.grabFocus();
                         } else if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();                       
+                            Borrar.grabFocus();
                         } else {
                             Salir.grabFocus();
                         }
@@ -112,7 +111,8 @@ public class ClaseBotones {
                         break;
                     case 39://siguiente
                         if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();                       
+                            Borrar.grabFocus();
+                        } else {
                             Salir.grabFocus();
                         }
                         break;
@@ -148,7 +148,7 @@ public class ClaseBotones {
                         break;
                 }
             }
-        });        
+        });
 
         Grabar.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -205,7 +205,7 @@ public class ClaseBotones {
                         } else if (Modificar.isEnabled()) {
                             Modificar.grabFocus();
                         } else if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();                        
+                            Borrar.grabFocus();
                         } else {
                             Salir.grabFocus();
                         }
@@ -216,7 +216,7 @@ public class ClaseBotones {
                 }
             }
         });
-    }    
+    }
 
     /**
      * Metodo para fijar el KeyPressed a los Botones Buscar
@@ -314,7 +314,7 @@ public class ClaseBotones {
      * @param Salir
      */
     public static void botonesReporte(final btnNuevo Nuevo, final btnPantalla Pantalla, final btnImpresora Impresora,
-            final btnExportar Exportar,final btnCancelar Cancelar, final btnSalir Salir) {
+            final btnExportar Exportar, final btnCancelar Cancelar, final btnSalir Salir) {
         Nuevo.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
