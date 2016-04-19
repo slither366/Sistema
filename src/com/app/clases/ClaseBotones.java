@@ -136,12 +136,8 @@ public class ClaseBotones {
                             Salir.grabFocus();
                         }
                         break;
-                    case 39://siguiente
-                        if (Borrar.isEnabled()) {
-                            Borrar.grabFocus();
-                        } else {
-                            Salir.grabFocus();
-                        }
+                    case 39://siguiente                        
+                            Salir.grabFocus();                        
                         break;
                     case 10://Enter
                         Borrar.doClick();
