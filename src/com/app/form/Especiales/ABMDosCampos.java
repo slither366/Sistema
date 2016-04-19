@@ -23,7 +23,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.UsarSucursal = sucursal;
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;        
+        this.tituloVentanaActual = titulo;
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         this.getPermisos(this.Cod_Ventana);
         this.txtDescripcion.setEnMayuscula(true);
@@ -250,13 +250,16 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        if (this.txtCodigo.verificarVacioSinMsj()) {
+        int valor = this.txtCodigo.verificarVacioConMsj();
+        if (valor == 0) {
             this.txtCodigo.setEnabled(false);
             if (operacion == 'M' || operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDescripcion.grabFocus();
             }
+        } else if (valor == 1) {
+            this.Inicializar();
         }
     }//GEN-LAST:event_txtCodigoActionPerformed
 

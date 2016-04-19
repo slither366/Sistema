@@ -10,13 +10,13 @@ import javax.swing.JOptionPane;
  */
 public class ClaseEncriptacion {
 
-    private final static String letras = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUtVvWwXxYyZz0123456789";
+    private final static String letras = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789_-";
     private final static String[] caracteres = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
         "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
-        "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "_", "-"};
     private final static String[] cifrado = {"P", "Q", "2", "3", "T", "U", "V", "Z",
         "1", "5", "9", "0", "%", "N", "$", "K", "L", "4", "R", "S", "O", "W", "X", "Y",
-        "A", "6", "7", "D", "E", "8", "B", "C", "F", "G", "?", "I"};
+        "A", "6", "7", "D", "E", "8", "B", "C", "F", "G", "?", "I", "-", "_"};
 
     /**
      * Metodo para encriptar un String que recibe como parametro

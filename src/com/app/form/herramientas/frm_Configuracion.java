@@ -508,10 +508,11 @@ public class frm_Configuracion extends frm_Padre {
                     .addComponent(jLabel13)
                     .addComponent(txtNom_User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textNomPerfil)
-                    .addComponent(txtCod_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textNomPerfil)
+                        .addComponent(txtCod_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -896,13 +897,13 @@ public class frm_Configuracion extends frm_Padre {
                 MensajeSistema.MensajeVarios(this, "Archivo de Configuración Actualizado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());
                 this.jTabbedPane1.setSelectedIndex(0);
             } else {
-                String texto = "host=" + this.txtHost.getText().trim() + "\n"
-                        + "port=" + this.txtPort.getText().trim() + "\n"
-                        + "user=" + this.txtUser.getText().trim() + "\n"
+                String texto = "host=" + ClaseEncriptacion.cifrarTexto(this.txtHost.getText().trim()) + "\n"
+                        + "port=" + ClaseEncriptacion.cifrarTexto(this.txtPort.getText().trim()) + "\n"
+                        + "user=" + ClaseEncriptacion.cifrarTexto(this.txtUser.getText().trim()) + "\n"
                         + "pass=" + ClaseEncriptacion.cifrarTexto(this.txtPass.getText().trim()) + "\n"
-                        + "bd=" + this.txtBD.getText().trim() + "\n"
-                        + "impresora=" + this.txtImpresora.getText().trim() + "\n"
-                        + "decoracion=" + this.cboDecoracion.getSelecDescri();
+                        + "bd=" + ClaseEncriptacion.cifrarTexto(this.txtBD.getText().trim()) + "\n"
+                        + "impresora=" + ClaseEncriptacion.cifrarTexto(this.txtImpresora.getText().trim()) + "\n"
+                        + "decoracion=" + ClaseEncriptacion.cifrarTexto(this.cboDecoracion.getSelecDescri());
                 try {
                     ClaseTextoIO.escribirArchivoNuevo("configuracion.properties", texto);
                     MensajeSistema.MensajeVarios(this, "Archivo de Configuración creado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());

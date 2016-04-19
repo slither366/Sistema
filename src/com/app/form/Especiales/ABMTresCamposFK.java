@@ -320,13 +320,16 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
     }//GEN-LAST:event_txtCod_ReferenciaActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        if (txtCodigo.verificarVacioSinMsj()) {
+        int valor = this.txtCodigo.verificarVacioConMsj();
+        if (valor == 0) {
             if (operacion == 'M' || operacion == 'E') {
                 this.txtCodigo.setEnabled(false);
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDescripcion.grabFocus();
             }
+        } else if (valor == 1) {
+            this.Inicializar();
         }
     }//GEN-LAST:event_txtCodigoActionPerformed
 

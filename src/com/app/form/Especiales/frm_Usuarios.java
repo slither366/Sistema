@@ -445,12 +445,15 @@ public class frm_Usuarios extends frm_Padre {
     }//GEN-LAST:event_txtPass2_UserActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        if (txtCodigo.verificarVacioSinMsj()) {
+        int valor = this.txtCodigo.verificarVacioConMsj();
+        if (valor == 0) {
             if (operacion == 'M' || operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtNom_User.grabFocus();
             }
+        } else if (valor == 1) {
+            this.Inicializar();
         }
     }//GEN-LAST:event_txtCodigoActionPerformed
 

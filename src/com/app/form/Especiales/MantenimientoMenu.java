@@ -23,7 +23,7 @@ public class MantenimientoMenu extends frm_Padre {
         this.tituloVentanaActual = "Menús";
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
-        this.txtDescripcion.setEnMayuscula(true);        
+        this.txtDescripcion.setEnMayuscula(true);
         this.Inicializar();
     }
 
@@ -246,7 +246,8 @@ public class MantenimientoMenu extends frm_Padre {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        if (this.txtCodigo.verificarVacioSinMsj()) {
+        int valor = this.txtCodigo.verificarVacioConMsj();
+        if (valor == 0) {
             this.txtCodigo.setEnabled(false);
             if (operacion == 'M' || operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
@@ -264,6 +265,8 @@ public class MantenimientoMenu extends frm_Padre {
                     this.txtCodigo.grabFocus();
                 }
             }
+        } else if (valor == 1) {
+            this.Inicializar();
         }
     }//GEN-LAST:event_txtCodigoActionPerformed
 
