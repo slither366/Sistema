@@ -682,13 +682,16 @@ public final class Contactos extends frm_Padre implements Metodos {
     }//GEN-LAST:event_cboACreditoFocusGained
 
     private void txtCod_ContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ContactoActionPerformed
-        if (this.txtCod_Contacto.verificarVacioSinMsj()) {
+        int valor = this.txtCod_Contacto.verificarVacioConMsj();
+        if (valor == 0) {
             this.txtCod_Contacto.setEnabled(false);
             if (operacion == 'M' || operacion == 'E') {
                 this.RecuperarDatos(this.txtCod_Contacto.getText());
             } else {
                 this.txtCINumero.grabFocus();
             }
+        } else if (valor == 1) {
+            this.Inicializar();
         }
     }//GEN-LAST:event_txtCod_ContactoActionPerformed
 

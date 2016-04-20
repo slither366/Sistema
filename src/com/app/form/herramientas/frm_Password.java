@@ -1,7 +1,9 @@
-
 package com.app.form.herramientas;
 
+import com.app.config.Configuracion;
+import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
+import static com.app.form.Especiales.frm_Padre.getConexion;
 
 /**
  *
@@ -11,6 +13,8 @@ public class frm_Password extends frm_Padre {
 
     public frm_Password() {
         initComponents();
+        this.setName("pass");
+        this.Inicializar();
     }
 
     /**
@@ -27,13 +31,13 @@ public class frm_Password extends frm_Padre {
         textTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPassword1 = new com.app.paleta.txtPassword();
-        txtPassword2 = new com.app.paleta.txtPassword();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        txtPassword1 = new com.app.paleta.txtPassword();
+        txtPassword2 = new com.app.paleta.txtPassword();
         txtPassword3 = new com.app.paleta.txtPassword();
-        btnGrabar1 = new com.app.botones.btnGrabar();
-        btnSalir1 = new com.app.botones.btnSalir();
+        btnGrabar = new com.app.botones.btnGrabar();
+        btnSalir = new com.app.botones.btnSalir();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,17 +72,32 @@ public class frm_Password extends frm_Padre {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Clave Anterior:");
 
-        txtPassword1.setText("txtPassword1");
-
-        txtPassword2.setText("txtPassword1");
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Clave Nueva:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Repita el Clave:");
 
+        txtPassword1.setText("txtPassword1");
+        txtPassword1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassword1ActionPerformed(evt);
+            }
+        });
+
+        txtPassword2.setText("txtPassword1");
+        txtPassword2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassword2ActionPerformed(evt);
+            }
+        });
+
         txtPassword3.setText("txtPassword1");
+        txtPassword3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassword3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,6 +134,12 @@ public class frm_Password extends frm_Padre {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrabarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,13 +149,13 @@ public class frm_Password extends frm_Padre {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGrabar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -143,8 +168,8 @@ public class frm_Password extends frm_Padre {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGrabar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -162,11 +187,68 @@ public class frm_Password extends frm_Padre {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void txtPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword1ActionPerformed
+        int valor = this.txtPassword1.verificarVacioConMsj();
+        if (valor == 0) {
+            boolean vUser = getConexion.ValidarUsuario(Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_USUARIO(), this.txtPassword1.getText());
+            if (vUser) {
+                this.txtPassword2.setEnabled(true);
+                this.txtPassword3.setEnabled(true);
+                this.txtPassword1.setEnabled(false);
+                this.txtPassword2.grabFocus();
+            } else {
+                int preg = MensajeSistema.MensajeOpciones(this, "La contraseña no corresponde al Usuario " + Configuracion.getNOM_USUARIO() + "\n"
+                        + "Desea Cancelar esta operación?..", new Object[]{"Reintentar", "Cancelar"}, 0);
+                if (preg == 0) {
+                    this.txtPassword1.setText("");
+                    this.txtPassword1.grabFocus();
+                } else {
+                    this.Inicializar();
+                }
+            }
+        } else if (valor == 1) {
+            this.Inicializar();
+        }
+    }//GEN-LAST:event_txtPassword1ActionPerformed
+
+    private void txtPassword2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword2ActionPerformed
+        int valor = this.txtPassword1.verificarVacioConMsj();
+        if (valor == 0) {
+            this.txtPassword3.grabFocus();
+        } else if (valor == 1) {
+            this.Inicializar();
+        }
+    }//GEN-LAST:event_txtPassword2ActionPerformed
+
+    private void txtPassword3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword3ActionPerformed
+        int valor = this.txtPassword1.verificarVacioConMsj();
+        if (valor == 0) {
+            if (this.txtPassword2.getText().trim().equals(this.txtPassword3.getText().trim())) {
+                this.btnGrabar.setEnabled(true);
+                this.btnGrabar.grabFocus();
+            } else {
+                int preg = MensajeSistema.MensajeOpciones(this, "Las Claves no coinciden...\n"
+                        + "Desea Cancelar esta operación?..", new Object[]{"Reintentar", "Cancelar"}, 0);
+                if (preg == 0) {
+                    this.txtPassword2.setText("");
+                    this.txtPassword3.setText("");
+                    this.txtPassword2.grabFocus();
+                } else {
+                    this.Inicializar();
+                }
+            }
+        } else if (valor == 1) {
+            this.Inicializar();
+        }
+    }//GEN-LAST:event_txtPassword3ActionPerformed
+
+    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
+        this.Grabar();
+    }//GEN-LAST:event_btnGrabarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.botones.btnGrabar btnGrabar1;
-    private com.app.botones.btnSalir btnSalir1;
+    private com.app.botones.btnGrabar btnGrabar;
+    private com.app.botones.btnSalir btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -178,4 +260,24 @@ public class frm_Password extends frm_Padre {
     private com.app.paleta.txtPassword txtPassword2;
     private com.app.paleta.txtPassword txtPassword3;
     // End of variables declaration//GEN-END:variables
+
+    private void Inicializar() {
+        this.txtPassword1.setText("");
+        this.txtPassword2.setText("");
+        this.txtPassword3.setText("");
+        this.txtPassword2.setEnabled(false);
+        this.txtPassword3.setEnabled(false);
+        this.txtPassword1.grabFocus();
+    }
+
+    private void Grabar() {
+        if (MensajeSistema.Modificar(this)) {
+            String sql = "UPDATE " + tablaConsutada;
+            sql += " SET clave=PASSWORD('" + this.txtPassword2.getText() + "') ";
+            sql += "WHERE " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA();
+            sql += " AND " + idConsultada + "=" + Configuracion.getCOD_USUARIO() + ";";
+            this.getConexion.ejecutaUpdate(sql);
+        }
+        this.Inicializar();
+    }
 }

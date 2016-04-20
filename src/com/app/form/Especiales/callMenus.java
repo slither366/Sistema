@@ -4,6 +4,7 @@ import com.app.form.Productos;
 import com.app.form.Productos_Farm;
 import com.app.form.Productos_Farm_Lst;
 import com.app.form.Productos_lst;
+import com.app.form.herramientas.frm_Password;
 
 /**
  *
@@ -135,5 +136,83 @@ public class callMenus {
                 "Cont_Codigo",
                 "Prod_Descrip", "Productos", "Enf_Desrip", "Enfermedades",
                 "observacion", "Contraindicaciones"), frm_Principal.escritorio);
+    }
+
+    public static void Empresas(int cod_ventana) {
+        menu.llamarInternalFrame(new Empresas(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void Empresas_Lst(int cod_ventana) {
+        System.out.println("en construccion");
+    }    
+    
+    public static void Sucursales(int cod_ventana) {
+        System.out.println("en construccion");
+    }
+
+    public static void Sucursales_Lst(int cod_ventana) {
+        System.out.println("en construccion");
+    }    
+    
+    public static void Menus(int cod_ventana) {
+        menu.llamarInternalFrame(new MantenimientoMenu(), frm_Principal.escritorio);
+    }
+
+    public static void Menus_Lst(int cod_ventana) {
+        System.out.println("en construccion");
+    }    
+    
+    public static void Permisos() {
+        menu.llamarInternalFrame(new Mantenimiento_Permisos(), frm_Principal.escritorio);
+    }
+
+    public static void Permisos_Lst() {
+        System.out.println("en construccion");
+    }    
+    
+    public static void Usuarios(int cod_ventana) {
+        menu.llamarInternalFrame(new frm_Usuarios(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void Usuarios_Lst(int cod_ventana) {
+        System.out.println("en construccion");
+    }
+
+    public static void Usuarios_ActUser() {
+        menu.llamarInternalFrame(new frm_Password(), frm_Principal.escritorio);
+    }
+
+    public static void Usuarios_ActPass() {
+        menu.llamarInternalFrame(new frm_Password(), frm_Principal.escritorio);
+    }
+
+    public static void Bancos(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
+                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
+    }
+
+    public static void Bancos_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
+                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
+    }
+
+    public static void Ciudades(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
+                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
+    }
+
+    public static void Ciudades_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
+                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
+    }
+
+    public static void Nacionalidades(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_nacionalidades", cod_ventana, true, false,
+                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
+    }
+
+    public static void Nacionalidades_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_nacionalidad", cod_ventana, true, false,
+                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
     }
 }

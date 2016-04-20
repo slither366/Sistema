@@ -22,6 +22,7 @@ public class Empresas extends frm_Padre {
         this.idConsultada = "Emp_Codigo";
         this.descripcionConsultada = "Emp_Descrip";
         this.tituloVentanaActual = "Empresas";
+        this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.Inicializar();
     }

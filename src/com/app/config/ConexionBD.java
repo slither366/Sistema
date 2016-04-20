@@ -20,7 +20,6 @@ public class ConexionBD {
     private String SQL;
     private PreparedStatement ejecutar;
     private static Connection ConnectionDB;
-    private final String[] vacio = {};
 
     /**
      * Esta clase ConexionBD cuenta con todo lo necesario para conectar con una
@@ -338,12 +337,12 @@ public class ConexionBD {
     /**
      * Cuenta la cantidad de filas que tiene una consulta sql
      *
-     * @param tabla
+     * @param sql
      * @return
      */
-    public int getCOUNTFila(String tabla) {
+    public int getCOUNTFila(String sql) {
         try {
-            ResultSet rs = ejecutaQuery("SELECT count(*) FROM " + tabla + ";");
+            ResultSet rs = ejecutaQuery(sql);
             rs.next();
             return rs.getInt(1);
         } catch (SQLException e) {
@@ -479,7 +478,7 @@ public class ConexionBD {
     }
 
     public String getDescripcion(String tabla, String campo, String[] CampoCondicion, String[] valores) {
-        SQL = ConsultaSQL.getSelect(tabla, new String[]{campo}, vacio, CampoCondicion, valores);
+        SQL = ConsultaSQL.getSelect(tabla, new String[]{campo}, null, CampoCondicion, valores);
         try {
             ResultSet rs = ejecutaQuery(SQL);
             String resu = null;
@@ -506,7 +505,7 @@ public class ConexionBD {
      */
     public String[] getDescripciones(String tabla, String[] campos, String[] CampoCondicion, String[] valores) {
         String[] resu = new String[campos.length];
-        SQL = ConsultaSQL.getSelect(tabla, campos, vacio, CampoCondicion, valores);
+        SQL = ConsultaSQL.getSelect(tabla, campos, null, CampoCondicion, valores);
         try {
             ResultSet rs = ejecutaQuery(SQL);
             if (rs.next()) {
@@ -537,7 +536,7 @@ public class ConexionBD {
      * @return
      */
     public String[][] getDescripcionesRow(String tabla, String[] campos, String[] condiciones, String[] valores) {
-        SQL = ConsultaSQL.getSelect(tabla, campos, vacio, condiciones, valores);
+        SQL = ConsultaSQL.getSelect(tabla, campos, null, condiciones, valores);
         return getDescripcionesRow(SQL);
     }
 
@@ -553,7 +552,7 @@ public class ConexionBD {
     public String[][] getDescripcionesRow(String sql) {
         String[][] resu = new String[1][1];
         try {
-            ResultSet rs = ejecutaQuery(sql);            
+            ResultSet rs = ejecutaQuery(sql);
             if (rs.next()) {
                 rs.last();
                 int columnas = rs.getMetaData().getColumnCount();
@@ -630,5 +629,19 @@ public class ConexionBD {
             MensajeSistema.setSQLException(ex);
         }
         return modelo;
+    }
+
+    /**
+     * Metodo que valida usuario y el password
+     *
+     * @param emp
+     * @param user
+     * @param pass
+     * @return
+     */
+    public boolean ValidarUsuario(String emp, String user, String pass) {
+        String sql = "select count(*) from acc_usuarios where Emp_Codigo=" + emp
+                + " and Usu_Codigo=" + user + " and clave=password('" + pass + "')";
+        return this.getCOUNTFila(sql) > 0;
     }
 }

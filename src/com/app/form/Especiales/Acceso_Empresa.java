@@ -6,8 +6,6 @@ import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.clases.ClaseTeclas;
 import com.app.config.Propiedades;
-import static com.app.form.Especiales.frm_Principal.escritorio;
-import java.util.ArrayList;
 
 /**
  *
@@ -15,15 +13,15 @@ import java.util.ArrayList;
  */
 public class Acceso_Empresa extends frm_Padre {
 
-    private int contador;   
+    private int contador;
 
     public Acceso_Empresa(ConexionBD conexion, Propiedades pro) {
         initComponents();
         this.setName("acceso_empresa");
         frm_Padre.getConexion = conexion;
         this.getPropiedades = pro;
-        this.setLocation((escritorio.getSize().width - this.getSize().width) / 2,
-                (escritorio.getSize().height - this.getSize().height) / 2);
+        this.setLocation((frm_Principal.escritorio.getSize().width - this.getSize().width) / 2,
+                (frm_Principal.escritorio.getSize().height - this.getSize().height) / 2);
         this.tablaConsutada = "acc_usuarios";
         this.idConsultada = "Usu_Codigo";
         this.descripcionConsultada = "Usu_Nombre";
@@ -309,12 +307,8 @@ public class Acceso_Empresa extends frm_Padre {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         int valor = this.txtPassword.verificarVacioConMsj();
         if (valor == 0) {
-            String sql = "select " + descripcionConsultada + " from " + tablaConsutada
-                    + " where " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA()
-                    + " and " + idConsultada + "=" + this.txtCod_Usuario.getText()
-                    + " and clave=password('" + this.txtPassword.getText().trim() + "')";
-            ArrayList clave = getConexion.consultar(sql);
-            if (clave.size() > 0) {
+            boolean vUser = getConexion.ValidarUsuario(Configuracion.getCOD_EMPRESA(), this.txtCod_Usuario.getText(), this.txtPassword.getText());
+            if (vUser) {
                 contador = 0;
                 this.txtCod_Usuario.setEnabled(false);
                 this.txtPassword.setEnabled(false);
@@ -418,7 +412,7 @@ public class Acceso_Empresa extends frm_Padre {
         int valor = this.txtCod_Usuario.verificarVacioConMsj();
         if (valor == 0) {
             String[] rs = this.getConexion.getDescripciones("vst_" + txtCod_Usuario.getBdTabla(),
-                    new String[]{cod_empresa, txtCod_Usuario.getBdCodigo(), txtCod_Usuario.getBdDescrip(),"Perf_Codigo", "Perf_Descrip"},
+                    new String[]{cod_empresa, txtCod_Usuario.getBdCodigo(), txtCod_Usuario.getBdDescrip(), "Perf_Codigo", "Perf_Descrip"},
                     new String[]{cod_empresa, txtCod_Usuario.getBdCodigo()},
                     new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Usuario.getText()});
             if (rs[0] != null) {
