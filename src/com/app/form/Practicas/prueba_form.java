@@ -1,9 +1,11 @@
-
 package com.app.form.Practicas;
 
 import com.app.config.ConexionBD;
 import com.app.config.ConsultaSQL;
 import com.app.paleta.cbo.ClassComboBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Action;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -11,25 +13,36 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Diego
  */
-public class prueba_form extends javax.swing.JFrame {
+public class prueba_form extends javax.swing.JFrame implements ActionListener{
 
-    ConexionBD conexion = new ConexionBD("localhost","3306","root","secreto","bd_sistemas");
-
+    //ConexionBD conexion = new ConexionBD("localhost", "3306", "root", "secreto", "bd_sistemas");
     public prueba_form() {
         initComponents();
         String sql = ConsultaSQL.getSelect("cont_cotizacion_set",
                 new String[]{"Mon_Codigo", "venta"},
                 new String[]{"codigo", "descripcion"},
                 new String[]{},
-                new String[]{});       
-         this.cbo1.addItem("hola1");
-        this.cbo1.addItem(conexion.ejecutaQuery(sql));
-        
-        this.cbo1.addItem("hola2");
-        this.cbo1.addItem("hola3");
-        this.cbo1.addItem("hola4");
-        this.cbo1.addItem("hola5");
-        this.cbo1.setSelecDescri("hola3");
+                new String[]{});
+    }
+
+    public void agregar() {
+        System.out.println("Agregar");
+    }
+
+    public void Editar(char t) {
+        System.out.println(t == 'M' ? "Modificar" : "Borrar");
+    }
+
+    public void Grabar() {
+        System.out.println("Grabar");
+    }
+
+    public void Cancelar() {
+        System.out.println("Cancelar");
+    }
+
+    public void Salir() {
+        System.out.println("Salir");
     }
 
     /**
@@ -41,98 +54,36 @@ public class prueba_form extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        Escritorio = new javax.swing.JDesktopPane();
-        cbo1 = new com.app.paleta.cbo();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-
-        jMenuItem2.setText("jMenuItem2");
-        jPopupMenu1.add(jMenuItem2);
-
-        jMenuItem1.setText("jMenuItem1");
-        jPopupMenu1.add(jMenuItem1);
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Escritorio.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
-        Escritorio.setLayout(EscritorioLayout);
-        EscritorioLayout.setHorizontalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(69, 69, 69)
-                        .addComponent(jButton2))
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addComponent(cbo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(197, 197, 197)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(123, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 676, Short.MAX_VALUE)
         );
-        EscritorioLayout.setVerticalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(272, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 343, Short.MAX_VALUE)
         );
-        Escritorio.setLayer(cbo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String valor=cbo1.getSelecDescri();
-        System.out.println(valor);
-        System.out.println(cbo1.getSelecCodigo());
-        this.jTextField1.setText(valor);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.cbo1.setSelecDescri(this.jTextField1.getText());
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,13 +126,42 @@ public class prueba_form extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Escritorio;
-    private com.app.paleta.cbo cbo1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();
+        if (Orden.compareTo("primero") == 0) {
+            System.out.println("primero");
+        } else if (Orden.compareTo("anterior") == 0) {
+            System.out.println("anterior");
+        } else if (Orden.compareTo("siguiente") == 0) {
+            System.out.println("siguiente");
+        } else if (Orden.compareTo("ultimo") == 0) {
+            System.out.println("ultimo");
+        } 
+    }
+
+//    public class Oyente implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//
+//            String Orden = e.getActionCommand();
+//            if (Orden.compareTo("agregar") == 0) {
+//                agregar();
+//            } else if (Orden.compareTo("modificar") == 0) {
+//                Editar('M');
+//            } else if (Orden.compareTo("borrar") == 0) {
+//                Editar('B');
+//            } else if (Orden.compareTo("grabar") == 0) {
+//                Grabar();
+//            } else if (Orden.compareTo("cancelar") == 0) {
+//                Cancelar();
+//            } else if (Orden.compareTo("salir") == 0) {
+//                Salir();
+//            }
+//        }
+//    }
 }
