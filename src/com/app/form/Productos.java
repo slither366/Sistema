@@ -39,10 +39,10 @@ public final class Productos extends frm_Padre implements Metodos {
         this.txtCosto_Inicial.setInicializar(15, 0);
         this.txtPrecioV_Actual.setInicializar(15, 0);
         this.txtPrecioV_Inicial.setInicializar(15, 0);
-        this.txtCosto_Actual.setFormato(true);
-        this.txtCosto_Inicial.setFormato(true);
-        this.txtPrecioV_Actual.setFormato(true);
-        this.txtPrecioV_Inicial.setFormato(true);
+        this.txtCosto_Actual.setFormatear(true);
+        this.txtCosto_Inicial.setFormatear(true);
+        this.txtPrecioV_Actual.setFormatear(true);
+        this.txtPrecioV_Inicial.setFormatear(true);
 
         this.txtCod_Producto.setBdTabla(tablaConsutada);
         this.txtCod_Producto.setBdCodigo(idConsultada);

@@ -97,7 +97,7 @@ public class txtNumeros extends textoPadre {
                 if (isEmpty()) {
                     setText("0");
                 } else {
-                    if (isFormato()) {
+                    if (isFormatear()) {
                         setText(ClaseNumeros.formatoMiles(getText().replaceAll(",", ""), ConDecimal ? CantDecimal : 0));
                     }
                 }
@@ -142,11 +142,11 @@ public class txtNumeros extends textoPadre {
 
     private boolean formato = false;
 
-    public boolean isFormato() {
+    public boolean isFormatear() {
         return formato;
     }
 
-    public void setFormato(boolean formato) {
+    public void setFormatear(boolean formato) {
         this.formato = formato;
     }
 }

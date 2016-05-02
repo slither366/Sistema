@@ -29,7 +29,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.tituloVentanaActual = "Contactos";
         this.getPermisos(cod_ventana);
         this.txtRazonSocial.setEnMayuscula(true);
-        this.txtCINumero.setFormato(false);
+        this.txtCINumero.setFormatear(false);
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
 
         this.txtCod_Nacionalidad.setBdTabla("Ref_Nacionalidades");

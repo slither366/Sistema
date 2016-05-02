@@ -581,11 +581,21 @@ public class ConexionBD {
     }
 
     public boolean Commit() {
-        return (ejecutaUpdate("commit"));
+        try {
+            getConexion().commit();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        } 
     }
 
     public boolean RollBack() {
-        return (ejecutaUpdate("rollback"));
+        try {
+            getConexion().rollback();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }        
     }
 
     /**

@@ -1,11 +1,11 @@
 package com.app.form.Especiales;
 
-import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre.Metodos;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -23,12 +23,32 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.UsarSucursal = sucursal;
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;
+        this.tituloVentanaActual = titulo;       
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         this.getPermisos(this.Cod_Ventana);
         this.txtDescripcion.setEnMayuscula(true);
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
+        this.botonesABM.addListener(this);
         this.Inicializar();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();
+        if (Orden.compareTo("btn1") == 0) {
+            Agregar();
+        } else if (Orden.compareTo("btn2") == 0) {
+            Editar('M');
+        } else if (Orden.compareTo("btn3") == 0) {
+            Editar('E');
+        } else if (Orden.compareTo("btn4") == 0) {
+            Grabar();
+        } else if (Orden.compareTo("btn5") == 0) {
+            if (MensajeSistema.Cancelar(this)) {
+                this.Inicializar();
+            }
+        } else if (Orden.compareTo("btn6") == 0) {
+            Salir(this);
+        }
     }
 
     /**
@@ -48,13 +68,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new com.app.paleta.txtCodigo();
         txtDescripcion = new com.app.paleta.txtTexto();
-        jPanelBotones = new javax.swing.JPanel();
-        btnNuevo = new com.app.botones.btnNuevo();
-        btnModificar = new com.app.botones.btnEditar();
-        btnBorrar = new com.app.botones.btnBorrar();
-        btnGrabar = new com.app.botones.btnGrabar();
-        btnCancelar = new com.app.botones.btnCancelar();
-        btnSalir = new com.app.botones.btnSalir();
+        botonesABM = new com.app.botones.pnlABM();
 
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -138,79 +152,6 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
                 .addContainerGap())
         );
 
-        jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-
-        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrabarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setMaximumSize(new java.awt.Dimension(90, 30));
-        btnSalir.setMinimumSize(new java.awt.Dimension(90, 30));
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
-        jPanelBotones.setLayout(jPanelBotonesLayout);
-        jPanelBotonesLayout.setHorizontalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelBotonesLayout.setVerticalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,21 +159,22 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
+                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -243,7 +185,9 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,8 +211,8 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         int valor = this.txtDescripcion.verificarVacioConMsj();
         if (valor == 0) {
             this.txtDescripcion.setTextMayuscula();
-            this.btnGrabar.setEnabled(true);
-            this.btnGrabar.grabFocus();
+            this.botonesABM.btnGrabar.setEnabled(true);
+            this.botonesABM.btnGrabar.grabFocus();
         } else if (valor == 1) {
             this.Inicializar();
         }
@@ -283,41 +227,11 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        this.Agregar();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        this.Editar('M');
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        this.Editar('E');
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        this.Grabar();
-    }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Inicializar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Salir(this);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.botones.btnBorrar btnBorrar;
-    private com.app.botones.btnCancelar btnCancelar;
-    private com.app.botones.btnGrabar btnGrabar;
-    private com.app.botones.btnEditar btnModificar;
-    private com.app.botones.btnNuevo btnNuevo;
-    private com.app.botones.btnSalir btnSalir;
+    private com.app.botones.pnlABM botonesABM;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JLabel textTitulo;
@@ -331,20 +245,20 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.txtDescripcion.setText("");
         this.txtCodigo.setEnabled(false);
         this.txtDescripcion.setEnabled(false);
-        this.btnNuevo.setEnabled(Agrega_OK);
-        this.btnModificar.setEnabled(Modifica_OK);
-        this.btnBorrar.setEnabled(Borra_OK);
-        this.btnGrabar.setEnabled(false);
-        this.btnCancelar.setEnabled(false);
-        this.btnSalir.setEnabled(true);
-        if (this.btnNuevo.isEnabled()) {
-            this.btnNuevo.grabFocus();
-        } else if (this.btnModificar.isEnabled()) {
-            this.btnModificar.grabFocus();
-        } else if (this.btnBorrar.isEnabled()) {
-            this.btnBorrar.grabFocus();
+        this.botonesABM.btnNuevo.setEnabled(Agrega_OK);
+        this.botonesABM.btnModificar.setEnabled(Modifica_OK);
+        this.botonesABM.btnBorrar.setEnabled(Borra_OK);
+        this.botonesABM.btnGrabar.setEnabled(false);
+        this.botonesABM.btnCancelar.setEnabled(false);
+        this.botonesABM.btnSalir.setEnabled(true);
+        if (this.botonesABM.btnNuevo.isEnabled()) {
+            this.botonesABM.btnNuevo.grabFocus();
+        } else if (this.botonesABM.btnModificar.isEnabled()) {
+            this.botonesABM.btnModificar.grabFocus();
+        } else if (this.botonesABM.btnBorrar.isEnabled()) {
+            this.botonesABM.btnBorrar.grabFocus();
         } else {
-            this.btnSalir.grabFocus();
+            this.botonesABM.btnSalir.grabFocus();
         }
     }
 
@@ -406,8 +320,8 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             valores = null;
         }
         if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
-            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
-            this.btnGrabar.setEnabled(false);
+            this.botonesABM.ModoEdicion(false);
+            this.botonesABM.btnGrabar.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
             operacion = 'A';
             this.txtDescripcion.grabFocus();
@@ -419,9 +333,9 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     @Override
     public void Editar(char c) {
         operacion = c;
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
+        this.botonesABM.ModoEdicion(false);
         this.txtCodigo.setEnabled(true);
-        this.btnGrabar.setEnabled(false);
+        this.botonesABM.btnGrabar.setEnabled(false);
         this.txtCodigo.grabFocus();
     }
 

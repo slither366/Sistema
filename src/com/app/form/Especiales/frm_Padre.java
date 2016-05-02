@@ -6,6 +6,8 @@ import com.app.config.ConexionBD;
 import com.app.config.Propiedades;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.JInternalFrame;
 
@@ -13,7 +15,7 @@ import javax.swing.JInternalFrame;
  *
  * @author
  */
-public class frm_Padre extends JInternalFrame {
+public class frm_Padre extends JInternalFrame implements ActionListener {
 
     public String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual, codigoFormulario;
     public static String cod_empresa = "Emp_Codigo";
@@ -172,6 +174,10 @@ public class frm_Padre extends JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
 
     public interface Metodos {
 

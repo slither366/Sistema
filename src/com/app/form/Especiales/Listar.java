@@ -1,12 +1,13 @@
 package com.app.form.Especiales;
 
 import com.app.clases.utilidades.Excel;
-import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.GenerarReportes;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -46,9 +47,9 @@ public class Listar extends frm_Padre {
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
         this.Reporte = "";
+        this.pnlListar.addListener(this);
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 1;
-        ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
@@ -77,11 +78,11 @@ public class Listar extends frm_Padre {
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
         this.Reporte = "";
+        this.pnlListar.addListener(this);
         this.descripcionForaneo = descripcion2;
         this.tituloVentanaForaneo = tituloDescri2;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 2;
-        ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
@@ -111,12 +112,12 @@ public class Listar extends frm_Padre {
         this.idConsultada = codigo;
         this.tituloVentanaActual = titulo;
         this.Reporte = "";
+        this.pnlListar.addListener(this);
         this.descripcionConsultada = descripcion;
         this.descripcionForaneo = descripcionForaneo;
         this.tituloVentanaForaneo = tituloForaneo;
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 3;
-        ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
@@ -149,11 +150,31 @@ public class Listar extends frm_Padre {
         this.Reporte = reporte;
         this.Campos = campos;
         this.Nombres = nombres;
+        this.pnlListar.addListener(this);
         this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
         foraneo = 0;
-        ClaseBotones.botonesReporte(btnReporNuevo, btnReporPantalla, btnReporImpresora, btnReporExportar, btnReporCancelar, btnReporSalir);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();        
+        if (Orden.compareTo("btn1") == 0) {
+            Agregar();
+        } else if (Orden.compareTo("btn2") == 0) {
+            this.Reporte('P');
+        } else if (Orden.compareTo("btn3") == 0) {
+            this.Reporte('I');
+        } else if (Orden.compareTo("btn4") == 0) {
+            this.Reporte('E');
+        } else if (Orden.compareTo("btn5") == 0) {
+            if (MensajeSistema.Cancelar(this)) {
+                this.Inicializar();
+            }
+        } else if (Orden.compareTo("btn6") == 0) {
+            Salir(this);
+        }
     }
 
     /**
@@ -175,13 +196,7 @@ public class Listar extends frm_Padre {
         textHasta = new javax.swing.JLabel();
         txtCod_Desde = new com.app.paleta.txtCodigo();
         txtCod_Hasta = new com.app.paleta.txtCodigo();
-        jPanelBotones = new javax.swing.JPanel();
-        btnReporNuevo = new com.app.botones.btnNuevo();
-        btnReporPantalla = new com.app.botones.btnPantalla();
-        btnReporImpresora = new com.app.botones.btnImpresora();
-        btnReporExportar = new com.app.botones.btnExportar();
-        btnReporCancelar = new com.app.botones.btnCancelar();
-        btnReporSalir = new com.app.botones.btnSalir();
+        pnlListar = new com.app.botones.pnlListar();
 
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -280,87 +295,17 @@ public class Listar extends frm_Padre {
                 .addContainerGap())
         );
 
-        jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnReporNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporNuevoActionPerformed(evt);
-            }
-        });
-
-        btnReporPantalla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporPantallaActionPerformed(evt);
-            }
-        });
-
-        btnReporImpresora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporImpresoraActionPerformed(evt);
-            }
-        });
-
-        btnReporExportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporExportarActionPerformed(evt);
-            }
-        });
-
-        btnReporCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporCancelarActionPerformed(evt);
-            }
-        });
-
-        btnReporSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporSalirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
-        jPanelBotones.setLayout(jPanelBotonesLayout);
-        jPanelBotonesLayout.setHorizontalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnReporNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporExportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelBotonesLayout.setVerticalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReporNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporImpresora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporExportar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanelDatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 534, Short.MAX_VALUE))
+                    .addComponent(pnlListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -371,7 +316,7 @@ public class Listar extends frm_Padre {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -422,18 +367,6 @@ public class Listar extends frm_Padre {
         }
     }//GEN-LAST:event_txtCod_DesdeActionPerformed
 
-    private void btnReporNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporNuevoActionPerformed
-        this.Agregar();
-    }//GEN-LAST:event_btnReporNuevoActionPerformed
-
-    private void btnReporPantallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporPantallaActionPerformed
-        this.Reporte('P');
-    }//GEN-LAST:event_btnReporPantallaActionPerformed
-
-    private void btnReporImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporImpresoraActionPerformed
-        this.Reporte('I');
-    }//GEN-LAST:event_btnReporImpresoraActionPerformed
-
     private void txtCod_HastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_HastaActionPerformed
         int valor = this.txtCod_Hasta.verificarVacioConMsj();
         if (valor == 0) {
@@ -459,24 +392,14 @@ public class Listar extends frm_Padre {
                 }
             } else {
                 this.textHasta.setText(registro);
-                this.btnReporPantalla.setEnabled(true);
-                this.btnReporImpresora.setEnabled(true);
-                this.btnReporPantalla.grabFocus();
+                this.pnlListar.btnReporPantalla.setEnabled(true);
+                this.pnlListar.btnReporImpresora.setEnabled(true);
+                this.pnlListar.btnReporPantalla.grabFocus();
             }
         } else if (valor == 1) {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtCod_HastaActionPerformed
-
-    private void btnReporCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporCancelarActionPerformed
-        if (MensajeSistema.Cancelar()) {
-            this.Inicializar();
-        }
-    }//GEN-LAST:event_btnReporCancelarActionPerformed
-
-    private void btnReporSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporSalirActionPerformed
-        this.Salir(this);
-    }//GEN-LAST:event_btnReporSalirActionPerformed
 
     private void txtCod_DesdeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_DesdeKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
@@ -492,23 +415,13 @@ public class Listar extends frm_Padre {
         }
     }//GEN-LAST:event_txtCod_HastaKeyPressed
 
-    private void btnReporExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporExportarActionPerformed
-        this.Reporte('E');
-    }//GEN-LAST:event_btnReporExportarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.botones.btnCancelar btnReporCancelar;
-    private com.app.botones.btnExportar btnReporExportar;
-    private com.app.botones.btnImpresora btnReporImpresora;
-    private com.app.botones.btnNuevo btnReporNuevo;
-    private com.app.botones.btnPantalla btnReporPantalla;
-    private com.app.botones.btnSalir btnReporSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelTitulo;
+    private com.app.botones.pnlListar pnlListar;
     private javax.swing.JLabel textDesde;
     private javax.swing.JLabel textHasta;
     private javax.swing.JLabel textTitulo;
@@ -523,22 +436,17 @@ public class Listar extends frm_Padre {
         this.textHasta.setText("");
         ModoEdicion(false);
         if (this.Listar_OK == false) {
-            this.btnReporNuevo.setEnabled(Listar_OK);
+            this.pnlListar.btnReporNuevo.setEnabled(Listar_OK);
         }
         desde = "";
         hasta = "";
-        this.btnReporNuevo.grabFocus();
+        this.pnlListar.btnReporNuevo.grabFocus();
     }
 
     private void ModoEdicion(boolean x) {
         this.txtCod_Desde.setEnabled(x);
         this.txtCod_Hasta.setEnabled(x);
-        this.btnReporNuevo.setEnabled(!x);
-        this.btnReporPantalla.setEnabled(x);
-        this.btnReporImpresora.setEnabled(x);
-        this.btnReporExportar.setEnabled(x);
-        this.btnReporCancelar.setEnabled(x);
-        this.btnReporSalir.setEnabled(!x);
+        this.pnlListar.ModoEdicion(x);
     }
 
     public void Agregar() {
@@ -550,8 +458,8 @@ public class Listar extends frm_Padre {
                 desde = String.valueOf(x);
                 hasta = String.valueOf(y);
                 this.ModoEdicion(true);
-                this.btnReporPantalla.setEnabled(false);
-                this.btnReporImpresora.setEnabled(false);
+                this.pnlListar.btnReporPantalla.setEnabled(false);
+                this.pnlListar.btnReporImpresora.setEnabled(false);
                 this.txtCod_Desde.setText(desde);
                 this.txtCod_Desde.grabFocus();
             }
