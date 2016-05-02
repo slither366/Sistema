@@ -63,7 +63,7 @@ public class textoPadre extends javax.swing.JFormattedTextField {
             @Override
             public void changedUpdate(DocumentEvent de) {
             }
-        });
+        });       
     }
 
     /**
@@ -189,66 +189,5 @@ public class textoPadre extends javax.swing.JFormattedTextField {
         g.setColor(new Color(phColor.getRed(), phColor.getGreen(), phColor.getBlue(), 90));
         //dibuja texto
         g.drawString((band) ? placeHolder : "", getMargin().left, (getSize().height) / 2 + getFont().getSize() / 2);
-    }
-
-    /*
-     * Teclas F para funciones especiales
-     */
-    private boolean TecF3 = false, TecF4 = false, TecF5 = false, TecF6 = false, TecF7 = false, TecF8 = false, TecF9 = false;
-
-    public boolean isTecF3() {
-        return TecF3;
-    }
-
-    public void setTecF3(boolean TecF3) {
-        this.TecF3 = TecF3;
-    }
-
-    public boolean isTecF4() {
-        return TecF4;
-    }
-
-    public void setTecF4(boolean TecF4) {
-        this.TecF4 = TecF4;
-    }
-
-    public boolean isTecF5() {
-        return TecF5;
-    }
-
-    public void setTecF5(boolean TecF5) {
-        this.TecF5 = TecF5;
-    }
-
-    public boolean isTecF6() {
-        return TecF6;
-    }
-
-    public void setTecF6(boolean TecF6) {
-        this.TecF6 = TecF6;
-    }
-
-    public boolean isTecF7() {
-        return TecF7;
-    }
-
-    public void setTecF7(boolean TecF7) {
-        this.TecF7 = TecF7;
-    }
-
-    public boolean isTecF8() {
-        return TecF8;
-    }
-
-    public void setTecF8(boolean TecF8) {
-        this.TecF8 = TecF8;
-    }
-
-    public boolean isTecF9() {
-        return TecF9;
-    }
-
-    public void setTecF9(boolean TecF9) {
-        this.TecF9 = TecF9;
     }
 }
