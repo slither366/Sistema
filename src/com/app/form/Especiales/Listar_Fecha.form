@@ -36,12 +36,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanelDatos" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanelBotones" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanelTitulo" pref="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanelDatos" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanelTitulo" min="-2" pref="534" max="-2" attributes="0"/>
+                              <Component id="pnlListar" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -53,7 +61,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanelDatos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanelBotones" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlListar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -136,7 +144,7 @@
                           <Component id="txtFecha1" pref="90" max="32767" attributes="0"/>
                           <Component id="txtFecha2" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="331" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -183,85 +191,8 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanelBotones">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporNuevo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporPantalla" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporImpresora" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporExportar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnReporSalir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnReporNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReporPantalla" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReporImpresora" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReporCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReporSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnReporExportar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="com.app.botones.btnNuevo" name="btnReporNuevo">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporNuevoActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.app.botones.btnPantalla" name="btnReporPantalla">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporPantallaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.app.botones.btnImpresora" name="btnReporImpresora">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporImpresoraActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.app.botones.btnExportar" name="btnReporExportar">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporExportarActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.app.botones.btnCancelar" name="btnReporCancelar">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporCancelarActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.app.botones.btnSalir" name="btnReporSalir">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporSalirActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
+        <Component class="com.app.botones.pnlListar" name="pnlListar">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

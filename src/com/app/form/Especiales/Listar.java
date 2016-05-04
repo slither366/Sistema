@@ -7,7 +7,6 @@ import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -392,9 +391,9 @@ public class Listar extends frm_Padre {
                 }
             } else {
                 this.textHasta.setText(registro);
-                this.pnlListar.btnReporPantalla.setEnabled(true);
-                this.pnlListar.btnReporImpresora.setEnabled(true);
-                this.pnlListar.btnReporPantalla.grabFocus();
+                this.pnlListar.btnPantalla.setEnabled(true);
+                this.pnlListar.btnImpresora.setEnabled(true);
+                this.pnlListar.btnPantalla.grabFocus();
             }
         } else if (valor == 1) {
             this.Inicializar();
@@ -436,11 +435,11 @@ public class Listar extends frm_Padre {
         this.textHasta.setText("");
         ModoEdicion(false);
         if (this.Listar_OK == false) {
-            this.pnlListar.btnReporNuevo.setEnabled(Listar_OK);
+            this.pnlListar.btnNuevo.setEnabled(Listar_OK);
         }
         desde = "";
         hasta = "";
-        this.pnlListar.btnReporNuevo.grabFocus();
+        this.pnlListar.btnNuevo.grabFocus();
     }
 
     private void ModoEdicion(boolean x) {
@@ -458,8 +457,8 @@ public class Listar extends frm_Padre {
                 desde = String.valueOf(x);
                 hasta = String.valueOf(y);
                 this.ModoEdicion(true);
-                this.pnlListar.btnReporPantalla.setEnabled(false);
-                this.pnlListar.btnReporImpresora.setEnabled(false);
+                this.pnlListar.btnPantalla.setEnabled(false);
+                this.pnlListar.btnImpresora.setEnabled(false);
                 this.txtCod_Desde.setText(desde);
                 this.txtCod_Desde.grabFocus();
             }
