@@ -23,7 +23,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.UsarSucursal = sucursal;
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;       
+        this.tituloVentanaActual = titulo;
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         this.getPermisos(this.Cod_Ventana);
         this.txtDescripcion.setEnMayuscula(true);
@@ -49,7 +49,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn6") == 0) {
             Salir(this);
         }
-    }
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.

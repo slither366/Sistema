@@ -1,10 +1,10 @@
 package com.app.form.Especiales;
 
-import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre.Metodos;
+import java.awt.event.ActionEvent;
 
 /**
  * este formulario sirve para cualquier tabla de dos campos y un foranero que
@@ -32,10 +32,30 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         this.txtCod_Referencia.setBdDescrip(descripcionForaneo);
         this.txtCod_Referencia.setBdTitulo(tituloForaneo);
         this.getPermisos(this.Cod_Ventana);
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
+        this.pnlABM.addListener(this);
         this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
         this.Inicializar();
     }
+    
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();
+        if (Orden.compareTo("btn1") == 0) {
+            Agregar();
+        } else if (Orden.compareTo("btn2") == 0) {
+            Editar('M');
+        } else if (Orden.compareTo("btn3") == 0) {
+            Editar('E');
+        } else if (Orden.compareTo("btn4") == 0) {
+            Grabar();
+        } else if (Orden.compareTo("btn5") == 0) {
+            if (MensajeSistema.Cancelar(this)) {
+                this.Inicializar();
+            }
+        } else if (Orden.compareTo("btn6") == 0) {
+            Salir(this);
+        }
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,13 +77,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         textNom_Referencia = new javax.swing.JLabel();
         pnlTitulo = new javax.swing.JPanel();
         textTitulo = new javax.swing.JLabel();
-        jPanelBotones = new javax.swing.JPanel();
-        btnNuevo = new com.app.botones.btnNuevo();
-        btnModificar = new com.app.botones.btnEditar();
-        btnBorrar = new com.app.botones.btnBorrar();
-        btnGrabar = new com.app.botones.btnGrabar();
-        btnCancelar = new com.app.botones.btnCancelar();
-        btnSalir = new com.app.botones.btnSalir();
+        pnlABM = new com.app.botones.pnlABM();
 
         pnlDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlDatos.setMaximumSize(new java.awt.Dimension(482, 73));
@@ -179,79 +193,6 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
                 .addContainerGap())
         );
 
-        jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-
-        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrabarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setMaximumSize(new java.awt.Dimension(90, 30));
-        btnSalir.setMinimumSize(new java.awt.Dimension(90, 30));
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
-        jPanelBotones.setLayout(jPanelBotonesLayout);
-        jPanelBotonesLayout.setHorizontalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelBotonesLayout.setVerticalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -260,8 +201,10 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
+                    .addComponent(pnlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(pnlABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -272,7 +215,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -308,8 +251,8 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
             }
             if (consulta != null) {
                 this.textNom_Referencia.setText(consulta);
-                this.btnGrabar.setEnabled(true);
-                this.btnGrabar.grabFocus();
+                this.pnlABM.btnGrabar.setEnabled(true);
+                this.pnlABM.btnGrabar.grabFocus();
             } else {
                 MensajeSistema.ConsultaSQLVacio(this);
                 this.txtCod_Referencia.setText("");
@@ -361,42 +304,12 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtCod_ReferenciaKeyPressed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        this.Agregar();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        this.Editar('M');
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        this.Editar('E');
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        this.Grabar();
-    }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Inicializar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Salir(this);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.botones.btnBorrar btnBorrar;
-    private com.app.botones.btnCancelar btnCancelar;
-    private com.app.botones.btnGrabar btnGrabar;
-    private com.app.botones.btnEditar btnModificar;
-    private com.app.botones.btnNuevo btnNuevo;
-    private com.app.botones.btnSalir btnSalir;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelBotones;
+    private com.app.botones.pnlABM pnlABM;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlTitulo;
     private javax.swing.JLabel textNom_Referencia;
@@ -415,20 +328,20 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         this.txtCodigo.setEnabled(false);
         this.txtDescripcion.setEnabled(false);
         this.txtCod_Referencia.setEnabled(false);
-        this.btnNuevo.setEnabled(Agrega_OK);
-        this.btnModificar.setEnabled(Modifica_OK);
-        this.btnBorrar.setEnabled(Borra_OK);
-        this.btnGrabar.setEnabled(false);
-        this.btnCancelar.setEnabled(false);
-        this.btnSalir.setEnabled(true);
-        if (this.btnNuevo.isEnabled()) {
-            this.btnNuevo.grabFocus();
-        } else if (this.btnModificar.isEnabled()) {
-            this.btnModificar.grabFocus();
-        } else if (this.btnBorrar.isEnabled()) {
-            this.btnBorrar.grabFocus();
+        this.pnlABM.btnNuevo.setEnabled(Agrega_OK);
+        this.pnlABM.btnModificar.setEnabled(Modifica_OK);
+        this.pnlABM.btnBorrar.setEnabled(Borra_OK);
+        this.pnlABM.btnGrabar.setEnabled(false);
+        this.pnlABM.btnCancelar.setEnabled(false);
+        this.pnlABM.btnSalir.setEnabled(true);
+        if (this.pnlABM.btnNuevo.isEnabled()) {
+            this.pnlABM.btnNuevo.grabFocus();
+        } else if (this.pnlABM.btnModificar.isEnabled()) {
+            this.pnlABM.btnModificar.grabFocus();
+        } else if (this.pnlABM.btnBorrar.isEnabled()) {
+            this.pnlABM.btnBorrar.grabFocus();
         } else {
-            this.btnSalir.grabFocus();
+            this.pnlABM.btnSalir.grabFocus();
         }
     }
 
@@ -488,10 +401,10 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
             valores = null;
         }
         if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
-            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
+            this.pnlABM.ModoEdicion(false);
             this.txtCodigo.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
-            this.btnGrabar.setEnabled(false);
+            this.pnlABM.btnGrabar.setEnabled(false);
             operacion = 'A';
             this.txtDescripcion.grabFocus();
         } else {
@@ -501,9 +414,9 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.operacion = c;
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
-        this.btnGrabar.setEnabled(false);
+        this.operacion = c;        
+        this.pnlABM.ModoEdicion(false);
+        this.pnlABM.btnGrabar.setEnabled(false);
         this.txtCodigo.setEnabled(true);
         this.txtCodigo.grabFocus();
     }
