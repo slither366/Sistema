@@ -222,7 +222,10 @@ public class CotizacionSet_Lst extends frm_Padre {
                 this.txtFecha2.setText("");
                 this.txtFecha1.grabFocus();
             } else {
-                this.txtFecha2.grabFocus();
+                this.pnlListar.btnPantalla.setEnabled(true);
+                this.pnlListar.btnImpresora.setEnabled(true);
+                this.pnlListar.btnExportar.setEnabled(true);
+                this.pnlListar.btnPantalla.grabFocus();
             }
         } else {
             this.Inicializar();
@@ -237,14 +240,14 @@ public class CotizacionSet_Lst extends frm_Padre {
             if (rs != null) {
                 this.lblMoneda.setText(rs);
                 this.txtFecha1.setEnabled(true);
-                this.txtFecha1.setText("01/" + ClaseFecha.getMonth() + "/" + ClaseFecha.getYear());
+                this.txtFecha1.setFecha("01/" + ClaseFecha.getMonth() + "/" + ClaseFecha.getYear());
                 this.txtFecha1.grabFocus();
             }
         } else {
             this.txtCod_Moneda.setCodigo(0);
             this.lblMoneda.setText("Todos");
             this.txtFecha1.setEnabled(true);
-            this.txtFecha1.setText("01/" + ClaseFecha.getMonth() + "/" + ClaseFecha.getYear());
+            this.txtFecha1.setFecha("01/" + ClaseFecha.getMonth() + "/" + ClaseFecha.getYear());
             this.txtFecha1.grabFocus();
         }
     }//GEN-LAST:event_txtCod_MonedaActionPerformed
@@ -317,10 +320,9 @@ public class CotizacionSet_Lst extends frm_Padre {
                     this.Inicializar();
                 } else {
                     JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
-                    HashMap parameters = new HashMap();                    
-                    parameters.put("empresa", Configuracion.getEMP_NOMBRE());
-                    parameters.put("sucursal", Configuracion.getSUC_NOMBRE());
-                    parameters.put("usuario", Configuracion.getUSU_NOMBRE());
+                    HashMap parameters = reportes.getParametros(
+                            new String[]{"empresa", "sucursal", "usuario"},
+                            new String[]{Configuracion.getEMP_NOMBRE(), Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
                     Inicializar();
                     this.reportes.MostrarReporte(parameters, jrRS, this.Reporte, modalidad, tituloVentanaActual);
                 }
@@ -330,7 +332,7 @@ public class CotizacionSet_Lst extends frm_Padre {
                     this.lblMoneda.setText("");
                     this.txtFecha1.setText("");
                     this.txtFecha2.setText("");
-                    this.txtFecha1.grabFocus();
+                    this.txtCod_Moneda.grabFocus();
                 } else {
                     Inicializar();
                 }
