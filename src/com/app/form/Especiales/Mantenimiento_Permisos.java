@@ -639,8 +639,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
             boolean exito = true;
             if (operacion == 'M') {
                 exito = this.getConexion.eliminar("Acc_Principal",
-                        new String[]{cod_empresa, cod_sucursal, "Perf_Codigo"},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.Cod_Sucursal, this.Cod_Perfil});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo"},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.Cod_Sucursal, this.Cod_Perfil});
             }
             if (exito) {
                 String[][] registros = new String[cantidadRow][9];
@@ -661,7 +661,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
 //                    }
 //                }
                 for (int i = 0; i < cantidadRow; i++) {
-                    registros[i][0] = Configuracion.getCOD_EMPRESA();
+                    registros[i][0] = Configuracion.getEMP_CODIGO();
                     registros[i][1] = this.Cod_Sucursal;
                     registros[i][2] = this.Cod_Perfil;
                     registros[i][3] = this.ModeloPermisos.getValueAt(i, 0).toString();
@@ -673,7 +673,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
 
                 }
                 if (this.getConexion.insertar("Acc_Principal",
-                        new String[]{cod_empresa, cod_sucursal, "Perf_Codigo", "Men_Codigo",
+                        new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo", "Men_Codigo",
                             "autorizado_ok", "agrega_ok", "modifica_ok", "borra_ok", "listar_ok"},
                         registros, cantidadRow, 9) == false) {
                     this.getConexion.RollBack();
@@ -700,8 +700,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private void Borrar() {
         if (MensajeSistema.Eliminar(this)) {
             this.getConexion.eliminar("Acc_Principal",
-                    new String[]{cod_empresa, cod_sucursal, "Perf_Codigo"},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.Cod_Sucursal, this.Cod_Perfil});
+                    new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo"},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.Cod_Sucursal, this.Cod_Perfil});
         }
         this.Inicializar();
     }
@@ -722,10 +722,6 @@ public class Mantenimiento_Permisos extends frm_Padre {
         if (MensajeSistema.Cancelar(this)) {
             this.Inicializar();
         }
-    }
-
-    private void Listar() {
-
     }
 
     private boolean CargarSucursal() {
@@ -759,8 +755,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
         String consulta = ConsultaSQL.getSelect("vst_Acc_Principal",
                 new String[]{"Men_Codigo", "Men_Descrip", "autorizado_ok", "agrega_ok", "modifica_ok", "borra_ok", "listar_ok"},
                 vacio,
-                new String[]{cod_empresa, cod_sucursal, "Perf_Codigo"},
-                new String[]{Configuracion.getCOD_EMPRESA(), this.Cod_Sucursal, this.Cod_Perfil},
+                new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo"},
+                new String[]{Configuracion.getEMP_CODIGO(), this.Cod_Sucursal, this.Cod_Perfil},
                 new String[]{"Men_Codigo"});
         String[][] rs = this.getConexion.getDescripcionesRow(consulta);
         if (rs[0][0] != null) {
@@ -783,9 +779,9 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private boolean CargarMenus() {
         this.ModeloMenus.setRowCount(0);
         String consulta = "SELECT Men_Codigo,Men_Descrip FROM Acc_Menus ";
-        consulta += "WHERE " + cod_empresa + "='" + Configuracion.getCOD_EMPRESA() + "' and Men_Codigo NOT IN (SELECT Men_Codigo ";
-        consulta += "FROM Acc_Principal WHERE " + cod_empresa + "='" + Configuracion.getCOD_EMPRESA() + "'";
-        consulta += " AND " + cod_sucursal + "='" + this.Cod_Sucursal + "' AND Perf_Codigo='" + this.Cod_Perfil + "')";
+        consulta += "WHERE " + EMP_CODIGO + "='" + Configuracion.getEMP_CODIGO() + "' and Men_Codigo NOT IN (SELECT Men_Codigo ";
+        consulta += "FROM Acc_Principal WHERE " + EMP_CODIGO + "='" + Configuracion.getEMP_CODIGO() + "'";
+        consulta += " AND " + SUC_CODIGO + "='" + this.Cod_Sucursal + "' AND Perf_Codigo='" + this.Cod_Perfil + "')";
         String[][] rs = this.getConexion.getDescripcionesRow(consulta);
         if (rs[0][0] != null) {
             Object[] datos = new Object[3];
@@ -827,8 +823,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
         ArrayList<claseSucursal> lista = new ArrayList<>();
         String[][] rs = getConexion.getDescripcionesRow("Adm_Sucursales",
                 new String[]{"Suc_Codigo", "denominacion"},
-                new String[]{cod_empresa},
-                new String[]{Configuracion.getCOD_EMPRESA()});
+                new String[]{EMP_CODIGO},
+                new String[]{Configuracion.getEMP_CODIGO()});
         if (rs[0][0] != null) {
             for (String[] resu : rs) {
                 claseSucursal combo = new claseSucursal(resu[0], resu[1]);
@@ -842,8 +838,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
         ArrayList<clasePerfiles> lista = new ArrayList<>();
         String[][] rs = getConexion.getDescripcionesRow("Acc_Perfiles",
                 new String[]{"Perf_Codigo", "Perf_Descrip"},
-                new String[]{cod_empresa},
-                new String[]{Configuracion.getCOD_EMPRESA()});
+                new String[]{EMP_CODIGO},
+                new String[]{Configuracion.getEMP_CODIGO()});
         if (rs[0][0] != null) {
             for (String[] resu : rs) {
                 clasePerfiles combo = new clasePerfiles(resu[0], resu[1]);

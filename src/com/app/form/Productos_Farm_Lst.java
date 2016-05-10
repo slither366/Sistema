@@ -305,12 +305,12 @@ public class Productos_Farm_Lst extends frm_Padre {
             String registro;
             if (UsarEmpresa && UsarSucursal) {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{cod_empresa, cod_sucursal, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Desde.getText()});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Desde.getText()});
             } else if (UsarEmpresa) {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Desde.getText()});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Desde.getText()});
             } else {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
                         new String[]{idConsultada}, new String[]{this.txtCod_Desde.getText()});
@@ -347,12 +347,12 @@ public class Productos_Farm_Lst extends frm_Padre {
             String registro;
             if (UsarEmpresa && UsarSucursal) {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{cod_empresa, cod_sucursal, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Hasta.getText()});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Hasta.getText()});
             } else if (UsarEmpresa) {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Hasta.getText()});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Hasta.getText()});
             } else {
                 registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
                         new String[]{idConsultada}, new String[]{this.txtCod_Hasta.getText()});
@@ -490,9 +490,9 @@ public class Productos_Farm_Lst extends frm_Padre {
                             parameters.put("titulo", tituloVentanaActual);
                             parameters.put("desde", vDesde);
                             parameters.put("hasta", vHasta);
-                            parameters.put("empresa", Configuracion.getNOM_EMPRESA());
-                            parameters.put("sucursal", Configuracion.getNOM_SUCURSAL());
-                            parameters.put("usuario", Configuracion.getNOM_USUARIO());
+                            parameters.put("empresa", Configuracion.getEMP_NOMBRE());
+                            parameters.put("sucursal", Configuracion.getSUC_NOMBRE());
+                            parameters.put("usuario", Configuracion.getUSU_NOMBRE());
                             parameters.put("cantidadRow", cantidadRow + "");
                             parameters.put("tituloDescri1", this.Titulo1);
                             parameters.put("tituloDescri2", this.Titulo2);
@@ -523,16 +523,16 @@ public class Productos_Farm_Lst extends frm_Padre {
         String[] nombres = new String[]{"codigo", "descri1", "descri2", "observacion"};
         String consulta;
         if (UsarEmpresa && UsarSucursal) {
-            String[] campoCondicion = {cod_empresa, cod_sucursal, idConsultada, idConsultada};
+            String[] campoCondicion = {EMP_CODIGO, SUC_CODIGO, idConsultada, idConsultada};
             String[] igual = {"=", "=", ">=", "<="};
-            String[] valores = {Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
+            String[] valores = {Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
             String[] ordenBy = {idConsultada};
             consulta = ConsultaSQL.getSelect(tablaConsutada, campo, nombres, campoCondicion,
                     igual, valores, ordenBy);
         } else if (UsarEmpresa) {
-            String[] campoCondicion = {cod_empresa, idConsultada, idConsultada};
+            String[] campoCondicion = {EMP_CODIGO, idConsultada, idConsultada};
             String[] igual = {"=", ">=", "<="};
-            String[] valores = {Configuracion.getCOD_EMPRESA(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
+            String[] valores = {Configuracion.getEMP_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
             String[] ordenBy = {idConsultada};
             consulta = ConsultaSQL.getSelect(tablaConsutada, campo, nombres, campoCondicion,
                     igual, valores, ordenBy);

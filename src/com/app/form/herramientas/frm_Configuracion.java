@@ -7,7 +7,7 @@ import com.app.clases.ClaseTextoIO;
 import com.app.config.MensajeSistema;
 import com.app.config.Propiedades;
 import com.app.form.Especiales.frm_Padre;
-import static com.app.form.Especiales.frm_Padre.cod_empresa;
+import static com.app.form.Especiales.frm_Padre.EMP_CODIGO;
 import com.app.form.Especiales.frm_Principal;
 import java.io.IOException;
 
@@ -710,7 +710,7 @@ public class frm_Configuracion extends frm_Padre {
     private void txtCod_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_PerfilActionPerformed
         if (this.txtCod_Perfil.verificarVacioSinMsj()) {
             String rs = this.getConexion.getDescripcion(this.txtCod_Perfil.getBdTabla(), this.txtCod_Perfil.getBdDescrip(),
-                    new String[]{cod_empresa, this.txtCod_Perfil.getBdCodigo()},
+                    new String[]{EMP_CODIGO, this.txtCod_Perfil.getBdCodigo()},
                     new String[]{this.txtCod_Empresa.getText(), this.txtCod_Perfil.getText()});
             if (rs != null) {
                 this.textNomPerfil.setText(rs);
@@ -856,7 +856,7 @@ public class frm_Configuracion extends frm_Padre {
             this.txtBD.setText(propiedades.getBD());
             this.txtImpresora.setText(propiedades.getImpresora());
             try {
-                this.cboDecoracion.setSelecDescri(propiedades.getDecoracion().trim());
+                this.cboDecoracion.setSelectDescri(propiedades.getDecoracion().trim());
             } catch (Exception ex) {
                 this.cboDecoracion.setSelectedIndex(0);
             }
@@ -893,7 +893,7 @@ public class frm_Configuracion extends frm_Padre {
                 propiedades.setPass(ClaseEncriptacion.cifrarTexto(this.txtPass.getText().trim()));
                 propiedades.setBD(this.txtBD.getText().trim());
                 propiedades.setImpresora(this.txtImpresora.getText().trim());
-                propiedades.setDecoracion(this.cboDecoracion.getSelecDescri());
+                propiedades.setDecoracion(this.cboDecoracion.getSelectDescri());
                 MensajeSistema.MensajeVarios(this, "Archivo de Configuración Actualizado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());
                 this.jTabbedPane1.setSelectedIndex(0);
             } else {
@@ -903,7 +903,7 @@ public class frm_Configuracion extends frm_Padre {
                         + "pass=" + ClaseEncriptacion.cifrarTexto(this.txtPass.getText().trim()) + "\n"
                         + "bd=" + ClaseEncriptacion.cifrarTexto(this.txtBD.getText().trim()) + "\n"
                         + "impresora=" + ClaseEncriptacion.cifrarTexto(this.txtImpresora.getText().trim()) + "\n"
-                        + "decoracion=" + ClaseEncriptacion.cifrarTexto(this.cboDecoracion.getSelecDescri());
+                        + "decoracion=" + ClaseEncriptacion.cifrarTexto(this.cboDecoracion.getSelectDescri());
                 try {
                     ClaseTextoIO.escribirArchivoNuevo("configuracion.properties", texto);
                     MensajeSistema.MensajeVarios(this, "Archivo de Configuración creado...\n\nSalga y vuelva abrir el programa...\n", MensajeSistema.INFORMATION_MESSAGE());
@@ -918,10 +918,10 @@ public class frm_Configuracion extends frm_Padre {
     private void GrabarUser() {
         if (MensajeSistema.Guardar(this)) {
             int vCod = getConexion.getMAX(tablaConsutada, idConsultada,
-                    new String[]{cod_empresa},
+                    new String[]{EMP_CODIGO},
                     new String[]{this.txtCod_Empresa.getText()});
             this.getConexion.insertar(tablaConsutada,
-                    new String[]{cod_empresa, idConsultada, this.txtCod_Perfil.getBdDescrip(), "clave", this.txtCod_Perfil.getBdCodigo()},
+                    new String[]{EMP_CODIGO, idConsultada, this.txtCod_Perfil.getBdDescrip(), "clave", this.txtCod_Perfil.getBdCodigo()},
                     new String[]{this.txtCod_Empresa.getText(), String.valueOf(vCod), this.txtNom_User.getText(), "PASSWORD(" + this.txtPass1_User.getText() + ")", this.txtCod_Perfil.getText()});
         }
         this.limpiarPag3();

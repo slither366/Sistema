@@ -9,7 +9,7 @@ import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
 import com.app.form.Especiales.frm_Padre.Metodos;
-import static com.app.form.Especiales.frm_Padre.cod_empresa;
+import static com.app.form.Especiales.frm_Padre.EMP_CODIGO;
 
 /**
  *
@@ -740,8 +740,8 @@ public final class Contactos extends frm_Padre implements Metodos {
         int valor = this.txtCod_Nacionalidad.verificarVacioConMsj();
         if (valor == 0) {
             String rs = this.getConexion.getDescripcion(txtCod_Nacionalidad.getBdTabla(), txtCod_Nacionalidad.getBdDescrip(),
-                    new String[]{cod_empresa, txtCod_Nacionalidad.getBdCodigo()},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Nacionalidad.getText()});
+                    new String[]{EMP_CODIGO, txtCod_Nacionalidad.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Nacionalidad.getText()});
             if (rs != null) {
                 this.textNom_Nacionalidad.setText(rs);
                 this.txtCod_Ciudad.grabFocus();
@@ -763,8 +763,8 @@ public final class Contactos extends frm_Padre implements Metodos {
         int valor = this.txtCod_Ciudad.verificarVacioConMsj();
         if (valor == 0) {
             String rs = this.getConexion.getDescripcion(txtCod_Ciudad.getBdTabla(), txtCod_Ciudad.getBdTabla(),
-                    new String[]{cod_empresa, txtCod_Ciudad.getBdCodigo()},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Ciudad.getText()});
+                    new String[]{EMP_CODIGO, txtCod_Ciudad.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Ciudad.getText()});
             if (rs != null) {
                 this.textNom_Ciudad.setText(rs);
                 this.cboEstado.grabFocus();
@@ -978,7 +978,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.jTab.setEnabledAt(1, false);
         this.jTab.setEnabledAt(2, false);
         if (getConexion.autoNumerico(tablaConsutada, idConsultada,
-                new String[]{cod_empresa}, new String[]{Configuracion.getCOD_EMPRESA()}, this.txtCod_Contacto)) {
+                new String[]{EMP_CODIGO}, new String[]{Configuracion.getEMP_CODIGO()}, this.txtCod_Contacto)) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(pnlMantenimiento, true);
             this.btnGrabar.setEnabled(false);
@@ -994,17 +994,17 @@ public final class Contactos extends frm_Padre implements Metodos {
         if (operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 getConexion.insertar(tablaConsutada,
-                        new String[]{cod_empresa, idConsultada, descripcionConsultada, "nro_ruc",
+                        new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "nro_ruc",
                             "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax1",
                             "telefax2", txtCod_Nacionalidad.getBdCodigo(), txtCod_Ciudad.getBdCodigo(), "agente_retentor",
                             "estado", "a_credito", "cod_usuario"},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Contacto.getText(),
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Contacto.getText(),
                             this.txtRazonSocial.getText(), this.txtRuc.getText(), this.txtCINumero.getText(),
                             this.txtTelefono.getText().trim(), this.txtCelular.getText(), this.txtDireccion.getText(),
                             this.txtEmail.getText().trim(), this.txtTelefax1.getText().trim(), this.txtTelefax2.getText().trim(),
                             this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
                             this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + "",
-                            Configuracion.getCOD_USUARIO()});
+                            Configuracion.getUSU_CODIGO()});
             }
         } else {
             if (MensajeSistema.Modificar(this)) {
@@ -1018,8 +1018,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                             this.txtEmail.getText().trim(), this.txtTelefax1.getText().trim(), this.txtTelefax2.getText().trim(),
                             this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
                             this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + ""},
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Contacto.getText()});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Contacto.getText()});
             }
         }
         this.Inicializar();
@@ -1037,12 +1037,12 @@ public final class Contactos extends frm_Padre implements Metodos {
     @Override
     public void RecuperarDatos(String codigo) {
         String[] rs = getConexion.getDescripciones("vst_" + tablaConsutada,
-                new String[]{cod_empresa, idConsultada, descripcionConsultada, "nro_ruc",
+                new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "nro_ruc",
                     "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax1",
                     "telefax2", txtCod_Nacionalidad.getBdCodigo(), txtCod_Nacionalidad.getBdDescrip(),
                     txtCod_Ciudad.getBdCodigo(), txtCod_Ciudad.getBdDescrip(), "agente_retentor", "estado", "a_credito"},
-                new String[]{cod_empresa, idConsultada},
-                new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                new String[]{EMP_CODIGO, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), codigo});
         if (rs[0] != null) {
             this.txtRazonSocial.setText(rs[2]);
             this.txtRuc.setText(rs[3]);
@@ -1062,8 +1062,8 @@ public final class Contactos extends frm_Padre implements Metodos {
             this.cboACredito.setSelectedIndex(Integer.parseInt(rs[17]));
             if (operacion == 'E') {
                 Borrar(this, tablaConsutada,
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), codigo});
                 Inicializar();
             } else if (operacion == 'M') {
                 ClaseCampos.setEnabled(pnlMantenimiento, true);
@@ -1087,8 +1087,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                 new String[]{"Mon_Denom", "total_compra_saldo_ant", "total_compra_con", "total_compra_cre",
                     "total_compra_pago", "total_compra_intgen", "total_compra_saldos"},
                 new String[]{},
-                new String[]{cod_empresa, cod_sucursal, idConsultada},
-                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), codigo});
+                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
         this.tbltablaCompra.cargarDatos(getConexion, sqlC);
         this.tbltablaCompra.setAlinearDerecha(new int[]{1, 2, 3, 4, 5, 6});
         this.tbltablaCompra.setAlinearCentro(0);
@@ -1099,8 +1099,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                 new String[]{"Mon_Denom", "total_venta_saldo_ant", "total_venta_con", "total_venta_cre",
                     "total_venta_cobro", "total_venta_intgen", "total_venta_saldos"},
                 new String[]{},
-                new String[]{cod_empresa, cod_sucursal, idConsultada},
-                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), codigo});
+                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
         this.tbltablaVenta.cargarDatos(getConexion, sqlV);
         this.tbltablaVenta.setAlinearDerecha(new int[]{1, 2, 3, 4, 5, 6});
         this.tbltablaVenta.setAlinearCentro(0);

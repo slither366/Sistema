@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,8 +19,8 @@ import javax.swing.JInternalFrame;
 public class frm_Padre extends JInternalFrame implements ActionListener {
 
     public String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual, codigoFormulario;
-    public static String cod_empresa = "Emp_Codigo";
-    public static String cod_sucursal = "Suc_Codigo";
+    public static String EMP_CODIGO = "Emp_Codigo";
+    public static String SUC_CODIGO = "Suc_Codigo";
     public boolean UsarEmpresa = false;
     public boolean UsarSucursal = false;
     public int Cod_Ventana;
@@ -29,6 +30,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public static Propiedades getPropiedades;
     public Image getIcono;
     public static String ubicacionReport = "/com/app/Reportes/";
+    public DefaultTableModel miTabla;
 
     public frm_Padre() {
         initComponents();
@@ -44,12 +46,12 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
         if (MensajeSistema.Eliminar(ventana)) {
             if (Empresa && Sucursal) {
                 return getConexion.eliminar(tabla,
-                        new String[]{cod_empresa, cod_sucursal, codigo},
-                        new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), codigoID});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, codigo},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigoID});
             } else if (Empresa) {
                 return getConexion.eliminar(tabla,
-                        new String[]{cod_empresa, codigo},
-                        new String[]{Configuracion.getCOD_EMPRESA(), codigoID});
+                        new String[]{EMP_CODIGO, codigo},
+                        new String[]{Configuracion.getEMP_CODIGO(), codigoID});
             } else {
                 return getConexion.eliminar(tabla, codigo, codigoID);
             }
@@ -116,9 +118,9 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public void getPermisos(int cod_ventana) {
         String[] resu = getConexion.getDescripciones("acc_principal",
                 new String[]{"autorizado_ok", "agrega_ok", "borra_ok", "modifica_ok"},
-                new String[]{cod_empresa, cod_sucursal, "Perf_Codigo", "Men_Codigo"},
-                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(),
-                    Configuracion.getCOD_PERFIL(), String.valueOf(cod_ventana)});
+                new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo", "Men_Codigo"},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
+                    Configuracion.getPERF_CODIGO(), String.valueOf(cod_ventana)});
         if (resu[0] != null) {
             this.Autorizado_ok = "1".equals(resu[0]);
             this.Agrega_OK = "1".equals(resu[1]);
@@ -136,9 +138,9 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public void getPermisosListar(int cod_ventana) {
         String[] resu = getConexion.getDescripciones("acc_principal",
                 new String[]{"autorizado_ok", "listar_ok"},
-                new String[]{cod_empresa, cod_sucursal, "Perf_Codigo", "Men_Codigo"},
-                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(),
-                    Configuracion.getCOD_PERFIL(), String.valueOf(cod_ventana)});
+                new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo", "Men_Codigo"},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
+                    Configuracion.getPERF_CODIGO(), String.valueOf(cod_ventana)});
         if (resu[0] != null) {
             this.Autorizado_ok = "1".equals(resu[0]);
             this.Listar_OK = "1".equals(resu[1]);

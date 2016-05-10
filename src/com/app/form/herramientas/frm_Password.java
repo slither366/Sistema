@@ -190,14 +190,14 @@ public class frm_Password extends frm_Padre {
     private void txtPassword1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassword1ActionPerformed
         int valor = this.txtPassword1.verificarVacioConMsj();
         if (valor == 0) {
-            boolean vUser = getConexion.ValidarUsuario(Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_USUARIO(), this.txtPassword1.getText());
+            boolean vUser = getConexion.ValidarUsuario(Configuracion.getEMP_CODIGO(), Configuracion.getUSU_CODIGO(), this.txtPassword1.getText());
             if (vUser) {
                 this.txtPassword2.setEnabled(true);
                 this.txtPassword3.setEnabled(true);
                 this.txtPassword1.setEnabled(false);
                 this.txtPassword2.grabFocus();
             } else {
-                int preg = MensajeSistema.MensajeOpciones(this, "La contraseña no corresponde al Usuario " + Configuracion.getNOM_USUARIO() + "\n"
+                int preg = MensajeSistema.MensajeOpciones(this, "La contraseña no corresponde al Usuario " + Configuracion.getUSU_NOMBRE() + "\n"
                         + "Desea Cancelar esta operación?..", new Object[]{"Reintentar", "Cancelar"}, 0);
                 if (preg == 0) {
                     this.txtPassword1.setText("");
@@ -274,8 +274,8 @@ public class frm_Password extends frm_Padre {
         if (MensajeSistema.Modificar(this)) {
             String sql = "UPDATE " + tablaConsutada;
             sql += " SET clave=PASSWORD('" + this.txtPassword2.getText() + "') ";
-            sql += "WHERE " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA();
-            sql += " AND " + idConsultada + "=" + Configuracion.getCOD_USUARIO() + ";";
+            sql += "WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO();
+            sql += " AND " + idConsultada + "=" + Configuracion.getSUC_CODIGO() + ";";
             this.getConexion.ejecutaUpdate(sql);
         }
         this.Inicializar();

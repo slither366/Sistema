@@ -136,8 +136,8 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         frm_Principal.jPanelDatos.setVisible(true);
         frm_Principal.jPanelLateral.setVisible(true);
         frm_Principal.jLabelFecha.setText("Fecha: " + ClaseFecha.getFechaActualLargaCompleta());
-        frm_Principal.jLabelUsuario.setText(Configuracion.getNOM_USUARIO() + " - " + Configuracion.getNOM_PERFIL());
-        frm_Principal.jLabelEmpresa.setText("Empresa: " + Configuracion.getNOM_EMPRESA() + "       Sucursal: " + Configuracion.getNOM_SUCURSAL());
+        frm_Principal.jLabelUsuario.setText(Configuracion.getUSU_NOMBRE()+ " - " + Configuracion.getPERF_NOMBRE());
+        frm_Principal.jLabelEmpresa.setText("Empresa: " + Configuracion.getEMP_NOMBRE()+ "       Sucursal: " + Configuracion.getSUC_NOMBRE());
         frm_Principal.btnCerrarSecion.setVisible(true);
     }
 

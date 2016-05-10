@@ -46,7 +46,7 @@ public class cbo extends javax.swing.JComboBox {
      *
      * @return
      */
-    public String getSelecCodigo() {
+    public String getSelectCodigo() {
         ClassComboBox model = (ClassComboBox) this.getSelectedItem();
         return model.getCodigo();
     }
@@ -56,7 +56,7 @@ public class cbo extends javax.swing.JComboBox {
      *
      * @param valor
      */
-    public void setSelecCodigo(String valor) {
+    public void setSelectCodigo(String valor) {
         for (int i = 0; i < this.getItemCount(); i++) {
             if (this.getCodigo(i).equals(valor)) {
                 this.setSelectedIndex(i);
@@ -69,7 +69,7 @@ public class cbo extends javax.swing.JComboBox {
      *
      * @return
      */
-    public String getSelecDescri() {
+    public String getSelectDescri() {
         ClassComboBox model = (ClassComboBox) this.getSelectedItem();
         return model.getDescri();
     }
@@ -79,7 +79,7 @@ public class cbo extends javax.swing.JComboBox {
      *
      * @param valor
      */
-    public void setSelecDescri(String valor) {
+    public void setSelectDescri(String valor) {
         for (int i = 0; i < this.getItemCount(); i++) {
             if (this.getDescri(i).equals(valor)) {
                 this.setSelectedIndex(i);

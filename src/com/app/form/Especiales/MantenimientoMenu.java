@@ -253,8 +253,8 @@ public class MantenimientoMenu extends frm_Padre {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 String resu = this.getConexion.getDescripcion(tablaConsutada, idConsultada,
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo.getText()});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo.getText()});
                 if (resu == null) {
                     this.txtDescripcion.setEnabled(true);
                     this.txtDescripcion.grabFocus();
@@ -352,12 +352,12 @@ public class MantenimientoMenu extends frm_Padre {
                 if (MensajeSistema.Guardar(this)) {
                     if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                         getConexion.insertar(tablaConsutada,
-                                new String[]{cod_empresa, cod_sucursal, idConsultada, descripcionConsultada},
-                                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
+                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, descripcionConsultada},
+                                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                         getConexion.insertar(tablaConsutada,
-                                new String[]{cod_empresa, idConsultada, descripcionConsultada},
-                                new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
+                                new String[]{EMP_CODIGO, idConsultada, descripcionConsultada},
+                                new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     } else { // Cuando no se usar Ni empresa Ni sucursal
                         getConexion.insertar(tablaConsutada,
                                 new String[]{idConsultada, descripcionConsultada},
@@ -369,13 +369,13 @@ public class MantenimientoMenu extends frm_Padre {
                     if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                         getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
                                 new String[]{this.txtDescripcion.getText()},
-                                new String[]{cod_empresa, cod_sucursal, idConsultada},
-                                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCodigo.getText()});
+                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo.getText()});
                     } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                         getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
                                 new String[]{this.txtDescripcion.getText()},
-                                new String[]{cod_empresa, idConsultada},
-                                new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo.getText()});
+                                new String[]{EMP_CODIGO, idConsultada},
+                                new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo.getText()});
                     } else { // Cuando no se usar Ni empresa Ni sucursal
                         getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
                                 new String[]{this.txtDescripcion.getText()}, idConsultada, this.txtCodigo.getText());
@@ -390,11 +390,11 @@ public class MantenimientoMenu extends frm_Padre {
     private void Agregar() {
         String[] campos, valores;
         if (UsarEmpresa && UsarSucursal) {
-            campos = new String[]{cod_empresa, cod_sucursal};
-            valores = new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL()};
+            campos = new String[]{EMP_CODIGO, SUC_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
         } else if (UsarEmpresa) {
-            campos = new String[]{cod_empresa};
-            valores = new String[]{Configuracion.getCOD_EMPRESA()};
+            campos = new String[]{EMP_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO()};
         } else {
             campos = null;
             valores = null;
@@ -423,13 +423,13 @@ public class MantenimientoMenu extends frm_Padre {
         if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
             resultado = getConexion.getDescripcion(tablaConsutada,
                     descripcionConsultada,
-                    new String[]{cod_empresa, cod_sucursal, idConsultada},
-                    new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), codigo});
+                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
         } else if (UsarEmpresa) { // Cuando se usar solo Empresa
             resultado = getConexion.getDescripcion(tablaConsutada,
                     descripcionConsultada,
-                    new String[]{cod_empresa, idConsultada},
-                    new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                    new String[]{EMP_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), codigo});
         } else { // Cuando no se usar Ni empresa Ni sucursal
             resultado = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
                     new String[]{idConsultada}, new String[]{codigo});

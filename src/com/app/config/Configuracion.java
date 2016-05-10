@@ -9,17 +9,18 @@ import java.util.ArrayList;
  */
 public class Configuracion {
 
-    private static String COD_USUARIO = "1";
-    private static String NOM_USUARIO = "Usuario de Prueba";
-    private static String COD_PERFIL = "1";
-    private static String NOM_PERFIL = "Perfil de Prueba";
-    private static String COD_EMPRESA = "1";
-    private static String NOM_EMPRESA = "Empresa de Prueba";
-    private static String COD_SUCURSAL = "1";
-    private static String NOM_SUCURSAL = "CENTRAL";
+    private static String USU_CODIGO = "1";
+    private static String USU_NOMBRE = "Usuario de Prueba";
+    private static String PERF_CODIGO = "1";
+    private static String PERF_NOMBRE = "Perfil de Prueba";
+    private static String EMP_CODIGO = "1";
+    private static String EMP_NOMBRE = "Empresa de Prueba";
+    private static String SUC_CODIGO = "1";
+    private static String SUC_NOMBRE = "CENTRAL";
+    private static String PFISC_CODIGO = "1";
+    private static String PFISC_DESCRIP = "2016";
     private static String TITULO_MENSAJE = "..:: Mensaje del Sistema ::..";
     private static String TITULO_VENTANA = "SysTema";
-    private static int COD_PERIODO;
     private static final String Logo = "/com/app/iconos/icon.png";
     //private static final Icon Icono = new javax.swing.ImageIcon(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("/com/app/iconos/icon.png")));
     private static int CantidadMaxVAbierta = 6;
@@ -29,68 +30,84 @@ public class Configuracion {
     private static String IMPRESORA;
     private static String DIRECTORIO_DEFECTO = "";
 
-    public static String getCOD_USUARIO() {
-        return Configuracion.COD_USUARIO;
+    public static String getUSU_CODIGO() {
+        return Configuracion.USU_CODIGO;
     }
 
-    public static void setCOD_USUARIO(String COD_USUARIO) {
-        Configuracion.COD_USUARIO = COD_USUARIO;
+    public static void setUSU_CODIGO(String USU_CODIGO) {
+        Configuracion.USU_CODIGO = USU_CODIGO;
     }
 
-    public static String getNOM_USUARIO() {
-        return Configuracion.NOM_USUARIO.trim();
+    public static String getUSU_NOMBRE() {
+        return Configuracion.USU_NOMBRE.trim();
     }
 
-    public static void setNOM_USUARIO(String NOM_USUARIO) {
-        Configuracion.NOM_USUARIO = NOM_USUARIO;
+    public static void setUSU_NOMBRE(String USU_NOMBRE) {
+        Configuracion.USU_NOMBRE = USU_NOMBRE;
     }
 
-    public static String getCOD_PERFIL() {
-        return Configuracion.COD_PERFIL;
+    public static String getPERF_CODIGO() {
+        return Configuracion.PERF_CODIGO;
     }
 
-    public static void setCOD_PERFIL(String COD_PERFIL) {
-        Configuracion.COD_PERFIL = COD_PERFIL;
+    public static void setPERF_CODIGO(String PERF_CODIGO) {
+        Configuracion.PERF_CODIGO = PERF_CODIGO;
     }
 
-    public static String getNOM_PERFIL() {
-        return Configuracion.NOM_PERFIL.trim();
+    public static String getPERF_NOMBRE() {
+        return Configuracion.PERF_NOMBRE.trim();
     }
 
-    public static void setNOM_PERFIL(String NOM_PERFIL) {
-        Configuracion.NOM_PERFIL = NOM_PERFIL;
+    public static void setPERF_NOMBRE(String PERF_NOMBRE) {
+        Configuracion.PERF_NOMBRE = PERF_NOMBRE;
     }
 
-    public static String getCOD_EMPRESA() {
-        return Configuracion.COD_EMPRESA;
+    public static String getEMP_CODIGO() {
+        return Configuracion.EMP_CODIGO;
     }
 
-    public static void setCOD_EMPRESA(String COD_EMPRESA) {
-        Configuracion.COD_EMPRESA = COD_EMPRESA;
+    public static void setEMP_CODIGO(String EMP_CODIGO) {
+        Configuracion.EMP_CODIGO = EMP_CODIGO;
     }
 
-    public static String getNOM_EMPRESA() {
-        return Configuracion.NOM_EMPRESA.trim();
+    public static String getEMP_NOMBRE() {
+        return Configuracion.EMP_NOMBRE.trim();
     }
 
-    public static void setNOM_EMPRESA(String NOM_EMPRESA) {
-        Configuracion.NOM_EMPRESA = NOM_EMPRESA;
+    public static void setEMP_NOMBRE(String EMP_NOMBRE) {
+        Configuracion.EMP_NOMBRE = EMP_NOMBRE;
     }
 
-    public static String getCOD_SUCURSAL() {
-        return Configuracion.COD_SUCURSAL;
+    public static String getSUC_CODIGO() {
+        return Configuracion.SUC_CODIGO;
     }
 
-    public static void setCOD_SUCURSAL(String COD_SUCURSAL) {
-        Configuracion.COD_SUCURSAL = COD_SUCURSAL;
+    public static void setSUC_CODIGO(String SUC_CODIGO) {
+        Configuracion.SUC_CODIGO = SUC_CODIGO;
     }
 
-    public static String getNOM_SUCURSAL() {
-        return Configuracion.NOM_SUCURSAL.trim();
+    public static String getSUC_NOMBRE() {
+        return Configuracion.SUC_NOMBRE.trim();
     }
 
-    public static void setNOM_SUCURSAL(String NOM_SUCURSAL) {
-        Configuracion.NOM_SUCURSAL = NOM_SUCURSAL;
+    public static void setSUC_NOMBRE(String SUC_NOMBRE) {
+        Configuracion.SUC_NOMBRE = SUC_NOMBRE;
+    }
+
+    public static String getPFISC_CODIGO() {
+        return Configuracion.PFISC_CODIGO.trim();
+    }
+
+    public static void setPFISC_CODIGO(String PFISC_CODIGO) {
+        Configuracion.PFISC_CODIGO = PFISC_CODIGO;
+    }
+
+    public static String getPFISC_DESCRIP() {
+        return Configuracion.PFISC_DESCRIP.trim();
+    }
+
+    public static void setPFISC_DESCRIP(String PFISC_DESCRIP) {
+        Configuracion.PFISC_DESCRIP = PFISC_DESCRIP;
     }
 
     public static String getTITULO_MENSAJE() {
@@ -107,14 +124,6 @@ public class Configuracion {
 
     public static void setTITULO_VENTANA(String TITULO_VENTANA) {
         Configuracion.TITULO_VENTANA = TITULO_VENTANA;
-    }
-
-    public static int getCOD_PERIODO() {
-        return COD_PERIODO;
-    }
-
-    public static void setCOD_PERIODO(int COD_PERIODO) {
-        Configuracion.COD_PERIODO = COD_PERIODO;
     }
 
     public static String getLogo() {
@@ -184,7 +193,7 @@ public class Configuracion {
     public static void cargarPermisos(ConexionBD conexion) {
         ArrayList resu = conexion.consultar("Acc_Principal", "Men_Codigo",
                 new String[]{"Emp_Codigo", "Suc_Codigo", "Perf_Codigo"},
-                new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), Configuracion.getCOD_PERFIL()});
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), Configuracion.getPERF_CODIGO()});
         Permisos.clear();
         Permisos = resu;
     }

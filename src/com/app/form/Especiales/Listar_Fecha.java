@@ -316,16 +316,16 @@ public class Listar_Fecha extends frm_Padre {
     private ResultSet traerDatos() {
         String consulta;
         if (UsarEmpresa && UsarSucursal) {
-            String[] campoCondicion = {cod_empresa, cod_sucursal, idConsultada, idConsultada};
+            String[] campoCondicion = {EMP_CODIGO, SUC_CODIGO, idConsultada, idConsultada};
             String[] igual = {"=", "=", ">=", "<="};
-            String[] valores = {Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtFecha1.getFecha(), this.txtFecha2.getFecha()};
+            String[] valores = {Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtFecha1.getFecha(), this.txtFecha2.getFecha()};
             String[] ordenBy = {descripcionConsultada, idConsultada};
             consulta = ConsultaSQL.getSelect(tablaConsutada, campos, nombres, campoCondicion,
                     igual, valores, ordenBy);
         } else if (UsarEmpresa) {
-            String[] campoCondicion = {cod_empresa, idConsultada, idConsultada};
+            String[] campoCondicion = {EMP_CODIGO, idConsultada, idConsultada};
             String[] igual = {"=", ">=", "<="};
-            String[] valores = {Configuracion.getCOD_EMPRESA(), this.txtFecha1.getFecha(), this.txtFecha2.getFecha()};
+            String[] valores = {Configuracion.getEMP_CODIGO(), this.txtFecha1.getFecha(), this.txtFecha2.getFecha()};
             String[] ordenBy = {descripcionConsultada, idConsultada};
             consulta = ConsultaSQL.getSelect(tablaConsutada, campos, nombres, campoCondicion,
                     igual, valores, ordenBy);

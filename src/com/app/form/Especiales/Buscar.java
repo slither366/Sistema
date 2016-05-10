@@ -33,12 +33,12 @@ public class Buscar extends javax.swing.JDialog {
         String[] nombres = {"Descripción", "Código"};
         String[] orderBy = {descripcion, codigo};
         if (Empresa && Sucursal) {
-            String[] condicion = {frm_Padre.cod_empresa, frm_Padre.cod_sucursal};
-            String[] valor = {Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL()};
+            String[] condicion = {frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO};
+            String[] valor = {Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
             ConsultaBase = ConsultaSQL.getSelect(tabla, campo, nombres, condicion, valor, orderBy);
         } else if (Empresa) {
-            String[] condicion = {frm_Padre.cod_empresa};
-            String[] valor = {Configuracion.getCOD_EMPRESA()};
+            String[] condicion = {frm_Padre.EMP_CODIGO};
+            String[] valor = {Configuracion.getEMP_CODIGO()};
             ConsultaBase = ConsultaSQL.getSelect(tabla, campo, nombres, condicion, valor, orderBy);
         } else {
             ConsultaBase = ConsultaSQL.getSelect(tabla, campo, nombres, orderBy);
@@ -47,7 +47,7 @@ public class Buscar extends javax.swing.JDialog {
         ClaseTable.ordernar(jTableConsulta);
         this.CambiarTamañoColumnas();
         this.txtNombreConsulta.setText("");
-        this.txtNombreConsulta.setTextTransparente("Ingrese algún texto");
+        this.txtNombreConsulta.setTextTransparente("Ingrese algún texto");        
         this.txtNombreConsulta.grabFocus();
     }
 
@@ -68,7 +68,7 @@ public class Buscar extends javax.swing.JDialog {
         this.jTableConsulta.cargarDatos(conexion, ConsultaBase);
         this.CambiarTamañoColumnas();
         this.txtNombreConsulta.setText("");
-        this.txtNombreConsulta.setTextTransparente("Ingrese algún texto");
+        this.txtNombreConsulta.setTextTransparente("Ingrese algún texto");       
         this.txtNombreConsulta.grabFocus();
     }
 
@@ -185,8 +185,8 @@ public class Buscar extends javax.swing.JDialog {
             }
         });
         jCheckCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jCheckCodigoKeyReleased(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCheckCodigoKeyPressed(evt);
             }
         });
 
@@ -376,12 +376,12 @@ public class Buscar extends javax.swing.JDialog {
         this.txtNombreConsulta.grabFocus();
     }//GEN-LAST:event_jCheckCodigoActionPerformed
 
-    private void jCheckCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckCodigoKeyReleased
+    private void jCheckCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckCodigoKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_ESC()) {
             Configuracion.setCODIGO_BUSCAR("");
             this.dispose();
         }
-    }//GEN-LAST:event_jCheckCodigoKeyReleased
+    }//GEN-LAST:event_jCheckCodigoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnElegir;

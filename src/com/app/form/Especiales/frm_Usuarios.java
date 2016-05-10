@@ -372,8 +372,8 @@ public class frm_Usuarios extends frm_Padre {
     private void txtCod_PerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_PerfilActionPerformed
         if (this.txtCod_Perfil.verificarVacioSinMsj()) {
             String rs = this.getConexion.getDescripcion(this.txtCod_Perfil.getBdTabla(), this.txtCod_Perfil.getBdDescrip(),
-                    new String[]{cod_empresa, this.txtCod_Perfil.getBdCodigo()},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Perfil.getText()});
+                    new String[]{EMP_CODIGO, this.txtCod_Perfil.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Perfil.getText()});
             if (rs != null) {
                 this.textNomPerfil.setText(rs);
                 this.txtPass1_User.setEnabled(true);
@@ -562,8 +562,8 @@ public class frm_Usuarios extends frm_Padre {
     }
 
     private void Agregar() {
-        String[] campos = new String[]{cod_empresa};
-        String[] valores = new String[]{Configuracion.getCOD_EMPRESA()};
+        String[] campos = new String[]{EMP_CODIGO};
+        String[] valores = new String[]{Configuracion.getEMP_CODIGO()};
         if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(jPanelDatos, true);
@@ -578,8 +578,8 @@ public class frm_Usuarios extends frm_Padre {
     private void RecuperarDatos(String codigo) {
         String[] rs = this.getConexion.getDescripciones("vst_" + tablaConsutada,
                 new String[]{idConsultada, descripcionConsultada, this.txtCod_Perfil.getBdCodigo(), this.txtCod_Perfil.getBdDescrip()},
-                new String[]{cod_empresa, idConsultada},
-                new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                new String[]{EMP_CODIGO, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), codigo});
         if (rs[0] != null) {
             this.txtNom_User.setText(rs[1]);
             this.txtCod_Perfil.setText(rs[2]);
@@ -591,8 +591,8 @@ public class frm_Usuarios extends frm_Padre {
                 this.txtNom_User.grabFocus();
             } else {
                 this.Borrar(this, tablaConsutada,
-                        new String[]{cod_empresa, idConsultada},
-                        new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                        new String[]{EMP_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), codigo});
                 this.Inicializar();
             }
         } else {
@@ -609,8 +609,8 @@ public class frm_Usuarios extends frm_Padre {
         if (operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 String sql = "INSERT INTO " + tablaConsutada + " ";
-                sql += "(" + cod_empresa + ", " + idConsultada + ", " + descripcionConsultada + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";
-                sql += "VALUES ('" + Configuracion.getCOD_EMPRESA() + "', '" + this.txtCodigo.getText() + "', '";
+                sql += "(" + EMP_CODIGO + ", " + idConsultada + ", " + descripcionConsultada + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";
+                sql += "VALUES ('" + Configuracion.getEMP_CODIGO() + "', '" + this.txtCodigo.getText() + "', '";
                 sql += this.txtNom_User.getText() + "', PASSWORD('" + this.txtPass1_User.getText() + "'), '" + this.txtCod_Perfil.getText() + "');";
                 this.getConexion.ejecutaUpdate(sql);
             }
@@ -624,7 +624,7 @@ public class frm_Usuarios extends frm_Padre {
                 } else {
                     sql += ", clave=PASSWORD('" + this.txtPass1_User.getText() + "') ";
                 }
-                sql += "WHERE " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA();
+                sql += "WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO();
                 sql += " AND " + idConsultada + "=" + this.txtCodigo.getText() + ";";
                 this.getConexion.ejecutaUpdate(sql);
             }

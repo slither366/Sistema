@@ -46,8 +46,8 @@ public class GenerarReportes {
                 rs.beforeFirst();
                 HashMap parameters = getParametros(
                         new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                            Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
+                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
                 this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
             }
         } catch (SQLException ex) {
@@ -74,8 +74,8 @@ public class GenerarReportes {
                 rs.beforeFirst();
                 HashMap parameters = getParametros(
                         new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                            Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), tituloForaneo, String.valueOf(cantidadRow)});
+                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), tituloForaneo, String.valueOf(cantidadRow)});
                 this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
             } else {
                 MensajeSistema.MensajeVarios("Se produjo un error al Contar los Registros", MensajeSistema.ERROR_MESSAGE());
@@ -89,8 +89,8 @@ public class GenerarReportes {
         int cantidadRow = resu.getRowCount();
         HashMap parameters = getParametros(
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                    Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
+                new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
@@ -111,8 +111,8 @@ public class GenerarReportes {
                 rs.beforeFirst();
                 HashMap parameters = getParametros(
                         new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                            Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
+                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
                 try {
                     JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
                     JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
@@ -146,8 +146,8 @@ public class GenerarReportes {
             resu.beforeFirst();
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                    new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                        Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
+                    new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
             resu.beforeFirst();
             JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
 
@@ -168,8 +168,8 @@ public class GenerarReportes {
 
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                    new String[]{tituloVentanaActual, desde, hasta, Configuracion.getNOM_EMPRESA(),
-                        Configuracion.getNOM_SUCURSAL(), Configuracion.getNOM_USUARIO(), String.valueOf(cantidadRow)});
+                    new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
             JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
             URL in = this.getClass().getResource(reporte);
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(in);

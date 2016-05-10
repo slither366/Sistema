@@ -18,8 +18,8 @@ public class Acerca_de extends javax.swing.JDialog {
         this.setTitle("Acerca de este Software...");
         this.setResizable(false);          
         this.setLocationRelativeTo(null);
-        this.textEmpresa.setText(Configuracion.getNOM_EMPRESA());
-        this.textSucursal.setText(Configuracion.getNOM_SUCURSAL());
+        this.textEmpresa.setText(Configuracion.getEMP_NOMBRE());
+        this.textSucursal.setText(Configuracion.getUSU_NOMBRE());
         this.textDirectorio.setText(ClaseUtilidades.getDirectorioTrabajo().trim());
         this.textSistOperativo.setText(ClaseUtilidades.getSistemaOperativo()
                 + " version " + ClaseUtilidades.getSistemaOperativoVersion() + "");

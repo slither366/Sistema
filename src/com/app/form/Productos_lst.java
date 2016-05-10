@@ -426,11 +426,11 @@ public class Productos_lst extends frm_Padre {
     }
 
     private ResultSet traerDatos() {
-        String[] campo = new String[]{this.cod_empresa, this.cod_sucursal, idConsultada};
+        String[] campo = new String[]{this.EMP_CODIGO, this.SUC_CODIGO, idConsultada};
         String[] nombres = new String[]{"codigo", "descripcion", "referencia"};
-        String[] campoCondicion = {this.cod_empresa, this.cod_sucursal, idConsultada, idConsultada};
+        String[] campoCondicion = {this.EMP_CODIGO, this.SUC_CODIGO, idConsultada, idConsultada};
         String[] igual = {"=", "=", ">=", "<="};
-        String[] valores = {Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
+        String[] valores = {Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
         String[] ordenBy = {descripcionConsultada, idConsultada};
         String consulta = ConsultaSQL.getSelect("vst_" + tablaConsutada, campo, nombres, campoCondicion,
                 igual, valores, ordenBy);

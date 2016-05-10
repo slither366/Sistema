@@ -210,8 +210,8 @@ public class Acceso extends frm_Padre {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Configuracion.setCOD_USUARIO(this.txtCod_Usuario.getText());
-        Configuracion.setNOM_USUARIO(this.textNom_Usuario.getText());
+        Configuracion.setUSU_CODIGO(this.txtCod_Usuario.getText());
+        Configuracion.setUSU_NOMBRE(this.textNom_Usuario.getText());
         Configuracion.setIMPRESORA(getPropiedades.getImpresora());
         Configuracion.cargarPermisos(getConexion);
         frm_Principal.MenuBar.setVisible(true);
@@ -224,7 +224,7 @@ public class Acceso extends frm_Padre {
         int valor = this.txtPassword.verificarVacioConMsj();
         if (valor == 0) {
             String sql = "select " + descripcionConsultada + " from " + tablaConsutada
-                    + " where " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA()
+                    + " where " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO()
                     + " and " + idConsultada + "=" + this.txtCod_Usuario.getText()
                     + " and clave=password('" + this.txtPassword.getText().trim() + "')";
             ArrayList clave = getConexion.consultar(sql);
@@ -264,13 +264,13 @@ public class Acceso extends frm_Padre {
         int valor = this.txtCod_Usuario.verificarVacioConMsj();
         if (valor == 0) {
             String[] rs = this.getConexion.getDescripciones("vst_" + tablaConsutada,
-                    new String[]{cod_empresa, idConsultada, descripcionConsultada, "Perf_Codigo", "Perf_Descrip"},
-                    new String[]{cod_empresa, idConsultada},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Usuario.getText()});
+                    new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "Perf_Codigo", "Perf_Descrip"},
+                    new String[]{EMP_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Usuario.getText()});
             if (rs[0] != null) {
                 this.textNom_Usuario.setText(rs[2]);
-                Configuracion.setCOD_PERFIL(rs[3]);
-                Configuracion.setNOM_PERFIL(rs[4]);
+                Configuracion.setPERF_CODIGO(rs[3]);
+                Configuracion.setPERF_NOMBRE(rs[4]);
                 this.txtPassword.setEnabled(true);
                 this.txtPassword.grabFocus();
             } else {

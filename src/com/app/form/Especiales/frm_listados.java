@@ -634,7 +634,7 @@ public final class frm_listados extends frm_Padre {
                 new String[]{"codigo", "descripcion"});
         // Para quitar el ";" de la consulta que retorna el Metodo anterior
         sql = sql.substring(0, sql.length() - 1);
-        sql += " WHERE " + cod_empresa + "=" + Configuracion.getCOD_EMPRESA() + " ";
+        sql += " WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO()+ " ";
         String where = "";
         if (!this.txtCodDesde.isEmpty() || !this.txtCodHasta.isEmpty()) {
             where += idConsultada + ">='" + this.txtCodDesde.getText().trim() + "'";

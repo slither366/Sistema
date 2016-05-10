@@ -290,12 +290,12 @@ public class Acceso_Empresa extends frm_Padre {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Configuracion.setCOD_EMPRESA(this.txtCod_Empresa.getText());
-        Configuracion.setNOM_EMPRESA(this.TextNom_Empresa.getText());
-        Configuracion.setCOD_SUCURSAL(this.txtCod_Sucursal.getText());
-        Configuracion.setNOM_SUCURSAL(this.TextNom_Sucursal.getText());
-        Configuracion.setCOD_USUARIO(this.txtCod_Usuario.getText());
-        Configuracion.setNOM_USUARIO(this.textNom_Usuario.getText());
+        Configuracion.setEMP_CODIGO(this.txtCod_Empresa.getText());
+        Configuracion.setEMP_NOMBRE(this.TextNom_Empresa.getText());
+        Configuracion.setSUC_CODIGO(this.txtCod_Sucursal.getText());
+        Configuracion.setSUC_NOMBRE(this.TextNom_Sucursal.getText());
+        Configuracion.setUSU_CODIGO(this.txtCod_Usuario.getText());
+        Configuracion.setUSU_NOMBRE(this.textNom_Usuario.getText());
         Configuracion.setIMPRESORA(getPropiedades.getImpresora());
         Configuracion.cargarPermisos(getConexion);
         frm_Principal.MenuBar.setVisible(true);
@@ -307,7 +307,7 @@ public class Acceso_Empresa extends frm_Padre {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         int valor = this.txtPassword.verificarVacioConMsj();
         if (valor == 0) {
-            boolean vUser = getConexion.ValidarUsuario(Configuracion.getCOD_EMPRESA(), this.txtCod_Usuario.getText(), this.txtPassword.getText());
+            boolean vUser = getConexion.ValidarUsuario(Configuracion.getEMP_CODIGO(), this.txtCod_Usuario.getText(), this.txtPassword.getText());
             if (vUser) {
                 contador = 0;
                 this.txtCod_Usuario.setEnabled(false);
@@ -364,7 +364,7 @@ public class Acceso_Empresa extends frm_Padre {
         if (valor == 0) {
             String[] rs = this.getConexion.getDescripciones(txtCod_Sucursal.getBdTabla(),
                     new String[]{txtCod_Sucursal.getBdCodigo(), txtCod_Sucursal.getBdDescrip()},
-                    new String[]{cod_empresa},
+                    new String[]{EMP_CODIGO},
                     new String[]{this.txtCod_Empresa.getText()});
             if (rs[0] != null) {
                 this.TextNom_Sucursal.setText(rs[1]);
@@ -412,13 +412,13 @@ public class Acceso_Empresa extends frm_Padre {
         int valor = this.txtCod_Usuario.verificarVacioConMsj();
         if (valor == 0) {
             String[] rs = this.getConexion.getDescripciones("vst_" + txtCod_Usuario.getBdTabla(),
-                    new String[]{cod_empresa, txtCod_Usuario.getBdCodigo(), txtCod_Usuario.getBdDescrip(), "Perf_Codigo", "Perf_Descrip"},
-                    new String[]{cod_empresa, txtCod_Usuario.getBdCodigo()},
-                    new String[]{Configuracion.getCOD_EMPRESA(), this.txtCod_Usuario.getText()});
+                    new String[]{EMP_CODIGO, txtCod_Usuario.getBdCodigo(), txtCod_Usuario.getBdDescrip(), "Perf_Codigo", "Perf_Descrip"},
+                    new String[]{EMP_CODIGO, txtCod_Usuario.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Usuario.getText()});
             if (rs[0] != null) {
                 this.textNom_Usuario.setText(rs[2]);
-                Configuracion.setCOD_PERFIL(rs[3]);
-                Configuracion.setNOM_PERFIL(rs[4]);
+                Configuracion.setPERF_CODIGO(rs[3]);
+                Configuracion.setPERF_NOMBRE(rs[4]);
                 this.txtPassword.setEnabled(true);
                 this.txtPassword.grabFocus();
             } else {

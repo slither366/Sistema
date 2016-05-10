@@ -344,12 +344,12 @@ public class Productos_Farm extends frm_Padre {
             String consulta;
             if (UsarEmpresa && UsarSucursal) {
                 consulta = getConexion.getDescripcion(Tabla1, NomDesc1,
-                        new String[]{cod_empresa, cod_sucursal, IdCod1},
-                        new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCodigo1.getText()});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, IdCod1},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo1.getText()});
             } else if (UsarEmpresa) {
                 consulta = getConexion.getDescripcion(Tabla1, NomDesc1,
-                        new String[]{cod_empresa, IdCod1},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo1.getText()});
+                        new String[]{EMP_CODIGO, IdCod1},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo1.getText()});
             } else {
                 consulta = getConexion.getDescripcion(Tabla1, NomDesc1,
                         new String[]{IdCod1}, new String[]{this.txtCodigo1.getText()});
@@ -375,12 +375,12 @@ public class Productos_Farm extends frm_Padre {
             String consulta;
             if (UsarEmpresa && UsarSucursal) {
                 consulta = getConexion.getDescripcion(Tabla2, NomDesc2,
-                        new String[]{cod_empresa, cod_sucursal, IdCod2},
-                        new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), this.txtCodigo2.getText()});
+                        new String[]{EMP_CODIGO, SUC_CODIGO, IdCod2},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo2.getText()});
             } else if (UsarEmpresa) {
                 consulta = getConexion.getDescripcion(Tabla2, NomDesc2,
-                        new String[]{cod_empresa, IdCod2},
-                        new String[]{Configuracion.getCOD_EMPRESA(), this.txtCodigo2.getText()});
+                        new String[]{EMP_CODIGO, IdCod2},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo2.getText()});
             } else {
                 consulta = getConexion.getDescripcion(Tabla2, NomDesc2,
                         new String[]{IdCod2}, new String[]{this.txtCodigo2.getText()});
@@ -513,12 +513,12 @@ public class Productos_Farm extends frm_Padre {
             if (MensajeSistema.Guardar(this)) {
                 if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                     getConexion.insertar(tablaConsutada,
-                            new String[]{cod_empresa, cod_sucursal, idConsultada, IdCod1, IdCod2, descripcionConsultada},
-                            new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), vCod, vId1, vId2, vDes});
+                            new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, IdCod1, IdCod2, descripcionConsultada},
+                            new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), vCod, vId1, vId2, vDes});
                 } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                     getConexion.insertar(tablaConsutada,
-                            new String[]{cod_empresa, idConsultada, IdCod1, IdCod2, descripcionConsultada},
-                            new String[]{Configuracion.getCOD_EMPRESA(), vCod, vId1, vId2, vDes});
+                            new String[]{EMP_CODIGO, idConsultada, IdCod1, IdCod2, descripcionConsultada},
+                            new String[]{Configuracion.getEMP_CODIGO(), vCod, vId1, vId2, vDes});
                 } else { // Cuando no se usar Ni empresa Ni sucursal
                     getConexion.insertar(tablaConsutada,
                             new String[]{idConsultada, IdCod1, IdCod2, descripcionConsultada},
@@ -530,13 +530,13 @@ public class Productos_Farm extends frm_Padre {
                 if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
                     getConexion.actualizar(tablaConsutada,
                             new String[]{descripcionConsultada}, new String[]{vDes},
-                            new String[]{cod_empresa, cod_sucursal, idConsultada},
-                            new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), vCod});
+                            new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                            new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), vCod});
                 } else if (UsarEmpresa) { // Cuando se usar solo Empresa
                     getConexion.actualizar(tablaConsutada,
                             new String[]{descripcionConsultada}, new String[]{vDes},
-                            new String[]{cod_empresa, idConsultada},
-                            new String[]{Configuracion.getCOD_EMPRESA(), vCod});
+                            new String[]{EMP_CODIGO, idConsultada},
+                            new String[]{Configuracion.getEMP_CODIGO(), vCod});
                 } else { // Cuando no se usar Ni empresa Ni sucursal
                     getConexion.actualizar(tablaConsutada,
                             new String[]{descripcionConsultada}, new String[]{vDes},
@@ -550,11 +550,11 @@ public class Productos_Farm extends frm_Padre {
     private void Agregar() {
         String[] campos, valores;
         if (UsarEmpresa && UsarSucursal) {
-            campos = new String[]{cod_empresa, cod_sucursal};
-            valores = new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL()};
+            campos = new String[]{EMP_CODIGO, SUC_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
         } else if (UsarEmpresa) {
-            campos = new String[]{cod_empresa};
-            valores = new String[]{Configuracion.getCOD_EMPRESA()};
+            campos = new String[]{EMP_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO()};
         } else {
             campos = new String[]{null};
             valores = new String[]{null,};
@@ -583,13 +583,13 @@ public class Productos_Farm extends frm_Padre {
         if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
             resu = getConexion.getDescripciones("vst_" + tablaConsutada,
                     new String[]{idConsultada, IdCod1, NomDesc1, IdCod2, NomDesc2, descripcionConsultada},
-                    new String[]{cod_empresa, cod_sucursal, idConsultada},
-                    new String[]{Configuracion.getCOD_EMPRESA(), Configuracion.getCOD_SUCURSAL(), codigo});
+                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
         } else if (UsarEmpresa) { // Cuando se usar solo Empresa
             resu = getConexion.getDescripciones("vst_" + tablaConsutada,
                     new String[]{idConsultada, IdCod1, NomDesc1, IdCod2, NomDesc2, descripcionConsultada},
-                    new String[]{cod_empresa, idConsultada},
-                    new String[]{Configuracion.getCOD_EMPRESA(), codigo});
+                    new String[]{EMP_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), codigo});
         } else { // Cuando no se usar Ni empresa Ni sucursal
             resu = getConexion.getDescripciones("vst_" + tablaConsutada,
                     new String[]{idConsultada, IdCod1, NomDesc1, IdCod2, NomDesc2, descripcionConsultada},
