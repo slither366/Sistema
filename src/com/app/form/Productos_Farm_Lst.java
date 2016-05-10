@@ -391,25 +391,16 @@ public class Productos_Farm_Lst extends frm_Padre {
                     String vHasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                     Inicializar();
                     JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
-                    try {
-                        if (resu.last()) {
-                            int cantidadRow = resu.getRow();
-                            resu.beforeFirst();
-                            HashMap parameters = new HashMap();
-                            parameters.put("titulo", tituloVentanaActual);
-                            parameters.put("desde", vDesde);
-                            parameters.put("hasta", vHasta);
-                            parameters.put("empresa", Configuracion.getEMP_NOMBRE());
-                            parameters.put("sucursal", Configuracion.getSUC_NOMBRE());
-                            parameters.put("usuario", Configuracion.getUSU_NOMBRE());
-                            parameters.put("cantidadRow", cantidadRow + "");
-                            parameters.put("tituloDescri1", this.Titulo1);
-                            parameters.put("tituloDescri2", this.Titulo2);
-                            this.reportes.mostrarReporteVentana(parameters, jrRS, reporte, modalidad, tituloVentanaActual);
-                        }
-                    } catch (SQLException ex) {
-                        MensajeSistema.setException(this, "Se produjo un error al Contar el Registro!!!", ex);
-                    }
+                    HashMap parameters = new HashMap();
+                    parameters.put("titulo", tituloVentanaActual);
+                    parameters.put("desde", vDesde);
+                    parameters.put("hasta", vHasta);
+                    parameters.put("empresa", Configuracion.getEMP_NOMBRE());
+                    parameters.put("sucursal", Configuracion.getSUC_NOMBRE());
+                    parameters.put("usuario", Configuracion.getUSU_NOMBRE());
+                    parameters.put("tituloDescri1", this.Titulo1);
+                    parameters.put("tituloDescri2", this.Titulo2);
+                    this.reportes.MostrarReporte(parameters, jrRS, reporte, modalidad, tituloVentanaActual);
                 }
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {

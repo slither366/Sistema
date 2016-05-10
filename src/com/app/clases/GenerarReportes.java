@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.beans.PropertyVetoException;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -44,7 +43,7 @@ public class GenerarReportes {
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                 new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
                     Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
-        this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
+        this.MostrarReporte(parameters, jrRS, reporte, tipo, tituloVentanaActual);
     }
 
     /**
@@ -64,7 +63,7 @@ public class GenerarReportes {
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo"},
                 new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
                     Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), tituloForaneo});
-        this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
+        this.MostrarReporte(parameters, jrRS, reporte, tipo, tituloVentanaActual);
     }
 
     public JasperPrint getReporte(TableModel resu, String reporte, String tituloVentanaActual, String desde, String hasta) {
@@ -100,18 +99,18 @@ public class GenerarReportes {
         return null;
     }
 
-    public void mostrarReporteVentana(HashMap parameters, JRResultSetDataSource jrRS,
+    public void MostrarReporte(HashMap parameters, JRResultSetDataSource jrRS,
             String reporte, char tipo, String tituloVentanaActual) {
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
-            mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
+            Reporte(masterPrint, tipo, tituloVentanaActual);
         } catch (JRException e) {
             MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", e);
         }
     }
 
-    public void mostrarReporteVentana(ResultSet resu, String reporte, String desde, String hasta,
+    public void MostrarReporte(ResultSet resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
         try {
             HashMap parameters = getParametros(
@@ -122,13 +121,13 @@ public class GenerarReportes {
 
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
-            mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
+            Reporte(masterPrint, tipo, tituloVentanaActual);
         } catch (JRException ex) {
             MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
         }
     }
 
-    public void mostrarReporteVentana(TableModel resu, String reporte, String desde, String hasta,
+    public void MostrarReporte(TableModel resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
         try {
             HashMap parameters = getParametros(
@@ -139,13 +138,13 @@ public class GenerarReportes {
             URL in = this.getClass().getResource(reporte);
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(in);
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
-            mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
+            Reporte(masterPrint, tipo, tituloVentanaActual);
         } catch (JRException ex) {
             MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
         }
     }
 
-    private void mostrarEnVentana(JasperPrint masterPrint, char tipo, String tituloVentanaActual) {
+    private void Reporte(JasperPrint masterPrint, char tipo, String tituloVentanaActual) {
         if (!masterPrint.getPages().isEmpty()) {
             try {
                 if (tipo == 'I') {//cuando es imprimir                    
