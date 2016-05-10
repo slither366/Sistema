@@ -1,11 +1,8 @@
 package com.app.form.Practicas;
 
-import com.app.config.ConexionBD;
 import com.app.config.ConsultaSQL;
-import com.app.paleta.cbo.ClassComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Action;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ProyectosJava/sistema/src/com/app/form/Practicas/prueba_form.java</file>
-            <file>file:/D:/ProyectosJava/sistema/src/com/app/paleta/txtNumerosFormato.java</file>
-            <file>file:/D:/ProyectosJava/sistema/src/com/app/paleta/textoPadre.java</file>
-            <file>file:/D:/ProyectosJava/sistema/src/com/app/paleta/txtNumeros.java</file>
-            <file>file:/D:/ProyectosJava/sistema/src/com/app/botones/NewClass.java</file>
+            <file>file:/D:/ProyectosJava/sistema/src/com/app/form/cont/Cont_Libro_IVA.java</file>
+            <file>file:/D:/ProyectosJava/sistema/src/com/app/config/Configuracion.java</file>
+            <file>file:/D:/ProyectosJava/sistema/src/com/app/form/Especiales/frm_Padre.java</file>
         </group>
     </open-files>
 </project-private>

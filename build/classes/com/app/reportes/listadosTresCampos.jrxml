@@ -17,7 +17,6 @@
 	<parameter name="sucursal" class="java.lang.String"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="tituloForaneo" class="java.lang.String"/>
-	<parameter name="cantidadRow" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -175,7 +174,7 @@
 			<textField>
 				<reportElement x="332" y="20" width="221" height="20" uuid="fd9329ae-cfc0-4258-8abb-b5efb3a7f333"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Hay "+$P{cantidadRow}+" Registros..."]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Hay "+$V{REPORT_COUNT}+" Registros..."]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
