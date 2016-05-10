@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="09f597cc-fd42-480a-9e34-c84414e10c84">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Mar 24 20:47:37 GMT-04:00 2014"/>
+	<parameter name="empresa" class="java.lang.String"/>
+	<parameter name="sucursal" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="moneda" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecDesde" class="java.lang.String"/>
+	<parameter name="fecHasta" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select Mon_Codigo,Mon_descrip,fecha,compra,venta
+from vst_cont_cotizacion_set
+where if($P{moneda}=0,true,Mon_Codigo=$P{moneda})
+and fecha>= $P{fecDesde} and fecha<= $P{fecHasta}]]>
+	</queryString>
+	<field name="Mon_Codigo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Mon_Descrip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="compra" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="venta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="CantidadRow" class="java.lang.Integer" resetType="None" incrementType="Report" calculation="Count">
+		<initialValueExpression><![CDATA[$V{CantidadRow}.parseInt( "0" )]]></initialValueExpression>
+	</variable>
+	<group name="Mon_Codigo">
+		<groupExpression><![CDATA[$F{Mon_Codigo}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField>
+					<reportElement x="26" y="0" width="100" height="15" uuid="0d4f9a44-946d-429b-a97a-c864af74a0ef"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Mon_Codigo}+".-"+$F{Mon_Descrip}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15"/>
+		</groupFooter>
+	</group>
+	<columnHeader>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="84" width="100" height="20" uuid="e9aaa430-9a34-44b2-ae72-c7c564f97b81"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Moneda]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="40" width="554" height="1" uuid="2754ff8d-d296-4a60-ae55-7b1559da61d8"/>
+			</line>
+			<line>
+				<reportElement x="0" y="79" width="555" height="1" uuid="e7405fbb-68b1-480c-b586-d63b475cf64e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="83" width="555" height="1" uuid="5b06e8af-0086-4b7d-8f3b-4c7a11c86c94"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="20" width="375" height="20" uuid="a6e4ffa3-b177-4d07-bdea-d5a24b0d758f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sucursal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="45" width="555" height="36" uuid="e94743d9-c044-475c-a715-bf06a65ba6bc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Serif" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Listado de Cotizaciones"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="0" width="180" height="20" uuid="8dc0d777-0db9-4a4d-ad8a-213d4804a2f5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy hh:mm a">
+				<reportElement x="375" y="20" width="180" height="20" uuid="c3ae9899-1802-49e3-861a-3bced1304095"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="44" width="554" height="1" uuid="cfe000f4-3961-42e4-8e01-5413e01de930"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="375" height="20" uuid="3881c04d-289b-4c0f-8002-86531cd7b0b9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="167" y="0" width="100" height="15" uuid="45240265-3726-42f9-95e2-02805c46edd6"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="0" width="100" height="15" uuid="11730099-8312-4338-a1f5-fbdc0f6ff9a8"/>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###,##0.##").format($F{compra})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="0" width="100" height="15" uuid="855962d0-a35f-4510-bc9e-2dfcc8983a1a"/>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###,##0.##").format($F{venta})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<staticText>
+				<reportElement x="26" y="15" width="126" height="20" uuid="34b246bd-fee7-4b1f-8e07-5c7e290e9633"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif"/>
+				</textElement>
+				<text><![CDATA[*** FIN DEL LISTADO ***]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="383" y="15" width="173" height="20" uuid="57002e4b-515b-4063-b80a-41c6236aa31d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Hay "+$V{CantidadRow}+" Registros..."]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
