@@ -215,10 +215,11 @@ public class CotizacionSet extends frm_Padre implements Metodos {
     private void txtCod_MonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_MonedaActionPerformed
         int valor = this.txtCod_Moneda.verificarVacioConMsj();
         if (valor == 0) {
-            this.txtCod_Moneda.setEnabled(false);
-            if (operacion == 'M' || operacion == 'E') {
-                this.RecuperarDatos(this.txtCod_Moneda.getText());
-            } else {
+            String rs = getConexion.getDescripcion(this.txtCod_Moneda.getBdTabla(), this.txtCod_Moneda.getBdDescrip(),
+                    new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Moneda.getText()});
+            if (rs != null) {
+                this.lblMoneda.setText(rs);
                 this.txtFecha.setEnabled(true);
                 this.txtFecha.grabFocus();
             }
@@ -237,8 +238,13 @@ public class CotizacionSet extends frm_Padre implements Metodos {
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         int valor = this.txtFecha.verificarVacioConMsj();
         if (valor == 0) {
-            this.txtCompra.setEnabled(true);
-            this.txtCompra.grabFocus();
+            this.txtFecha.setEnabled(false);
+            if (operacion == 'M' || operacion == 'E') {
+                this.RecuperarDatos(this.txtCod_Moneda.getText());
+            } else {
+                this.txtCompra.setEnabled(true);
+                this.txtCompra.grabFocus();
+            }
         } else {
             this.Inicializar();
         }
@@ -324,7 +330,6 @@ public class CotizacionSet extends frm_Padre implements Metodos {
                             new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha"},
                             new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Moneda.getText(), this.txtFecha.getFecha()});
                 }
-
             }
             Inicializar();
         }
@@ -341,11 +346,41 @@ public class CotizacionSet extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-
+        operacion = c;
+        this.pnlBotones.ModoEdicion(false);
+        this.txtCod_Moneda.setEnabled(true);
+        this.pnlBotones.btnGrabar.setEnabled(false);
+        this.txtCod_Moneda.grabFocus();
     }
 
     @Override
     public void RecuperarDatos(String codigo) {
-
+        String[] rs = getConexion.getDescripciones("vst_" + tablaConsutada,
+                new String[]{"compra", "venta"},
+                new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha"},
+                new String[]{Configuracion.getEMP_CODIGO(), codigo, this.txtFecha.getFecha()});
+        if (rs[0] != null) {
+            txtCompra.setNumero(rs[0]);
+            txtVenta.setNumero(rs[1]);
+            if (operacion == 'E') {
+                this.Borrar(this, tablaConsutada,
+                        new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha"},
+                        new String[]{Configuracion.getEMP_CODIGO(), codigo, this.txtFecha.getFecha()});
+                Inicializar();
+            } else if (operacion == 'M') {
+                this.txtCompra.setEnabled(true);
+                this.txtCompra.grabFocus();
+            }
+        } else {
+            if (MensajeSistema.ConsultaSQLVacio(this)) {
+                this.txtCod_Moneda.setText("");
+                this.txtCod_Moneda.setEnabled(true);
+                this.lblMoneda.setText("");
+                this.txtFecha.setText("");
+                this.txtCod_Moneda.grabFocus();
+            } else {
+                this.Inicializar();
+            }
+        }
     }
 }
