@@ -872,7 +872,7 @@ public class frm_Configuracion extends frm_Padre {
     }
 
     private void limpiarPag3() {
-        ClaseCampos.SetTextNull(jPanel4);
+        ClaseCampos.setTextNull(jPanel4);
         this.textEmpresa.setText("");
         this.textNomPerfil.setText("");
         this.textClave1.setVisible(false);

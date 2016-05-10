@@ -419,7 +419,7 @@ public class ClaseCampos {
      *
      * @param jpanel
      */
-    public static void SetTextNull(JPanel jpanel) {
+    public static void setTextNull(JPanel jpanel) {
         Component[] panel = jpanel.getComponents();
         for (int i = 0; i < jpanel.getComponentCount(); i++) {
             if (panel[i].getClass().equals(txtTexto.class)) {

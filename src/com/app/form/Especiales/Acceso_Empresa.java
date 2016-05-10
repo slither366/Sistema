@@ -465,7 +465,7 @@ public class Acceso_Empresa extends frm_Padre {
     // End of variables declaration//GEN-END:variables
 
     private void inicializar() {
-        ClaseCampos.SetTextNull(jPanelDatos);
+        ClaseCampos.setTextNull(jPanelDatos);
         ClaseCampos.setEnabled(jPanelDatos, false);
         this.btnAceptar.setEnabled(false);
         this.btnCancelar.setEnabled(true);

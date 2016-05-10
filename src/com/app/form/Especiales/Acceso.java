@@ -310,7 +310,7 @@ public class Acceso extends frm_Padre {
     // End of variables declaration//GEN-END:variables
 
     private void inicializar() {
-        ClaseCampos.SetTextNull(jPanelDatos);
+        ClaseCampos.setTextNull(jPanelDatos);
         this.btnAceptar.setEnabled(false);
         this.txtPassword.setEnabled(false);
         this.txtCod_Usuario.setEnabled(true);

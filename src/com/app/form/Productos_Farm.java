@@ -483,7 +483,7 @@ public class Productos_Farm extends frm_Padre {
 
     private void Inicializar() {
         ClaseCampos.setEnabled(pnlDatos, false);
-        ClaseCampos.SetTextNull(pnlDatos);
+        ClaseCampos.setTextNull(pnlDatos);
         this.textDescripcion1.setText("");
         this.textDescripcion2.setText("");
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);

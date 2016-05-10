@@ -945,9 +945,9 @@ public final class Contactos extends frm_Padre implements Metodos {
         ClaseCampos.setEnabled(pnlMantenimiento, false);
         ClaseCampos.setEnabled(pnlVentas, false);
         ClaseCampos.setEnabled(pnlCompras, false);
-        ClaseCampos.SetTextNull(pnlMantenimiento);
-        ClaseCampos.SetTextNull(pnlVentas);
-        ClaseCampos.SetTextNull(pnlCompras);
+        ClaseCampos.setTextNull(pnlMantenimiento);
+        ClaseCampos.setTextNull(pnlVentas);
+        ClaseCampos.setTextNull(pnlCompras);
         this.jTab.setEnabledAt(1, false);
         this.jTab.setEnabledAt(2, false);
         this.cboACredito.setSelectedIndex(0);

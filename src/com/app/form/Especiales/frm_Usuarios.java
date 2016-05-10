@@ -533,7 +533,7 @@ public class frm_Usuarios extends frm_Padre {
 
     private void Inicializar() {
         ClaseCampos.setEnabled(jPanelDatos, false);
-        ClaseCampos.SetTextNull(this.jPanelDatos);
+        ClaseCampos.setTextNull(this.jPanelDatos);
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);
         this.textClave1.setVisible(false);
         this.textClave2.setVisible(false);

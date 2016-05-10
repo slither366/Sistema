@@ -685,7 +685,7 @@ public class frm_Administrativo extends frm_Padre {
 
 
     private void InicializarConfig() {
-        ClaseCampos.SetTextNull(pnlConfGralGeneral);
+        ClaseCampos.setTextNull(pnlConfGralGeneral);
         textMonedaConfGral.setText("");
         this.btnGrabarConfGeneral.setEnabled(false);
         this.CargarConfiguracion();

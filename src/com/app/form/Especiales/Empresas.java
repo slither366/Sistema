@@ -455,7 +455,7 @@ public class Empresas extends frm_Padre {
     private void Inicializar() {
         this.getPermisos(Cod_Ventana);
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);
-        ClaseCampos.SetTextNull(jPanelDatos);
+        ClaseCampos.setTextNull(jPanelDatos);
         ClaseCampos.setEnabled(jPanelDatos, false);
         this.jCheckAgenteRetentor.setEnabled(false);
         this.jCheckAgenteRetentor.setSelected(false);
