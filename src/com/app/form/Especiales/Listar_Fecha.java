@@ -298,7 +298,7 @@ public class Listar_Fecha extends frm_Padre {
                     String xdesde = this.txtFecha1.getText();
                     String xhasta = this.txtFecha2.getText();
                     Inicializar();
-                    reportes.MostrarReporte(resu, frm_Padre.ubicacionReport + this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
+                    reportes.MostrarReporte(resu, this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
                 }
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {

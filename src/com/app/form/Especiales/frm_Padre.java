@@ -13,8 +13,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Formulario padre que implementa, publica, inicializa ya muchas variables y
+ * opciones que son heredados por otros formularios
  *
- * @author
+ * @author dramosort
  */
 public class frm_Padre extends JInternalFrame implements ActionListener {
 
@@ -28,8 +30,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public char operacion;
     public static ConexionBD getConexion;
     public static Propiedades getPropiedades;
-    public Image getIcono;
-    public static String ubicacionReport = "/com/app/Reportes/";
+    public Image getIcono;    
     public DefaultTableModel miTabla;
 
     public frm_Padre() {
@@ -113,6 +114,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     /**
      * Metodo que verifica los permisos de un formulario en la Base de Datos
      *
+     * @author dramosort
      * @param cod_ventana
      */
     public void getPermisos(int cod_ventana) {
@@ -133,6 +135,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
      * Metodo que verifica los permisos de un formulario de listado en la Base
      * de Datos
      *
+     * @author dramosort
      * @param cod_ventana
      */
     public void getPermisosListar(int cod_ventana) {
@@ -181,6 +184,11 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     }
 
+    /**
+     * Metodo por defectos que seran creados en todos los formularios
+     *
+     * @author dramosort
+     */
     public interface Metodos {
 
         public abstract void Inicializar();

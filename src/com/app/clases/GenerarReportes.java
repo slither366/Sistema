@@ -2,7 +2,6 @@ package com.app.clases;
 
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
-import com.app.form.Especiales.frm_Padre;
 import com.app.form.Especiales.frm_Principal;
 import com.app.form.Especiales.frm_reporte;
 import java.awt.BorderLayout;
@@ -28,6 +27,11 @@ import net.sf.jasperreports.view.JRViewer;
 public class GenerarReportes {
 
     /**
+     * Variable que indica la ubicacion del reporte
+     */
+    public static String ubicacionReport = "/com/app/Reportes/";
+
+    /**
      *
      * @param rs
      * @param tituloVentanaActual
@@ -37,7 +41,7 @@ public class GenerarReportes {
      */
     public void listadoDosCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo) {
-        String reporte = frm_Padre.ubicacionReport + "listadosDosCampos.jasper";
+        String reporte = ubicacionReport + "listadosDosCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         HashMap parameters = getParametros(
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
@@ -57,7 +61,7 @@ public class GenerarReportes {
      */
     public void listadoTresCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo, String tituloForaneo) {
-        String reporte = frm_Padre.ubicacionReport + "listadosTresCampos.jasper";
+        String reporte = ubicacionReport + "listadosTresCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         HashMap parameters = getParametros(
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo"},
@@ -71,6 +75,7 @@ public class GenerarReportes {
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                 new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
                     Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
+        reporte = ubicacionReport + reporte + ".jasper";
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
@@ -79,7 +84,6 @@ public class GenerarReportes {
         } catch (JRException ex) {
             MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
         }
-
         return null;
     }
 
@@ -89,6 +93,7 @@ public class GenerarReportes {
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                 new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
                     Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
+        reporte = ubicacionReport + reporte + ".jasper";
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
@@ -101,6 +106,7 @@ public class GenerarReportes {
 
     public void MostrarReporte(HashMap parameters, JRResultSetDataSource jrRS,
             String reporte, char tipo, String tituloVentanaActual) {
+        reporte = ubicacionReport + reporte + ".jasper";
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
@@ -112,13 +118,13 @@ public class GenerarReportes {
 
     public void MostrarReporte(ResultSet resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
+        reporte = ubicacionReport + reporte + ".jasper";
         try {
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
                         Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
             JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
-
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
             Reporte(masterPrint, tipo, tituloVentanaActual);
@@ -129,6 +135,7 @@ public class GenerarReportes {
 
     public void MostrarReporte(TableModel resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
+        reporte = ubicacionReport + reporte + ".jasper";
         try {
             HashMap parameters = getParametros(
                     new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
@@ -190,5 +197,5 @@ public class GenerarReportes {
             parameters.put(titulos[i], valores[i]);
         }
         return parameters;
-    }
+    }    
 }

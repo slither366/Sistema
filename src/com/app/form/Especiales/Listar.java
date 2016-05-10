@@ -483,7 +483,7 @@ public class Listar extends frm_Padre {
                     String xhasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                     Inicializar();
                     if (foraneo == 0) {//Reporte especiales, donde se envia la ubicacion del reporte
-                        reportes.MostrarReporte(resu, frm_Padre.ubicacionReport + this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
+                        reportes.MostrarReporte(resu, this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
                     } else {// Reportes predetermiandos de campos predefinidos
                         if (foraneo == 1) {
                             reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
