@@ -33,7 +33,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
         this.descripcion2 = descripcion2;
         this.tituloVentanaActual = titulo;
         this.getPermisos(this.Cod_Ventana);
-        this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
+        this.pnlTitulo1.setTextTitulo("Mantenimiento de " + tituloVentanaActual + "...");
         this.pnlABM1.addListener(this);
         this.Inicializar();
     }
@@ -68,8 +68,6 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        pnlTitulo = new javax.swing.JPanel();
-        textTitulo = new javax.swing.JLabel();
         pnlDatos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -78,33 +76,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
         txtDescripcion = new com.app.paleta.txtTexto();
         txtDescripcion2 = new com.app.paleta.txtTexto();
         pnlABM1 = new com.app.botones.pnlABM();
-
-        pnlTitulo.setBackground(new java.awt.Color(204, 204, 204));
-        pnlTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlTitulo.setMaximumSize(new java.awt.Dimension(486, 60));
-        pnlTitulo.setMinimumSize(new java.awt.Dimension(486, 60));
-        pnlTitulo.setName(""); // NOI18N
-        pnlTitulo.setPreferredSize(new java.awt.Dimension(486, 60));
-
-        textTitulo.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        textTitulo.setText("TITULO...");
-
-        javax.swing.GroupLayout pnlTituloLayout = new javax.swing.GroupLayout(pnlTitulo);
-        pnlTitulo.setLayout(pnlTituloLayout);
-        pnlTituloLayout.setHorizontalGroup(
-            pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
-        );
-        pnlTituloLayout.setVerticalGroup(
-            pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        pnlTitulo1 = new com.app.paleta.pnlTitulo();
 
         pnlDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlDatos.setMaximumSize(new java.awt.Dimension(482, 73));
@@ -188,17 +160,17 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-                    .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(pnlABM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pnlTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -272,8 +244,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
     private javax.swing.JPanel jPanel1;
     private com.app.botones.pnlABM pnlABM1;
     private javax.swing.JPanel pnlDatos;
-    private javax.swing.JPanel pnlTitulo;
-    private javax.swing.JLabel textTitulo;
+    private com.app.paleta.pnlTitulo pnlTitulo1;
     private com.app.paleta.txtCodigo txtCodigo;
     private com.app.paleta.txtTexto txtDescripcion;
     private com.app.paleta.txtTexto txtDescripcion2;

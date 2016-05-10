@@ -24,7 +24,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.idConsultada = codigo;
         this.descripcionConsultada = descripcion;
         this.tituloVentanaActual = titulo;
-        this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
+        this.pnlTitulo1.setTextTitulo("Mantenimiento de " + tituloVentanaActual + "...");
         this.getPermisos(this.Cod_Ventana);
         this.txtDescripcion.setEnMayuscula(true);
         this.botonesABM.addListener(this);
@@ -49,7 +49,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn6") == 0) {
             Salir(this);
         }
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,40 +61,13 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanelTitulo = new javax.swing.JPanel();
-        textTitulo = new javax.swing.JLabel();
         jPanelDatos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new com.app.paleta.txtCodigo();
         txtDescripcion = new com.app.paleta.txtTexto();
+        pnlTitulo1 = new com.app.paleta.pnlTitulo();
         botonesABM = new com.app.botones.pnlABM();
-
-        jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
-        jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelTitulo.setMaximumSize(new java.awt.Dimension(486, 60));
-        jPanelTitulo.setMinimumSize(new java.awt.Dimension(486, 60));
-        jPanelTitulo.setPreferredSize(new java.awt.Dimension(486, 60));
-
-        textTitulo.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        textTitulo.setText("TITULO...");
-
-        javax.swing.GroupLayout jPanelTituloLayout = new javax.swing.GroupLayout(jPanelTitulo);
-        jPanelTitulo.setLayout(jPanelTituloLayout);
-        jPanelTituloLayout.setHorizontalGroup(
-            jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelTituloLayout.setVerticalGroup(
-            jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         jPanelDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -159,35 +132,36 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(pnlTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(pnlTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botonesABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,8 +207,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDatos;
-    private javax.swing.JPanel jPanelTitulo;
-    private javax.swing.JLabel textTitulo;
+    private com.app.paleta.pnlTitulo pnlTitulo1;
     private com.app.paleta.txtCodigo txtCodigo;
     private com.app.paleta.txtTexto txtDescripcion;
     // End of variables declaration//GEN-END:variables
