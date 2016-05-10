@@ -402,7 +402,7 @@
                     <Property name="text" type="java.lang.String" value="Decoracion:"/>
                   </Properties>
                 </Component>
-                <Component class="com.app.paleta.cbo" name="cboDecoracion">
+                <Component class="com.app.paleta.combo" name="cboDecoracion">
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cboDecoracionFocusLost"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cboDecoracionKeyPressed"/>

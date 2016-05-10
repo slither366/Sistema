@@ -115,7 +115,7 @@ public class Buscar extends javax.swing.JDialog {
         jPanelCantidad = new javax.swing.JPanel();
         textCantidad = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableConsulta = new com.app.paleta.tbl();
+        jTableConsulta = new com.app.paleta.tabla();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("..:: " + Configuracion.getTITULO_VENTANA() + " - Busqueda ::..");
@@ -391,7 +391,7 @@ public class Buscar extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.app.paleta.tbl jTableConsulta;
+    private com.app.paleta.tabla jTableConsulta;
     private javax.swing.JLabel textCantidad;
     private javax.swing.JLabel textTitulo;
     private com.app.paleta.txtTexto txtNombreConsulta;

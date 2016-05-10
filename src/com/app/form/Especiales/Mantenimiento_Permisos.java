@@ -53,7 +53,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
         jButtonBorrar = new javax.swing.JButton();
         jButtonListar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTablePermisos = new com.app.paleta.tbl();
+        jTablePermisos = new com.app.paleta.tabla();
         jLabel3 = new javax.swing.JLabel();
         jComboSucursal = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
@@ -62,7 +62,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
         jButtonTodos = new javax.swing.JButton();
         jButtonPasar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMenus = new com.app.paleta.tbl();
+        jTableMenus = new com.app.paleta.tabla();
         jPanelBotones = new javax.swing.JPanel();
         btnNuevo = new com.app.botones.btnNuevo();
         btnModificar = new com.app.botones.btnEditar();
@@ -593,8 +593,8 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private javax.swing.JPanel jPanelPermisos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private com.app.paleta.tbl jTableMenus;
-    private com.app.paleta.tbl jTablePermisos;
+    private com.app.paleta.tabla jTableMenus;
+    private com.app.paleta.tabla jTablePermisos;
     private javax.swing.JPanel pnlTitulo;
     private javax.swing.JLabel textTitulo;
     // End of variables declaration//GEN-END:variables

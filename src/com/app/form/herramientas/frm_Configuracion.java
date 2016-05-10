@@ -102,7 +102,7 @@ public class frm_Configuracion extends frm_Padre {
         jLabel8 = new javax.swing.JLabel();
         txtImpresora = new com.app.paleta.txtTexto();
         jLabel9 = new javax.swing.JLabel();
-        cboDecoracion = new com.app.paleta.cbo();
+        cboDecoracion = new com.app.paleta.combo();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         txtCod_Empresa = new com.app.paleta.txtCodigo();
@@ -796,7 +796,7 @@ public class frm_Configuracion extends frm_Padre {
     private javax.swing.JButton btnCrear;
     private com.app.botones.btnGrabar btnGrabarUser;
     private javax.swing.JButton btnLimpiar;
-    private com.app.paleta.cbo cboDecoracion;
+    private com.app.paleta.combo cboDecoracion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

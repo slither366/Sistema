@@ -76,7 +76,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         txtCod_Referencia = new com.app.paleta.txtCodigo();
         textNom_Referencia = new javax.swing.JLabel();
         pnlABM = new com.app.botones.pnlABM();
-        pnlTitulo1 = new com.app.paleta.pnlTitulo();
+        pnlTitulo1 = new com.app.paleta.panelTitulo();
 
         pnlDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlDatos.setMaximumSize(new java.awt.Dimension(482, 73));
@@ -283,7 +283,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
     private javax.swing.JPanel jPanel1;
     private com.app.botones.pnlABM pnlABM;
     private javax.swing.JPanel pnlDatos;
-    private com.app.paleta.pnlTitulo pnlTitulo1;
+    private com.app.paleta.panelTitulo pnlTitulo1;
     private javax.swing.JLabel textNom_Referencia;
     private com.app.paleta.txtCodigo txtCod_Referencia;
     private com.app.paleta.txtCodigo txtCodigo;

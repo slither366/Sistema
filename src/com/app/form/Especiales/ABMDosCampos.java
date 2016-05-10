@@ -66,7 +66,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         jLabel2 = new javax.swing.JLabel();
         txtCodigo = new com.app.paleta.txtCodigo();
         txtDescripcion = new com.app.paleta.txtTexto();
-        pnlTitulo1 = new com.app.paleta.pnlTitulo();
+        pnlTitulo1 = new com.app.paleta.panelTitulo();
         botonesABM = new com.app.botones.pnlABM();
 
         jPanelDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -207,7 +207,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDatos;
-    private com.app.paleta.pnlTitulo pnlTitulo1;
+    private com.app.paleta.panelTitulo pnlTitulo1;
     private com.app.paleta.txtCodigo txtCodigo;
     private com.app.paleta.txtTexto txtDescripcion;
     // End of variables declaration//GEN-END:variables

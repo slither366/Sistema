@@ -94,11 +94,11 @@ public final class Contactos extends frm_Padre implements Metodos {
         pnlVentas = new javax.swing.JPanel();
         textTitulo1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbltablaVenta = new com.app.paleta.tbl();
+        tbltablaVenta = new com.app.paleta.tabla();
         pnlCompras = new javax.swing.JPanel();
         textTitulo2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbltablaCompra = new com.app.paleta.tbl();
+        tbltablaCompra = new com.app.paleta.tabla();
         jPanelBotones = new javax.swing.JPanel();
         btnImagen1 = new com.app.botones.btnImagen();
         btnNuevo = new com.app.botones.btnNuevo();
@@ -919,8 +919,8 @@ public final class Contactos extends frm_Padre implements Metodos {
     private javax.swing.JPanel pnlCompras;
     private javax.swing.JPanel pnlMantenimiento;
     private javax.swing.JPanel pnlVentas;
-    private com.app.paleta.tbl tbltablaCompra;
-    private com.app.paleta.tbl tbltablaVenta;
+    private com.app.paleta.tabla tbltablaCompra;
+    private com.app.paleta.tabla tbltablaVenta;
     private javax.swing.JLabel textNom_Ciudad;
     private javax.swing.JLabel textNom_Nacionalidad;
     private javax.swing.JLabel textTitulo;
