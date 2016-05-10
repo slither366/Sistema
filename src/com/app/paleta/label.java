@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.app.paleta;
+
+import java.awt.Dimension;
 
 /**
  *
  * @author Diego
  */
-public class label {
-    
+public class label extends javax.swing.JLabel {
+
+    public label() {
+        this.setSize(new Dimension(75, 20));
+        this.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        this.setText("text");
+    }        
 }
