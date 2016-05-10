@@ -185,7 +185,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jLabel3 = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
         jLabelEmpresa = new javax.swing.JLabel();
-        jLabelHoraAMPM1 = new com.app.paleta.JLabelHoraAMPM();
+        jLabelHoraAMPM1 = new com.app.paleta.labelHoraAMPM();
         jPanelLateral = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
@@ -267,6 +267,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5310 = new javax.swing.JMenuItem();
         jMenu5320 = new javax.swing.JMenuItem();
         jMenu5400 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu6000 = new javax.swing.JMenu();
         jMenu6100 = new javax.swing.JMenuItem();
         jMenu7000 = new javax.swing.JMenu();
@@ -917,6 +918,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5000.add(jMenu5400);
 
+        jMenuItem1.setText("Cotizacion");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu5000.add(jMenuItem1);
+
         MenuBar.add(jMenu5000);
 
         jMenu6000.setMnemonic('6');
@@ -971,9 +980,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenu3100ActionPerformed
 
     private void jMenu5221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5221ActionPerformed
-        llamarFormulario.llamarInternalFrame(
-                new ABMDosCampos("ref_ciudades", 5240, false, false,
-                        "cod_ciudad", "nom_ciudad", "Ciudades"), escritorio);
+        
     }//GEN-LAST:event_jMenu5221ActionPerformed
 
     private void jMenu5131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5131ActionPerformed
@@ -1011,7 +1018,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnCerrarSecionActionPerformed
 
     private void jMenu5111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5111ActionPerformed
-        llamarFormulario.llamarInternalFrame(new Empresas(5210), escritorio);
+        callMenus.Empresas(5111);
     }//GEN-LAST:event_jMenu5111ActionPerformed
 
     private void jMenu1700ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1700ActionPerformed
@@ -1125,6 +1132,11 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu6100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6100ActionPerformed
         this.Acerca_de();
     }//GEN-LAST:event_jMenu6100ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        callMenus.CotizacionSet(1111);
+        callMenus.CotizacionSet_Lst(1111);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1160,7 +1172,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel3;
     private static javax.swing.JLabel jLabelEmpresa;
     private static javax.swing.JLabel jLabelFecha;
-    private com.app.paleta.JLabelHoraAMPM jLabelHoraAMPM1;
+    private com.app.paleta.labelHoraAMPM jLabelHoraAMPM1;
     private javax.swing.JLabel jLabelInfo;
     private static javax.swing.JLabel jLabelTitulo;
     private static javax.swing.JLabel jLabelUsuario;
@@ -1243,6 +1255,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenuItem jMenu6100;
     private javax.swing.JMenu jMenu7000;
     public static javax.swing.JMenuItem jMenu7100;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private static javax.swing.JPanel jPanelDatos;
     private static javax.swing.JPanel jPanelLateral;

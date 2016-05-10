@@ -1,9 +1,12 @@
 package com.app.form.Especiales;
 
+import com.app.form.Contactos;
 import com.app.form.Productos;
 import com.app.form.Productos_Farm;
 import com.app.form.Productos_Farm_Lst;
 import com.app.form.Productos_lst;
+import com.app.form.cont.CotizacionSet;
+import com.app.form.cont.CotizacionSet_Lst;
 import com.app.form.herramientas.frm_Password;
 
 /**
@@ -14,6 +17,7 @@ public class callMenus {
 
     static UbicarVentana menu = new UbicarVentana();
 
+    /*                        Referenciales                                */
     public static void Marcas(int cod_ventana) {
         menu.llamarInternalFrame(new ABMDosCampos("Ref_Marcas", cod_ventana, true, false,
                 "Mar_Codigo", "Mar_Descrip", "Marcas"), frm_Principal.escritorio);
@@ -44,14 +48,37 @@ public class callMenus {
                 "Env_Codigo", "Env_Descrip", "Envaces"), frm_Principal.escritorio);
     }
 
-    public static void Productos(int cod_ventana) {
-        menu.llamarInternalFrame(new Productos(cod_ventana), frm_Principal.escritorio);
+    public static void Bancos(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
+                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
     }
 
-    public static void Productos_Lst(int cod_ventana) {
-        menu.llamarInternalFrame(new Productos_lst(cod_ventana), frm_Principal.escritorio);
+    public static void Bancos_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
+                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
     }
 
+    public static void Ciudades(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
+                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
+    }
+
+    public static void Ciudades_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
+                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
+    }
+
+    public static void Nacionalidades(int cod_ventana) {
+        menu.llamarInternalFrame(new ABMDosCampos("ref_nacionalidades", cod_ventana, true, false,
+                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
+    }
+
+    public static void Nacionalidades_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Listar("ref_nacionalidad", cod_ventana, true, false,
+                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
+    }
+
+    /*                        Farmacia                                */
     public static void Drogas(int cod_ventana) {
         menu.llamarInternalFrame(new ABMDosCampos("ref_drogas", cod_ventana, true, false,
                 "Dro_Codigo", "Dro_Descrip", "Drogas"), frm_Principal.escritorio);
@@ -138,38 +165,65 @@ public class callMenus {
                 "observacion", "Contraindicaciones"), frm_Principal.escritorio);
     }
 
+    /*                        Mantenimientos                                */
+    public static void Productos(int cod_ventana) {
+        menu.llamarInternalFrame(new Productos(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void Productos_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Productos_lst(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void Contactos(int cod_ventana) {
+        menu.llamarInternalFrame(new Contactos(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void Contactos_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new Contactos(cod_ventana), frm_Principal.escritorio);
+    }
+    /*                        Contabilidad                                  */
+
+    public static void CotizacionSet(int cod_ventana) {
+        menu.llamarInternalFrame(new CotizacionSet(cod_ventana), frm_Principal.escritorio);
+    }
+
+    public static void CotizacionSet_Lst(int cod_ventana) {
+        menu.llamarInternalFrame(new CotizacionSet_Lst(cod_ventana), frm_Principal.escritorio);
+    }
+
+    /*                        Administrativo                                  */
     public static void Empresas(int cod_ventana) {
         menu.llamarInternalFrame(new Empresas(cod_ventana), frm_Principal.escritorio);
     }
 
     public static void Empresas_Lst(int cod_ventana) {
         System.out.println("en construccion");
-    }    
-    
+    }
+
     public static void Sucursales(int cod_ventana) {
         System.out.println("en construccion");
     }
 
     public static void Sucursales_Lst(int cod_ventana) {
         System.out.println("en construccion");
-    }    
-    
+    }
+
     public static void Menus(int cod_ventana) {
         menu.llamarInternalFrame(new MantenimientoMenu(), frm_Principal.escritorio);
     }
 
     public static void Menus_Lst(int cod_ventana) {
         System.out.println("en construccion");
-    }    
-    
+    }
+
     public static void Permisos() {
         menu.llamarInternalFrame(new Mantenimiento_Permisos(), frm_Principal.escritorio);
     }
 
     public static void Permisos_Lst() {
         System.out.println("en construccion");
-    }    
-    
+    }
+
     public static void Usuarios(int cod_ventana) {
         menu.llamarInternalFrame(new frm_Usuarios(cod_ventana), frm_Principal.escritorio);
     }
@@ -184,35 +238,5 @@ public class callMenus {
 
     public static void Usuarios_ActPass() {
         menu.llamarInternalFrame(new frm_Password(), frm_Principal.escritorio);
-    }
-
-    public static void Bancos(int cod_ventana) {
-        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
-                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
-    }
-
-    public static void Bancos_Lst(int cod_ventana) {
-        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
-                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
-    }
-
-    public static void Ciudades(int cod_ventana) {
-        menu.llamarInternalFrame(new ABMDosCampos("ref_bancos", cod_ventana, true, false,
-                "Ban_Codigo", "Ban_Descrip", "Bancos"), frm_Principal.escritorio);
-    }
-
-    public static void Ciudades_Lst(int cod_ventana) {
-        menu.llamarInternalFrame(new Listar("ref_ciudades", cod_ventana, true, false,
-                "Ciu_Codigo", "Ciu_Descrip", "Ciudades"), frm_Principal.escritorio);
-    }
-
-    public static void Nacionalidades(int cod_ventana) {
-        menu.llamarInternalFrame(new ABMDosCampos("ref_nacionalidades", cod_ventana, true, false,
-                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
-    }
-
-    public static void Nacionalidades_Lst(int cod_ventana) {
-        menu.llamarInternalFrame(new Listar("ref_nacionalidad", cod_ventana, true, false,
-                "Nac_Codigo", "Nac_Descrip", "Nacionalidad"), frm_Principal.escritorio);
     }
 }

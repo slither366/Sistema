@@ -1,5 +1,6 @@
 package com.app.clases;
 
+import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Principal;
@@ -116,6 +117,17 @@ public class GenerarReportes {
         }
     }
 
+    public void MostrarReporte(HashMap parameters, ConexionBD con, String reporte, char tipo, String tituloVentanaActual) {
+        reporte = ubicacionReport + reporte + ".jasper";
+        try {
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
+            JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, con.getConexion());
+            Reporte(masterPrint, tipo, tituloVentanaActual);
+        } catch (JRException e) {
+            MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", e);
+        }
+    }
+
     public void MostrarReporte(ResultSet resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
         reporte = ubicacionReport + reporte + ".jasper";
@@ -197,5 +209,5 @@ public class GenerarReportes {
             parameters.put(titulos[i], valores[i]);
         }
         return parameters;
-    }    
+    }
 }
