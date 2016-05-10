@@ -3,6 +3,7 @@ package com.app.paleta;
 import javax.swing.JLabel;
 
 /**
+ * Componente JPanel especial para titulo de un formulario.
  *
  * @author Diego
  */
@@ -34,6 +35,11 @@ public class panelTitulo extends panel {
         );
     }
 
+    /**
+     * Metodo que agrega el titulo que va mostrara en el jLabel del jPanel
+     *
+     * @param text
+     */
     public void setTextTitulo(String text) {
         this.textTitulo.setText(text);
     }

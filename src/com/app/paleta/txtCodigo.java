@@ -48,6 +48,11 @@ public class txtCodigo extends textoPadre {
         return this.getText().trim().isEmpty() ? 0 : Integer.parseInt(this.getText());
     }
 
+    /**
+     * Metodo que recibe el valor numerico para el campo de codigo
+     *
+     * @param valor
+     */
     public void setCodigo(int valor) {
         this.setText(valor + "");
     }
@@ -57,9 +62,9 @@ public class txtCodigo extends textoPadre {
         return this.getCodigo() == 0 ? true : "".equals(this.getText().trim());
     }
 
-    /*
-     * Variables en donde se va a guardar los parametros de tabla, codigo, 
-     descripcion y titulo a cual va a representar
+    /**
+     * Variables en donde se va a guardar los parametros de tabla, codigo,
+     * descripcion y titulo a cual va a representar
      */
     private String bdTabla, bdCodigo, bdDescrip, bdTitulo;
 
@@ -75,7 +80,7 @@ public class txtCodigo extends textoPadre {
     /**
      * Metodo que recibe el nombre de la Tabla del campo
      *
-     * @param bdTabla 
+     * @param bdTabla
      */
     public void setBdTabla(String bdTabla) {
         this.bdTabla = bdTabla;
@@ -93,7 +98,7 @@ public class txtCodigo extends textoPadre {
     /**
      * Metodo que recibe el nombre de la Codigo de la Tabla
      *
-     * @param bdCodigo 
+     * @param bdCodigo
      */
     public void setBdCodigo(String bdCodigo) {
         this.bdCodigo = bdCodigo;
@@ -111,7 +116,7 @@ public class txtCodigo extends textoPadre {
     /**
      * Metodo que recibe el nombre de la descripcion de la Tabla
      *
-     * @param bdDescrip 
+     * @param bdDescrip
      */
     public void setBdDescrip(String bdDescrip) {
         this.bdDescrip = bdDescrip;
@@ -129,9 +134,9 @@ public class txtCodigo extends textoPadre {
     /**
      * Metodo que recibe el nombre de la descripcion de la Tabla
      *
-     * @param bdTitulo 
+     * @param bdTitulo
      */
     public void setBdTitulo(String bdTitulo) {
         this.bdTitulo = bdTitulo;
-    }   
+    }
 }

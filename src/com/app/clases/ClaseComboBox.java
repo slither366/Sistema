@@ -1,4 +1,3 @@
-
 package com.app.clases;
 
 import javax.swing.JComboBox;
@@ -42,12 +41,13 @@ public class ClaseComboBox {
     }
 
     /**
-     * Recibe de un combox los datos como un String, el
-     * <code>returnColumn</code> se refiere a que columna segun nuestra consulta
-     * debe retornar, ya sea <code>Codigo</code> o <code>Descripcion</code>.
+     * Recibe de un combox los datos como un String, el returnColumn se refiere
+     * a que columna segun nuestra consulta debe retornar, ya sea Codigo o
+     * Descripcion.
+     *
      * @param jcombox
      * @param returnColumn
-     * @return 
+     * @return
      */
     public static String getComboxString(JComboBox jcombox, int returnColumn) {
         returnColumn -= 1;
@@ -55,9 +55,9 @@ public class ClaseComboBox {
     }
 
     /**
-     * Recibe de un combox los datos como un int, el <code>returnColumn</code>
-     * se refiere a que columna segun nuestra consulta debe retornar, ya sea
-     * <code>Codigo</code> o <code>Descripcion</code>.
+     * Recibe de un combox los datos como un int, el returnColumn se refiere a
+     * que columna segun nuestra consulta debe retornar, ya sea Codigo o
+     * Descripcion.
      *
      * @param jcombox
      * @param returnColumn
@@ -67,7 +67,6 @@ public class ClaseComboBox {
         returnColumn -= 1;
         return Integer.parseInt((((String[]) jcombox.getSelectedItem())[returnColumn]));
     }
-
 
     /**
      * Permite cargar un combox con la forma de vector una dimension (String[])
@@ -84,9 +83,9 @@ public class ClaseComboBox {
 
     /**
      * Permite posicionar el indice de un combo a partir de la busqueda de un
-     * String.<br>
-     * Este metodo solamente evalua un combo predeterminado y no de doble
-     * dimension
+     * String.
+     * <br>Este metodo solamente evalua un combo predeterminado y no de doble
+     * dimension</br>
      *
      * @param comboBox
      * @param datoBuscar
@@ -96,7 +95,6 @@ public class ClaseComboBox {
             if (comboBox.getItemAt(i).toString().equals(datoBuscar)) {
                 comboBox.setSelectedIndex(i);
             }
-
         }
     }
 

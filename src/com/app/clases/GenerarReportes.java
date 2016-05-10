@@ -40,19 +40,11 @@ public class GenerarReportes {
             String desde, String hasta, char tipo) {
         String reporte = frm_Padre.ubicacionReport + "listadosDosCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
-        try {
-            if (rs.last()) {
-                int cantidadRow = rs.getRow();
-                rs.beforeFirst();
-                HashMap parameters = getParametros(
-                        new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
-                this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
-            }
-        } catch (SQLException ex) {
-            MensajeSistema.setException("Se produjo un error al Contar el Registro!!!", ex);
-        }
+        HashMap parameters = getParametros(
+                new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
+                new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
+        this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
     }
 
     /**
@@ -68,29 +60,18 @@ public class GenerarReportes {
             String desde, String hasta, char tipo, String tituloForaneo) {
         String reporte = frm_Padre.ubicacionReport + "listadosTresCampos.jasper";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
-        try {
-            if (rs.last()) {
-                int cantidadRow = rs.getRow();
-                rs.beforeFirst();
-                HashMap parameters = getParametros(
-                        new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), tituloForaneo, String.valueOf(cantidadRow)});
-                this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
-            } else {
-                MensajeSistema.MensajeVarios("Se produjo un error al Contar los Registros", MensajeSistema.ERROR_MESSAGE());
-            }
-        } catch (SQLException ex) {
-            MensajeSistema.setException("Se produjo un error al Contar el Registro!!!", ex);
-        }
+        HashMap parameters = getParametros(
+                new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo"},
+                new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), tituloForaneo});
+        this.mostrarReporteVentana(parameters, jrRS, reporte, tipo, tituloVentanaActual);
     }
 
     public JasperPrint getReporte(TableModel resu, String reporte, String tituloVentanaActual, String desde, String hasta) {
-        int cantidadRow = resu.getRowCount();
         HashMap parameters = getParametros(
-                new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
+                new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                 new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
+                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
         try {
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
             JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
@@ -105,24 +86,16 @@ public class GenerarReportes {
 
     public JasperPrint getReporte(ResultSet rs, String reporte, String tituloVentanaActual, String desde, String hasta) {
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
+        HashMap parameters = getParametros(
+                new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
+                new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
+                    Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
         try {
-            if (rs.last()) {
-                int cantidadRow = rs.getRow();
-                rs.beforeFirst();
-                HashMap parameters = getParametros(
-                        new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
-                        new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                            Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
-                try {
-                    JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
-                    JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
-                    return masterPrint;
-                } catch (JRException ex) {
-                    MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
-                }
-            }
-        } catch (SQLException ex) {
-            MensajeSistema.setException("Se produjo un error al Contar el Registro!!!", ex);
+            JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
+            JasperPrint masterPrint = JasperFillManager.fillReport(masterReport, parameters, jrRS);
+            return masterPrint;
+        } catch (JRException ex) {
+            MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
         }
         return null;
     }
@@ -141,14 +114,10 @@ public class GenerarReportes {
     public void mostrarReporteVentana(ResultSet resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
         try {
-            resu.last();
-            int cantidadRow = resu.getRow();
-            resu.beforeFirst();
             HashMap parameters = getParametros(
-                    new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
+                    new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
-            resu.beforeFirst();
+                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
             JRResultSetDataSource jrRS = new JRResultSetDataSource(resu);
 
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(this.getClass().getResource(reporte));
@@ -156,20 +125,16 @@ public class GenerarReportes {
             mostrarEnVentana(masterPrint, tipo, tituloVentanaActual);
         } catch (JRException ex) {
             MensajeSistema.setException("Se produjo un Error inesperado al crear el listado...", ex);
-        } catch (SQLException ex) {
-            MensajeSistema.setSQLException(ex);
         }
     }
 
     public void mostrarReporteVentana(TableModel resu, String reporte, String desde, String hasta,
             char tipo, String tituloVentanaActual) {
         try {
-            int cantidadRow = resu.getRowCount();
-
             HashMap parameters = getParametros(
-                    new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "cantidadRow"},
+                    new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
                     new String[]{tituloVentanaActual, desde, hasta, Configuracion.getEMP_NOMBRE(),
-                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE(), String.valueOf(cantidadRow)});
+                        Configuracion.getSUC_NOMBRE(), Configuracion.getUSU_NOMBRE()});
             JRTableModelDataSource jrRS = new JRTableModelDataSource(resu);
             URL in = this.getClass().getResource(reporte);
             JasperReport masterReport = (JasperReport) JRLoader.loadObject(in);

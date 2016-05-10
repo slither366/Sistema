@@ -8,7 +8,7 @@ import javax.swing.JLabel;
  *
  * @author Diego
  */
-public class labelHoraHMS extends label implements Runnable {
+public class labelHoraHMS extends javax.swing.JLabel implements Runnable {
 
     public labelHoraHMS() {
         this.setPreferredSize(new Dimension(50, 20));

@@ -64,7 +64,7 @@ public class backup extends frm_Padre implements Runnable {
         txtPort = new com.app.paleta.txtNumeros();
         cheLocalHost = new javax.swing.JCheckBox();
         BtnConectar = new javax.swing.JButton();
-        jLabelHoraHMS1 = new com.app.paleta.JLabelHoraHMS();
+        jLabelHoraHMS1 = new com.app.paleta.labelHoraHMS();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -575,7 +575,7 @@ public class backup extends frm_Padre implements Runnable {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private com.app.paleta.JLabelHoraHMS jLabelHoraHMS1;
+    private com.app.paleta.labelHoraHMS jLabelHoraHMS1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -7,7 +7,7 @@ import com.app.form.Especiales.frm_Padre.Metodos;
 import java.awt.event.ActionEvent;
 
 /**
- * este formulario sirve para cualquier tabla de dos campos y un foranero que
+ * Este formulario sirve para cualquier tabla de dos campos y un foranero que
  * existe en la base de datos
  *
  * @author Diego

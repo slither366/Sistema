@@ -79,7 +79,7 @@ public class frm_Configuracion extends frm_Padre {
         jPanel1 = new javax.swing.JPanel();
         jPanelTitulo = new javax.swing.JPanel();
         textTitulo = new javax.swing.JLabel();
-        jLabelFechaHora1 = new com.app.paleta.JLabelFechaHora();
+        jLabelFechaHora1 = new com.app.paleta.labelFechaHora();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -812,7 +812,7 @@ public class frm_Configuracion extends frm_Padre {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.app.paleta.JLabelFechaHora jLabelFechaHora1;
+    private com.app.paleta.labelFechaHora jLabelFechaHora1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

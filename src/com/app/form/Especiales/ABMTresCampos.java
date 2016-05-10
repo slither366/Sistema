@@ -1,6 +1,5 @@
 package com.app.form.Especiales;
 
-import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
@@ -9,8 +8,8 @@ import com.app.form.Especiales.frm_Padre.Metodos;
 import java.awt.event.ActionEvent;
 
 /**
- * este formulario sirve para cualquier tabla de dos campos y un foranero que
- * existe en la base de datos
+ * Este formulario sirve para cualquier tabla de TRES campos existe en la base
+ * de datos
  *
  * @author Diego
  */

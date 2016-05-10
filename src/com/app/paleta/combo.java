@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Diego
+ * @author dramosort
  */
 public class combo extends javax.swing.JComboBox {
 
@@ -31,6 +31,11 @@ public class combo extends javax.swing.JComboBox {
         }
     }
 
+    /**
+     * Metodo para agregar registros en el combo
+     *
+     * @param item
+     */
     public void addItem(String item) {
         this.addItem(new ClassComboBox("", item));
     }
@@ -96,7 +101,7 @@ public class combo extends javax.swing.JComboBox {
     public String getCodigo(int posicion) {
         try {
             ClassComboBox model = (ClassComboBox) this.getItemAt(posicion);
-            return model.getDescri();
+            return model.getCodigo();
         } catch (Exception ex) {
             return "";
         }
@@ -118,8 +123,8 @@ public class combo extends javax.swing.JComboBox {
     }
 
     /**
-     * Metodo que muestra el contenido del comboBox<br>
-     * setPopupVisible(true)
+     * Metodo que muestra el contenido del comboBox
+     * <br>setPopupVisible(true)</br>
      */
     public void MostrarContenido() {
         this.setPopupVisible(true);

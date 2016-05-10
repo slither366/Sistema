@@ -277,6 +277,7 @@ public class Listar_Fecha extends frm_Padre {
         this.ModoEdicion(true);
         this.pnlListar.btnPantalla.setEnabled(false);
         this.pnlListar.btnImpresora.setEnabled(false);
+        this.pnlListar.btnExportar.setEnabled(false);
         this.txtFecha1.setText("01/" + ClaseFecha.getMonth() + "/" + ClaseFecha.getYear());
         this.txtFecha1.grabFocus();
     }
@@ -285,8 +286,8 @@ public class Listar_Fecha extends frm_Padre {
         try {
             ResultSet resu = traerDatos();
             if (resu.next()) {
-                if (modalidad == 'E') {
-                    resu.beforeFirst();
+                resu.beforeFirst();
+                if (modalidad == 'E') {                    
                     Excel excel = new Excel();
                     excel.export(getConexion.getDefaultTableModel(resu), this.tituloVentanaActual);
                     if (MensajeSistema.Pregunta_YES_NO(this, "Desea abrir el archivo exportado???") == 0) {

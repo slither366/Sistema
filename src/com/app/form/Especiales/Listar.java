@@ -459,6 +459,7 @@ public class Listar extends frm_Padre {
                 this.ModoEdicion(true);
                 this.pnlListar.btnPantalla.setEnabled(false);
                 this.pnlListar.btnImpresora.setEnabled(false);
+                this.pnlListar.btnExportar.setEnabled(false);                
                 this.txtCod_Desde.setText(desde);
                 this.txtCod_Desde.grabFocus();
             }
@@ -469,8 +470,8 @@ public class Listar extends frm_Padre {
         try {
             ResultSet resu = traerDatos();
             if (resu.next()) {
-                if (modalidad == 'E') {//Exportar
-                    resu.beforeFirst();
+                resu.beforeFirst();
+                if (modalidad == 'E') {//Exportar                    
                     Excel excel = new Excel();
                     excel.export(getConexion.getDefaultTableModel(resu), this.tituloVentanaActual);
                     if (MensajeSistema.Pregunta_YES_NO(this, "Desea abrir el archivo exportado???") == 0) {

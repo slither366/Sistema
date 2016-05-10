@@ -14,6 +14,11 @@ import java.util.GregorianCalendar;
  */
 public class ClaseFecha {
 
+    /**
+     * Metodo que retorna la fecha actual del Sistema
+     *
+     * @return
+     */
     public static Date getFecha() {
         return Calendar.getInstance().getTime();
     }
@@ -93,12 +98,24 @@ public class ClaseFecha {
         return result;
     }
 
+    /**
+     * Metodo que retorna el nombre del mes.
+     * <br>El Mes extrae de la fecha que se envia como parametro</br>
+     *
+     * @param fecha
+     * @return
+     */
     public static String getNombreMes(Date fecha) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(fecha);
         return getNombreMes(cal.get(Calendar.MONTH) + 1);
     }
 
+    /**
+     * Metodo que retorna el nombre del mes actual
+     *
+     * @return
+     */
     public static String getNombreMes() {
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(getFecha());
@@ -522,7 +539,7 @@ public class ClaseFecha {
         int diasPorMes = 0;
         int diasTipoMes = 0;
 
-	//
+        //
         // Calculo de días del mes
         //
         if (mesInicio == 2) {
@@ -550,12 +567,12 @@ public class ClaseFecha {
             }
         }
 
-	//
+        //
         // Calculo de diferencia de año, mes y dia
         //
         if ((anioInicio > anioFin) || (anioInicio == anioFin && mesInicio > mesFin)
                 || (anioInicio == anioFin && mesInicio == mesFin && diaInicio > diaFin)) {
-		// La fecha de inicio es posterior a la fecha fin
+            // La fecha de inicio es posterior a la fecha fin
             // System.out.println("La fecha de inicio ha de ser anterior a la fecha fin");
             return -1;
         } else {
@@ -585,7 +602,7 @@ public class ClaseFecha {
         }
 	//System.out.println("Han transcurrido " + anios + " Años, " + mesesPorAnio + " Meses y " + diasPorMes + " Días.");		
 
-	//
+        //
         // Totales
         //
         long returnValue = -1;

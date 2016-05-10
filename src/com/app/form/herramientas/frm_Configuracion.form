@@ -116,7 +116,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="com.app.paleta.JLabelFechaHora" name="jLabelFechaHora1">
+        <Component class="com.app.paleta.labelFechaHora" name="jLabelFechaHora1">
         </Component>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
 

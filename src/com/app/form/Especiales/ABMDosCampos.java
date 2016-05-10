@@ -8,6 +8,8 @@ import com.app.form.Especiales.frm_Padre.Metodos;
 import java.awt.event.ActionEvent;
 
 /**
+ * Este formulario sirve para cualquier tabla de dos campos existe en la base de
+ * datos
  *
  * @author Diego
  */

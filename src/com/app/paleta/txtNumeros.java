@@ -113,6 +113,10 @@ public class txtNumeros extends textoPadre {
         return this.getText().trim().isEmpty() ? 0 : Integer.parseInt(this.getText().replaceAll(",", ""));
     }
 
+    public String getNumeroString() {
+        return this.getText().trim().isEmpty() ? "0" : this.getText().replaceAll(",", "");
+    }
+
     public void setNumero(double valor) {
         this.setText(ClaseNumeros.formatoMiles(String.valueOf(valor), ConDecimal ? CantDecimal : 0));
     }

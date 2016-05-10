@@ -8,7 +8,7 @@ import javax.swing.JLabel;
  *
  * @author Diego
  */
-public class labelFecha extends label implements Runnable {
+public class labelFecha extends javax.swing.JLabel implements Runnable {
 
     public labelFecha() {
         this.setPreferredSize(new Dimension(110, 20));
