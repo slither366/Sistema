@@ -9,6 +9,7 @@ import com.app.paleta.txtPassword;
 import com.app.paleta.txtTelefono;
 import com.app.paleta.txtTexto;
 import com.app.config.MensajeSistema;
+import com.app.paleta.combo;
 import com.app.paleta.txtNumerosFormato;
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -268,6 +269,10 @@ public class ClaseCampos {
                 jpanel.getComponent(i).setEnabled(boo);
                 continue;
             }
+            if (jpanel.getComponent(i).getClass().equals(combo.class)) {
+                jpanel.getComponent(i).setEnabled(boo);
+                continue;
+            }
             if (jpanel.getComponent(i).getClass().equals(JComboBox.class)) {
                 jpanel.getComponent(i).setEnabled(boo);
                 continue;
@@ -337,6 +342,11 @@ public class ClaseCampos {
             if (panel[i].getClass().equals(txtFecha.class)) {
                 txtFecha jTexto = (txtFecha) jpanel.getComponent(i);
                 jTexto.setText("");
+                continue;
+            }
+            if (panel[i].getClass().equals(combo.class)) {
+                combo jCombo = (combo) jpanel.getComponent(i);
+                jCombo.removeAllItems();
                 continue;
             }
             if (panel[i].getClass().equals(JComboBox.class)) {
