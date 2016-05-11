@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class pnlTransacional extends javax.swing.JPanel {
 
     public btnNuevo btnNuevo;
-    public btnEditar btnModificar;
+    public btnEditar btnConsultar;
     public btnBorrar btnBorrar;
     public btnGrabar btnGrabar;
     public btnCancelar btnCancelar;
@@ -19,7 +19,7 @@ public class pnlTransacional extends javax.swing.JPanel {
     public pnlTransacional() {
         this.setPreferredSize(new java.awt.Dimension(534, 56));
         btnNuevo = new com.app.botones.btnNuevo();
-        btnModificar = new com.app.botones.btnEditar();
+        btnConsultar = new com.app.botones.btnEditar();
         btnBorrar = new com.app.botones.btnBorrar();
         btnGrabar = new com.app.botones.btnGrabar();
         btnCancelar = new com.app.botones.btnCancelar();
@@ -33,7 +33,7 @@ public class pnlTransacional extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -50,19 +50,19 @@ public class pnlTransacional extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
+        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnConsultar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.btnNuevo.setActionCommand("btn1");
-        this.btnModificar.setActionCommand("btn2");
-        this.btnModificar.setText("Consultar");
-        this.btnModificar.setMnemonic('C');
-        this.btnModificar.setToolTipText("Consultar Registros...");
+        this.btnConsultar.setActionCommand("btn2");
+        this.btnConsultar.setText("Consultar");
+        this.btnConsultar.setMnemonic('C');
+        this.btnConsultar.setToolTipText("Consultar Registros...");
         this.btnBorrar.setActionCommand("btn3");        
         this.btnGrabar.setActionCommand("btn4");
         this.btnCancelar.setActionCommand("btn5");
@@ -76,7 +76,7 @@ public class pnlTransacional extends javax.swing.JPanel {
      */
     public void addListener(ActionListener a) {
         this.btnNuevo.addActionListener(a);
-        this.btnModificar.addActionListener(a);
+        this.btnConsultar.addActionListener(a);
         this.btnBorrar.addActionListener(a);
         this.btnGrabar.addActionListener(a);
         this.btnCancelar.addActionListener(a);
@@ -90,7 +90,7 @@ public class pnlTransacional extends javax.swing.JPanel {
      */
     public void ModoEdicion(boolean b) {
         this.btnNuevo.setEnabled(b);
-        this.btnModificar.setEnabled(b);
+        this.btnConsultar.setEnabled(b);
         this.btnBorrar.setEnabled(b);
         this.btnGrabar.setEnabled(!b);
         this.btnCancelar.setEnabled(!b);

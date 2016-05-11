@@ -17,8 +17,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class txtFecha extends textoPadre {
 
-    public txtFecha() {
-        //this.setText("txtFecha");        
+    public txtFecha() {  
         this.setToolTipText("Ingrese la fecha...");
         try {
             MaskFormatter mascara = new MaskFormatter("##/##/####");

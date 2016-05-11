@@ -30,7 +30,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public char operacion;
     public static ConexionBD getConexion;
     public static Propiedades getPropiedades;
-    public Image getIcono;    
+    public Image getIcono;
     public DefaultTableModel miTabla;
 
     public frm_Padre() {
@@ -132,7 +132,28 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     }
 
     /**
-     * Metodo que verifica los permisos de un formulario de listado en la Base
+     * Metodo que verifica los permisos de un formulario Transaccional en la
+     * Base de Datos
+     *
+     * @author dramosort
+     * @param cod_ventana
+     */
+    public void getPermisosTransaccional(int cod_ventana) {
+        String[] resu = getConexion.getDescripciones("acc_principal",
+                new String[]{"autorizado_ok", "agrega_ok", "borra_ok", "listar_ok"},
+                new String[]{EMP_CODIGO, SUC_CODIGO, "Perf_Codigo", "Men_Codigo"},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
+                    Configuracion.getPERF_CODIGO(), String.valueOf(cod_ventana)});
+        if (resu[0] != null) {
+            this.Autorizado_ok = "1".equals(resu[0]);
+            this.Agrega_OK = "1".equals(resu[1]);
+            this.Borra_OK = "1".equals(resu[2]);
+            this.Listar_OK = "1".equals(resu[3]);
+        }
+    }
+
+    /**
+     * Metodo que verifica los permisos de un formulario de Listado en la Base
      * de Datos
      *
      * @author dramosort

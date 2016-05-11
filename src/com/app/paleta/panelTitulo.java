@@ -1,5 +1,6 @@
 package com.app.paleta;
 
+import static javax.swing.GroupLayout.Alignment.CENTER;
 import javax.swing.JLabel;
 
 /**
@@ -42,5 +43,26 @@ public class panelTitulo extends panel {
      */
     public void setTextTitulo(String text) {
         this.textTitulo.setText(text);
+    }
+
+    /**
+     * Metodo que alinea lado izquierdo el texto del titulo
+     */
+    public void AlinearIzquierdo() {
+        this.textTitulo.setHorizontalAlignment(JLabel.RIGHT);
+    }
+
+    /**
+     * Metodo que alinea en el centro el texto del titulo
+     */
+    public void AlinearCentro() {
+        this.textTitulo.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+    /**
+     * Metodo que alinea lado derecho el texto del titulo
+     */
+    public void AlinearDerecha() {
+        this.textTitulo.setHorizontalAlignment(JLabel.LEFT);
     }
 }

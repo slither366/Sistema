@@ -92,6 +92,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1700.setEnabled(Configuracion.BuscarMenu(1700));
 
         jMenu2000.setEnabled(Configuracion.BuscarMenu(2000));
+        jMenu2100.setEnabled(Configuracion.BuscarMenu(2100));
+        jMenu2110.setEnabled(Configuracion.BuscarMenu(2110));
+        jMenu2111.setEnabled(Configuracion.BuscarMenu(2111));
+        jMenu2112.setEnabled(Configuracion.BuscarMenu(2112));
+        jMenu2200.setEnabled(Configuracion.BuscarMenu(2200));
+        jMenu2210.setEnabled(Configuracion.BuscarMenu(2210));
+        jMenu2300.setEnabled(Configuracion.BuscarMenu(2300));
+        jMenu2400.setEnabled(Configuracion.BuscarMenu(2400));
 
         jMenu3000.setEnabled(Configuracion.BuscarMenu(3000));
         jMenu3100.setEnabled(Configuracion.BuscarMenu(3100));
@@ -136,8 +144,8 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         frm_Principal.jPanelDatos.setVisible(true);
         frm_Principal.jPanelLateral.setVisible(true);
         frm_Principal.jLabelFecha.setText("Fecha: " + ClaseFecha.getFechaActualLargaCompleta());
-        frm_Principal.jLabelUsuario.setText(Configuracion.getUSU_NOMBRE()+ " - " + Configuracion.getPERF_NOMBRE());
-        frm_Principal.jLabelEmpresa.setText("Empresa: " + Configuracion.getEMP_NOMBRE()+ "       Sucursal: " + Configuracion.getSUC_NOMBRE());
+        frm_Principal.jLabelUsuario.setText(Configuracion.getUSU_NOMBRE() + " - " + Configuracion.getPERF_NOMBRE());
+        frm_Principal.jLabelEmpresa.setText("Empresa: " + Configuracion.getEMP_NOMBRE() + "       Sucursal: " + Configuracion.getSUC_NOMBRE());
         frm_Principal.btnCerrarSecion.setVisible(true);
     }
 
@@ -233,6 +241,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1320 = new javax.swing.JMenuItem();
         jMenu1700 = new javax.swing.JMenuItem();
         jMenu2000 = new javax.swing.JMenu();
+        jMenu2100 = new javax.swing.JMenu();
+        jMenu2110 = new javax.swing.JMenu();
+        jMenu2111 = new javax.swing.JMenuItem();
+        jMenu2112 = new javax.swing.JMenuItem();
+        jMenu2200 = new javax.swing.JMenu();
+        jMenu2210 = new javax.swing.JMenuItem();
+        jMenu2300 = new javax.swing.JMenu();
+        jMenu2400 = new javax.swing.JMenu();
         jMenu3000 = new javax.swing.JMenu();
         jMenu3100 = new javax.swing.JMenuItem();
         jMenu4000 = new javax.swing.JMenu();
@@ -267,7 +283,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5310 = new javax.swing.JMenuItem();
         jMenu5320 = new javax.swing.JMenuItem();
         jMenu5400 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu6000 = new javax.swing.JMenu();
         jMenu6100 = new javax.swing.JMenuItem();
         jMenu7000 = new javax.swing.JMenu();
@@ -438,7 +453,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1000.setMnemonic('1');
         jMenu1000.setText("1- Mantenimientos");
 
-        jMenu1100.setMnemonic('3');
+        jMenu1100.setMnemonic('1');
         jMenu1100.setText("1- Productos");
 
         jMenu1110.setMnemonic('1');
@@ -701,6 +716,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1000.add(jMenu1200);
 
+        jMenu1300.setMnemonic('3');
         jMenu1300.setText("3- Usuarios");
 
         jMenu1310.setText("1- Mantenimiento");
@@ -721,7 +737,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu1000.add(jMenu1300);
 
-        jMenu1700.setMnemonic('3');
+        jMenu1700.setMnemonic('7');
         jMenu1700.setText("7- Contactos");
         jMenu1700.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -734,6 +750,57 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu2000.setMnemonic('2');
         jMenu2000.setText("2- Movimientos");
+
+        jMenu2100.setMnemonic('1');
+        jMenu2100.setText("1- Contables");
+
+        jMenu2110.setMnemonic('1');
+        jMenu2110.setText("1- Cotización");
+
+        jMenu2111.setMnemonic('1');
+        jMenu2111.setText("1- Definición");
+        jMenu2111.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2111ActionPerformed(evt);
+            }
+        });
+        jMenu2110.add(jMenu2111);
+
+        jMenu2112.setMnemonic('2');
+        jMenu2112.setText("2- Consulta & Listado");
+        jMenu2112.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2112ActionPerformed(evt);
+            }
+        });
+        jMenu2110.add(jMenu2112);
+
+        jMenu2100.add(jMenu2110);
+
+        jMenu2000.add(jMenu2100);
+
+        jMenu2200.setMnemonic('2');
+        jMenu2200.setText("2- Stock");
+
+        jMenu2210.setMnemonic('1');
+        jMenu2210.setText("1- Ajustes");
+        jMenu2210.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2210ActionPerformed(evt);
+            }
+        });
+        jMenu2200.add(jMenu2210);
+
+        jMenu2000.add(jMenu2200);
+
+        jMenu2300.setMnemonic('3');
+        jMenu2300.setText("3- Facturación");
+        jMenu2000.add(jMenu2300);
+
+        jMenu2400.setMnemonic('4');
+        jMenu2400.setText("4- Compras");
+        jMenu2000.add(jMenu2400);
+
         MenuBar.add(jMenu2000);
 
         jMenu3000.setMnemonic('3');
@@ -759,6 +826,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5100.setMnemonic('1');
         jMenu5100.setText("1- Administración de Sistema");
 
+        jMenu5110.setMnemonic('1');
         jMenu5110.setText("1- Empresas");
 
         jMenu5111.setMnemonic('1');
@@ -770,22 +838,26 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5110.add(jMenu5111);
 
+        jMenu5112.setMnemonic('2');
         jMenu5112.setText("2- Consulta & Listado");
         jMenu5110.add(jMenu5112);
 
         jMenu5100.add(jMenu5110);
 
+        jMenu5120.setMnemonic('2');
         jMenu5120.setText("2- Sucursales");
 
-        jMenu5121.setMnemonic('2');
+        jMenu5121.setMnemonic('1');
         jMenu5121.setText("1- Mantenimiento");
         jMenu5120.add(jMenu5121);
 
+        jMenu5122.setMnemonic('2');
         jMenu5122.setText("2- Consulta & Listado");
         jMenu5120.add(jMenu5122);
 
         jMenu5100.add(jMenu5120);
 
+        jMenu5130.setMnemonic('3');
         jMenu5130.setText("3- Menus");
 
         jMenu5131.setMnemonic('1');
@@ -797,14 +869,16 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5130.add(jMenu5131);
 
+        jMenu5132.setMnemonic('2');
         jMenu5132.setText("2- Consulta & Listado");
         jMenu5130.add(jMenu5132);
 
         jMenu5100.add(jMenu5130);
 
+        jMenu5140.setMnemonic('4');
         jMenu5140.setText("4- Permisos");
 
-        jMenu5141.setMnemonic('2');
+        jMenu5141.setMnemonic('1');
         jMenu5141.setText("1- Mantenimiento");
         jMenu5141.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -813,14 +887,16 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5140.add(jMenu5141);
 
+        jMenu5142.setMnemonic('2');
         jMenu5142.setText("2- Consulta & Listado");
         jMenu5140.add(jMenu5142);
 
         jMenu5100.add(jMenu5140);
 
+        jMenu5150.setMnemonic('5');
         jMenu5150.setText("5- Usuarios");
 
-        jMenu5151.setMnemonic('3');
+        jMenu5151.setMnemonic('1');
         jMenu5151.setText("1- Mantenimiento");
         jMenu5151.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -829,6 +905,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5150.add(jMenu5151);
 
+        jMenu5152.setMnemonic('2');
         jMenu5152.setText("2- Consulta & Listado");
         jMenu5150.add(jMenu5152);
 
@@ -837,11 +914,12 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5000.add(jMenu5100);
 
         jMenu5200.setMnemonic('2');
-        jMenu5200.setText("2- Parametros iniciales");
+        jMenu5200.setText("2- Parametros Iniciales");
 
+        jMenu5210.setMnemonic('1');
         jMenu5210.setText("1- Bancos");
 
-        jMenu5211.setMnemonic('3');
+        jMenu5211.setMnemonic('1');
         jMenu5211.setText("1- Mantenimiento");
         jMenu5211.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -850,14 +928,16 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5210.add(jMenu5211);
 
+        jMenu5212.setMnemonic('1');
         jMenu5212.setText("2- Consulta & Listado");
         jMenu5210.add(jMenu5212);
 
         jMenu5200.add(jMenu5210);
 
+        jMenu5220.setMnemonic('2');
         jMenu5220.setText("2- Ciudades");
 
-        jMenu5221.setMnemonic('4');
+        jMenu5221.setMnemonic('1');
         jMenu5221.setText("1- Mantenimiento");
         jMenu5221.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -866,14 +946,16 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5220.add(jMenu5221);
 
+        jMenu5222.setMnemonic('2');
         jMenu5222.setText("2- Consulta & Listado");
         jMenu5220.add(jMenu5222);
 
         jMenu5200.add(jMenu5220);
 
+        jMenu5230.setMnemonic('3');
         jMenu5230.setText("3- Nacionalidades");
 
-        jMenu5231.setMnemonic('5');
+        jMenu5231.setMnemonic('1');
         jMenu5231.setText("1- Mantenimiento");
         jMenu5231.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -882,6 +964,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5230.add(jMenu5231);
 
+        jMenu5232.setMnemonic('2');
         jMenu5232.setText("2- Consulta & Listado");
         jMenu5230.add(jMenu5232);
 
@@ -890,8 +973,9 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5000.add(jMenu5200);
 
         jMenu5300.setMnemonic('3');
-        jMenu5300.setText("3- Contribuyentes");
+        jMenu5300.setText("3-Contribuyentes");
 
+        jMenu5310.setMnemonic('1');
         jMenu5310.setText("5.3.1- Mantener Contribuyentes");
         jMenu5310.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -900,6 +984,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5300.add(jMenu5310);
 
+        jMenu5320.setMnemonic('2');
         jMenu5320.setText("5.3.2- Cargar Contribuyentes");
         jMenu5320.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -918,19 +1003,12 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu5000.add(jMenu5400);
 
-        jMenuItem1.setText("Cotizacion");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu5000.add(jMenuItem1);
-
         MenuBar.add(jMenu5000);
 
         jMenu6000.setMnemonic('6');
         jMenu6000.setText("6- Acerca de.");
 
+        jMenu6100.setMnemonic('1');
         jMenu6100.setText("1- Este SoftWare");
         jMenu6100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -944,6 +1022,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu7000.setMnemonic('7');
         jMenu7000.setText("7- Salir");
 
+        jMenu7100.setMnemonic('1');
         jMenu7100.setText("1- Salir del Sistema");
         jMenu7100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -980,7 +1059,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenu3100ActionPerformed
 
     private void jMenu5221ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5221ActionPerformed
-        
+
     }//GEN-LAST:event_jMenu5221ActionPerformed
 
     private void jMenu5131ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5131ActionPerformed
@@ -1133,10 +1212,17 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         this.Acerca_de();
     }//GEN-LAST:event_jMenu6100ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        callMenus.CotizacionSet(1111);
-        callMenus.CotizacionSet_Lst(1111);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenu2111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2111ActionPerformed
+        callMenus.CotizacionSet(2111);
+    }//GEN-LAST:event_jMenu2111ActionPerformed
+
+    private void jMenu2112ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2112ActionPerformed
+        callMenus.CotizacionSet_Lst(2112);
+    }//GEN-LAST:event_jMenu2112ActionPerformed
+
+    private void jMenu2210ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2210ActionPerformed
+        callMenus.Stock_Ajuste(2210);
+    }//GEN-LAST:event_jMenu2210ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1217,6 +1303,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenuItem jMenu1320;
     public static javax.swing.JMenuItem jMenu1700;
     public static javax.swing.JMenu jMenu2000;
+    public static javax.swing.JMenu jMenu2100;
+    public static javax.swing.JMenu jMenu2110;
+    public static javax.swing.JMenuItem jMenu2111;
+    public static javax.swing.JMenuItem jMenu2112;
+    public static javax.swing.JMenu jMenu2200;
+    public static javax.swing.JMenuItem jMenu2210;
+    public static javax.swing.JMenu jMenu2300;
+    public static javax.swing.JMenu jMenu2400;
     public static javax.swing.JMenu jMenu3000;
     public static javax.swing.JMenuItem jMenu3100;
     public static javax.swing.JMenu jMenu4000;
@@ -1255,7 +1349,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenuItem jMenu6100;
     private javax.swing.JMenu jMenu7000;
     public static javax.swing.JMenuItem jMenu7100;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private static javax.swing.JPanel jPanelDatos;
     private static javax.swing.JPanel jPanelLateral;

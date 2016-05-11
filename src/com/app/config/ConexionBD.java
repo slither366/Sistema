@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConexionBD {
 
+    public String CURRENT_DATE = "CURRENT_DATE";
+    public String CURRENT_TIME = "CURRENT_TIME";
     private String SQL;
     private PreparedStatement ejecutar;
     private static Connection ConnectionDB;
@@ -577,25 +579,15 @@ public class ConexionBD {
     }
 
     public boolean Begin() {
-        return (ejecutaUpdate("begin"));
+        return ejecutaUpdate("BEGIN");
     }
 
     public boolean Commit() {
-        try {
-            getConexion().commit();
-            return true;
-        } catch (SQLException ex) {
-            return false;
-        } 
+        return ejecutaUpdate("COMMIT");
     }
 
     public boolean RollBack() {
-        try {
-            getConexion().rollback();
-            return true;
-        } catch (SQLException ex) {
-            return false;
-        }        
+        return ejecutaUpdate("ROLLBACK");
     }
 
     /**

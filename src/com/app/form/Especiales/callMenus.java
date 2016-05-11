@@ -5,6 +5,7 @@ import com.app.form.Productos;
 import com.app.form.Productos_Farm;
 import com.app.form.Productos_Farm_Lst;
 import com.app.form.Productos_lst;
+import com.app.form.Stock_Ajuste;
 import com.app.form.cont.CotizacionSet;
 import com.app.form.cont.CotizacionSet_Lst;
 import com.app.form.herramientas.frm_Password;
@@ -191,6 +192,11 @@ public class callMenus {
         menu.llamarInternalFrame(new CotizacionSet_Lst(cod_ventana), frm_Principal.escritorio);
     }
 
+    /*                        Movimiento Stock                                */
+    public static void Stock_Ajuste(int cod_ventana) {
+        menu.llamarInternalFrame(new Stock_Ajuste(cod_ventana), frm_Principal.escritorio);
+    }
+    
     /*                        Administrativo                                  */
     public static void Empresas(int cod_ventana) {
         menu.llamarInternalFrame(new Empresas(cod_ventana), frm_Principal.escritorio);

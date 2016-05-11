@@ -28,7 +28,7 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu1100">
               <Properties>
-                <Property name="mnemonic" type="int" value="51"/>
+                <Property name="mnemonic" type="int" value="49"/>
                 <Property name="text" type="java.lang.String" value="1- Productos"/>
               </Properties>
               <AuxValues>
@@ -435,6 +435,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu1300">
               <Properties>
+                <Property name="mnemonic" type="int" value="51"/>
                 <Property name="text" type="java.lang.String" value="3- Usuarios"/>
               </Properties>
               <AuxValues>
@@ -467,7 +468,7 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="jMenu1700">
               <Properties>
-                <Property name="mnemonic" type="int" value="51"/>
+                <Property name="mnemonic" type="int" value="55"/>
                 <Property name="text" type="java.lang.String" value="7- Contactos"/>
               </Properties>
               <Events>
@@ -488,6 +489,95 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="jMenu2100">
+              <Properties>
+                <Property name="mnemonic" type="int" value="49"/>
+                <Property name="text" type="java.lang.String" value="1- Contables"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+              <SubComponents>
+                <Menu class="javax.swing.JMenu" name="jMenu2110">
+                  <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
+                    <Property name="text" type="java.lang.String" value="1- Cotizaci&#xf3;n"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenu2111">
+                      <Properties>
+                        <Property name="mnemonic" type="int" value="49"/>
+                        <Property name="text" type="java.lang.String" value="1- Definici&#xf3;n"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu2111ActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenu2112">
+                      <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu2112ActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu2200">
+              <Properties>
+                <Property name="mnemonic" type="int" value="50"/>
+                <Property name="text" type="java.lang.String" value="2- Stock"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenu2210">
+                  <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
+                    <Property name="text" type="java.lang.String" value="1- Ajustes"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu2210ActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu2300">
+              <Properties>
+                <Property name="mnemonic" type="int" value="51"/>
+                <Property name="text" type="java.lang.String" value="3- Facturaci&#xf3;n"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu2400">
+              <Properties>
+                <Property name="mnemonic" type="int" value="52"/>
+                <Property name="text" type="java.lang.String" value="4- Compras"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3000">
           <Properties>
@@ -540,6 +630,7 @@
               <SubComponents>
                 <Menu class="javax.swing.JMenu" name="jMenu5110">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
                     <Property name="text" type="java.lang.String" value="1- Empresas"/>
                   </Properties>
                   <AuxValues>
@@ -560,6 +651,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5112">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -570,6 +662,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5120">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="50"/>
                     <Property name="text" type="java.lang.String" value="2- Sucursales"/>
                   </Properties>
                   <AuxValues>
@@ -578,7 +671,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5121">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <AuxValues>
@@ -587,6 +680,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5122">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -597,6 +691,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5130">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="51"/>
                     <Property name="text" type="java.lang.String" value="3- Menus"/>
                   </Properties>
                   <AuxValues>
@@ -617,6 +712,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5132">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -627,6 +723,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5140">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="52"/>
                     <Property name="text" type="java.lang.String" value="4- Permisos"/>
                   </Properties>
                   <AuxValues>
@@ -635,7 +732,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5141">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <Events>
@@ -647,6 +744,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5142">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -657,6 +755,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5150">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="53"/>
                     <Property name="text" type="java.lang.String" value="5- Usuarios"/>
                   </Properties>
                   <AuxValues>
@@ -665,7 +764,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5151">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="51"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <Events>
@@ -677,6 +776,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5152">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -690,7 +790,7 @@
             <Menu class="javax.swing.JMenu" name="jMenu5200">
               <Properties>
                 <Property name="mnemonic" type="int" value="50"/>
-                <Property name="text" type="java.lang.String" value="2- Parametros iniciales"/>
+                <Property name="text" type="java.lang.String" value="2- Parametros Iniciales"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -698,6 +798,7 @@
               <SubComponents>
                 <Menu class="javax.swing.JMenu" name="jMenu5210">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
                     <Property name="text" type="java.lang.String" value="1- Bancos"/>
                   </Properties>
                   <AuxValues>
@@ -706,7 +807,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5211">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="51"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <Events>
@@ -718,6 +819,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5212">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -728,6 +830,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5220">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="50"/>
                     <Property name="text" type="java.lang.String" value="2- Ciudades"/>
                   </Properties>
                   <AuxValues>
@@ -736,7 +839,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5221">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="52"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <Events>
@@ -748,6 +851,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5222">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -758,6 +862,7 @@
                 </Menu>
                 <Menu class="javax.swing.JMenu" name="jMenu5230">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="51"/>
                     <Property name="text" type="java.lang.String" value="3- Nacionalidades"/>
                   </Properties>
                   <AuxValues>
@@ -766,7 +871,7 @@
                   <SubComponents>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5231">
                       <Properties>
-                        <Property name="mnemonic" type="int" value="53"/>
+                        <Property name="mnemonic" type="int" value="49"/>
                         <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                       </Properties>
                       <Events>
@@ -778,6 +883,7 @@
                     </MenuItem>
                     <MenuItem class="javax.swing.JMenuItem" name="jMenu5232">
                       <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
                         <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
                       </Properties>
                       <AuxValues>
@@ -791,7 +897,7 @@
             <Menu class="javax.swing.JMenu" name="jMenu5300">
               <Properties>
                 <Property name="mnemonic" type="int" value="51"/>
-                <Property name="text" type="java.lang.String" value="3- Contribuyentes"/>
+                <Property name="text" type="java.lang.String" value="3-Contribuyentes"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -799,6 +905,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenu5310">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
                     <Property name="text" type="java.lang.String" value="5.3.1- Mantener Contribuyentes"/>
                   </Properties>
                   <Events>
@@ -810,6 +917,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenu5320">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="50"/>
                     <Property name="text" type="java.lang.String" value="5.3.2- Cargar Contribuyentes"/>
                   </Properties>
                   <Events>
@@ -832,14 +940,6 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cotizacion"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6000">
@@ -850,6 +950,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenu6100">
               <Properties>
+                <Property name="mnemonic" type="int" value="49"/>
                 <Property name="text" type="java.lang.String" value="1- Este SoftWare"/>
               </Properties>
               <Events>
@@ -869,6 +970,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenu7100">
               <Properties>
+                <Property name="mnemonic" type="int" value="49"/>
                 <Property name="text" type="java.lang.String" value="1- Salir del Sistema"/>
               </Properties>
               <Events>

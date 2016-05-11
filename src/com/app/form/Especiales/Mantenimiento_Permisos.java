@@ -678,7 +678,6 @@ public class Mantenimiento_Permisos extends frm_Padre {
                         registros, cantidadRow, 9) == false) {
                     this.getConexion.RollBack();
                 }
-
             }
             this.getConexion.Commit();
         }

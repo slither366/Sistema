@@ -3,6 +3,7 @@ package com.app.paleta;
 import com.app.clases.ClaseTable;
 import com.app.config.ConexionBD;
 import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +18,12 @@ public class tabla extends javax.swing.JTable {
     public void cargarDatos(ConexionBD con, String sql) {
         ResultSet rs = con.ejecutaQuery(sql);
         ClaseTable.cargarDatos(this, rs);
+        this.ordernar();
+    }
+
+    public void cargarDatos(Object[] valores) {
+        DefaultTableModel modelo = (DefaultTableModel) this.getModel();
+        modelo.addRow(valores);
         this.ordernar();
     }
 
@@ -272,5 +279,13 @@ public class tabla extends javax.swing.JTable {
      */
     public void print(String titulo) {
         ClaseTable.print(this, titulo);
+    }
+
+    public void remover() {
+        ClaseTable.removeRowjTable(this);
+    }
+
+    public void remover(int row) {
+        ClaseTable.removeRowjTable(this, row);
     }
 }

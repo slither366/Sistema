@@ -31,7 +31,7 @@ public class Calendario extends javax.swing.JDialog {
         this.setResizable(false);
         //this.setIconImage(Configuracion.getLogo());
         this.setTitle("..:: " + Configuracion.getTITULO_VENTANA() + " - Calendario ::..");
-        this.setName("Buscar");
+        this.setName("Calendario");
         this.setLocationRelativeTo(null);
         this.addWindowListener(new WindowAdapter() {
             @Override
