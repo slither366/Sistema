@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
  *
  * @author Diego
  */
-public class CotizacionSet extends frm_Padre implements Metodos {
+public final class CotizacionSet extends frm_Padre implements Metodos {
 
     public CotizacionSet(int cod_ventana) {
         initComponents();
@@ -30,8 +30,8 @@ public class CotizacionSet extends frm_Padre implements Metodos {
         this.txtVenta.setFormatear(true);
         this.txtCompra.setInicializar(11, 2);
         this.txtVenta.setInicializar(11, 2);
-        this.pnlBotones.addListener(this);
         this.getPermisos(this.Cod_Ventana);
+        this.pnlBotones.addListener(this);        
         this.Inicializar();
     }
 

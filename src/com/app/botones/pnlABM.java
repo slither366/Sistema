@@ -93,4 +93,7 @@ public class pnlABM extends javax.swing.JPanel {
         this.btnCancelar.setEnabled(!b);
         this.btnSalir.setEnabled(b);
     }
+    public void btnNuevoSetFocus(){
+        this.btnNuevo.grabFocus();
+    }
 }

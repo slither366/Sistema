@@ -67,6 +67,33 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
         return false;
     }
 
+    /**
+     * Metodo para borrar registros sin preguntar para realizar el borrado
+     *
+     * @param tabla
+     * @param campoCondicion
+     * @param valores
+     * @return
+     */
+    public boolean BorrarSinPreg(String tabla, String[] campoCondicion, String[] valores) {
+        return getConexion.eliminar(tabla, campoCondicion, valores);
+    }
+
+    /**
+     * Metodo que es para Borrar registros utilizando procedimiento almacenado
+     *
+     * @param ventana
+     * @param proc
+     * @param campos
+     * @return
+     */
+    public boolean Borrar(JInternalFrame ventana, String proc, String[] campos) {
+        if (MensajeSistema.Eliminar(ventana)) {
+            return getConexion.call(proc, campos);
+        }
+        return false;
+    }
+
     public void Salir(JInternalFrame ventana) {
         if (MensajeSistema.Salir(ventana)) {
             frm_Principal.llamarFormulario.CloseFrame(ventana);

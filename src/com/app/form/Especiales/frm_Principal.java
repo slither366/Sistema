@@ -1410,11 +1410,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
                 }
                 if (i == 50) {
                     try {
-                        System.out.println(host);
-                        System.out.println(port);
-                        System.out.println(user);
-                        System.out.println(pass);
-                        System.out.println(bd);
                         Conexion = new ConexionBD(host, port, user, pass, bd);
                         if (Conexion.getConexion() == null) {
                             correcto = false;

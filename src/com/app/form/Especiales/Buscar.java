@@ -11,6 +11,10 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ *
+ * @author dramosort
+ */
 public class Buscar extends javax.swing.JDialog {
 
     String ConsultaBase;

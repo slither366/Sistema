@@ -4,6 +4,7 @@ import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
+import com.app.form.Especiales.BuscarPopup;
 import com.app.form.Especiales.frm_Padre;
 import static com.app.form.Especiales.frm_Padre.EMP_CODIGO;
 import com.app.form.Especiales.frm_Padre.Metodos;
@@ -14,10 +15,11 @@ import java.awt.event.ActionEvent;
  *
  * @author dramosort
  */
-public class Stock_Ajuste extends frm_Padre implements Metodos {
+public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     public Stock_Ajuste(int cod_ventana) {
         initComponents();
+        this.setResizable(false);
         this.setName("Stock_Ajuste");
         this.UsarEmpresa = true;
         this.UsarSucursal = false;
@@ -35,17 +37,17 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         this.txtCod_Lote.setBdCodigo("Lot_Codigo");
         this.txtCod_Lote.setBdDescrip("nro_lote");
         this.txtCod_Lote.setBdTitulo("Lotes");
-        this.tblAjuste.setAncho(new int[]{0, 1, 2, 3, 4, 5, 6}, new int[]{60, 0, 200, 0, 60, 60, 50});
-        this.tblAjuste.setOcultar(new int[]{1,3});
+        this.tblAjuste.setAncho(new int[]{0, 1, 2, 3, 4, 5, 6}, new int[]{50, 0, 200, 0, 70, 60, 50});
+        this.tblAjuste.setOcultar(new int[]{1, 3});
         this.tblAjuste.formatearColumna(0, 0);
-        this.tblAjuste.formatearColumna(4, 2);
-        this.tblAjuste.setAlinearDerecha(new int[]{0, 4});
+        this.tblAjuste.formatearColumna(5, 2);
+        this.tblAjuste.setAlinearDerecha(new int[]{0, 5});
         this.txtCantidad.setInicializar(11, 2);
         this.txtCantidad.setFormatear(true);
         this.cboTipo.addItem("Entrada");
         this.cboTipo.addItem("Salida");
-        this.getPermisosTransaccional(cod_ventana);
-        this.pnlBotones.addListener(this);
+        this.getPermisos(cod_ventana);
+        this.pnlABM1.addListener(this);
         this.Inicializar();
     }
 
@@ -61,7 +63,11 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn4") == 0) {
             Grabar();
         } else if (Orden.compareTo("btn5") == 0) {
-            if (MensajeSistema.Cancelar(this)) {
+            if (operacion == 'A') {
+                if (MensajeSistema.Cancelar(this)) {
+                    this.Inicializar();
+                }
+            } else {
                 this.Inicializar();
             }
         } else if (Orden.compareTo("btn6") == 0) {
@@ -108,9 +114,7 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         jLabel14 = new javax.swing.JLabel();
         btnAgregar = new com.app.botones.btnAgregar();
         jLabel15 = new javax.swing.JLabel();
-        pnlBotones = new com.app.botones.pnlTransacional();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        pnlABM1 = new com.app.botones.pnlABM();
 
         tblAjuste.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -382,13 +386,15 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pnlABM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -399,7 +405,7 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlABM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -460,9 +466,12 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         if (tecla == ClaseTeclas.VK_ENTER()) {
             this.NvoAsto();
         } else if (tecla == ClaseTeclas.VK_ESC()) {
-            this.pnlBotones.btnCancelar.doClick();
+            this.pnlABM1.btnCancelar.doClick();
         } else if (tecla == ClaseTeclas.VK_F5()) {
-            this.pnlBotones.btnGrabar.setEnabled(this.tblAjuste.getRowCount() > 0);
+            this.pnlABM1.btnGrabar.setEnabled(this.tblAjuste.getRowCount() > 0);
+            if (this.pnlABM1.btnGrabar.isEnabled()) {
+                this.pnlABM1.btnGrabar.grabFocus();
+            }
         } else if (tecla == ClaseTeclas.VK_F8()) {
             this.BorrarAsto();
         }
@@ -578,7 +587,7 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblLote;
     private javax.swing.JLabel lblProducto;
-    private com.app.botones.pnlTransacional pnlBotones;
+    private com.app.botones.pnlABM pnlABM1;
     private com.app.paleta.panel pnlDatos;
     private com.app.paleta.panelTitulo pnlTitulo;
     private com.app.paleta.tabla tblAjuste;
@@ -592,27 +601,29 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public final void Inicializar() {
+    public void Inicializar() {
         this.pnlDatos.setTextNull();
         this.pnlDatos.setEnabled(false);
         this.tblAjuste.vaciar();
         this.lblLote.setText("");
         this.lblProducto.setText("");
         this.btnAgregar.setEnabled(false);
-        this.pnlBotones.btnNuevo.setEnabled(Agrega_OK);
-        this.pnlBotones.btnConsultar.setEnabled(Listar_OK);
-        this.pnlBotones.btnBorrar.setEnabled(Borra_OK);
-        this.pnlBotones.btnGrabar.setEnabled(false);
-        this.pnlBotones.btnCancelar.setEnabled(false);
-        this.pnlBotones.btnSalir.setEnabled(true);
-        if (this.pnlBotones.btnNuevo.isEnabled()) {
-            this.pnlBotones.btnNuevo.grabFocus();
-        } else if (this.pnlBotones.btnConsultar.isEnabled()) {
-            this.pnlBotones.btnConsultar.grabFocus();
-        } else if (this.pnlBotones.btnBorrar.isEnabled()) {
-            this.pnlBotones.btnBorrar.grabFocus();
+        this.pnlABM1.btnCancelar.setText("Cancelar");
+        this.pnlABM1.btnCancelar.setMnemonic('C');
+        this.pnlABM1.btnNuevo.setEnabled(Agrega_OK);
+        this.pnlABM1.btnModificar.setEnabled(Modifica_OK);
+        this.pnlABM1.btnBorrar.setEnabled(Borra_OK);
+        this.pnlABM1.btnGrabar.setEnabled(false);
+        this.pnlABM1.btnCancelar.setEnabled(false);
+        this.pnlABM1.btnSalir.setEnabled(true);
+        if (this.pnlABM1.btnNuevo.isEnabled()) {
+            this.pnlABM1.btnNuevo.grabFocus();
+        } else if (this.pnlABM1.btnModificar.isEnabled()) {
+            this.pnlABM1.btnModificar.grabFocus();
+        } else if (this.pnlABM1.btnBorrar.isEnabled()) {
+            this.pnlABM1.btnBorrar.grabFocus();
         } else {
-            this.pnlBotones.btnSalir.grabFocus();
+            this.pnlABM1.btnSalir.grabFocus();
         }
     }
 
@@ -634,7 +645,7 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
                         registros[i][2] = this.txtCod_Ajuste.getText();
                         registros[i][3] = this.tblAjuste.getValueAt(i, 0).toString();
                         registros[i][4] = this.tblAjuste.getValueAt(i, 1).toString();
-                        registros[i][5] = this.tblAjuste.getValueAt(i, 3).toString();                       
+                        registros[i][5] = this.tblAjuste.getValueAt(i, 3).toString();
                         registros[i][6] = this.tblAjuste.getValueAt(i, 5).toString();
                         registros[i][7] = this.tblAjuste.getValueAt(i, 6).toString().equals("Entrada") ? "1" : "2";
                     }
@@ -643,6 +654,40 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
                                 this.txtCod_Producto.getBdCodigo(), this.txtCod_Lote.getBdCodigo(), "cantidad", "tipo_Mov"},
                             registros, cantidadRow, 8) == false) {
                         this.getConexion.RollBack();
+                    }
+                }
+                this.getConexion.Commit();
+            }
+        } else {
+            if (MensajeSistema.Modificar(this)) {
+                int cantidadRow = this.tblAjuste.getRowCount();
+                this.getConexion.Begin();
+                boolean correcto = getConexion.actualizar(tablaConsutada,
+                        new String[]{"fecha_emi", descripcionConsultada},
+                        new String[]{this.txtFecha.getFecha(), txtObservacion.getText().trim()},
+                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Ajuste.getText()});
+                if (correcto) {
+                    if (getConexion.eliminar(tablaConsutada + "_det",
+                            new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                            new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Ajuste.getText()})) {
+                        String[][] registros = new String[cantidadRow][8];
+                        for (int i = 0; i < cantidadRow; i++) {
+                            registros[i][0] = Configuracion.getEMP_CODIGO();
+                            registros[i][1] = Configuracion.getSUC_CODIGO();
+                            registros[i][2] = this.txtCod_Ajuste.getText();
+                            registros[i][3] = this.tblAjuste.getValueAt(i, 0).toString();
+                            registros[i][4] = this.tblAjuste.getValueAt(i, 1).toString();
+                            registros[i][5] = this.tblAjuste.getValueAt(i, 3).toString();
+                            registros[i][6] = this.tblAjuste.getValueAt(i, 5).toString();
+                            registros[i][7] = this.tblAjuste.getValueAt(i, 6).toString().equals("Entrada") ? "1" : "2";
+                        }
+                        if (this.getConexion.insertar(tablaConsutada + "_det",
+                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "Nro_reg",
+                                    this.txtCod_Producto.getBdCodigo(), this.txtCod_Lote.getBdCodigo(), "cantidad", "tipo_Mov"},
+                                registros, cantidadRow, 8) == false) {
+                            this.getConexion.RollBack();
+                        }
                     }
                 }
                 this.getConexion.Commit();
@@ -656,8 +701,8 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         if (getConexion.autoNumerico(tablaConsutada, idConsultada,
                 new String[]{EMP_CODIGO, SUC_CODIGO},
                 new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()}, this.txtCod_Ajuste)) {
-            this.pnlBotones.ModoEdicion(false);
-            this.pnlBotones.btnGrabar.setEnabled(false);
+            this.pnlABM1.ModoEdicion(false);
+            this.pnlABM1.btnGrabar.setEnabled(false);
             operacion = 'A';
             this.txtCod_Ajuste.setEnabled(false);
             this.txtFecha.setEnabled(true);
@@ -666,6 +711,58 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
             this.txtObservacion.grabFocus();
         } else {
             Inicializar();
+        }
+    }
+
+    @Override
+    public void Editar(char c) {
+        operacion = c;
+        this.pnlABM1.ModoEdicion(false);
+        this.txtCod_Ajuste.setEnabled(true);
+        this.pnlABM1.btnGrabar.setEnabled(false);
+        this.txtCod_Ajuste.grabFocus();
+    }
+
+    @Override
+    public void RecuperarDatos(String codigo) {
+        String[] rs = getConexion.getDescripciones(tablaConsutada,
+                new String[]{"fecha_emi", descripcionConsultada},
+                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
+        if (rs[0] != null) {
+            this.txtFecha.setFecha(rs[0]);
+            this.txtObservacion.setText(rs[1]);
+            String consulta = ConsultaSQL.getSelect("vst_" + tablaConsutada + "_det",
+                    new String[]{"Nro_reg", this.txtCod_Producto.getBdCodigo(), this.txtCod_Producto.getBdDescrip(),
+                        this.txtCod_Lote.getBdCodigo(), this.txtCod_Lote.getBdDescrip(), "cantidad", "TMov_Descrip"},
+                    new String[]{null},
+                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo},
+                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada
+                    });
+            this.tblAjuste.cargarDatos(getConexion, consulta);
+            if (this.tblAjuste.getRowCount() > 0) {
+                this.tblAjuste.formatearColumna(5, 2);
+                if (operacion == 'E') {
+                    Borrar(this, "proc_delete_ajustes", new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
+                    Inicializar();
+                } else if (operacion == 'M') {
+                    this.pnlABM1.btnCancelar.setText("Terminar");
+                    this.pnlABM1.btnCancelar.setMnemonic('T');
+                    this.txtObservacion.setEnabled(true);
+                    this.txtFecha.setEnabled(true);
+                    this.txtObservacion.grabFocus();
+                }
+            } else {
+                this.Inicializar();
+            }
+        } else {
+            if (MensajeSistema.ConsultaSQLVacio(this)) {
+                this.txtCod_Ajuste.setText("");
+                this.txtCod_Ajuste.grabFocus();
+            } else {
+                this.Inicializar();
+            }
         }
     }
 
@@ -695,13 +792,29 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
     }
 
     public void BorrarAsto() {
-        int seleccion = this.tblAjuste.getSelectedRow();
-        if (seleccion > 0) {
+        int lon = this.tblAjuste.getRowCount();
+        Object[][] valores = new Object[lon][3];
+        for (int i = 0; i < lon; i++) {
+            valores[i][0] = this.tblAjuste.getValueAt(i, 0);
+            valores[i][1] = this.tblAjuste.getValueAt(i, 2);
+            valores[i][2] = this.tblAjuste.getValueAt(i, 4);
+        }
+        BuscarPopup ven = new BuscarPopup(null, true, valores, "Detalle de Ajuste de Stock...");
+        ven.setVisible(true);
+        if (!Configuracion.getCODIGO_BUSCAR().equals("")) {
+            int reg = Integer.parseInt(Configuracion.getCODIGO_BUSCAR());
+            Configuracion.setCODIGO_BUSCAR("");
             int preg = MensajeSistema.Pregunta_YES_NO(this, "Esta seguro que quiere quitar este registro?");
             if (preg == MensajeSistema.YES_OPTION()) {
-                this.tblAjuste.remover();
+                if (this.BorrarSinPreg(tablaConsutada + "_det",
+                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "Nro_reg"},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
+                            this.txtCod_Ajuste.getText(), this.tblAjuste.getValueAt(reg, 0).toString()})) {
+                    this.tblAjuste.remover(reg);
+                }
             }
         }
+        this.btnAgregar.grabFocus();
     }
 
     public void InicializarAsto() {
@@ -719,19 +832,5 @@ public class Stock_Ajuste extends frm_Padre implements Metodos {
         this.cboTipo.setEnabled(false);
         this.btnAgregar.setEnabled(true);
         this.btnAgregar.grabFocus();
-    }
-
-    @Override
-    public void Editar(char c) {
-        operacion = c;
-        this.pnlBotones.ModoEdicion(false);
-        this.txtCod_Ajuste.setEnabled(true);
-        this.pnlBotones.btnGrabar.setEnabled(false);
-        this.txtCod_Ajuste.grabFocus();
-    }
-
-    @Override
-    public void RecuperarDatos(String codigo) {
-
     }
 }
