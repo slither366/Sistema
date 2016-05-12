@@ -1,4 +1,4 @@
-package com.app.form.Especiales;
+package com.app.form.adm;
 
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseTable;
@@ -6,6 +6,7 @@ import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
+import com.app.form.Especiales.frm_Padre;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 

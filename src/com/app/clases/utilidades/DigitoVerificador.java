@@ -39,17 +39,18 @@ public class DigitoVerificador {
     public static boolean isDigitoVerificador(String ruc, int dv) {
         return getDigitoVerificador(ruc) == dv;
     }
+
     public static boolean isDigitoVerificador(String doc) {
-        if(doc.contains("-")){
-            int guion=doc.indexOf("-");            
-            String ruc=doc.substring(0,guion);
-            int dv=Integer.parseInt(doc.substring(guion+1));
+        if (doc.contains("-")) {
+            int guion = doc.indexOf("-");
+            String ruc = doc.substring(0, guion);
+            int dv = Integer.parseInt(doc.substring(guion + 1));
             return isDigitoVerificador(ruc, dv);
-        }else{
+        } else {
             return false;
         }
-    }        
-
+    }
+    
     /**
      * Metodo para calcular el Digito Verificador del Ruc.
      * <>La variable P_BASEMAX que es el segundo parametro se la base.

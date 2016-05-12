@@ -1,7 +1,8 @@
-package com.app.form.Especiales;
+package com.app.form.adm;
 
 import com.app.clases.ClaseCampos;
 import com.app.config.MensajeSistema;
+import com.app.form.Especiales.frm_Padre;
 
 /**
  *

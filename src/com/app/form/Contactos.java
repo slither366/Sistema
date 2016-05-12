@@ -1,15 +1,16 @@
 package com.app.form;
 
-import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
 import com.app.clases.ClaseUtilidades;
+import com.app.clases.utilidades.DigitoVerificador;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
 import com.app.form.Especiales.frm_Padre.Metodos;
 import static com.app.form.Especiales.frm_Padre.EMP_CODIGO;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -30,7 +31,6 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.getPermisos(cod_ventana);
         this.txtRazonSocial.setEnMayuscula(true);
         this.txtCINumero.setFormatear(false);
-        ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
 
         this.txtCod_Nacionalidad.setBdTabla("Ref_Nacionalidades");
         this.txtCod_Nacionalidad.setBdCodigo("Nac_Codigo");
@@ -41,8 +41,32 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.txtCod_Ciudad.setBdCodigo("Ciu_Codigo");
         this.txtCod_Ciudad.setBdDescrip("Ciu_Descrip");
         this.txtCod_Ciudad.setBdTitulo("Ciudades");
+        this.pnlABM1.addListener(this);
         Inicializar();
-        this.btnNuevo.transferFocus();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();
+        if (Orden.compareTo("btn1") == 0) {
+            Agregar();
+        } else if (Orden.compareTo("btn2") == 0) {
+            Editar('M');
+        } else if (Orden.compareTo("btn3") == 0) {
+            Editar('E');
+        } else if (Orden.compareTo("btn4") == 0) {
+            Grabar();
+        } else if (Orden.compareTo("btn5") == 0) {
+            if (operacion == 'A') {
+                if (MensajeSistema.Cancelar(this)) {
+                    this.Inicializar();
+                }
+            } else {
+                this.Inicializar();
+            }
+        } else if (Orden.compareTo("btn6") == 0) {
+            Salir(this);
+        }
     }
 
     /**
@@ -64,6 +88,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         jLabel2 = new javax.swing.JLabel();
         txtCINumero = new com.app.paleta.txtNumeros();
         jLabel3 = new javax.swing.JLabel();
+        txtRuc = new com.app.paleta.txtTexto();
         jLabel4 = new javax.swing.JLabel();
         txtRazonSocial = new com.app.paleta.txtTexto();
         jLabel5 = new javax.swing.JLabel();
@@ -71,26 +96,23 @@ public final class Contactos extends frm_Padre implements Metodos {
         jLabel6 = new javax.swing.JLabel();
         txtCelular = new com.app.paleta.txtCelular();
         jLabel7 = new javax.swing.JLabel();
-        txtTelefax1 = new com.app.paleta.txtTelefono();
-        jLabel8 = new javax.swing.JLabel();
-        txtTelefax2 = new com.app.paleta.txtTelefono();
+        txtTelefax = new com.app.paleta.txtTelefono();
         jLabel9 = new javax.swing.JLabel();
         txtDireccion = new com.app.paleta.txtTexto();
         jLabel10 = new javax.swing.JLabel();
         txtEmail = new com.app.paleta.txtTexto();
         jLabel12 = new javax.swing.JLabel();
         txtCod_Nacionalidad = new com.app.paleta.txtCodigo();
-        textNom_Nacionalidad = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtCod_Ciudad = new com.app.paleta.txtCodigo();
-        textNom_Ciudad = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         cboACredito = new javax.swing.JComboBox();
         jLabel20 = new javax.swing.JLabel();
         cboRetentor = new javax.swing.JComboBox();
-        txtRuc = new com.app.paleta.txtNumeros();
+        textNacionalidad = new com.app.paleta.txtTexto();
+        textCiudad = new com.app.paleta.txtTexto();
         pnlVentas = new javax.swing.JPanel();
         textTitulo1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -99,14 +121,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         textTitulo2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbltablaCompra = new com.app.paleta.tabla();
-        jPanelBotones = new javax.swing.JPanel();
-        btnImagen1 = new com.app.botones.btnImagen();
-        btnNuevo = new com.app.botones.btnNuevo();
-        btnModificar = new com.app.botones.btnEditar();
-        btnBorrar = new com.app.botones.btnBorrar();
-        btnGrabar = new com.app.botones.btnGrabar();
-        btnCancelar = new com.app.botones.btnCancelar();
-        btnSalir = new com.app.botones.btnSalir();
+        pnlABM1 = new com.app.botones.pnlABM();
 
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -162,6 +177,12 @@ public final class Contactos extends frm_Padre implements Metodos {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("RUC:");
 
+        txtRuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucActionPerformed(evt);
+            }
+        });
+
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Razón Social:");
 
@@ -190,25 +211,16 @@ public final class Contactos extends frm_Padre implements Metodos {
         });
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Teléfax 1:");
+        jLabel7.setText("Teléfax:");
 
-        txtTelefax1.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefax1ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Teléfax 2:");
-
-        txtTelefax2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefax2ActionPerformed(evt);
+                txtTelefaxActionPerformed(evt);
             }
         });
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Direción:");
+        jLabel9.setText("Dirección:");
 
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,8 +251,6 @@ public final class Contactos extends frm_Padre implements Metodos {
             }
         });
 
-        textNom_Nacionalidad.setText("jLabel13");
-
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Ciudad:");
 
@@ -254,8 +264,6 @@ public final class Contactos extends frm_Padre implements Metodos {
                 txtCod_CiudadKeyPressed(evt);
             }
         });
-
-        textNom_Ciudad.setText("jLabel13");
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Estado:");
@@ -302,12 +310,6 @@ public final class Contactos extends frm_Padre implements Metodos {
             }
         });
 
-        txtRuc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRucActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlMantenimientoLayout = new javax.swing.GroupLayout(pnlMantenimiento);
         pnlMantenimiento.setLayout(pnlMantenimientoLayout);
         pnlMantenimientoLayout.setHorizontalGroup(
@@ -344,17 +346,18 @@ public final class Contactos extends frm_Padre implements Metodos {
                         .addComponent(cboRetentor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(167, 167, 167))
                     .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCod_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCod_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNom_Nacionalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCINumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCod_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNom_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(189, 189, 189))
                     .addGroup(pnlMantenimientoLayout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,26 +369,20 @@ public final class Contactos extends frm_Padre implements Metodos {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTelefax1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTelefax2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtTelefax, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                        .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCod_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCINumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCod_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(textNacionalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCod_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlMantenimientoLayout.setVerticalGroup(
@@ -394,9 +391,7 @@ public final class Contactos extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCod_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCod_Contacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtCINumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -411,10 +406,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                     .addComponent(jLabel6)
                     .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefax2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -427,10 +420,10 @@ public final class Contactos extends frm_Padre implements Metodos {
                 .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtCod_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNom_Nacionalidad)
                     .addComponent(jLabel15)
                     .addComponent(txtCod_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNom_Ciudad))
+                    .addComponent(textNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -483,16 +476,16 @@ public final class Contactos extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addGroup(pnlVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         pnlVentasLayout.setVerticalGroup(
             pnlVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlVentasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(textTitulo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -546,88 +539,11 @@ public final class Contactos extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addComponent(textTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTab.addTab("Compras", pnlCompras);
-
-        jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-
-        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrabarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setMaximumSize(new java.awt.Dimension(90, 30));
-        btnSalir.setMinimumSize(new java.awt.Dimension(90, 30));
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
-        jPanelBotones.setLayout(jPanelBotonesLayout);
-        jPanelBotonesLayout.setHorizontalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnImagen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelBotonesLayout.setVerticalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnImagen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnGrabar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -640,19 +556,19 @@ public final class Contactos extends frm_Padre implements Metodos {
                     .addComponent(jPanelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlABM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTab, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(pnlABM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -668,10 +584,6 @@ public final class Contactos extends frm_Padre implements Metodos {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        this.Editar('M');
-    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void cboEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboEstadoFocusGained
         this.cboEstado.setPopupVisible(true);
@@ -709,7 +621,7 @@ public final class Contactos extends frm_Padre implements Metodos {
     }//GEN-LAST:event_txtRazonSocialActionPerformed
 
     private void txtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCelularActionPerformed
-        this.txtTelefax1.grabFocus();
+        this.txtTelefax.grabFocus();
     }//GEN-LAST:event_txtCelularActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
@@ -743,12 +655,12 @@ public final class Contactos extends frm_Padre implements Metodos {
                     new String[]{EMP_CODIGO, txtCod_Nacionalidad.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Nacionalidad.getText()});
             if (rs != null) {
-                this.textNom_Nacionalidad.setText(rs);
+                this.textNacionalidad.setText(rs);
                 this.txtCod_Ciudad.grabFocus();
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
                     this.txtCod_Nacionalidad.setText("");
-                    this.textNom_Nacionalidad.setText("");
+                    this.textNacionalidad.setText("");
                     this.txtCod_Nacionalidad.grabFocus();
                 } else {
                     this.Inicializar();
@@ -762,16 +674,16 @@ public final class Contactos extends frm_Padre implements Metodos {
     private void txtCod_CiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_CiudadActionPerformed
         int valor = this.txtCod_Ciudad.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(txtCod_Ciudad.getBdTabla(), txtCod_Ciudad.getBdTabla(),
+            String rs = this.getConexion.getDescripcion(txtCod_Ciudad.getBdTabla(), txtCod_Ciudad.getBdDescrip(),
                     new String[]{EMP_CODIGO, txtCod_Ciudad.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Ciudad.getText()});
             if (rs != null) {
-                this.textNom_Ciudad.setText(rs);
+                this.textCiudad.setText(rs);
                 this.cboEstado.grabFocus();
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
                     this.txtCod_Ciudad.setText("");
-                    this.textNom_Ciudad.setText("");
+                    this.textCiudad.setText("");
                     this.txtCod_Ciudad.grabFocus();
                 } else {
                     this.Inicializar();
@@ -830,8 +742,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                 MensajeSistema.MensajeVarios(this, "Seleccione un registro...", MensajeSistema.ERROR_MESSAGE());
                 this.cboRetentor.grabFocus();
             } else {
-                this.btnGrabar.setEnabled(true);
-                this.btnGrabar.grabFocus();
+                this.pnlABM1.btnGrabar.setEnabled(true);
+                this.pnlABM1.btnGrabar.grabFocus();
             }
         }
     }//GEN-LAST:event_cboRetentorKeyPressed
@@ -852,46 +764,29 @@ public final class Contactos extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtTelefax1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefax1ActionPerformed
-        this.txtTelefax2.grabFocus();
-    }//GEN-LAST:event_txtTelefax1ActionPerformed
-
-    private void txtTelefax2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefax2ActionPerformed
+    private void txtTelefaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefaxActionPerformed
         this.txtDireccion.grabFocus();
-    }//GEN-LAST:event_txtTelefax2ActionPerformed
+    }//GEN-LAST:event_txtTelefaxActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
-        this.txtRazonSocial.grabFocus();
+        if (this.txtRuc.verificarVacioSinMsj()) {
+            if (DigitoVerificador.isDigitoVerificador(this.txtRuc.getText())) {
+                this.txtRazonSocial.grabFocus();
+            } else {
+                int msn = MensajeSistema.Pregunta_YES_NO(this, "El RUC ingresado no corresponde... Verifique para continuar!!!\nDesea Cancelar esta operación?");
+                if (msn == MensajeSistema.NO_OPTION()) {
+                    this.txtRuc.setText("");
+                    this.txtRuc.grabFocus();
+                } else {
+                    this.Inicializar();
+                }
+            }
+        } else {
+            this.txtRazonSocial.grabFocus();
+        }
     }//GEN-LAST:event_txtRucActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        this.Agregar();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        this.Editar('E');
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        this.Grabar();
-    }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Inicializar();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Salir(this);
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.botones.btnBorrar btnBorrar;
-    private com.app.botones.btnCancelar btnCancelar;
-    private com.app.botones.btnGrabar btnGrabar;
-    private com.app.botones.btnImagen btnImagen1;
-    private com.app.botones.btnEditar btnModificar;
-    private com.app.botones.btnNuevo btnNuevo;    
-    private com.app.botones.btnSalir btnSalir;
     private javax.swing.JComboBox cboACredito;
     private javax.swing.JComboBox cboEstado;
     private javax.swing.JComboBox cboRetentor;
@@ -908,21 +803,20 @@ public final class Contactos extends frm_Padre implements Metodos {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTab;
+    private com.app.botones.pnlABM pnlABM1;
     private javax.swing.JPanel pnlCompras;
     private javax.swing.JPanel pnlMantenimiento;
     private javax.swing.JPanel pnlVentas;
     private com.app.paleta.tabla tbltablaCompra;
     private com.app.paleta.tabla tbltablaVenta;
-    private javax.swing.JLabel textNom_Ciudad;
-    private javax.swing.JLabel textNom_Nacionalidad;
+    private com.app.paleta.txtTexto textCiudad;
+    private com.app.paleta.txtTexto textNacionalidad;
     private javax.swing.JLabel textTitulo;
     private javax.swing.JLabel textTitulo1;
     private javax.swing.JLabel textTitulo2;
@@ -934,9 +828,8 @@ public final class Contactos extends frm_Padre implements Metodos {
     private com.app.paleta.txtTexto txtDireccion;
     private com.app.paleta.txtTexto txtEmail;
     private com.app.paleta.txtTexto txtRazonSocial;
-    private com.app.paleta.txtNumeros txtRuc;
-    private com.app.paleta.txtTelefono txtTelefax1;
-    private com.app.paleta.txtTelefono txtTelefax2;
+    private com.app.paleta.txtTexto txtRuc;
+    private com.app.paleta.txtTelefono txtTelefax;
     private com.app.paleta.txtTelefono txtTelefono;
     // End of variables declaration//GEN-END:variables
 
@@ -953,22 +846,20 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.cboACredito.setSelectedIndex(0);
         this.cboEstado.setSelectedIndex(0);
         this.cboRetentor.setSelectedIndex(0);
-        this.textNom_Nacionalidad.setText("");
-        this.textNom_Ciudad.setText("");
-        this.btnNuevo.setEnabled(Agrega_OK);
-        this.btnModificar.setEnabled(Modifica_OK);
-        this.btnBorrar.setEnabled(Borra_OK);
-        this.btnGrabar.setEnabled(false);
-        this.btnCancelar.setEnabled(false);
-        this.btnSalir.setEnabled(true);
-        if (this.btnNuevo.isEnabled()) {
-            this.btnNuevo.grabFocus();
-        } else if (this.btnModificar.isEnabled()) {
-            this.btnModificar.grabFocus();
-        } else if (this.btnBorrar.isEnabled()) {
-            this.btnBorrar.grabFocus();
+        this.pnlABM1.btnNuevo.setEnabled(Agrega_OK);
+        this.pnlABM1.btnModificar.setEnabled(Modifica_OK);
+        this.pnlABM1.btnBorrar.setEnabled(Borra_OK);
+        this.pnlABM1.btnGrabar.setEnabled(false);
+        this.pnlABM1.btnCancelar.setEnabled(false);
+        this.pnlABM1.btnSalir.setEnabled(true);
+        if (this.pnlABM1.btnNuevo.isEnabled()) {
+            this.pnlABM1.btnNuevo.grabFocus();
+        } else if (this.pnlABM1.btnModificar.isEnabled()) {
+            this.pnlABM1.btnModificar.grabFocus();
+        } else if (this.pnlABM1.btnBorrar.isEnabled()) {
+            this.pnlABM1.btnBorrar.grabFocus();
         } else {
-            this.btnSalir.grabFocus();
+            this.pnlABM1.btnSalir.grabFocus();
         }
     }
 
@@ -979,9 +870,9 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.jTab.setEnabledAt(2, false);
         if (getConexion.autoNumerico(tablaConsutada, idConsultada,
                 new String[]{EMP_CODIGO}, new String[]{Configuracion.getEMP_CODIGO()}, this.txtCod_Contacto)) {
-            ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
+            this.pnlABM1.ModoEdicion(false);
             ClaseCampos.setEnabled(pnlMantenimiento, true);
-            this.btnGrabar.setEnabled(false);
+            this.pnlABM1.btnGrabar.setEnabled(false);
             operacion = 'A';
             this.txtCod_Contacto.grabFocus();
         } else {
@@ -995,13 +886,13 @@ public final class Contactos extends frm_Padre implements Metodos {
             if (MensajeSistema.Guardar(this)) {
                 getConexion.insertar(tablaConsutada,
                         new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "nro_ruc",
-                            "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax1",
-                            "telefax2", txtCod_Nacionalidad.getBdCodigo(), txtCod_Ciudad.getBdCodigo(), "agente_retentor",
+                            "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax",
+                            txtCod_Nacionalidad.getBdCodigo(), txtCod_Ciudad.getBdCodigo(), "agente_retentor",
                             "estado", "a_credito", "cod_usuario"},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Contacto.getText(),
                             this.txtRazonSocial.getText(), this.txtRuc.getText(), this.txtCINumero.getText(),
                             this.txtTelefono.getText().trim(), this.txtCelular.getText(), this.txtDireccion.getText(),
-                            this.txtEmail.getText().trim(), this.txtTelefax1.getText().trim(), this.txtTelefax2.getText().trim(),
+                            this.txtEmail.getText().trim(), this.txtTelefax.getText().trim(),
                             this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
                             this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + "",
                             Configuracion.getUSU_CODIGO()});
@@ -1010,12 +901,12 @@ public final class Contactos extends frm_Padre implements Metodos {
             if (MensajeSistema.Modificar(this)) {
                 getConexion.actualizar(tablaConsutada,
                         new String[]{descripcionConsultada, "nro_ruc",
-                            "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax1",
-                            "telefax2", txtCod_Nacionalidad.getBdCodigo(), txtCod_Ciudad.getBdCodigo(), "agente_retentor",
+                            "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax",
+                            txtCod_Nacionalidad.getBdCodigo(), txtCod_Ciudad.getBdCodigo(), "agente_retentor",
                             "estado", "a_credito"},
                         new String[]{this.txtRazonSocial.getText(), this.txtRuc.getText(), this.txtCINumero.getText(),
                             this.txtTelefono.getText().trim(), this.txtCelular.getText(), this.txtDireccion.getText(),
-                            this.txtEmail.getText().trim(), this.txtTelefax1.getText().trim(), this.txtTelefax2.getText().trim(),
+                            this.txtEmail.getText().trim(), this.txtTelefax.getText().trim(),
                             this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
                             this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + ""},
                         new String[]{EMP_CODIGO, idConsultada},
@@ -1028,9 +919,9 @@ public final class Contactos extends frm_Padre implements Metodos {
     @Override
     public void Editar(char c) {
         operacion = c;
-        ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
+        this.pnlABM1.ModoEdicion(false);
         this.txtCod_Contacto.setEnabled(true);
-        this.btnGrabar.setEnabled(false);
+        this.pnlABM1.btnGrabar.setEnabled(false);
         this.txtCod_Contacto.grabFocus();
     }
 
@@ -1038,8 +929,8 @@ public final class Contactos extends frm_Padre implements Metodos {
     public void RecuperarDatos(String codigo) {
         String[] rs = getConexion.getDescripciones("vst_" + tablaConsutada,
                 new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "nro_ruc",
-                    "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax1",
-                    "telefax2", txtCod_Nacionalidad.getBdCodigo(), txtCod_Nacionalidad.getBdDescrip(),
+                    "nro_ci", "telefono1", "telefono2", "direccion", "email", "telefax",
+                    txtCod_Nacionalidad.getBdCodigo(), txtCod_Nacionalidad.getBdDescrip(),
                     txtCod_Ciudad.getBdCodigo(), txtCod_Ciudad.getBdDescrip(), "agente_retentor", "estado", "a_credito"},
                 new String[]{EMP_CODIGO, idConsultada},
                 new String[]{Configuracion.getEMP_CODIGO(), codigo});
@@ -1051,15 +942,14 @@ public final class Contactos extends frm_Padre implements Metodos {
             this.txtCelular.setText(rs[6]);
             this.txtDireccion.setText(rs[7]);
             this.txtEmail.setText(rs[8]);
-            this.txtTelefax1.setText(rs[9]);
-            this.txtTelefax2.setText(rs[10]);
-            this.txtCod_Nacionalidad.setText(rs[11]);
-            this.textNom_Nacionalidad.setText(rs[12]);
-            this.txtCod_Ciudad.setText(rs[13]);
-            this.textNom_Ciudad.setText(rs[14]);
-            this.cboRetentor.setSelectedIndex(Integer.parseInt(rs[15]));
-            this.cboEstado.setSelectedIndex(Integer.parseInt(rs[16]));
-            this.cboACredito.setSelectedIndex(Integer.parseInt(rs[17]));
+            this.txtTelefax.setText(rs[9]);
+            this.txtCod_Nacionalidad.setText(rs[10]);
+            this.textNacionalidad.setText(rs[11]);
+            this.txtCod_Ciudad.setText(rs[12]);
+            this.textCiudad.setText(rs[13]);
+            this.cboRetentor.setSelectedIndex(Integer.parseInt(rs[14]));
+            this.cboEstado.setSelectedIndex(Integer.parseInt(rs[15]));
+            this.cboACredito.setSelectedIndex(Integer.parseInt(rs[16]));
             if (operacion == 'E') {
                 Borrar(this, tablaConsutada,
                         new String[]{EMP_CODIGO, idConsultada},
