@@ -17,8 +17,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConexionBD {
 
-    public String CURRENT_DATE = "CURRENT_DATE";
-    public String CURRENT_TIME = "CURRENT_TIME";
     private String SQL;
     private PreparedStatement ejecutar;
     private static Connection ConnectionDB;
@@ -83,7 +81,11 @@ public class ConexionBD {
     public boolean ejecutaUpdate(String Query) {
         System.out.println(Query);
         try {
-            ejecutar = getConexion().prepareStatement(Query);
+            if (Query.substring(0, 4).equals("CALL")) {
+                ejecutar = getConexion().prepareCall(Query);
+            } else {
+                ejecutar = getConexion().prepareStatement(Query);
+            }
             int rs = ejecutar.executeUpdate();
             CerrarConexion();
             return rs > 0;
@@ -102,13 +104,16 @@ public class ConexionBD {
     public ResultSet ejecutaQuery(String Query) {
         System.out.println(Query);
         try {
-            ejecutar = getConexion().prepareStatement(Query);
-            ResultSet rs = ejecutar.executeQuery();
-            return rs;
+            if (Query.substring(0, 4).equals("CALL")) {
+                ejecutar = getConexion().prepareCall(Query);
+            } else {
+                ejecutar = getConexion().prepareStatement(Query);
+            }
+            return ejecutar.executeQuery();
         } catch (SQLException ex) {
             MensajeSistema.setSQLException(ex);
-            return null;
         }
+        return null;
     }
 
     /**
@@ -256,6 +261,60 @@ public class ConexionBD {
     public boolean eliminar(String tabla, String camposCondicion, String valoresCondicion) {
         SQL = ConsultaSQL.getEliminar(tabla, camposCondicion, valoresCondicion);
         return ejecutaUpdate(SQL);
+    }
+
+    public boolean call(String proc, String[] campos) {
+        try {
+            SQL = "CALL " + proc + "(";
+            if (campos.getClass().equals(String[].class)) {
+                if (campos.length > 0 && !"".equals(campos[0])) {
+                    for (int i = 0; i < campos.length; i++) {
+                        SQL += "'" + campos[i] + "'";
+                        if (i != campos.length - 1) {
+                            SQL += ", ";
+                        }
+                    }
+                }
+            }
+            SQL += ");";
+            return ejecutaUpdate(SQL);
+        } catch (Exception ex) {
+            MensajeSistema.setException(ex);
+        }
+        return false;
+    }
+
+    public String[] callResultSet(String proc, String[] campos) {
+        try {
+            SQL = "CALL " + proc + "(";
+            if (campos.getClass().equals(String[].class)) {
+                if (campos.length > 0 && !"".equals(campos[0])) {
+                    for (int i = 0; i < campos.length; i++) {
+                        SQL += "'" + campos[i] + "'";
+                        if (i != campos.length - 1) {
+                            SQL += ", ";
+                        }
+                    }
+                }
+            }
+            SQL += ");";
+            try {
+                ResultSet rs = ejecutaQuery(SQL);
+                if (rs.next()) {
+                    int lon = rs.getMetaData().getColumnCount();
+                    String[] resu = new String[lon];
+                    for (int i = 0; i < lon; i++) {
+                        resu[i] = rs.getString(i + 1);
+                    }
+                    return resu;
+                }
+            } catch (SQLException ex) {
+                MensajeSistema.setSQLException(ex);
+            }
+        } catch (Exception ex) {
+            MensajeSistema.setException(ex);
+        }
+        return null;
     }
 
     /**
