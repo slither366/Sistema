@@ -202,7 +202,7 @@ public class ConsultaSQL {
     public static String getInsert(String tabla, String[] valores) {
         String SQL = "INSERT INTO " + tabla + " VALUES (";
         for (int i = 0; i < valores.length; i++) {
-            SQL += "\"" + valores[i] + "\"";
+            SQL += valores[i].equals("null") ? null : "\"" + valores[i] + "\"";
             if (i != valores.length - 1) {
                 SQL += ", ";
             }
@@ -233,7 +233,7 @@ public class ConsultaSQL {
         }
         SQL += " VALUES (";
         for (int i = 0; i < valores.length; i++) {
-            SQL += "\"" + valores[i] + "\"";
+            SQL += valores[i].equals("null") ? null : "\"" + valores[i] + "\"";
             if (i != valores.length - 1) {
                 SQL += ", ";
             }
@@ -252,10 +252,12 @@ public class ConsultaSQL {
      * @param valoresCondicion
      * @return
      */
-    public static String getUpdate(String tabla, String[] campos, String[] valores, String[] camposCondicion, String[] valoresCondicion) {
+    public static String getUpdate(String tabla, String[] campos, String[] valores,
+            String[] camposCondicion, String[] valoresCondicion) {
         String SQL = "UPDATE " + tabla + " SET ";
         for (int i = 0; i < campos.length; i++) {
-            SQL += campos[i] + "='" + valores[i] + "'";
+            String valor = valores[i].equals("null") ? null : "\"" + valores[i] + "\"";
+            SQL += campos[i] + "=" + valor;
             if (i != campos.length - 1) {
                 SQL += ", ";
             }
@@ -285,7 +287,8 @@ public class ConsultaSQL {
     public static String getUpdate(String tabla, String[] campos, String[] valores, String camposCondicion, String valoresCondicion) {
         String SQL = "UPDATE " + tabla + " SET ";
         for (int i = 0; i < campos.length; i++) {
-            SQL += campos[i] + "=\"" + valores[i] + "\"";
+            String valor = valores[i].equals("null") ? null : "\"" + valores[i] + "\"";
+            SQL += campos[i] + "=" + valor;
             if (i != campos.length - 1) {
                 SQL += ", ";
             }
