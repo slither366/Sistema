@@ -30,7 +30,7 @@ public class GenerarReportes {
     /**
      * Variable que indica la ubicacion del reporte
      */
-    public static String ubicacionReport = "/com/app/Reportes/";
+    public static String ubicacionReport = "/com/app/reportes/";
 
     /**
      *
@@ -42,7 +42,7 @@ public class GenerarReportes {
      */
     public void listadoDosCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo) {
-        String reporte = ubicacionReport + "listadosDosCampos.jasper";
+        String reporte = "listadosDosCampos";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         HashMap parameters = getParametros(
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario"},
@@ -62,7 +62,7 @@ public class GenerarReportes {
      */
     public void listadoTresCampos(ResultSet rs, String tituloVentanaActual,
             String desde, String hasta, char tipo, String tituloForaneo) {
-        String reporte = ubicacionReport + "listadosTresCampos.jasper";
+        String reporte = "listadosTresCampos";
         JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
         HashMap parameters = getParametros(
                 new String[]{"titulo", "desde", "hasta", "empresa", "sucursal", "usuario", "tituloForaneo"},

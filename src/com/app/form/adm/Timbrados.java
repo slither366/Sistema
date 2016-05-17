@@ -1,7 +1,9 @@
 package com.app.form.adm;
 
+import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
 import com.app.form.Especiales.frm_Padre.Metodos;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -11,6 +13,26 @@ public class Timbrados extends frm_Padre implements Metodos {
 
     public Timbrados(int cod_ventana) {
         initComponents();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String Orden = e.getActionCommand();
+        if (Orden.compareTo("btn1") == 0) {
+            Agregar();
+        } else if (Orden.compareTo("btn2") == 0) {
+            Editar('M');
+        } else if (Orden.compareTo("btn3") == 0) {
+            Editar('E');
+        } else if (Orden.compareTo("btn4") == 0) {
+            Grabar();
+        } else if (Orden.compareTo("btn5") == 0) {
+            if (MensajeSistema.Cancelar(this)) {
+                this.Inicializar();
+            }
+        } else if (Orden.compareTo("btn6") == 0) {
+            Salir(this);
+        }
     }
 
     /**

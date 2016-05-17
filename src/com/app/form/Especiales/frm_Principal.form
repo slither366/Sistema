@@ -785,6 +785,41 @@
                     </MenuItem>
                   </SubComponents>
                 </Menu>
+                <Menu class="javax.swing.JMenu" name="jMenu5160">
+                  <Properties>
+                    <Property name="mnemonic" type="int" value="54"/>
+                    <Property name="text" type="java.lang.String" value="6- Perfiles"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenu5161">
+                      <Properties>
+                        <Property name="mnemonic" type="int" value="49"/>
+                        <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu5161ActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenu5162">
+                      <Properties>
+                        <Property name="mnemonic" type="int" value="50"/>
+                        <Property name="text" type="java.lang.String" value="2- Consulta &amp; Listado"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu5162ActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
               </SubComponents>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu5200">
@@ -1258,7 +1293,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelTitulo" pref="542" max="32767" attributes="0"/>
+                              <Component id="jLabelTitulo" pref="649" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jProgressBar1" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabelInfo" alignment="0" max="32767" attributes="0"/>

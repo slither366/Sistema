@@ -1,5 +1,6 @@
 package com.app.config;
 
+import com.app.form.Especiales.frm_Padre;
 import com.app.paleta.txtCodigo;
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
@@ -499,6 +500,33 @@ public class ConexionBD {
         int valor = getMAX(tabla, campo, campoCondicion, condicion);
         if (valor >= 0) {
             texto.setText((valor + 1) + "");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Metodo para obtener el ultimo nro mas uno de una tabla e insertar el
+     * valor devuelto en un JTextField que recibe como parametro.
+     *
+     * @param texto
+     * @return
+     */
+    public boolean autoNumerico(txtCodigo texto) {
+        String[] condicion, valores;
+        if (texto.isUsarEmpresa() && texto.isUsarSucursal()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
+        } else if (texto.isUsarEmpresa()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO()};
+        } else {
+            condicion = new String[]{null};
+            valores = new String[]{null};
+        }
+        int valor = getMAX(texto.getBdTabla(), texto.getBdCodigo(), condicion, valores);
+        if (valor >= 0) {
+            texto.setCodigo(valor + 1);
             return true;
         }
         return false;

@@ -288,7 +288,6 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Contacto">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_ContactoActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_ContactoKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">

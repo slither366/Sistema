@@ -22,6 +22,7 @@ public class Permisos extends frm_Padre {
     private boolean v_autorizado = false, v_agregar = false, v_modificar = false;
     private boolean v_borrar = false, v_listar = false;
     private boolean v_todos = false;
+    private char operacion;
 
     public Permisos() {
         initComponents();

@@ -201,7 +201,6 @@
             <Component class="com.app.paleta.txtCodigo" name="txtCod_Empresa">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_EmpresaActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_EmpresaKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="TextNom_Empresa">
@@ -224,7 +223,6 @@
             <Component class="com.app.paleta.txtCodigo" name="txtCod_Sucursal">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_SucursalActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_SucursalKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="TextNom_Sucursal">
@@ -255,7 +253,6 @@
             <Component class="com.app.paleta.txtCodigo" name="txtCod_Usuario">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_UsuarioActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_UsuarioKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="textNom_Usuario">

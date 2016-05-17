@@ -22,10 +22,12 @@ public class Usuarios extends frm_Padre {
         this.setName("frm_usuarios");
         this.Cod_Ventana = cod_ventana;
         this.textTitulo.setText("Mantenimiento de Usuarios...");
-        this.tablaConsutada = "acc_usuarios";
-        this.idConsultada = "Usu_Codigo";
-        this.descripcionConsultada = "Usu_Nombre";
-        this.tituloVentanaActual = "Usuarios";
+        this.txtCodigo.setBdTabla("acc_usuarios");
+        this.txtCodigo.setBdCodigo("Usu_Codigo");
+        this.txtCodigo.setBdDescrip("Usu_Nombres");
+        this.txtCodigo.setBdTitulo("Usuarios");
+        this.txtCodigo.setUsarEmpresa(true);
+        this.txtCodigo.setUsarSucursal(false);
         this.getPermisos(this.Cod_Ventana);
         this.txtCod_Perfil.setBdTabla("acc_perfiles");
         this.txtCod_Perfil.setBdCodigo("Perf_Codigo");
@@ -104,11 +106,6 @@ public class Usuarios extends frm_Padre {
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
-            }
-        });
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
             }
         });
 
@@ -390,7 +387,7 @@ public class Usuarios extends frm_Padre {
     }//GEN-LAST:event_txtCod_PerfilActionPerformed
 
     private void txtPass1_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass1_UserActionPerformed
-        if (operacion == 'A') {
+        if (this.txtCodigo.getOperacion() == 'A') {
             int valor = txtPass1_User.verificarVacioConMsj();
             if (valor == 0) {
                 if (this.txtPass1_User.verificarCantidadMinima()) {
@@ -448,7 +445,7 @@ public class Usuarios extends frm_Padre {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
-            if (operacion == 'M' || operacion == 'E') {
+            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtNom_User.grabFocus();
@@ -465,13 +462,6 @@ public class Usuarios extends frm_Padre {
     private void txtPass2_UserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPass2_UserFocusGained
         this.textClave2.setVisible(true);
     }//GEN-LAST:event_txtPass2_UserFocusGained
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            Buscar(tablaConsutada, true, false, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCodigo.requestFocus();
-        }
-    }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCod_PerfilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_PerfilKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
@@ -558,18 +548,16 @@ public class Usuarios extends frm_Padre {
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtPass1_User.setEnabled(false);
         this.txtPass2_User.setEnabled(false);
-        operacion = c;
+        this.txtCodigo.setOperacion(c);
         this.txtCodigo.grabFocus();
     }
 
     private void Agregar() {
-        String[] campos = new String[]{EMP_CODIGO};
-        String[] valores = new String[]{Configuracion.getEMP_CODIGO()};
-        if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
+        if (this.txtCodigo.autoNumerico()) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(jPanelDatos, true);
             this.txtNom_User.setEnabled(true);
-            operacion = 'A';
+            this.txtCodigo.setOperacion('A');
             this.txtNom_User.grabFocus();
         } else {
             Inicializar();
@@ -577,23 +565,21 @@ public class Usuarios extends frm_Padre {
     }
 
     private void RecuperarDatos(String codigo) {
-        String[] rs = this.getConexion.getDescripciones("vst_" + tablaConsutada,
-                new String[]{idConsultada, descripcionConsultada, this.txtCod_Perfil.getBdCodigo(), this.txtCod_Perfil.getBdDescrip()},
-                new String[]{EMP_CODIGO, idConsultada},
+        String[] rs = this.getConexion.getDescripciones("vst_" + this.txtCodigo.getBdTabla(),
+                new String[]{this.txtCodigo.getBdCodigo(), this.txtCodigo.getBdDescrip(), this.txtCod_Perfil.getBdCodigo(), this.txtCod_Perfil.getBdDescrip()},
+                new String[]{EMP_CODIGO, this.txtCodigo.getBdCodigo()},
                 new String[]{Configuracion.getEMP_CODIGO(), codigo});
         if (rs[0] != null) {
             this.txtNom_User.setText(rs[1]);
             this.txtCod_Perfil.setText(rs[2]);
             this.textNomPerfil.setText(rs[3]);
-            if (operacion == 'M') {
+            if (this.txtCodigo.getOperacion() == 'M') {
                 this.txtCodigo.setEnabled(false);
                 this.txtNom_User.setEnabled(true);
                 this.txtCod_Perfil.setEnabled(true);
                 this.txtNom_User.grabFocus();
             } else {
-                this.Borrar(this, tablaConsutada,
-                        new String[]{EMP_CODIGO, idConsultada},
-                        new String[]{Configuracion.getEMP_CODIGO(), codigo});
+                this.txtCodigo.Borrar();
                 this.Inicializar();
             }
         } else {
@@ -607,18 +593,18 @@ public class Usuarios extends frm_Padre {
     }
 
     private void Grabar() {
-        if (operacion == 'A') {
+        if (this.txtCodigo.getOperacion() == 'A') {
             if (MensajeSistema.Guardar(this)) {
-                String sql = "INSERT INTO " + tablaConsutada + " ";
-                sql += "(" + EMP_CODIGO + ", " + idConsultada + ", " + descripcionConsultada + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";
+                String sql = "INSERT INTO " + this.txtCodigo.getBdTabla() + " ";
+                sql += "(" + EMP_CODIGO + ", " + this.txtCodigo.getBdCodigo() + ", " + this.txtCodigo.getBdDescrip() + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";
                 sql += "VALUES ('" + Configuracion.getEMP_CODIGO() + "', '" + this.txtCodigo.getText() + "', '";
                 sql += this.txtNom_User.getText() + "', PASSWORD('" + this.txtPass1_User.getText() + "'), '" + this.txtCod_Perfil.getText() + "');";
                 this.getConexion.ejecutaUpdate(sql);
             }
         } else {
             if (MensajeSistema.Modificar(this)) {
-                String sql = "UPDATE " + tablaConsutada;
-                sql += " SET " + descripcionConsultada + "='" + this.txtNom_User.getText();
+                String sql = "UPDATE " + this.txtCodigo.getBdTabla();
+                sql += " SET " + this.txtCodigo.getBdDescrip() + "='" + this.txtNom_User.getText();
                 sql += "', " + this.txtCod_Perfil.getBdCodigo() + "='" + this.txtCod_Perfil.getText() + "'";
                 if (this.txtPass1_User.isEmpty()) {
                     sql += " ";
@@ -626,7 +612,7 @@ public class Usuarios extends frm_Padre {
                     sql += ", clave=PASSWORD('" + this.txtPass1_User.getText() + "') ";
                 }
                 sql += "WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO();
-                sql += " AND " + idConsultada + "=" + this.txtCodigo.getText() + ";";
+                sql += " AND " + this.txtCodigo.getBdCodigo() + "=" + this.txtCodigo.getText() + ";";
                 this.getConexion.ejecutaUpdate(sql);
             }
         }

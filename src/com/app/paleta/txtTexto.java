@@ -42,6 +42,7 @@ public class txtTexto extends textoPadre {
 
             @Override
             public void focusLost(FocusEvent e) {
+                
             }
         });
     }

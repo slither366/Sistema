@@ -21,13 +21,13 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         initComponents();
         this.setResizable(false);
         this.setName("Stock_Ajuste");
-        this.UsarEmpresa = true;
-        this.UsarSucursal = false;
-        this.tablaConsutada = "stock_ajuste";
-        this.idConsultada = "Ajus_Codigo";
-        this.descripcionConsultada = "observacion";
-        this.tituloVentanaActual = "Ajuste de Stock";
-        this.pnlTitulo.setTextTitulo(tituloVentanaActual + "...");
+        this.txtCod_Ajuste.setBdTabla("stock_ajuste");
+        this.txtCod_Ajuste.setBdCodigo("Ajus_Codigo");
+        this.txtCod_Ajuste.setBdDescrip("observacion");
+        this.txtCod_Ajuste.setBdTitulo("Ajuste de Stock");
+        this.txtCod_Ajuste.setUsarEmpresa(true);
+        this.txtCod_Ajuste.setUsarSucursal(true);
+        this.pnlTitulo.setTextTitulo("Ajuste de Stock...");
         this.pnlTitulo.AlinearCentro();
         this.txtCod_Producto.setBdTabla("mant_productos");
         this.txtCod_Producto.setBdCodigo("Prod_Codigo");
@@ -63,7 +63,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn4") == 0) {
             Grabar();
         } else if (Orden.compareTo("btn5") == 0) {
-            if (operacion == 'A') {
+            if (txtCod_Ajuste.getOperacion() == 'A') {
                 if (MensajeSistema.Cancelar(this)) {
                     this.Inicializar();
                 }
@@ -147,11 +147,6 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         txtCod_Ajuste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_AjusteActionPerformed(evt);
-            }
-        });
-        txtCod_Ajuste.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_AjusteKeyPressed(evt);
             }
         });
 
@@ -426,7 +421,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
     private void txtCod_AjusteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_AjusteActionPerformed
         int valor = this.txtCod_Ajuste.verificarVacioConMsj();
         if (valor == 0) {
-            if (operacion == 'M' || operacion == 'E') {
+            if (txtCod_Ajuste.getOperacion() == 'M' || txtCod_Ajuste.getOperacion() == 'E') {
                 this.RecuperarDatos(this.txtCod_Ajuste.getText());
             } else {
                 this.txtObservacion.grabFocus();
@@ -435,13 +430,6 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtCod_AjusteActionPerformed
-
-    private void txtCod_AjusteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_AjusteKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Ajuste.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_AjusteKeyPressed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         this.txtObservacion.grabFocus();
@@ -629,12 +617,13 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void Grabar() {
-        if (operacion == 'A') {
+        if (txtCod_Ajuste.getOperacion() == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 int cantidadRow = this.tblAjuste.getRowCount();
                 this.getConexion.Begin();
-                boolean correcto = getConexion.insertar(tablaConsutada,
-                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "fecha_emi", descripcionConsultada, "Usu_Codigo"},
+                boolean correcto = getConexion.insertar(txtCod_Ajuste.getBdTabla(),
+                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo(), "fecha_emi",
+                            txtCod_Ajuste.getBdDescrip(), "Usu_Codigo"},
                         new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Ajuste.getText(),
                             this.txtFecha.getFecha(), txtObservacion.getText().trim(), Configuracion.getUSU_CODIGO()});
                 if (correcto) {
@@ -649,8 +638,8 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
                         registros[i][6] = this.tblAjuste.getValueAt(i, 5).toString();
                         registros[i][7] = this.tblAjuste.getValueAt(i, 6).toString().equals("Entrada") ? "1" : "2";
                     }
-                    if (this.getConexion.insertar(tablaConsutada + "_det",
-                            new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "Nro_reg",
+                    if (this.getConexion.insertar(txtCod_Ajuste.getBdTabla() + "_det",
+                            new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo(), "Nro_reg",
                                 this.txtCod_Producto.getBdCodigo(), this.txtCod_Lote.getBdCodigo(), "cantidad", "tipo_Mov"},
                             registros, cantidadRow, 8) == false) {
                         this.getConexion.RollBack();
@@ -662,14 +651,14 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
             if (MensajeSistema.Modificar(this)) {
                 int cantidadRow = this.tblAjuste.getRowCount();
                 this.getConexion.Begin();
-                boolean correcto = getConexion.actualizar(tablaConsutada,
-                        new String[]{"fecha_emi", descripcionConsultada},
+                boolean correcto = getConexion.actualizar(txtCod_Ajuste.getBdTabla(),
+                        new String[]{"fecha_emi", txtCod_Ajuste.getBdDescrip()},
                         new String[]{this.txtFecha.getFecha(), txtObservacion.getText().trim()},
-                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Ajuste.getText()});
                 if (correcto) {
-                    if (getConexion.eliminar(tablaConsutada + "_det",
-                            new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                    if (getConexion.eliminar(txtCod_Ajuste.getBdTabla() + "_det",
+                            new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo()},
                             new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Ajuste.getText()})) {
                         String[][] registros = new String[cantidadRow][8];
                         for (int i = 0; i < cantidadRow; i++) {
@@ -682,8 +671,8 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
                             registros[i][6] = this.tblAjuste.getValueAt(i, 5).toString();
                             registros[i][7] = this.tblAjuste.getValueAt(i, 6).toString().equals("Entrada") ? "1" : "2";
                         }
-                        if (this.getConexion.insertar(tablaConsutada + "_det",
-                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "Nro_reg",
+                        if (this.getConexion.insertar(txtCod_Ajuste.getBdTabla() + "_det",
+                                new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo(), "Nro_reg",
                                     this.txtCod_Producto.getBdCodigo(), this.txtCod_Lote.getBdCodigo(), "cantidad", "tipo_Mov"},
                                 registros, cantidadRow, 8) == false) {
                             this.getConexion.RollBack();
@@ -698,12 +687,10 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void Agregar() {
-        if (getConexion.autoNumerico(tablaConsutada, idConsultada,
-                new String[]{EMP_CODIGO, SUC_CODIGO},
-                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()}, this.txtCod_Ajuste)) {
+        if (this.txtCod_Ajuste.autoNumerico()) {
             this.pnlABM1.ModoEdicion(false);
             this.pnlABM1.btnGrabar.setEnabled(false);
-            operacion = 'A';
+            txtCod_Ajuste.setOperacion('A');
             this.txtCod_Ajuste.setEnabled(false);
             this.txtFecha.setEnabled(true);
             this.txtObservacion.setEnabled(true);
@@ -716,7 +703,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        operacion = c;
+        txtCod_Ajuste.setOperacion(c);
         this.pnlABM1.ModoEdicion(false);
         this.txtCod_Ajuste.setEnabled(true);
         this.pnlABM1.btnGrabar.setEnabled(false);
@@ -725,28 +712,31 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void RecuperarDatos(String codigo) {
-        String[] rs = getConexion.getDescripciones(tablaConsutada,
-                new String[]{"fecha_emi", descripcionConsultada},
-                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+        String[] rs = getConexion.getDescripciones(txtCod_Ajuste.getBdTabla(),
+                new String[]{"fecha_emi", txtCod_Ajuste.getBdDescrip()},
+                new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo()},
                 new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
         if (rs[0] != null) {
             this.txtFecha.setFecha(rs[0]);
             this.txtObservacion.setText(rs[1]);
-            String consulta = ConsultaSQL.getSelect("vst_" + tablaConsutada + "_det",
+            String consulta = ConsultaSQL.getSelect("vst_" + txtCod_Ajuste.getBdTabla() + "_det",
                     new String[]{"Nro_reg", this.txtCod_Producto.getBdCodigo(), this.txtCod_Producto.getBdDescrip(),
                         this.txtCod_Lote.getBdCodigo(), this.txtCod_Lote.getBdDescrip(), "cantidad", "TMov_Descrip"},
                     new String[]{null},
-                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                    new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo},
-                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada
+                    new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo()
                     });
             this.tblAjuste.cargarDatos(getConexion, consulta);
             if (this.tblAjuste.getRowCount() > 0) {
                 this.tblAjuste.formatearColumna(5, 2);
-                if (operacion == 'E') {
-                    Borrar(this, "proc_delete_ajustes", new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
+                if (txtCod_Ajuste.getOperacion() == 'E') {
+                    Borrar(this, "proc_delete_ajustes",
+                            new String[]{Configuracion.getEMP_CODIGO(),
+                                Configuracion.getSUC_CODIGO(),
+                                codigo});
                     Inicializar();
-                } else if (operacion == 'M') {
+                } else {
                     this.pnlABM1.btnCancelar.setText("Terminar");
                     this.pnlABM1.btnCancelar.setMnemonic('T');
                     this.txtObservacion.setEnabled(true);
@@ -806,8 +796,8 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
             Configuracion.setCODIGO_BUSCAR("");
             int preg = MensajeSistema.Pregunta_YES_NO(this, "Esta seguro que quiere quitar este registro?");
             if (preg == MensajeSistema.YES_OPTION()) {
-                if (this.BorrarSinPreg(tablaConsutada + "_det",
-                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, "Nro_reg"},
+                if (this.BorrarSinPreg(txtCod_Ajuste.getBdTabla() + "_det",
+                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Ajuste.getBdCodigo(), "Nro_reg"},
                         new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
                             this.txtCod_Ajuste.getText(), this.tblAjuste.getValueAt(reg, 0).toString()})) {
                     this.tblAjuste.remover(reg);

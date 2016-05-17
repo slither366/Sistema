@@ -22,25 +22,30 @@ public class Acceso_Empresa extends frm_Padre {
         this.getPropiedades = pro;
         this.setLocation((frm_Principal.escritorio.getSize().width - this.getSize().width) / 2,
                 (frm_Principal.escritorio.getSize().height - this.getSize().height) / 2);
-        this.tablaConsutada = "acc_usuarios";
-        this.idConsultada = "Usu_Codigo";
-        this.descripcionConsultada = "Usu_Nombre";
-        this.tituloVentanaActual = "Usuarios";
-
+ 
         this.txtCod_Empresa.setBdTabla("Adm_Empresas");
         this.txtCod_Empresa.setBdCodigo("Emp_Codigo");
         this.txtCod_Empresa.setBdDescrip("Emp_Descrip");
         this.txtCod_Empresa.setBdTitulo("Empresas");
-
+        this.txtCod_Empresa.setUsarEmpresa(false);
+        this.txtCod_Empresa.setUsarSucursal(false);
+        this.txtCod_Empresa.setOperacion('x');        
+        
         this.txtCod_Sucursal.setBdTabla("Adm_Sucursales");
         this.txtCod_Sucursal.setBdCodigo("Suc_Codigo");
         this.txtCod_Sucursal.setBdDescrip("denominacion");
         this.txtCod_Sucursal.setBdTitulo("Sucursales");
-
+        this.txtCod_Sucursal.setUsarEmpresa(true);
+        this.txtCod_Sucursal.setUsarSucursal(false);
+        this.txtCod_Sucursal.setOperacion('x');
+        
         this.txtCod_Usuario.setBdTabla("Acc_Usuarios");
         this.txtCod_Usuario.setBdCodigo("Usu_Codigo");
         this.txtCod_Usuario.setBdDescrip("Usu_Nombre");
         this.txtCod_Usuario.setBdTitulo("Usuarios");
+        this.txtCod_Usuario.setUsarEmpresa(true);
+        this.txtCod_Usuario.setUsarSucursal(false);
+        this.txtCod_Usuario.setOperacion('x');
         this.inicializar();
     }
 
@@ -109,11 +114,6 @@ public class Acceso_Empresa extends frm_Padre {
                 txtCod_EmpresaActionPerformed(evt);
             }
         });
-        txtCod_Empresa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_EmpresaKeyPressed(evt);
-            }
-        });
 
         TextNom_Empresa.setText("jLabel5");
         TextNom_Empresa.setMaximumSize(new java.awt.Dimension(49, 27));
@@ -125,11 +125,6 @@ public class Acceso_Empresa extends frm_Padre {
         txtCod_Sucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_SucursalActionPerformed(evt);
-            }
-        });
-        txtCod_Sucursal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_SucursalKeyPressed(evt);
             }
         });
 
@@ -151,11 +146,6 @@ public class Acceso_Empresa extends frm_Padre {
         txtCod_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_UsuarioActionPerformed(evt);
-            }
-        });
-        txtCod_Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_UsuarioKeyPressed(evt);
             }
         });
 
@@ -392,22 +382,6 @@ public class Acceso_Empresa extends frm_Padre {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtCod_EmpresaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_EmpresaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(txtCod_Empresa.getBdTabla(), false, false, txtCod_Empresa.getBdCodigo(),
-                    txtCod_Empresa.getBdDescrip(), txtCod_Empresa.getBdTitulo());
-            this.txtCod_Empresa.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_EmpresaKeyPressed
-
-    private void txtCod_SucursalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_SucursalKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(txtCod_Sucursal.getBdTabla(), true, false, txtCod_Sucursal.getBdCodigo(),
-                    txtCod_Sucursal.getBdDescrip(), txtCod_Sucursal.getBdTitulo());
-            this.txtCod_Sucursal.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_SucursalKeyPressed
-
     private void txtCod_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_UsuarioActionPerformed
         int valor = this.txtCod_Usuario.verificarVacioConMsj();
         if (valor == 0) {
@@ -434,14 +408,6 @@ public class Acceso_Empresa extends frm_Padre {
             this.inicializar();
         }
     }//GEN-LAST:event_txtCod_UsuarioActionPerformed
-
-    private void txtCod_UsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_UsuarioKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(txtCod_Usuario.getBdTabla(), true, false, txtCod_Usuario.getBdCodigo(),
-                    txtCod_Usuario.getBdDescrip(), txtCod_Usuario.getBdTitulo());
-            this.txtCod_Usuario.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_UsuarioKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TextNom_Empresa;

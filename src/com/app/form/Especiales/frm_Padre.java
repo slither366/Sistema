@@ -20,14 +20,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm_Padre extends JInternalFrame implements ActionListener {
 
-    public String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual, codigoFormulario;
     public static String EMP_CODIGO = "Emp_Codigo";
     public static String SUC_CODIGO = "Suc_Codigo";
-    public boolean UsarEmpresa = false;
-    public boolean UsarSucursal = false;
     public int Cod_Ventana;
     public boolean Autorizado_ok = false, Agrega_OK = false, Modifica_OK = false, Borra_OK = false, Listar_OK = false;
-    public char operacion;
     public static ConexionBD getConexion;
     public static Propiedades getPropiedades;
     public Image getIcono;
@@ -95,8 +91,8 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     }
 
     public void Salir(JInternalFrame ventana) {
-        if (MensajeSistema.Salir(ventana)) {
-            frm_Principal.llamarFormulario.CloseFrame(ventana);
+        if (MensajeSistema.Salir(ventana)) {            
+            callMenus.menu.CloseFrame(ventana);
         }
     }
 
@@ -113,21 +109,21 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo) {
         Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo);
-        frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
+        callMenus.menu.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
             String descripcion2, String tituloDescri2) {
         Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo, descripcion2, tituloDescri2);
-        frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
+        callMenus.menu.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
             String codigo, String descripcion, String titulo,
             String idForaneo, String descripcionForaneo, String tituloForaneo) {
         Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion, titulo, idForaneo, descripcionForaneo, tituloForaneo);
-        frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
+        callMenus.menu.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     public void Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal,
@@ -135,7 +131,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
             String reporte, String[] campos, String[] nombres) {
         Listar listar = new Listar(tabla, cod_ventana, Empresa, Sucursal, codigo, descripcion,
                 titulo, reporte, campos, nombres);
-        frm_Principal.llamarFormulario.llamarInternalFrame(listar, frm_Principal.escritorio);
+        callMenus.menu.llamarInternalFrame(listar, frm_Principal.escritorio);
     }
 
     /**

@@ -21,11 +21,7 @@ public final class Productos extends frm_Padre implements Metodos {
     public Productos(int cod_ventana) {
         initComponents();
         this.setName("productos");
-        this.tablaConsutada = "Mant_Productos";
-        this.idConsultada = "Prod_Codigo";
-        this.descripcionConsultada = "Prod_Descrip";
-        this.tituloVentanaActual = "Productos";
-        this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Mantenimiento de Productos...");
         this.getPermisos(cod_ventana);
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.txtCod_Producto.setTextTransparente("Ingrese el codigo del Producto");
@@ -44,10 +40,12 @@ public final class Productos extends frm_Padre implements Metodos {
         this.txtPrecioV_Actual.setFormatear(true);
         this.txtPrecioV_Inicial.setFormatear(true);
 
-        this.txtCod_Producto.setBdTabla(tablaConsutada);
-        this.txtCod_Producto.setBdCodigo(idConsultada);
-        this.txtCod_Producto.setBdDescrip(descripcionConsultada);
-        this.txtCod_Producto.setBdTitulo(tituloVentanaActual);
+        this.txtCod_Producto.setBdTabla("mant_Productos");
+        this.txtCod_Producto.setBdCodigo("Prod_Codigo");
+        this.txtCod_Producto.setBdDescrip("Prod_Descrip");
+        this.txtCod_Producto.setBdTitulo("Productos");
+        this.txtCod_Producto.setUsarEmpresa(true);
+        this.txtCod_Producto.setUsarSucursal(false);
 
         this.txtCod_Seccion.setBdTabla("Ref_Secciones");
         this.txtCod_Seccion.setBdCodigo("Sec_Codigo");
@@ -188,11 +186,6 @@ public final class Productos extends frm_Padre implements Metodos {
         txtCod_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_ProductoActionPerformed(evt);
-            }
-        });
-        txtCod_Producto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_ProductoKeyPressed(evt);
             }
         });
 
@@ -761,7 +754,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProductoActionPerformed
         int valor = this.txtCod_Producto.verificarVacioConMsj();
         if (valor == 0) {
-            if (operacion == 'M' || operacion == 'E') {
+            if (this.txtCod_Producto.getOperacion() == 'M' || this.txtCod_Producto.getOperacion() == 'E') {
                 if (this.recuperado) {
                     this.txtNombre_Producto.grabFocus();
                 } else {
@@ -791,8 +784,8 @@ public final class Productos extends frm_Padre implements Metodos {
         int valor = this.txtCod_Barra.verificarVacioConMsj();
         if (valor == 0) {
             //Cuando es Agregar se verifica si el codigo de barra ya existe en la base de datos
-            if (operacion == 'A') {
-                String resu = this.getConexion.getDescripcion(tablaConsutada, "Bar_Codigo",
+            if (this.txtCod_Producto.getOperacion() == 'A') {
+                String resu = this.getConexion.getDescripcion(this.txtCod_Producto.getBdTabla(), "Bar_Codigo",
                         new String[]{EMP_CODIGO, "Bar_Codigo"},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Barra.getText().trim()});
                 if (resu != null) {
@@ -897,7 +890,7 @@ public final class Productos extends frm_Padre implements Metodos {
                     new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Linea.getText()});
             if (rs != null) {
                 this.textNom_Linea.setText(rs);
-                if (this.operacion == 'A') {
+                if (this.txtCod_Producto.getOperacion() == 'A') {
                     this.txtFactor.setText("50");
                 }
                 this.txtFactor.grabFocus();
@@ -1021,7 +1014,7 @@ public final class Productos extends frm_Padre implements Metodos {
             if (this.txtStockMinimo.getText().isEmpty()) {
                 this.txtStockMinimo.setNumero(0);
             }
-            if (operacion == 'A') {
+            if (this.txtCod_Producto.getOperacion() == 'A') {
                 this.txtCosto_Inicial.grabFocus();
             } else {
                 this.txtCosto_Actual.grabFocus();
@@ -1136,18 +1129,6 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtCod_Linea.requestFocus();
         }
     }//GEN-LAST:event_txtCod_LineaKeyPressed
-
-    private void txtCod_ProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ProductoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            String consulta = ConsultaSQL.getSelect(tablaConsutada,
-                    new String[]{"UPPER(" + this.txtCod_Producto.getBdDescrip() + ")", idConsultada},
-                    new String[]{"Descripción", "Código"},
-                    new String[]{EMP_CODIGO},
-                    new String[]{Configuracion.getEMP_CODIGO()});
-            Buscar(consulta, tituloVentanaActual);
-            this.txtCod_Producto.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_ProductoKeyPressed
 
     private void txtNombre_ProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre_ProductoKeyTyped
         this.txtNombre_Producto.CantidadLetras(evt, 250);
@@ -1311,8 +1292,7 @@ public final class Productos extends frm_Padre implements Metodos {
     public void Agregar() {
         this.jTab.setSelectedIndex(0);
         this.jTab.setEnabledAt(1, false);
-        if (getConexion.autoNumerico(tablaConsutada, idConsultada,
-                new String[]{EMP_CODIGO}, new String[]{Configuracion.getEMP_CODIGO()}, this.txtCod_Producto)) {
+        if (this.txtCod_Producto.autoNumerico()) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(jPanelDatos, true);
             this.txtComentario.setEnabled(true);
@@ -1320,7 +1300,7 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtPrecioV_Actual.setEnabled(false);
             this.btnGrabar.setEnabled(false);
             this.txtNombre_Producto.setEnabled(true);
-            operacion = 'A';
+            this.txtCod_Producto.setOperacion('A');
             this.cargarCombos();
             this.txtCod_Producto.setEnabled(false);
             this.txtNombre_Producto.grabFocus();
@@ -1331,7 +1311,7 @@ public final class Productos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        operacion = c;
+        this.txtCod_Producto.setOperacion(c);
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCod_Producto.setEnabled(true);
         this.txtCod_Barra.setEnabled(true);
@@ -1342,10 +1322,10 @@ public final class Productos extends frm_Padre implements Metodos {
 
     @Override
     public void Grabar() {
-        if (operacion == 'A') {
+        if (this.txtCod_Producto.getOperacion() == 'A') {
             if (MensajeSistema.Guardar(this)) {
-                if (getConexion.insertar(tablaConsutada,
-                        new String[]{EMP_CODIGO, idConsultada, "Bar_Codigo", descripcionConsultada,
+                if (getConexion.insertar(this.txtCod_Producto.getBdTabla(),
+                        new String[]{EMP_CODIGO, this.txtCod_Producto.getBdCodigo(), "Bar_Codigo", this.txtCod_Producto.getBdDescrip(),
                             txtCod_Linea.getBdCodigo(), txtCod_Procedencia.getBdCodigo(), txtCod_Envace.getBdCodigo(),
                             txtCod_Marca.getBdCodigo(), txtCod_Seccion.getBdCodigo(), "peresedero", "controlado", "ubi_estante", "ubi_columna",
                             "ubi_fila", "TIva_Codigo", "TProd_Codigo", "factor", "descuento", "costo_inicial",
@@ -1361,10 +1341,10 @@ public final class Productos extends frm_Padre implements Metodos {
                             this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroInt() + "", Configuracion.getUSU_CODIGO()})) {
                 }
             }
-        } else if (operacion == 'M') {
+        } else if (this.txtCod_Producto.getOperacion() == 'M') {
             if (MensajeSistema.Modificar(this)) {
-                getConexion.actualizar(tablaConsutada,
-                        new String[]{"Bar_Codigo", descripcionConsultada, txtCod_Linea.getBdCodigo(), txtCod_Procedencia.getBdCodigo(),
+                getConexion.actualizar(this.txtCod_Producto.getBdTabla(),
+                        new String[]{"Bar_Codigo", this.txtCod_Producto.getBdDescrip(), txtCod_Linea.getBdCodigo(), txtCod_Procedencia.getBdCodigo(),
                             txtCod_Envace.getBdCodigo(), txtCod_Marca.getBdCodigo(), txtCod_Seccion.getBdCodigo(), "peresedero", "controlado", "ubi_estante",
                             "ubi_columna", "ubi_fila", "TIva_Codigo", "TProd_Codigo", "factor", "descuento", "costo_actual", "venta_actual",
                             "comentario", "stock_minimo", "Usu_Codigo"},
@@ -1375,7 +1355,7 @@ public final class Productos extends frm_Padre implements Metodos {
                             this.jComboIva.getSelectedIndex() + "", this.jComboTipoProducto.getSelectedIndex() + "", this.txtFactor.getNumeroInt() + "",
                             this.txtDescuento.getNumeroInt() + "", this.txtCosto_Actual.getNumeroInt() + "", this.txtPrecioV_Actual.getNumeroInt() + "",
                             this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroInt() + "", Configuracion.getUSU_CODIGO()},
-                        new String[]{this.EMP_CODIGO, idConsultada},
+                        new String[]{this.EMP_CODIGO, this.txtCod_Producto.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Producto.getText()});
             }
         }
@@ -1384,8 +1364,8 @@ public final class Productos extends frm_Padre implements Metodos {
 
     @Override
     public void RecuperarDatos(String codigo) {
-        String[] resultado = getConexion.getDescripciones("vst_" + tablaConsutada,
-                new String[]{idConsultada, "Bar_Codigo", descripcionConsultada, txtCod_Linea.getBdCodigo(), txtCod_Linea.getBdDescrip(),
+        String[] resultado = getConexion.getDescripciones("vst_" + this.txtCod_Producto.getBdTabla(),
+                new String[]{this.txtCod_Producto.getBdCodigo(), "Bar_Codigo", this.txtCod_Producto.getBdDescrip(), txtCod_Linea.getBdCodigo(), txtCod_Linea.getBdDescrip(),
                     txtCod_Procedencia.getBdCodigo(), txtCod_Procedencia.getBdDescrip(), txtCod_Envace.getBdCodigo(), txtCod_Envace.getBdDescrip(),
                     txtCod_Marca.getBdCodigo(), txtCod_Marca.getBdDescrip(), txtCod_Seccion.getBdCodigo(), txtCod_Seccion.getBdDescrip(),
                     "peresedero", "controlado", "ubi_estante", "ubi_columna", "ubi_fila", "TIva_Codigo", "TProd_Codigo", "factor", "descuento",
@@ -1421,12 +1401,10 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtPrecioV_Actual.setNumero(resultado[25]);
             this.txtComentario.setText(resultado[26]);
             this.txtStockMinimo.setText(resultado[27]);
-            if (operacion == 'E') {
-                Borrar(this, tablaConsutada,
-                        new String[]{EMP_CODIGO, idConsultada},
-                        new String[]{Configuracion.getEMP_CODIGO(), codigo});
+            if (this.txtCod_Producto.getOperacion() == 'E') {
+                this.txtCod_Producto.Borrar();
                 Inicializar();
-            } else if (operacion == 'M') {
+            } else {
                 this.recuperado = true;
                 ClaseCampos.setEnabled(jPanelDatos, true);
                 this.txtCosto_Inicial.setEnabled(false);

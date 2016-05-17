@@ -3,7 +3,6 @@ package com.app.form.Especiales;
 import com.app.clases.ClaseCampos;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
-import com.app.clases.ClaseTeclas;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +16,13 @@ public class Acceso extends frm_Padre {
     public Acceso() {
         initComponents();
         this.setName("acceso");
-        this.tablaConsutada = "acc_usuarios";
-        this.idConsultada = "Usu_Codigo";
-        this.descripcionConsultada = "Usu_Nombre";
-        this.tituloVentanaActual = "Usuarios";
+        this.txtCod_Usuario.setBdTabla("acc_usuarios");
+        this.txtCod_Usuario.setBdCodigo("Usu_Codigo");
+        this.txtCod_Usuario.setBdDescrip("Usu_Descrip");
+        this.txtCod_Usuario.setBdTitulo("Usuarios");
+        this.txtCod_Usuario.setUsarEmpresa(true);
+        this.txtCod_Usuario.setUsarSucursal(false);
+        this.txtCod_Usuario.setOperacion('x');
         this.inicializar();
     }
 
@@ -47,7 +49,6 @@ public class Acceso extends frm_Padre {
         btnCancelar = new com.app.botones.btnCancelar();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -93,11 +94,6 @@ public class Acceso extends frm_Padre {
         txtCod_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_UsuarioActionPerformed(evt);
-            }
-        });
-        txtCod_Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_UsuarioKeyPressed(evt);
             }
         });
 
@@ -223,9 +219,9 @@ public class Acceso extends frm_Padre {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         int valor = this.txtPassword.verificarVacioConMsj();
         if (valor == 0) {
-            String sql = "select " + descripcionConsultada + " from " + tablaConsutada
+            String sql = "select " + txtCod_Usuario.getBdDescrip() + " from " + txtCod_Usuario.getBdTabla()
                     + " where " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO()
-                    + " and " + idConsultada + "=" + this.txtCod_Usuario.getText()
+                    + " and " + txtCod_Usuario.getBdCodigo() + "=" + this.txtCod_Usuario.getText()
                     + " and clave=password('" + this.txtPassword.getText().trim() + "')";
             ArrayList clave = getConexion.consultar(sql);
             if (clave.size() > 0) {
@@ -263,9 +259,9 @@ public class Acceso extends frm_Padre {
     private void txtCod_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_UsuarioActionPerformed
         int valor = this.txtCod_Usuario.verificarVacioConMsj();
         if (valor == 0) {
-            String[] rs = this.getConexion.getDescripciones("vst_" + tablaConsutada,
-                    new String[]{EMP_CODIGO, idConsultada, descripcionConsultada, "Perf_Codigo", "Perf_Descrip"},
-                    new String[]{EMP_CODIGO, idConsultada},
+            String[] rs = this.getConexion.getDescripciones("vst_" + txtCod_Usuario.getBdTabla(),
+                    new String[]{EMP_CODIGO, txtCod_Usuario.getBdCodigo(), txtCod_Usuario.getBdDescrip(), "Perf_Codigo", "Perf_Descrip"},
+                    new String[]{EMP_CODIGO, txtCod_Usuario.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Usuario.getText()});
             if (rs[0] != null) {
                 this.textNom_Usuario.setText(rs[2]);
@@ -286,13 +282,6 @@ public class Acceso extends frm_Padre {
             this.inicializar();
         }
     }//GEN-LAST:event_txtCod_UsuarioActionPerformed
-
-    private void txtCod_UsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_UsuarioKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(tablaConsutada, true, false, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Usuario.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_UsuarioKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.btnAceptar btnAceptar;

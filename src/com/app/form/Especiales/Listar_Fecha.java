@@ -15,12 +15,13 @@ import java.util.Date;
  *
  * @author Diego
  */
-public class Listar_Fecha extends frm_Padre {
+public final class Listar_Fecha extends frm_Padre {
 
     private final GenerarReportes reportes = new GenerarReportes();
-    private final String Reporte;
-    private final String[] campos;
-    private final String[] nombres;
+    private String Reporte;
+    private String[] campos, nombres;
+    private String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual;
+    private boolean UsarEmpresa, UsarSucursal;
 
     /**
      * Listar para tres campos CON Campo Foraneo
@@ -47,15 +48,15 @@ public class Listar_Fecha extends frm_Padre {
         this.Reporte = reporte;
         this.campos = campos;
         this.nombres = nombres;
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Listado de " + titulo + "...");
         this.pnlListar.addListener(this);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        String Orden = e.getActionCommand();        
+        String Orden = e.getActionCommand();
         if (Orden.compareTo("btn1") == 0) {
             Agregar();
         } else if (Orden.compareTo("btn2") == 0) {
@@ -232,7 +233,10 @@ public class Listar_Fecha extends frm_Padre {
                 this.txtFecha2.setText("");
                 this.txtFecha1.grabFocus();
             } else {
-                this.txtFecha2.grabFocus();
+                this.pnlListar.btnPantalla.setEnabled(true);
+                this.pnlListar.btnImpresora.setEnabled(true);
+                this.pnlListar.btnExportar.setEnabled(true);
+                this.pnlListar.btnPantalla.grabFocus();
             }
         } else {
             this.Inicializar();
@@ -273,7 +277,6 @@ public class Listar_Fecha extends frm_Padre {
     }
 
     public void Agregar() {
-        operacion = 'A';
         this.ModoEdicion(true);
         this.pnlListar.btnPantalla.setEnabled(false);
         this.pnlListar.btnImpresora.setEnabled(false);
@@ -287,7 +290,7 @@ public class Listar_Fecha extends frm_Padre {
             ResultSet resu = traerDatos();
             if (resu.next()) {
                 resu.beforeFirst();
-                if (modalidad == 'E') {                    
+                if (modalidad == 'E') {//Exportar
                     Excel excel = new Excel();
                     excel.export(getConexion.getDefaultTableModel(resu), this.tituloVentanaActual);
                     if (MensajeSistema.Pregunta_YES_NO(this, "Desea abrir el archivo exportado???") == 0) {

@@ -1,7 +1,6 @@
 package com.app.form.Especiales;
 
 import com.app.clases.ClaseCampos;
-import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre.Metodos;
@@ -19,15 +18,14 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             String codigo, String descripcion, String titulo) {
         initComponents();
         this.setName(titulo);
-        this.tablaConsutada = tabla;
-        this.Cod_Ventana = cod_ventana;
-        this.UsarEmpresa = empresa;
-        this.UsarSucursal = sucursal;
-        this.idConsultada = codigo;
-        this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;
-        this.pnlTitulo1.setTextTitulo("Mantenimiento de " + tituloVentanaActual + "...");
-        this.getPermisos(this.Cod_Ventana);
+        this.txtCodigo.setBdTabla(tabla);
+        this.txtCodigo.setBdCodigo(codigo);
+        this.txtCodigo.setBdDescrip(descripcion);
+        this.txtCodigo.setBdTitulo(titulo);
+        this.txtCodigo.setUsarEmpresa(empresa);
+        this.txtCodigo.setUsarSucursal(sucursal);
+        this.pnlTitulo1.setTextTitulo("Mantenimiento de " + titulo + "...");
+        this.getPermisos(cod_ventana);
         this.txtDescripcion.setEnMayuscula(true);
         this.botonesABM.addListener(this);
         this.Inicializar();
@@ -82,11 +80,6 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
-            }
-        });
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
             }
         });
 
@@ -173,7 +166,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
             this.txtCodigo.setEnabled(false);
-            if (operacion == 'M' || operacion == 'E') {
+            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDescripcion.grabFocus();
@@ -193,15 +186,6 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtDescripcionActionPerformed
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            if (operacion != 'A') {
-                Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-                this.txtCodigo.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_txtCodigoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.pnlABM botonesABM;
@@ -242,37 +226,37 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         if (ClaseCampos.setValidate(this.jPanelDatos)) {
             MensajeSistema.validarVacio(this);
         } else {
-            if (operacion == 'A') {
+            if (this.txtCodigo.getOperacion() == 'A') {
                 if (MensajeSistema.Guardar(this)) {
-                    if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
-                        getConexion.insertar(tablaConsutada,
-                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada, descripcionConsultada},
+                    if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
+                        getConexion.insertar(this.txtCodigo.getBdTabla(),
+                                new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip()},
                                 new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
-                    } else if (UsarEmpresa) { // Cuando se usar solo Empresa
-                        getConexion.insertar(tablaConsutada,
-                                new String[]{EMP_CODIGO, idConsultada, descripcionConsultada},
+                    } else if (this.txtCodigo.isUsarEmpresa()) { // Cuando se usar solo Empresa
+                        getConexion.insertar(this.txtCodigo.getBdTabla(),
+                                new String[]{EMP_CODIGO, txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip()},
                                 new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     } else { // Cuando no se usar Ni empresa Ni sucursal
-                        getConexion.insertar(tablaConsutada,
-                                new String[]{idConsultada, descripcionConsultada},
+                        getConexion.insertar(this.txtCodigo.getBdTabla(),
+                                new String[]{txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip()},
                                 new String[]{this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     }
                 }
-            } else if (operacion == 'M') {
+            } else if (this.txtCodigo.getOperacion() == 'M') {
                 if (MensajeSistema.Modificar(this)) {
-                    if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
-                        getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
+                    if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
+                        getConexion.actualizar(this.txtCodigo.getBdTabla(), new String[]{txtCodigo.getBdDescrip()},
                                 new String[]{this.txtDescripcion.getText()},
-                                new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+                                new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo.getBdCodigo()},
                                 new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo.getText()});
-                    } else if (UsarEmpresa) { // Cuando se usar solo Empresa
-                        getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
+                    } else if (this.txtCodigo.isUsarEmpresa()) { // Cuando se usar solo Empresa
+                        getConexion.actualizar(this.txtCodigo.getBdTabla(), new String[]{txtCodigo.getBdDescrip()},
                                 new String[]{this.txtDescripcion.getText()},
-                                new String[]{EMP_CODIGO, idConsultada},
+                                new String[]{EMP_CODIGO, txtCodigo.getBdCodigo()},
                                 new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo.getText()});
                     } else { // Cuando no se usar Ni empresa Ni sucursal
-                        getConexion.actualizar(tablaConsutada, new String[]{descripcionConsultada},
-                                new String[]{this.txtDescripcion.getText()}, idConsultada, this.txtCodigo.getText());
+                        getConexion.actualizar(this.txtCodigo.getBdTabla(), new String[]{txtCodigo.getBdDescrip()},
+                                new String[]{this.txtDescripcion.getText()}, txtCodigo.getBdCodigo(), this.txtCodigo.getText());
                     }
                 }
 
@@ -283,22 +267,11 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
 
     @Override
     public void Agregar() {
-        String[] campos, valores;
-        if (UsarEmpresa && UsarSucursal) {
-            campos = new String[]{EMP_CODIGO, SUC_CODIGO};
-            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
-        } else if (UsarEmpresa) {
-            campos = new String[]{EMP_CODIGO};
-            valores = new String[]{Configuracion.getEMP_CODIGO()};
-        } else {
-            campos = null;
-            valores = null;
-        }
-        if (getConexion.autoNumerico(tablaConsutada, idConsultada, campos, valores, this.txtCodigo)) {
+        if (this.txtCodigo.autoNumerico()) {
             this.botonesABM.ModoEdicion(false);
             this.botonesABM.btnGrabar.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
-            operacion = 'A';
+            this.txtCodigo.setOperacion('A');
             this.txtDescripcion.grabFocus();
         } else {
             Inicializar();
@@ -307,7 +280,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        operacion = c;
+        this.txtCodigo.setOperacion(c);
         this.botonesABM.ModoEdicion(false);
         this.txtCodigo.setEnabled(true);
         this.botonesABM.btnGrabar.setEnabled(false);
@@ -317,26 +290,26 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
     @Override
     public void RecuperarDatos(String codigo) {
         String resultado;
-        if (UsarEmpresa && UsarSucursal) { // Cuando se usar Empresa y Sucursal
-            resultado = getConexion.getDescripcion(tablaConsutada,
-                    descripcionConsultada,
-                    new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+        if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
+            resultado = getConexion.getDescripcion(this.txtCodigo.getBdTabla(),
+                    this.txtCodigo.getBdDescrip(),
+                    new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), codigo});
-        } else if (UsarEmpresa) { // Cuando se usar solo Empresa
-            resultado = getConexion.getDescripcion(tablaConsutada,
-                    descripcionConsultada,
-                    new String[]{EMP_CODIGO, idConsultada},
+        } else if (this.txtCodigo.isUsarEmpresa()) { // Cuando se usar solo Empresa
+            resultado = getConexion.getDescripcion(this.txtCodigo.getBdTabla(),
+                    this.txtCodigo.getBdDescrip(),
+                    new String[]{EMP_CODIGO, txtCodigo.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), codigo});
         } else { // Cuando no se usar Ni empresa Ni sucursal
-            resultado = getConexion.getDescripcion(tablaConsutada,
-                    descripcionConsultada, new String[]{idConsultada}, new String[]{codigo});
+            resultado = getConexion.getDescripcion(this.txtCodigo.getBdTabla(),
+                    this.txtCodigo.getBdDescrip(), new String[]{txtCodigo.getBdCodigo()}, new String[]{codigo});
         }
         if (resultado != null) {
             txtDescripcion.setText(resultado);
-            if (operacion == 'E') {
-                Borrar(this, tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, codigo);
+            if (txtCodigo.getOperacion() == 'E') {
+                this.txtCodigo.Borrar();
                 Inicializar();
-            } else if (operacion == 'M') {
+            } else {
                 this.txtDescripcion.setEnabled(true);
                 this.txtDescripcion.grabFocus();
             }

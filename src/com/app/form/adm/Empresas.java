@@ -17,13 +17,13 @@ public class Empresas extends frm_Padre {
         initComponents();
         this.setName("Empresas");
         this.Cod_Ventana = codigo;
-        this.UsarEmpresa = false;
-        this.UsarSucursal = false;
-        this.tablaConsutada = "Adm_Empresas";
-        this.idConsultada = "Emp_Codigo";
-        this.descripcionConsultada = "Emp_Descrip";
-        this.tituloVentanaActual = "Empresas";
-        this.textTitulo.setText("Mantenimiento de " + tituloVentanaActual + "...");
+        this.txtCodigo.setBdTabla("adm_empresas");
+        this.txtCodigo.setBdCodigo("Emp_Codigo");
+        this.txtCodigo.setBdDescrip("Emp_Descrip");
+        this.txtCodigo.setBdTitulo("Empresas");
+        this.txtCodigo.setUsarEmpresa(false);
+        this.txtCodigo.setUsarSucursal(false);
+        this.textTitulo.setText("Mantenimiento de Empresas...");
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);
         this.Inicializar();
     }
@@ -122,11 +122,6 @@ public class Empresas extends frm_Padre {
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
-            }
-        });
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
             }
         });
 
@@ -340,7 +335,7 @@ public class Empresas extends frm_Padre {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         if (this.txtCodigo.verificarVacioSinMsj()) {
             this.txtCodigo.setEnabled(false);
-            if (operacion == 'M' || operacion == 'E') {
+            if (txtCodigo.getOperacion() == 'M' || txtCodigo.getOperacion() == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDenominacion.setEnabled(true);
@@ -348,15 +343,6 @@ public class Empresas extends frm_Padre {
             }
         }
     }//GEN-LAST:event_txtCodigoActionPerformed
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            if (operacion != 'A') {
-                Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-                this.txtCodigo.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtDenominacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDenominacionActionPerformed
         this.txtRuc.setEnabled(true);
@@ -460,7 +446,6 @@ public class Empresas extends frm_Padre {
         ClaseCampos.setEnabled(jPanelDatos, false);
         this.jCheckAgenteRetentor.setEnabled(false);
         this.jCheckAgenteRetentor.setSelected(false);
-        this.operacion = 'x';
         this.btnNuevo.setEnabled(Agrega_OK);
         this.btnModificar.setEnabled(Modifica_OK);
         this.btnBorrar.setEnabled(Borra_OK);
@@ -470,17 +455,17 @@ public class Empresas extends frm_Padre {
             this.btnModificar.grabFocus();
         } else if (this.btnBorrar.isEnabled()) {
             this.btnBorrar.grabFocus();
-        }else {
+        } else {
             this.btnSalir.grabFocus();
         }
     }
 
     private void Agregar() {
-        if (getConexion.autoNumerico(tablaConsutada, idConsultada, null, null, this.txtCodigo)) {
+        if (this.txtCodigo.autoNumerico()) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             this.btnGrabar.setEnabled(false);
             this.txtDenominacion.setEnabled(true);
-            operacion = 'A';
+            this.txtCodigo.setOperacion('A');
             this.txtDenominacion.grabFocus();
         } else {
             Inicializar();
@@ -488,7 +473,7 @@ public class Empresas extends frm_Padre {
     }
 
     private void Editar(char c) {
-        operacion = c;
+        this.txtCodigo.setOperacion(c);
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCodigo.setEnabled(true);
         this.btnGrabar.setEnabled(false);
@@ -496,23 +481,23 @@ public class Empresas extends frm_Padre {
     }
 
     private void Grabar() {
-        if (operacion == 'A') {
+        if (txtCodigo.getOperacion() == 'A') {
             if (MensajeSistema.Guardar(this)) {
-                getConexion.insertar(tablaConsutada,
-                        new String[]{idConsultada, descripcionConsultada, "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
+                getConexion.insertar(txtCodigo.getBdTabla(),
+                        new String[]{txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
                         new String[]{this.txtCodigo.getText(), this.txtDenominacion.getText(),
                             this.txtRuc.getText(), this.txtRepresentante.getText(),
                             this.txtRucRepre.getText(), this.jCheckAgenteRetentor.isSelected() ? "1" : "0"});
 
             }
-        } else if (operacion == 'M') {
+        } else if (txtCodigo.getOperacion() == 'M') {
             if (MensajeSistema.Modificar(this)) {
-                getConexion.actualizar(tablaConsutada,
-                        new String[]{descripcionConsultada, "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
+                getConexion.actualizar(txtCodigo.getBdTabla(),
+                        new String[]{txtCodigo.getBdDescrip(), "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
                         new String[]{this.txtDenominacion.getText(),
                             this.txtRuc.getText(), this.txtRepresentante.getText(),
                             this.txtRucRepre.getText(), this.jCheckAgenteRetentor.isSelected() ? "1" : "0"},
-                        idConsultada, this.txtCodigo.getText());
+                        txtCodigo.getBdCodigo(), this.txtCodigo.getText());
             }
 
         }
@@ -520,19 +505,19 @@ public class Empresas extends frm_Padre {
     }
 
     private void RecuperarDatos(String codigo) {
-        String[] resu = getConexion.getDescripciones(tablaConsutada,
-                new String[]{idConsultada, descripcionConsultada, "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
-                new String[]{idConsultada}, new String[]{codigo});
+        String[] resu = getConexion.getDescripciones(txtCodigo.getBdTabla(),
+                new String[]{txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
+                new String[]{txtCodigo.getBdCodigo()}, new String[]{codigo});
         if (resu[0] != null) {
             this.txtDenominacion.setText(resu[1]);
             this.txtRuc.setText(resu[2]);
             this.txtRepresentante.setText(resu[3]);
             this.txtRucRepre.setText(resu[4]);
             this.jCheckAgenteRetentor.setSelected(resu[5].equals("1"));
-            if (operacion == 'E') {
-                Borrar(this, tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, codigo);
+            if (txtCodigo.getOperacion() == 'E') {
+                this.txtCodigo.Borrar();
                 Inicializar();
-            } else if (operacion == 'M') {
+            } else {
                 this.txtDenominacion.setEnabled(true);
                 this.txtDenominacion.grabFocus();
             }

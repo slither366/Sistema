@@ -272,10 +272,10 @@ public class frm_Password extends frm_Padre {
 
     private void Grabar() {
         if (MensajeSistema.Modificar(this)) {
-            String sql = "UPDATE " + tablaConsutada;
+            String sql = "UPDATE acc_usuarios";
             sql += " SET clave=PASSWORD('" + this.txtPassword2.getText() + "') ";
             sql += "WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO();
-            sql += " AND " + idConsultada + "=" + Configuracion.getSUC_CODIGO() + ";";
+            sql += " AND Usu_Codigo=" + Configuracion.getSUC_CODIGO() + ";";
             this.getConexion.ejecutaUpdate(sql);
         }
         this.Inicializar();

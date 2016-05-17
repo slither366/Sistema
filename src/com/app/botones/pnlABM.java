@@ -3,8 +3,8 @@ package com.app.botones;
 import com.app.clases.ClaseBotones;
 import java.awt.event.ActionListener;
 
-/** 
- * 
+/**
+ *
  * @author Diego
  */
 public class pnlABM extends javax.swing.JPanel {
@@ -15,7 +15,7 @@ public class pnlABM extends javax.swing.JPanel {
     public btnGrabar btnGrabar;
     public btnCancelar btnCancelar;
     public btnSalir btnSalir;
-    
+
     public pnlABM() {
         this.setPreferredSize(new java.awt.Dimension(534, 56));
         btnNuevo = new com.app.botones.btnNuevo();
@@ -92,8 +92,5 @@ public class pnlABM extends javax.swing.JPanel {
         this.btnGrabar.setEnabled(!b);
         this.btnCancelar.setEnabled(!b);
         this.btnSalir.setEnabled(b);
-    }
-    public void btnNuevoSetFocus(){
-        this.btnNuevo.grabFocus();
     }
 }

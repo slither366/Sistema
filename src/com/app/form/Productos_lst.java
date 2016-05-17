@@ -16,23 +16,33 @@ import java.sql.SQLException;
  */
 public class Productos_lst extends frm_Padre {
 
-    String desde, hasta;
-    GenerarReportes reportes = new GenerarReportes();
-    int foraneo;//1: dos campos, 2: tres campos sin FK, 3:tres campos con FK
+    private String desde, hasta, tituloVentanaActual;
+    private GenerarReportes reportes;
 
     public Productos_lst(int cod_ventana) {
         initComponents();
         this.setName("listar_productos");
-        this.tablaConsutada = "mant_productos";
-        this.idConsultada = "Prod_Codigo";
+        this.reportes = new GenerarReportes();
+        this.txtCod_Desde.setBdTabla("mant_productos");
+        this.txtCod_Desde.setBdCodigo("Prod_Codigo");
+        this.txtCod_Desde.setBdDescrip("Prod_Descrip");
+        this.txtCod_Desde.setBdTitulo("Productos");
+        this.txtCod_Desde.setUsarEmpresa(true);
+        this.txtCod_Desde.setUsarSucursal(false);
+
+        this.txtCod_Hasta.setBdTabla("mant_productos");
+        this.txtCod_Hasta.setBdCodigo("Prod_Codigo");
+        this.txtCod_Hasta.setBdDescrip("Prod_Descrip");
+        this.txtCod_Hasta.setBdTitulo("Productos");
+        this.txtCod_Hasta.setUsarEmpresa(true);
+        this.txtCod_Hasta.setUsarSucursal(false);
         this.tituloVentanaActual = "Productos";
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
-        foraneo = 1;
+        this.textTitulo.setText("Listado de Productos...");
         this.pnlListar1.addListener(this);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String Orden = e.getActionCommand();
@@ -201,8 +211,8 @@ public class Productos_lst extends frm_Padre {
 
     private void txtCod_DesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_DesdeActionPerformed
         if (this.txtCod_Desde.verificarVacioSinMsj()) {
-            String registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                    new String[]{idConsultada},
+            String registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                    new String[]{txtCod_Desde.getBdCodigo()},
                     new String[]{this.txtCod_Desde.getText()});
             if ("".equals(registro)) {
                 this.txtCod_Desde.setText("");
@@ -212,16 +222,13 @@ public class Productos_lst extends frm_Padre {
                 this.txtCod_Hasta.setText(hasta);
                 this.txtCod_Hasta.grabFocus();
             }
-        } else {
-            Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Desde.requestFocus();
         }
     }//GEN-LAST:event_txtCod_DesdeActionPerformed
 
     private void txtCod_HastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_HastaActionPerformed
         if (this.txtCod_Hasta.verificarVacioSinMsj()) {
-            String registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                    new String[]{idConsultada}, new String[]{this.txtCod_Hasta.getText()});
+            String registro = getConexion.getDescripcion(txtCod_Hasta.getBdTabla(), txtCod_Hasta.getBdDescrip(),
+                    new String[]{txtCod_Hasta.getBdCodigo()}, new String[]{this.txtCod_Hasta.getText()});
             if ("".equals(registro)) {
                 this.txtCod_Hasta.setText("");
                 this.txtCod_Hasta.grabFocus();
@@ -231,9 +238,6 @@ public class Productos_lst extends frm_Padre {
                 this.pnlListar1.btnImpresora.setEnabled(true);
                 this.pnlListar1.btnPantalla.grabFocus();
             }
-        } else {
-            Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Hasta.requestFocus();
         }
     }//GEN-LAST:event_txtCod_HastaActionPerformed
 
@@ -279,10 +283,9 @@ public class Productos_lst extends frm_Padre {
     }
 
     public void Agregar() {
-        operacion = 'A';
-        int x = getConexion.getMIN(tablaConsutada, idConsultada, null, null);
+        int x = getConexion.getMIN(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdCodigo(), null, null);
         if (x >= 0) {
-            int y = getConexion.getMAX(tablaConsutada, idConsultada, null, null);
+            int y = getConexion.getMAX(txtCod_Hasta.getBdTabla(), txtCod_Hasta.getBdCodigo(), null, null);
             if (y >= 0) {
                 desde = x + "";
                 hasta = y + "";
@@ -302,9 +305,9 @@ public class Productos_lst extends frm_Padre {
             if (resu.getClass().equals(ResultSet.class)) {
                 if (resu.next()) {
                     resu.beforeFirst();
-                    if (modalidad == 'E') {                        
+                    if (modalidad == 'E') {
                         Excel excel = new Excel();
-                        excel.export(getConexion.getDefaultTableModel(resu), this.tituloVentanaActual);
+                        excel.export(getConexion.getDefaultTableModel(resu), tituloVentanaActual);
                         if (MensajeSistema.Pregunta_YES_NO(this, "Desea abrir el archivo exportado???") == 0) {
                             excel.AbrirUltimo();
                         }
@@ -313,14 +316,8 @@ public class Productos_lst extends frm_Padre {
                         String xdesde = this.textDesde.getText().trim() + " (" + desde + ")";
                         String xhasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                         Inicializar();
-                        if (foraneo == 1) {
-                            reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
-                        } else {
-                            reportes.listadoTresCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad, tituloVentanaActual);
-                        }
+                        reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
                     }
-                } else {
-                    Inicializar();
                 }
             } else {
                 Inicializar();
@@ -331,13 +328,13 @@ public class Productos_lst extends frm_Padre {
     }
 
     private ResultSet traerDatos() {
-        String[] campo = new String[]{this.EMP_CODIGO, this.SUC_CODIGO, idConsultada};
+        String[] campo = new String[]{this.EMP_CODIGO, this.SUC_CODIGO, txtCod_Desde.getBdCodigo()};
         String[] nombres = new String[]{"codigo", "descripcion", "referencia"};
-        String[] campoCondicion = {this.EMP_CODIGO, idConsultada, idConsultada};
+        String[] campoCondicion = {this.EMP_CODIGO, txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdCodigo()};
         String[] igual = {"=", ">=", "<="};
         String[] valores = {Configuracion.getEMP_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-        String[] ordenBy = {descripcionConsultada, idConsultada};
-        String consulta = ConsultaSQL.getSelect("vst_" + tablaConsutada, campo, nombres, campoCondicion,
+        String[] ordenBy = {txtCod_Desde.getBdDescrip(), txtCod_Desde.getBdCodigo()};
+        String consulta = ConsultaSQL.getSelect("vst_" + txtCod_Desde.getBdTabla(), campo, nombres, campoCondicion,
                 igual, valores, ordenBy);
         return getConexion.ejecutaQuery(consulta);
     }

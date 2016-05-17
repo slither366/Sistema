@@ -19,6 +19,7 @@ public class frm_Configuracion extends frm_Padre {
 
     private final boolean Archivo, Conex;
     private Propiedades propiedades = null;
+    private final String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual;    
 
     public frm_Configuracion(boolean archivo, boolean conex) {
         initComponents();

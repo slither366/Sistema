@@ -1,7 +1,6 @@
 package com.app.form.Especiales;
 
 import com.app.clases.utilidades.Excel;
-import com.app.clases.ClaseTeclas;
 import com.app.clases.GenerarReportes;
 import com.app.config.Configuracion;
 import com.app.config.ConsultaSQL;
@@ -16,11 +15,11 @@ import java.sql.SQLException;
  */
 public class Listar extends frm_Padre {
 
-    String desde, hasta;
-    String descripcionForaneo, tituloVentanaForaneo;
-    GenerarReportes reportes = new GenerarReportes();
-    String Reporte;
-    int foraneo;//0:listado cualquiera, 1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
+    private String desde, hasta;
+    private String tituloVentanaActual, descripcionForaneo, tituloVentanaForaneo;
+    private GenerarReportes reportes;
+    private String Reporte;
+    private int foraneo;//0:listado cualquiera, 1: dos campos, 2: tres campos sin FK, 3:tres campos con FK        
     private String[] Campos;
     private String[] Nombres;
 
@@ -39,15 +38,25 @@ public class Listar extends frm_Padre {
             String descripcion, String titulo) {
         initComponents();
         this.setName("listar" + titulo);
-        this.tablaConsutada = tabla;
-        this.UsarEmpresa = Empresa;
-        this.UsarSucursal = Sucursal;
-        this.idConsultada = codigo;
-        this.descripcionConsultada = descripcion;
+        this.reportes = new GenerarReportes();
+        this.txtCod_Desde.setBdTabla(tabla);
+        this.txtCod_Desde.setBdCodigo(codigo);
+        this.txtCod_Desde.setBdDescrip(descripcion);
+        this.txtCod_Desde.setBdTitulo(titulo);
+        this.txtCod_Desde.setUsarEmpresa(Empresa);
+        this.txtCod_Desde.setUsarSucursal(Sucursal);
+        this.txtCod_Desde.setOperacion('x');
+        this.txtCod_Hasta.setBdTabla(tabla);
+        this.txtCod_Hasta.setBdCodigo(codigo);
+        this.txtCod_Hasta.setBdDescrip(descripcion);
+        this.txtCod_Hasta.setBdTitulo(titulo);
+        this.txtCod_Hasta.setUsarEmpresa(Empresa);
+        this.txtCod_Hasta.setUsarSucursal(Sucursal);
+        this.txtCod_Hasta.setOperacion('x');
         this.tituloVentanaActual = titulo;
         this.Reporte = "";
         this.pnlListar.addListener(this);
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Listado de " + titulo + "...");
         foraneo = 1;
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
@@ -68,19 +77,29 @@ public class Listar extends frm_Padre {
      */
     public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String descripcion2, String tituloDescri2) {
+        this.reportes = new GenerarReportes();
         initComponents();
         this.setName("listar" + titulo);
-        this.tablaConsutada = tabla;
-        this.UsarEmpresa = Empresa;
-        this.UsarSucursal = Sucursal;
-        this.idConsultada = codigo;
-        this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;
+        this.txtCod_Desde.setBdTabla(tabla);
+        this.txtCod_Desde.setBdCodigo(codigo);
+        this.txtCod_Desde.setBdDescrip(descripcion);
+        this.txtCod_Desde.setBdTitulo(titulo);
+        this.txtCod_Desde.setUsarEmpresa(Empresa);
+        this.txtCod_Desde.setUsarSucursal(Sucursal);
+        this.txtCod_Desde.setOperacion('x');
+        this.txtCod_Hasta.setBdTabla(tabla);
+        this.txtCod_Hasta.setBdCodigo(codigo);
+        this.txtCod_Hasta.setBdDescrip(descripcion);
+        this.txtCod_Hasta.setBdTitulo(titulo);
+        this.txtCod_Hasta.setUsarEmpresa(Empresa);
+        this.txtCod_Hasta.setUsarSucursal(Sucursal);
+        this.txtCod_Hasta.setOperacion('x');
         this.Reporte = "";
+        this.tituloVentanaActual = titulo;
         this.pnlListar.addListener(this);
         this.descripcionForaneo = descripcion2;
         this.tituloVentanaForaneo = tituloDescri2;
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Listado de " + titulo + "...");
         foraneo = 2;
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
@@ -103,19 +122,29 @@ public class Listar extends frm_Padre {
      */
     public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String idForaneo, String descripcionForaneo, String tituloForaneo) {
+        this.reportes = new GenerarReportes();
         initComponents();
         this.setName("listar" + titulo);
-        this.tablaConsutada = tabla;
-        this.UsarEmpresa = Empresa;
-        this.UsarSucursal = Sucursal;
-        this.idConsultada = codigo;
-        this.tituloVentanaActual = titulo;
+        this.txtCod_Desde.setBdTabla(tabla);
+        this.txtCod_Desde.setBdCodigo(codigo);
+        this.txtCod_Desde.setBdDescrip(descripcion);
+        this.txtCod_Desde.setBdTitulo(titulo);
+        this.txtCod_Desde.setUsarEmpresa(Empresa);
+        this.txtCod_Desde.setUsarSucursal(Sucursal);
+        this.txtCod_Desde.setOperacion('x');
+        this.txtCod_Hasta.setBdTabla(tabla);
+        this.txtCod_Hasta.setBdCodigo(codigo);
+        this.txtCod_Hasta.setBdDescrip(descripcion);
+        this.txtCod_Hasta.setBdTitulo(titulo);
+        this.txtCod_Hasta.setUsarEmpresa(Empresa);
+        this.txtCod_Hasta.setUsarSucursal(Sucursal);
+        this.txtCod_Hasta.setOperacion('x');
         this.Reporte = "";
+        this.tituloVentanaActual = titulo;
         this.pnlListar.addListener(this);
-        this.descripcionConsultada = descripcion;
         this.descripcionForaneo = descripcionForaneo;
         this.tituloVentanaForaneo = tituloForaneo;
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Listado de " + titulo + "...");
         foraneo = 3;
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
@@ -138,19 +167,29 @@ public class Listar extends frm_Padre {
      */
     public Listar(String tabla, int cod_ventana, boolean Empresa, boolean Sucursal, String codigo, String descripcion, String titulo,
             String reporte, String[] campos, String[] nombres) {
+        this.reportes = new GenerarReportes();
         initComponents();
         this.setName("listar" + titulo);
-        this.tablaConsutada = tabla;
-        this.UsarEmpresa = Empresa;
-        this.UsarSucursal = Sucursal;
-        this.idConsultada = codigo;
-        this.descripcionConsultada = descripcion;
-        this.tituloVentanaActual = titulo;
+        this.txtCod_Desde.setBdTabla(tabla);
+        this.txtCod_Desde.setBdCodigo(codigo);
+        this.txtCod_Desde.setBdDescrip(descripcion);
+        this.txtCod_Desde.setBdTitulo(titulo);
+        this.txtCod_Desde.setUsarEmpresa(Empresa);
+        this.txtCod_Desde.setUsarSucursal(Sucursal);
+        this.txtCod_Desde.setOperacion('x');
+        this.txtCod_Hasta.setBdTabla(tabla);
+        this.txtCod_Hasta.setBdCodigo(codigo);
+        this.txtCod_Hasta.setBdDescrip(descripcion);
+        this.txtCod_Hasta.setBdTitulo(titulo);
+        this.txtCod_Hasta.setUsarEmpresa(Empresa);
+        this.txtCod_Hasta.setUsarSucursal(Sucursal);
+        this.txtCod_Hasta.setOperacion('x');
         this.Reporte = reporte;
         this.Campos = campos;
         this.Nombres = nombres;
+        this.tituloVentanaActual = titulo;
         this.pnlListar.addListener(this);
-        this.textTitulo.setText("Listado de " + tituloVentanaActual + "...");
+        this.textTitulo.setText("Listado de " + titulo + "...");
         foraneo = 0;
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
@@ -158,7 +197,7 @@ public class Listar extends frm_Padre {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String Orden = e.getActionCommand();        
+        String Orden = e.getActionCommand();
         if (Orden.compareTo("btn1") == 0) {
             Agregar();
         } else if (Orden.compareTo("btn2") == 0) {
@@ -241,20 +280,10 @@ public class Listar extends frm_Padre {
                 txtCod_DesdeActionPerformed(evt);
             }
         });
-        txtCod_Desde.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_DesdeKeyPressed(evt);
-            }
-        });
 
         txtCod_Hasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_HastaActionPerformed(evt);
-            }
-        });
-        txtCod_Hasta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_HastaKeyPressed(evt);
             }
         });
 
@@ -337,17 +366,17 @@ public class Listar extends frm_Padre {
         int valor = this.txtCod_Desde.verificarVacioConMsj();
         if (valor == 0) {
             String registro;
-            if (UsarEmpresa && UsarSucursal) {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+            if (this.txtCod_Desde.isUsarEmpresa() && this.txtCod_Desde.isUsarSucursal()) {
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Desde.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Desde.getText()});
-            } else if (UsarEmpresa) {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{EMP_CODIGO, idConsultada},
+            } else if (this.txtCod_Desde.isUsarEmpresa()) {
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{EMP_CODIGO, txtCod_Desde.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Desde.getText()});
             } else {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{idConsultada}, new String[]{this.txtCod_Desde.getText()});
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{txtCod_Desde.getBdCodigo()}, new String[]{this.txtCod_Desde.getText()});
             }
             if (registro == null) {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
@@ -370,17 +399,17 @@ public class Listar extends frm_Padre {
         int valor = this.txtCod_Hasta.verificarVacioConMsj();
         if (valor == 0) {
             String registro;
-            if (UsarEmpresa && UsarSucursal) {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{EMP_CODIGO, SUC_CODIGO, idConsultada},
+            if (this.txtCod_Hasta.isUsarEmpresa() && this.txtCod_Hasta.isUsarSucursal()) {
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Desde.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Hasta.getText()});
-            } else if (UsarEmpresa) {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{EMP_CODIGO, idConsultada},
+            } else if (this.txtCod_Hasta.isUsarEmpresa()) {
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{EMP_CODIGO, txtCod_Desde.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Hasta.getText()});
             } else {
-                registro = getConexion.getDescripcion(tablaConsutada, descripcionConsultada,
-                        new String[]{idConsultada}, new String[]{this.txtCod_Hasta.getText()});
+                registro = getConexion.getDescripcion(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdDescrip(),
+                        new String[]{txtCod_Desde.getBdCodigo()}, new String[]{this.txtCod_Hasta.getText()});
             }
             if (registro == null) {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
@@ -393,26 +422,13 @@ public class Listar extends frm_Padre {
                 this.textHasta.setText(registro);
                 this.pnlListar.btnPantalla.setEnabled(true);
                 this.pnlListar.btnImpresora.setEnabled(true);
+                this.pnlListar.btnExportar.setEnabled(true);
                 this.pnlListar.btnPantalla.grabFocus();
             }
         } else if (valor == 1) {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtCod_HastaActionPerformed
-
-    private void txtCod_DesdeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_DesdeKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Desde.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_DesdeKeyPressed
-
-    private void txtCod_HastaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_HastaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            Buscar(tablaConsutada, UsarEmpresa, UsarSucursal, idConsultada, descripcionConsultada, tituloVentanaActual);
-            this.txtCod_Hasta.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_HastaKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -449,17 +465,16 @@ public class Listar extends frm_Padre {
     }
 
     public void Agregar() {
-        operacion = 'A';
-        int x = getConexion.getMIN(tablaConsutada, idConsultada, null, null);
+        int x = getConexion.getMIN(txtCod_Desde.getBdTabla(), txtCod_Desde.getBdCodigo(), null, null);
         if (x >= 0) {
-            int y = getConexion.getMAX(tablaConsutada, idConsultada, null, null);
+            int y = getConexion.getMAX(txtCod_Hasta.getBdTabla(), txtCod_Hasta.getBdCodigo(), null, null);
             if (y >= 0) {
                 desde = String.valueOf(x);
                 hasta = String.valueOf(y);
                 this.ModoEdicion(true);
                 this.pnlListar.btnPantalla.setEnabled(false);
                 this.pnlListar.btnImpresora.setEnabled(false);
-                this.pnlListar.btnExportar.setEnabled(false);                
+                this.pnlListar.btnExportar.setEnabled(false);
                 this.txtCod_Desde.setText(desde);
                 this.txtCod_Desde.grabFocus();
             }
@@ -483,7 +498,7 @@ public class Listar extends frm_Padre {
                     String xhasta = this.textHasta.getText().trim() + " (" + hasta + ")";
                     Inicializar();
                     if (foraneo == 0) {//Reporte especiales, donde se envia la ubicacion del reporte
-                        reportes.MostrarReporte(resu, this.Reporte, xdesde, xhasta, modalidad, tituloVentanaActual);
+                        reportes.MostrarReporte(resu, this.Reporte, xdesde, xhasta, modalidad, txtCod_Desde.getBdTabla());
                     } else {// Reportes predetermiandos de campos predefinidos
                         if (foraneo == 1) {
                             reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
@@ -512,42 +527,42 @@ public class Listar extends frm_Padre {
         String[] campo, nombre;
         String tabla;
         if (foraneo == 1) {
-            campo = new String[]{idConsultada, descripcionConsultada};
+            campo = new String[]{txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip()};
             nombre = new String[]{"codigo", "descripcion"};
-            tabla = tablaConsutada;
+            tabla = txtCod_Desde.getBdTabla();
         } else if (foraneo == 2) {
-            campo = new String[]{idConsultada, descripcionConsultada, descripcionForaneo};
+            campo = new String[]{txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip(), descripcionForaneo};
             nombre = new String[]{"codigo", "descripcion", "referencia"};
-            tabla = tablaConsutada;
+            tabla = txtCod_Desde.getBdTabla();
         } else if (foraneo == 3) {
-            campo = new String[]{idConsultada, descripcionConsultada, descripcionForaneo};
+            campo = new String[]{txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip(), descripcionForaneo};
             nombre = new String[]{"codigo", "descripcion", "referencia"};
-            tabla = "vst_" + tablaConsutada;
+            tabla = "vst_" + txtCod_Desde.getBdTabla();
         } else {
             campo = this.Campos;
             nombre = this.Nombres;
-            tabla = tablaConsutada;
+            tabla = txtCod_Desde.getBdTabla();
         }
         String consulta;
-        if (UsarEmpresa && UsarSucursal) {
-            String[] campoCondicion = {EMP_CODIGO, SUC_CODIGO, idConsultada, idConsultada};
+        if (this.txtCod_Desde.isUsarEmpresa() && this.txtCod_Desde.isUsarSucursal()) {
+            String[] campoCondicion = {EMP_CODIGO, SUC_CODIGO, txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdCodigo()};
             String[] igual = {"=", "=", ">=", "<="};
             String[] valores = {Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {idConsultada, descripcionConsultada};
+            String[] ordenBy = {txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip()};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
-        } else if (UsarEmpresa) {
-            String[] campoCondicion = {EMP_CODIGO, idConsultada, idConsultada};
+        } else if (this.txtCod_Desde.isUsarEmpresa()) {
+            String[] campoCondicion = {EMP_CODIGO, txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdCodigo()};
             String[] igual = {"=", ">=", "<="};
             String[] valores = {Configuracion.getEMP_CODIGO(), this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {idConsultada, descripcionConsultada};
+            String[] ordenBy = {txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip()};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
         } else {
-            String[] campoCondicion = {idConsultada, idConsultada};
+            String[] campoCondicion = {txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdCodigo()};
             String[] igual = {">=", "<="};
             String[] valores = {this.txtCod_Desde.getText(), this.txtCod_Hasta.getText()};
-            String[] ordenBy = {idConsultada, descripcionConsultada};
+            String[] ordenBy = {txtCod_Desde.getBdCodigo(), txtCod_Desde.getBdDescrip()};
             consulta = ConsultaSQL.getSelect(tabla, campo, nombre, campoCondicion,
                     igual, valores, ordenBy);
         }

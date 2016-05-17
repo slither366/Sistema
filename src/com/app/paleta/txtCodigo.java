@@ -1,6 +1,13 @@
 package com.app.paleta;
 
 import com.app.config.Configuracion;
+import com.app.config.MensajeSistema;
+import com.app.form.Especiales.Buscar;
+import com.app.form.Especiales.frm_Padre;
+import static com.app.form.Especiales.frm_Padre.EMP_CODIGO;
+import static com.app.form.Especiales.frm_Padre.SUC_CODIGO;
+import static com.app.form.Especiales.frm_Padre.getConexion;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -11,6 +18,23 @@ public class txtCodigo extends textoPadre {
     public txtCodigo() {
         this.setText("txtCodigo");
         this.setToolTipText("Ingrese el código del Registro...");
+        this.addKeyListener(new java.awt.event.KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == 116) {
+                    Buscar();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
         this.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -67,6 +91,8 @@ public class txtCodigo extends textoPadre {
      * descripcion y titulo a cual va a representar
      */
     private String bdTabla, bdCodigo, bdDescrip, bdTitulo;
+    private boolean UsarEmpresa, UsarSucursal;
+    private char operacion;
 
     /**
      * Metodo que retorna el nombre de la Tabla del campo
@@ -138,5 +164,89 @@ public class txtCodigo extends textoPadre {
      */
     public void setBdTitulo(String bdTitulo) {
         this.bdTitulo = bdTitulo;
+    }
+
+    public void setUsarEmpresa(boolean UsarEmpresa) {
+        this.UsarEmpresa = UsarEmpresa;
+    }
+
+    public boolean isUsarEmpresa() {
+        return this.UsarEmpresa;
+    }
+
+    public void setUsarSucursal(boolean UsarSucursal) {
+        this.UsarSucursal = UsarSucursal;
+    }
+
+    public boolean isUsarSucursal() {
+        return this.UsarSucursal;
+    }
+
+    public char getOperacion() {
+        return operacion;
+    }
+
+    public void setOperacion(char operacion) {
+        this.operacion = operacion;
+    }
+
+    /**
+     * Metodo que es para mostrar el formulario de busqueda
+     */
+    public void Buscar() {
+        if (operacion != 'A') {
+            Buscar buscar = new Buscar(null, true, getBdTabla(), UsarEmpresa, UsarSucursal,
+                    getBdCodigo(), getBdDescrip(), getBdTitulo(), frm_Padre.getConexion);
+            buscar.setVisible(true);
+            this.requestFocus();
+        }
+    }
+
+    /**
+     * Metodo para obtener el ultimo nro mas uno de una tabla e insertar el
+     * valor devuelto en un JTextField que recibe como parametro.
+     *
+     * @return
+     */
+    public boolean autoNumerico() {
+        String[] condicion, valores;
+        if (this.isUsarEmpresa() && this.isUsarSucursal()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
+        } else if (this.isUsarEmpresa()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO()};
+        } else {
+            condicion = new String[]{null};
+            valores = new String[]{null};
+        }
+        int valor = frm_Padre.getConexion.getMAX(this.getBdTabla(), this.getBdCodigo(), condicion, valores);
+        if (valor >= 0) {
+            this.setCodigo(valor + 1);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Metodo que sirve para borrar el registro actual del campo txtCodigo
+     *
+     * @return
+     */
+    public boolean Borrar() {
+        if (MensajeSistema.Eliminar()) {
+            if (UsarEmpresa && UsarSucursal) {
+                return getConexion.eliminar(getBdTabla(),
+                        new String[]{EMP_CODIGO, SUC_CODIGO, getBdCodigo()},
+                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.getText()});
+            } else if (UsarEmpresa) {
+                return getConexion.eliminar(getBdTabla(),
+                        new String[]{EMP_CODIGO, getBdCodigo()},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.getText()});
+            } else {
+                return getConexion.eliminar(getBdTabla(), getBdCodigo(), this.getText());
+            }
+        }
+        return false;
     }
 }

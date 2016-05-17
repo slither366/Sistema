@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public final class frm_listados extends frm_Padre {
 
     GenerarReportes reportes = new GenerarReportes();
+    private String tablaConsutada, idConsultada, descripcionConsultada, tituloVentanaActual;
 
     public frm_listados(int cod_ventana) {
         initComponents();
@@ -616,11 +617,11 @@ public final class frm_listados extends frm_Padre {
                     reportes.listadoDosCampos(resu, tituloVentanaActual, xdesde, xhasta, modalidad);
                 }
             } else {
-                if(MensajeSistema.ConsultaSQLVacio(this)){
-                 this.Inicializar();
-                 this.btnReporNuevo.doClick();
-                }else{
-                Inicializar();
+                if (MensajeSistema.ConsultaSQLVacio(this)) {
+                    this.Inicializar();
+                    this.btnReporNuevo.doClick();
+                } else {
+                    Inicializar();
                 }
             }
         } catch (SQLException ex) {
@@ -634,7 +635,7 @@ public final class frm_listados extends frm_Padre {
                 new String[]{"codigo", "descripcion"});
         // Para quitar el ";" de la consulta que retorna el Metodo anterior
         sql = sql.substring(0, sql.length() - 1);
-        sql += " WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO()+ " ";
+        sql += " WHERE " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO() + " ";
         String where = "";
         if (!this.txtCodDesde.isEmpty() || !this.txtCodHasta.isEmpty()) {
             where += idConsultada + ">='" + this.txtCodDesde.getText().trim() + "'";

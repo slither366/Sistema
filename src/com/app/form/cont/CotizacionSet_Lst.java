@@ -21,13 +21,15 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
  */
 public class CotizacionSet_Lst extends frm_Padre {
 
-    private final GenerarReportes reportes = new GenerarReportes();
-    private final String Reporte;
+    private final GenerarReportes reportes;
+    private final String Reporte, tablaConsutada, idConsultada, tituloVentanaActual;
+    private final boolean UsarEmpresa, UsarSucursal;
 
     /**
      * @param cod_ventana
      */
     public CotizacionSet_Lst(int cod_ventana) {
+        this.reportes = new GenerarReportes();
         initComponents();
         this.setName("CotizacionSet_Lst");
         this.tablaConsutada = "vst_cont_cotizacion_set";
@@ -35,12 +37,16 @@ public class CotizacionSet_Lst extends frm_Padre {
         this.UsarSucursal = false;
         this.idConsultada = "fecha";
         this.tituloVentanaActual = "Cotización";
-        this.Reporte = "cotizacionSet_Lst";
-        this.panelTitulo1.setTextTitulo("Listado de " + tituloVentanaActual + "...");
+
         this.txtCod_Moneda.setBdTabla("ref_monedas");
         this.txtCod_Moneda.setBdCodigo("Mon_Codigo");
         this.txtCod_Moneda.setBdDescrip("Mon_Descrip");
         this.txtCod_Moneda.setBdTitulo("Monedas");
+        this.txtCod_Moneda.setUsarEmpresa(true);
+        this.txtCod_Moneda.setUsarSucursal(false);
+
+        this.Reporte = "cotizacionSet_Lst";
+        this.panelTitulo1.setTextTitulo("Listado de " + tituloVentanaActual + "...");
         this.pnlListar.addListener(this);
         this.getPermisosListar(cod_ventana);
         this.Inicializar();
@@ -298,7 +304,6 @@ public class CotizacionSet_Lst extends frm_Padre {
     }
 
     public void Agregar() {
-        operacion = 'A';
         this.ModoEdicion(true);
         this.pnlListar.btnPantalla.setEnabled(false);
         this.pnlListar.btnImpresora.setEnabled(false);

@@ -13,14 +13,21 @@ import java.awt.event.ActionEvent;
  */
 public final class CotizacionSet extends frm_Padre implements Metodos {
 
+    private String tablaConsutada, tituloVentanaActual;
+
     public CotizacionSet(int cod_ventana) {
         initComponents();
         this.setName("ContizacionSet");
         this.tablaConsutada = "cont_cotizacion_set";
         this.Cod_Ventana = cod_ventana;
-        this.UsarEmpresa = true;
-        this.UsarSucursal = false;
-        this.tituloVentanaActual = "Cotización";
+        
+        this.txtCod_Moneda.setBdTabla("ref_monedas");
+        this.txtCod_Moneda.setBdCodigo("Mon_Codigo");
+        this.txtCod_Moneda.setBdDescrip("Mon_Descrip");
+        this.txtCod_Moneda.setBdTitulo("Monedas");
+        this.txtCod_Moneda.setUsarEmpresa(true);
+        this.txtCod_Moneda.setUsarSucursal(false);
+        
         this.pnlTitulo.setTextTitulo("Mantenimiento de " + tituloVentanaActual + "...");
         this.txtCod_Moneda.setBdTabla("ref_monedas");
         this.txtCod_Moneda.setBdCodigo("Mon_Codigo");
@@ -31,7 +38,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         this.txtCompra.setInicializar(11, 2);
         this.txtVenta.setInicializar(11, 2);
         this.getPermisos(this.Cod_Ventana);
-        this.pnlBotones.addListener(this);        
+        this.pnlBotones.addListener(this);
         this.Inicializar();
     }
 
@@ -239,7 +246,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         int valor = this.txtFecha.verificarVacioConMsj();
         if (valor == 0) {
             this.txtFecha.setEnabled(false);
-            if (operacion == 'M' || operacion == 'E') {
+            if (this.txtCod_Moneda.getOperacion() == 'M' || this.txtCod_Moneda.getOperacion() == 'E') {
                 this.RecuperarDatos(this.txtCod_Moneda.getText());
             } else {
                 this.txtCompra.setEnabled(true);
@@ -314,14 +321,14 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         if (this.pnlDatos.setValidate()) {
             MensajeSistema.validarVacio(this);
         } else {
-            if (operacion == 'A') {
+            if (this.txtCod_Moneda.getOperacion() == 'A') {
                 if (MensajeSistema.Guardar(this)) {
                     getConexion.insertar(tablaConsutada,
                             new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha", "compra", "venta"},
                             new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Moneda.getText(),
                                 this.txtFecha.getFecha(), this.txtCompra.getNumeroString(), this.txtVenta.getNumeroString()});
                 }
-            } else if (operacion == 'M') {
+            } else {
                 if (MensajeSistema.Modificar(this)) {
                     getConexion.actualizar(tablaConsutada,
                             new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha", "compra", "venta"},
@@ -340,13 +347,13 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         this.pnlBotones.ModoEdicion(false);
         this.pnlBotones.btnGrabar.setEnabled(false);
         this.txtCod_Moneda.setEnabled(true);
-        operacion = 'A';
+        this.txtCod_Moneda.setOperacion('A');
         this.txtCod_Moneda.grabFocus();
     }
 
     @Override
     public void Editar(char c) {
-        operacion = c;
+        this.txtCod_Moneda.setOperacion(c);
         this.pnlBotones.ModoEdicion(false);
         this.txtCod_Moneda.setEnabled(true);
         this.pnlBotones.btnGrabar.setEnabled(false);
@@ -362,12 +369,12 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         if (rs[0] != null) {
             txtCompra.setNumero(rs[0]);
             txtVenta.setNumero(rs[1]);
-            if (operacion == 'E') {
+            if (this.txtCod_Moneda.getOperacion() == 'E') {
                 this.Borrar(this, tablaConsutada,
                         new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha"},
                         new String[]{Configuracion.getEMP_CODIGO(), codigo, this.txtFecha.getFecha()});
                 Inicializar();
-            } else if (operacion == 'M') {
+            } else {
                 this.txtCompra.setEnabled(true);
                 this.txtCompra.grabFocus();
             }
