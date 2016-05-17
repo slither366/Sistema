@@ -11,12 +11,12 @@ import com.app.form.Especiales.frm_Padre;
  *
  * @author Diego
  */
-public class frm_Usuarios extends frm_Padre {
+public class Usuarios extends frm_Padre {
 
     /**
      * @param cod_ventana
      */
-    public frm_Usuarios(int cod_ventana) {
+    public Usuarios(int cod_ventana) {
         initComponents();
         this.setResizable(false);
         this.setName("frm_usuarios");

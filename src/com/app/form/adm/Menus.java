@@ -11,9 +11,9 @@ import com.app.form.Especiales.frm_Padre;
  *
  * @author Diego
  */
-public class MantenimientoMenu extends frm_Padre {
+public class Menus extends frm_Padre {
 
-    public MantenimientoMenu() {
+    public Menus() {
         initComponents();
         this.setName("menus");
         this.tablaConsutada = "Acc_Menus";

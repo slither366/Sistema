@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class Mantenimiento_Permisos extends frm_Padre {
+public class Permisos extends frm_Padre {
 
     private final DefaultTableModel ModeloPermisos, ModeloMenus;
     private final String[] vacio = {};
@@ -23,7 +23,7 @@ public class Mantenimiento_Permisos extends frm_Padre {
     private boolean v_borrar = false, v_listar = false;
     private boolean v_todos = false;
 
-    public Mantenimiento_Permisos() {
+    public Permisos() {
         initComponents();
         this.setName("Mant_Permisos");
         ClaseBotones.botonesABMKeyPressed(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir);

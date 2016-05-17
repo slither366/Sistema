@@ -8,13 +8,13 @@ import com.app.form.Especiales.frm_Padre;
  *
  * @author diego
  */
-public class frm_Administrativo extends frm_Padre {
+public class Administrativo extends frm_Padre {
 
     String SQLPerfil, SQLUsuario, SQLMenu;
     String campoClave;
     int rowPerfil, rowUsuario, rowEmpresa;   
 
-    public frm_Administrativo() {
+    public Administrativo() {
         initComponents();
         this.setResizable(false);
         this.setName("frm_administrativo");     
