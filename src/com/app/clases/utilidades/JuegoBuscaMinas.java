@@ -1,33 +1,28 @@
 package com.app.clases.utilidades;
 
 import com.app.config.Configuracion;
+import com.app.form.Especiales.callMenus;
 import com.app.form.Especiales.frm_Padre;
-import com.app.form.Especiales.frm_Principal;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public final class JuegoBuscaMinas extends frm_Padre implements ActionListener, MouseListener {
+public class JuegoBuscaMinas extends frm_Padre implements ActionListener, MouseListener {
 
     int nomines = 40;
-    int perm[][];
     String tmp;
     boolean found = false;
-    int row;
-    int column;
-    int guesses[][];
+    int row, column;
+    int[][] guesses, perm, mines;
     JButton b[][];
-    int[][] mines;
     boolean allmines;
     int n = 10;
     int m = 10;
     int deltax[] = {-1, 0, 1, -1, 1, -1, 0, 1};
     int deltay[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-    double starttime;
-    double endtime;
+    double starttime, endtime;
 
     public JuegoBuscaMinas() {
-        //this.setLocationRelativeTo(this);
         this.setResizable(false);
         this.setName("buscaMinas");
         this.setTitle("..:: " + Configuracion.getTITULO_VENTANA() + " - Busca Minas ::..");
@@ -119,7 +114,7 @@ public final class JuegoBuscaMinas extends frm_Padre implements ActionListener, 
         } else if (mines[row + 1][column + 1] == 1) {
             //b[row][column].setText(":p");
             JOptionPane.showMessageDialog(temporaryLostComponent, "Se encontró una mina!!!.");
-            frm_Principal.llamarFormulario.CloseFrame(this);
+            this.Salir(this);
         } else {
             tmp = Integer.toString(perm[row][column]);
             if (perm[row][column] == 0) {
@@ -161,7 +156,7 @@ public final class JuegoBuscaMinas extends frm_Padre implements ActionListener, 
                     scan(x + deltax[a], y + deltay[a]);
                 }
             } else if ((perm[x + deltax[a]][y + deltay[a]] != 0) && (mines[x + 1 + deltax[a]][y + 1 + deltay[a]] == 0) && (guesses[x + deltax[a] + 1][y + deltay[a] + 1] == 0)) {
-                tmp = new Integer(perm[x + deltax[a]][y + deltay[a]]).toString();
+                tmp = Integer.toString(perm[x + deltax[a]][y + deltay[a]]);
                 b[x + deltax[a]][y + deltay[a]].setText(Integer.toString(perm[x + deltax[a]][y + deltay[a]]));
                 b[x + deltax[a]][y + deltay[a]].setEnabled(false);
             }
