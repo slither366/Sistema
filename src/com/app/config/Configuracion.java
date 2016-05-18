@@ -20,9 +20,8 @@ public class Configuracion {
     private static String PFISC_CODIGO = "1";
     private static String PFISC_DESCRIP = "2016";
     private static String TITULO_MENSAJE = "..:: Mensaje del Sistema ::..";
-    private static String TITULO_VENTANA = "SysTema";
+    private static String TITULO_VENTANA = "DR Software";
     private static final String Logo = "/com/app/iconos/icon.png";
-    //private static final Icon Icono = new javax.swing.ImageIcon(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("/com/app/iconos/icon.png")));
     private static int CantidadMaxVAbierta = 6;
     private static int CantidadVentanaAbierta = 1;
     private static int Contador = 0;

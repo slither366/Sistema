@@ -135,8 +135,12 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5232.setEnabled(Configuracion.BuscarMenu(5232));
         jMenu5300.setEnabled(Configuracion.BuscarMenu(5300));
         jMenu5310.setEnabled(Configuracion.BuscarMenu(5310));
-        jMenu5320.setEnabled(Configuracion.BuscarMenu(5320));
-        jMenu5400.setEnabled(Configuracion.BuscarMenu(5400));
+        jMenu5311.setEnabled(Configuracion.BuscarMenu(5311));
+        jMenu5312.setEnabled(Configuracion.BuscarMenu(5312));
+        jMenu5400.setEnabled(Configuracion.BuscarMenu(5300));
+        jMenu5410.setEnabled(Configuracion.BuscarMenu(5310));
+        jMenu5420.setEnabled(Configuracion.BuscarMenu(5320));
+        jMenu5500.setEnabled(Configuracion.BuscarMenu(5400));
     }
 
     public static void ubicarBotones() {
@@ -283,9 +287,13 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5231 = new javax.swing.JMenuItem();
         jMenu5232 = new javax.swing.JMenuItem();
         jMenu5300 = new javax.swing.JMenu();
-        jMenu5310 = new javax.swing.JMenuItem();
-        jMenu5320 = new javax.swing.JMenuItem();
-        jMenu5400 = new javax.swing.JMenuItem();
+        jMenu5310 = new javax.swing.JMenu();
+        jMenu5311 = new javax.swing.JMenuItem();
+        jMenu5312 = new javax.swing.JMenuItem();
+        jMenu5400 = new javax.swing.JMenu();
+        jMenu5410 = new javax.swing.JMenuItem();
+        jMenu5420 = new javax.swing.JMenuItem();
+        jMenu5500 = new javax.swing.JMenuItem();
         jMenu6000 = new javax.swing.JMenu();
         jMenu6100 = new javax.swing.JMenuItem();
         jMenu7000 = new javax.swing.JMenu();
@@ -999,35 +1007,63 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5000.add(jMenu5200);
 
         jMenu5300.setMnemonic('3');
-        jMenu5300.setText("3-Contribuyentes");
+        jMenu5300.setText("3- Parametros Administrativos");
 
         jMenu5310.setMnemonic('1');
-        jMenu5310.setText("5.3.1- Mantener Contribuyentes");
-        jMenu5310.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5310ActionPerformed(evt);
-            }
-        });
-        jMenu5300.add(jMenu5310);
+        jMenu5310.setText("1- Timbrados");
 
-        jMenu5320.setMnemonic('2');
-        jMenu5320.setText("5.3.2- Cargar Contribuyentes");
-        jMenu5320.addActionListener(new java.awt.event.ActionListener() {
+        jMenu5311.setMnemonic('1');
+        jMenu5311.setText("1- Mantenimiento");
+        jMenu5311.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5320ActionPerformed(evt);
+                jMenu5311ActionPerformed(evt);
             }
         });
-        jMenu5300.add(jMenu5320);
+        jMenu5310.add(jMenu5311);
+
+        jMenu5312.setMnemonic('2');
+        jMenu5312.setText("2- Consulta & Listado");
+        jMenu5312.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5312ActionPerformed(evt);
+            }
+        });
+        jMenu5310.add(jMenu5312);
+
+        jMenu5300.add(jMenu5310);
 
         jMenu5000.add(jMenu5300);
 
-        jMenu5400.setText("4- Generar Tesaka");
-        jMenu5400.addActionListener(new java.awt.event.ActionListener() {
+        jMenu5400.setMnemonic('3');
+        jMenu5400.setText("4-Contribuyentes");
+
+        jMenu5410.setMnemonic('1');
+        jMenu5410.setText("5.3.1- Mantener Contribuyentes");
+        jMenu5410.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5400ActionPerformed(evt);
+                jMenu5410ActionPerformed(evt);
             }
         });
+        jMenu5400.add(jMenu5410);
+
+        jMenu5420.setMnemonic('2');
+        jMenu5420.setText("5.3.2- Cargar Contribuyentes");
+        jMenu5420.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5420ActionPerformed(evt);
+            }
+        });
+        jMenu5400.add(jMenu5420);
+
         jMenu5000.add(jMenu5400);
+
+        jMenu5500.setText("5- Generar Tesaka");
+        jMenu5500.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5500ActionPerformed(evt);
+            }
+        });
+        jMenu5000.add(jMenu5500);
 
         MenuBar.add(jMenu5000);
 
@@ -1104,13 +1140,13 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         callMenus.Permisos();
     }//GEN-LAST:event_jMenu5141ActionPerformed
 
-    private void jMenu5320ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5320ActionPerformed
+    private void jMenu5420ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5420ActionPerformed
 
-    }//GEN-LAST:event_jMenu5320ActionPerformed
+    }//GEN-LAST:event_jMenu5420ActionPerformed
 
-    private void jMenu5310ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5310ActionPerformed
+    private void jMenu5410ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5410ActionPerformed
 
-    }//GEN-LAST:event_jMenu5310ActionPerformed
+    }//GEN-LAST:event_jMenu5410ActionPerformed
 
     private void btnCerrarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSecionActionPerformed
         this.iniciarSecion();
@@ -1124,9 +1160,9 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         callMenus.Contactos(1700);
     }//GEN-LAST:event_jMenu1700ActionPerformed
 
-    private void jMenu5400ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5400ActionPerformed
+    private void jMenu5500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5500ActionPerformed
 
-    }//GEN-LAST:event_jMenu5400ActionPerformed
+    }//GEN-LAST:event_jMenu5500ActionPerformed
 
     private void jMenu1111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1111ActionPerformed
         callMenus.Marcas(1111);
@@ -1251,6 +1287,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu5162ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5162ActionPerformed
         callMenus.Perfiles(5162);
     }//GEN-LAST:event_jMenu5162ActionPerformed
+
+    private void jMenu5311ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5311ActionPerformed
+        callMenus.Timbrados(5311);
+    }//GEN-LAST:event_jMenu5311ActionPerformed
+
+    private void jMenu5312ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5312ActionPerformed
+        callMenus.Timbrados_Lst(5312);
+    }//GEN-LAST:event_jMenu5312ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1373,9 +1417,13 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenuItem jMenu5231;
     public static javax.swing.JMenuItem jMenu5232;
     public static javax.swing.JMenu jMenu5300;
-    public static javax.swing.JMenuItem jMenu5310;
-    public static javax.swing.JMenuItem jMenu5320;
-    public static javax.swing.JMenuItem jMenu5400;
+    public static javax.swing.JMenu jMenu5310;
+    public static javax.swing.JMenuItem jMenu5311;
+    public static javax.swing.JMenuItem jMenu5312;
+    public static javax.swing.JMenu jMenu5400;
+    public static javax.swing.JMenuItem jMenu5410;
+    public static javax.swing.JMenuItem jMenu5420;
+    public static javax.swing.JMenuItem jMenu5500;
     private javax.swing.JMenu jMenu6000;
     public static javax.swing.JMenuItem jMenu6100;
     private javax.swing.JMenu jMenu7000;

@@ -18,7 +18,7 @@ public class Acceso extends frm_Padre {
         this.setName("acceso");
         this.txtCod_Usuario.setBdTabla("acc_usuarios");
         this.txtCod_Usuario.setBdCodigo("Usu_Codigo");
-        this.txtCod_Usuario.setBdDescrip("Usu_Descrip");
+        this.txtCod_Usuario.setBdDescrip("Usu_Nombre");
         this.txtCod_Usuario.setBdTitulo("Usuarios");
         this.txtCod_Usuario.setUsarEmpresa(true);
         this.txtCod_Usuario.setUsarSucursal(false);
