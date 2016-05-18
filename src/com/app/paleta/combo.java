@@ -46,6 +46,12 @@ public class combo extends javax.swing.JComboBox {
         }
     }
 
+    public void addItem(String[] cod, String[] item) {
+        for (int i = 0; i < item.length; i++) {
+            this.addItem(new ClassComboBox(cod[i], item[i]));
+        }
+    }
+
     /**
      * Metodo que retorna el valor del codigo del registro seleccionado
      *
