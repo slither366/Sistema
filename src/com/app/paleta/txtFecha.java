@@ -4,6 +4,7 @@ import com.app.form.Especiales.Calendario;
 import com.app.clases.ClaseFecha;
 import com.app.clases.ClaseTeclas;
 import com.app.config.MensajeSistema;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -15,10 +16,16 @@ import javax.swing.text.MaskFormatter;
  *
  * @author Diego
  */
-public class txtFecha extends textoPadre {
+public class txtFecha extends javax.swing.JFormattedTextField {
 
-    public txtFecha() {  
+    private final Dimension d = new Dimension(75, 20);
+
+    public txtFecha() {
         this.setToolTipText("Ingrese la fecha...");
+        this.setMinimumSize(d);
+        this.setMaximumSize(d);
+        this.setPreferredSize(d);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         try {
             MaskFormatter mascara = new MaskFormatter("##/##/####");
             mascara.setPlaceholderCharacter('0');
@@ -34,11 +41,11 @@ public class txtFecha extends textoPadre {
                     setText(ClaseFecha.deDateToString(Calendario.getFecha()));
                     requestFocus();
                 }
-                if (27 == evt.getKeyCode()) {
-                    setText("");
+                if (evt.getKeyCode() == ClaseTeclas.VK_ESC()) {
+                    setFecha("");
                     Toolkit.getDefaultToolkit().beep();
                 }
-                if (113 == evt.getKeyCode()) {
+                if (evt.getKeyCode() == ClaseTeclas.VK_F2()) {
                     selectAll();
                 }
             }
@@ -61,7 +68,7 @@ public class txtFecha extends textoPadre {
                         if (ClaseFecha.esFechaValida(valor) == false) {
                             MensajeSistema.MensajeVarios("La fecha ingresada no es Válida!...", MensajeSistema.ERROR_MESSAGE());
                             setCaretPosition(0);
-                            requestFocus();
+                            grabFocus();
                         } else {
                             setText(valor);
                         }
@@ -71,7 +78,7 @@ public class txtFecha extends textoPadre {
                         if (ClaseFecha.esFechaValida(valor) == false) {
                             MensajeSistema.MensajeVarios("La fecha ingresada no es Válida!...", MensajeSistema.ERROR_MESSAGE());
                             setCaretPosition(0);
-                            requestFocus();
+                            grabFocus();
                         } else {
                             setText(valor);
                         }
@@ -80,6 +87,7 @@ public class txtFecha extends textoPadre {
                             // cuando se completo bien el dia, el mes y el año
                             if (ClaseFecha.esFechaValida(getText()) == false) {
                                 MensajeSistema.MensajeVarios("La fecha ingresada no es Válida!...", MensajeSistema.ERROR_MESSAGE());
+                                setCaretPosition(0);
                                 grabFocus();
                             }
                         } else {
@@ -158,7 +166,6 @@ public class txtFecha extends textoPadre {
         }
     }
 
-    @Override
     public boolean isEmpty() {
         return this.getText().matches("[0]{2}/[0]{2}/[0]{4}");
     }
@@ -169,5 +176,23 @@ public class txtFecha extends textoPadre {
 
     public String getFechaActual() {
         return ClaseFecha.getFechaActual();
+    }
+
+    public boolean verificarVacioSinMsj() {
+        return !this.isEmpty();
+    }
+
+    public int verificarVacioConMsj() {
+        if (isEmpty()) {
+            int msn = MensajeSistema.MensajeOpciones("No se puede dejar este campo vacio!!!\nDesea Cancelar la operación?...",
+                    new Object[]{"Si, Cancelar.", "No, Reintentar."}, 1);
+            if (msn == 0) {
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
+            return 0;
+        }
     }
 }

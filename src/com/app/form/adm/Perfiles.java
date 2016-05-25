@@ -1,6 +1,5 @@
 package com.app.form.adm;
 
-import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
@@ -18,17 +17,20 @@ public final class Perfiles extends frm_Padre implements Metodos {
     public Perfiles(int cod_ventana) {
         initComponents();
         this.setName("Perfiles");
+        this.txtCodigo.setUsarEmpresa(true);
+        this.txtCodigo.setUsarEmpresa(false);
         this.txtCodigo.setBdTabla("acc_perfiles");
         this.txtCodigo.setBdCodigo("Perf_Codigo");
         this.txtCodigo.setBdDescrip("Perf_Descrip");
         this.txtCodigo.setBdTitulo("Perfiles");
-        this.txtCodigo.setUsarEmpresa(true);
-        this.txtCod_Sucursal.setUsarSucursal(false);
 
+        this.txtCod_Sucursal.setUsarEmpresa(true);
+        this.txtCod_Sucursal.setUsarSucursal(false);
         this.txtCod_Sucursal.setBdTabla("adm_sucursales");
         this.txtCod_Sucursal.setBdCodigo("Suc_Codigo");
         this.txtCod_Sucursal.setBdDescrip("denominacion");
         this.txtCod_Sucursal.setBdTitulo("Sucursales");
+
         this.txtNom_Sucursal.setEditable(false);
         this.txtNom_Sucursal.setEnMayuscula(true);
         this.txtComentario.setEnMayuscula(true);
@@ -251,11 +253,9 @@ public final class Perfiles extends frm_Padre implements Metodos {
             this.pnlABM.btnGrabar.setEnabled(true);
             this.pnlABM.btnGrabar.grabFocus();
         } else {
-            String consulta = getConexion.getDescripcion(this.txtCod_Sucursal.getBdTabla(), this.txtCod_Sucursal.getBdDescrip(),
-                    new String[]{EMP_CODIGO, this.txtCod_Sucursal.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Sucursal.getText()});
-            if (consulta != null) {
-                this.txtNom_Sucursal.setText(consulta);
+            String rs = this.txtCod_Sucursal.getDescripcion();
+            if (rs != null) {
+                this.txtNom_Sucursal.setText(rs);
                 this.pnlABM.btnGrabar.setEnabled(true);
                 this.pnlABM.btnGrabar.grabFocus();
             } else {
@@ -316,8 +316,8 @@ public final class Perfiles extends frm_Padre implements Metodos {
                     new String[]{Configuracion.getEMP_CODIGO(), xide, xdes, xCom, xfor});
         } else if (this.txtCodigo.getOperacion() == 'M') {
             getConexion.actualizar(this.txtCodigo.getBdTabla(),
-                    new String[]{EMP_CODIGO, this.txtCodigo.getBdCodigo(), this.txtCodigo.getBdDescrip(), "comentario", this.txtCod_Sucursal.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), xide, xdes, xCom, xfor},
+                    new String[]{this.txtCodigo.getBdDescrip(), "comentario", this.txtCod_Sucursal.getBdCodigo()},
+                    new String[]{xdes, xCom, xfor},
                     new String[]{EMP_CODIGO, txtCodigo.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), xide});
         }

@@ -37,7 +37,7 @@ public class Productos_Farm extends frm_Padre {
         this.txtCodigo1.setBdTitulo(titulo1);
         this.txtCodigo1.setUsarEmpresa(empresa);
         this.txtCodigo1.setUsarSucursal(sucursal);
-        
+
         this.txtCodigo2.setBdTabla(tabla2);
         this.txtCodigo2.setBdCodigo(idCod2);
         this.txtCodigo2.setBdDescrip(nomDesc2);
@@ -334,21 +334,9 @@ public class Productos_Farm extends frm_Padre {
 
     private void txtCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo1ActionPerformed
         if (txtCodigo1.verificarVacioSinMsj()) {
-            String consulta;
-            if (UsarEmpresa && UsarSucursal) {
-                consulta = getConexion.getDescripcion(txtCodigo1.getBdTabla(), txtCodigo1.getBdDescrip(),
-                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo1.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo1.getText()});
-            } else if (UsarEmpresa) {
-                consulta = getConexion.getDescripcion(txtCodigo1.getBdTabla(), txtCodigo1.getBdDescrip(),
-                        new String[]{EMP_CODIGO, txtCodigo1.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo1.getText()});
-            } else {
-                consulta = getConexion.getDescripcion(txtCodigo1.getBdTabla(), txtCodigo1.getBdDescrip(),
-                        new String[]{txtCodigo1.getBdCodigo()}, new String[]{this.txtCodigo1.getText()});
-            }
-            if (consulta != null) {
-                this.textDescripcion1.setText(consulta);
+            String rs = this.txtCodigo1.getDescripcion();
+            if (rs != null) {
+                this.textDescripcion1.setText(rs);
                 this.txtCodigo2.setEnabled(true);
                 this.txtCodigo2.grabFocus();
             } else {
@@ -365,21 +353,9 @@ public class Productos_Farm extends frm_Padre {
 
     private void txtCodigo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo2ActionPerformed
         if (txtCodigo2.verificarVacioSinMsj()) {
-            String consulta;
-            if (UsarEmpresa && UsarSucursal) {
-                consulta = getConexion.getDescripcion(txtCodigo2.getBdTabla(), txtCodigo2.getBdDescrip(),
-                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo2.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCodigo2.getText()});
-            } else if (UsarEmpresa) {
-                consulta = getConexion.getDescripcion(txtCodigo2.getBdTabla(), txtCodigo2.getBdDescrip(),
-                        new String[]{EMP_CODIGO, txtCodigo2.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCodigo2.getText()});
-            } else {
-                consulta = getConexion.getDescripcion(txtCodigo2.getBdTabla(), txtCodigo2.getBdDescrip(),
-                        new String[]{txtCodigo2.getBdCodigo()}, new String[]{this.txtCodigo2.getText()});
-            }
-            if (consulta != null) {
-                this.textDescripcion2.setText(consulta);
+            String rs = this.txtCodigo2.getDescripcion();
+            if (rs != null) {
+                this.textDescripcion2.setText(rs);
                 this.txtObservacion.setEnabled(true);
                 this.txtObservacion.grabFocus();
             } else {

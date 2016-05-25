@@ -3,6 +3,7 @@ package com.app.config;
 import com.app.form.Especiales.frm_Padre;
 import com.app.paleta.txtCodigo;
 import com.mysql.jdbc.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -486,7 +487,7 @@ public class ConexionBD {
 
     /**
      * Metodo para obtener el ultimo nro mas uno de una tabla e insertar el
-     * valor devuelto en un JTextField que recibe como parametro.
+     * valor devuelto en un txtCodigo que recibe como parametro.
      *
      * @param tabla
      * @param campo
@@ -507,7 +508,7 @@ public class ConexionBD {
 
     /**
      * Metodo para obtener el ultimo nro mas uno de una tabla e insertar el
-     * valor devuelto en un JTextField que recibe como parametro.
+     * valor devuelto en un campo txtCodigo que recibe como parametro.
      *
      * @param texto
      * @return
@@ -732,5 +733,29 @@ public class ConexionBD {
         String sql = "select count(*) from acc_usuarios where Emp_Codigo=" + emp
                 + " and Usu_Codigo=" + user + " and clave=password('" + pass + "')";
         return this.getCOUNTFila(sql) > 0;
+    }
+
+    /**
+     * Metodo que retorna el nombre de todas las tablas de la base de datos al
+     * cual se conecta
+     *
+     * @return
+     */
+    public ArrayList getTablaNombres() {
+        try {
+            DatabaseMetaData dbm = this.ConnectionDB.getMetaData();
+            String[] names = {"TABLE"};
+            ResultSet rs = dbm.getTables(null, "%", "%", names);
+            ArrayList resu = new ArrayList();
+            if (rs.next()) {
+                do {
+                    resu.add(rs.getString("TABLE_NAME"));
+                } while (rs.next());
+            }
+            return resu;
+        } catch (SQLException ex) {
+            MensajeSistema.setSQLException(ex);
+        }
+        return null;
     }
 }

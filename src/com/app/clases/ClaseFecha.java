@@ -442,8 +442,6 @@ public class ClaseFecha {
     public static long getDiferenciasDeFechas(Date fechaInicial, Date fechaFinal) {
         long fechaInicialMs = fechaInicial.getTime();
         long fechaFinalMs = fechaFinal.getTime();
-        System.out.println(fechaInicialMs);
-        System.out.println(fechaFinalMs);
         long miliseg = (1000 * 60 * 60 * 24);
         return (fechaFinalMs - fechaInicialMs) / miliseg;
     }
@@ -573,7 +571,6 @@ public class ClaseFecha {
         if ((anioInicio > anioFin) || (anioInicio == anioFin && mesInicio > mesFin)
                 || (anioInicio == anioFin && mesInicio == mesFin && diaInicio > diaFin)) {
             // La fecha de inicio es posterior a la fecha fin
-            // System.out.println("La fecha de inicio ha de ser anterior a la fecha fin");
             return -1;
         } else {
             if (mesInicio <= mesFin) {
@@ -590,7 +587,6 @@ public class ClaseFecha {
                 }
             } else {
                 anios = anioFin - anioInicio - 1;
-                System.out.println(anios);
                 if (diaInicio > diaFin) {
                     mesesPorAnio = mesFin - mesInicio - 1 + 12;
                     diasPorMes = diasTipoMes - (diaInicio - diaFin);
@@ -599,8 +595,7 @@ public class ClaseFecha {
                     diasPorMes = diaFin - diaInicio;
                 }
             }
-        }
-	//System.out.println("Han transcurrido " + anios + " Años, " + mesesPorAnio + " Meses y " + diasPorMes + " Días.");		
+        }	
 
         //
         // Totales

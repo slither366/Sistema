@@ -28,6 +28,8 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         this.txtCod_Referencia.setBdCodigo(codigoForaneo);
         this.txtCod_Referencia.setBdDescrip(descripcionForaneo);
         this.txtCod_Referencia.setBdTitulo(tituloForaneo);
+        this.txtCod_Referencia.setUsarEmpresa(Empresa);
+        this.txtCod_Referencia.setUsarEmpresa(Sucursal);        
         this.getPermisos(this.Cod_Ventana);
         this.pnlABM.addListener(this);
         this.pnlTitulo1.setTextTitulo("Mantenimiento de " + titulo + "...");
@@ -195,19 +197,20 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
     private void txtCod_ReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ReferenciaActionPerformed
         if (txtCod_Referencia.verificarVacioSinMsj()) {
             String consulta;
-            if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) {
-                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-                        new String[]{EMP_CODIGO, SUC_CODIGO, this.txtCod_Referencia.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Referencia.getText()});
-            } else if (this.txtCodigo.isUsarEmpresa()) {
-                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-                        new String[]{EMP_CODIGO, this.txtCod_Referencia.getBdCodigo()},
-                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Referencia.getText()});
-            } else {
-                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-                        new String[]{this.txtCod_Referencia.getBdCodigo()},
-                        new String[]{this.txtCod_Referencia.getText()});
-            }
+//            if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) {
+//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+//                        new String[]{EMP_CODIGO, SUC_CODIGO, this.txtCod_Referencia.getBdCodigo()},
+//                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Referencia.getText()});
+//            } else if (this.txtCodigo.isUsarEmpresa()) {
+//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+//                        new String[]{EMP_CODIGO, this.txtCod_Referencia.getBdCodigo()},
+//                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Referencia.getText()});
+//            } else {
+//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
+//                        new String[]{this.txtCod_Referencia.getBdCodigo()},
+//                        new String[]{this.txtCod_Referencia.getText()});
+//            }
+            consulta=this.txtCod_Referencia.getDescripcion();
             if (consulta != null) {
                 this.textNom_Referencia.setText(consulta);
                 this.pnlABM.btnGrabar.setEnabled(true);

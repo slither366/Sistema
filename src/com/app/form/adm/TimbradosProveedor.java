@@ -13,32 +13,31 @@ import java.awt.event.ActionEvent;
  *
  * @author dramosort
  */
-public final class Timbrados extends frm_Padre implements Metodos {
+public final class TimbradosProveedor extends frm_Padre implements Metodos {
 
     String tablaConsultada, idConsultada, TituloVentanaActual;
+    String Prov_Codigo = "Prov_Codigo";
 
-    public Timbrados(int cod_ventana) {
+    public TimbradosProveedor(int cod_ventana) {
         initComponents();
-        this.setName("timbrados");
-        this.txtCod_Caja.setBdTabla("adm_cajas");
-        this.txtCod_Caja.setBdCodigo("Caj_Codigo");
-        this.txtCod_Caja.setBdDescrip("comentario");
-        this.txtCod_Caja.setBdTitulo("Punto de Ventas");
-        this.txtCod_Caja.setUsarEmpresa(true);
-        this.txtCod_Caja.setUsarSucursal(true);
+        this.setName("timbradosProv");
+        this.txtCod_Proveedor.setBdTabla("mant_contactos");
+        this.txtCod_Proveedor.setBdCodigo("Cont_Codigo");
+        this.txtCod_Proveedor.setBdDescrip("razon_social");
+        this.txtCod_Proveedor.setBdTitulo("Proveedores");
+        this.txtCod_Proveedor.setUsarEmpresa(true);
+        this.txtCod_Proveedor.setUsarSucursal(false);
 
-        this.tablaConsultada = "adm_timbrados";
+        this.tablaConsultada = "adm_timbrado_proveedor";
         this.idConsultada = "num_tim";
-        this.TituloVentanaActual = "Timbrados";
-
-        this.cboEstado.addItem(new String[]{"1", "2"}, new String[]{"Activo", "de Baja"});
+        this.TituloVentanaActual = "Timbrados de Proveedor";
 
         this.txtNumTim.setInicializar(8, 0);
         this.txtNumDesde.setFormatoCantidad(3);
         this.txtNumHasta.setFormatoCantidad(3);
         this.txtTexto1.setEnMayuscula(true);
         this.txtTexto1.setEditable(false);
-        this.pnlTitulo.setTextTitulo("Mantenimiento de Timbrados...");
+        this.pnlTitulo.setTextTitulo("Mantenimiento de " + TituloVentanaActual + "...");
         this.pnlABM.addListener(this);
         this.getPermisos(cod_ventana);
         this.Inicializar();
@@ -80,7 +79,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtCod_Caja = new com.app.paleta.txtCodigo();
+        txtCod_Proveedor = new com.app.paleta.txtCodigo();
         txtNumTim = new com.app.paleta.txtNumeros();
         txtFecDesde = new com.app.paleta.txtFecha();
         txtFecHasta = new com.app.paleta.txtFecha();
@@ -88,15 +87,13 @@ public final class Timbrados extends frm_Padre implements Metodos {
         txtNumDesde = new com.app.paleta.txtNumerosFormato();
         txtNumHasta = new com.app.paleta.txtNumerosFormato();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        cboEstado = new com.app.paleta.combo();
         txtTexto1 = new com.app.paleta.txtTexto();
         pnlABM = new com.app.botones.pnlABM();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Caja:");
+        jLabel1.setText("Proveedor:");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Timbrado:");
@@ -107,14 +104,14 @@ public final class Timbrados extends frm_Padre implements Metodos {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Fecha Desde:");
 
-        txtCod_Caja.addActionListener(new java.awt.event.ActionListener() {
+        txtCod_Proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCod_CajaActionPerformed(evt);
+                txtCod_ProveedorActionPerformed(evt);
             }
         });
-        txtCod_Caja.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCod_Proveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_CajaKeyPressed(evt);
+                txtCod_ProveedorKeyPressed(evt);
             }
         });
 
@@ -164,15 +161,6 @@ public final class Timbrados extends frm_Padre implements Metodos {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Hasta:");
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Estado:");
-
-        cboEstado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cboEstadoKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
         pnlDatosLayout.setHorizontalGroup(
@@ -183,7 +171,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCod_Caja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCod_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTexto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
@@ -195,11 +183,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNumHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -221,7 +205,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
                 .addContainerGap()
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCod_Caja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCod_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,9 +219,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
-                        .addComponent(txtNumHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNumHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(txtNumDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -282,19 +264,19 @@ public final class Timbrados extends frm_Padre implements Metodos {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCod_CajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_CajaActionPerformed
-        int valor = this.txtCod_Caja.verificarVacioConMsj();
+    private void txtCod_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProveedorActionPerformed
+        int valor = this.txtCod_Proveedor.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.txtCod_Caja.getDescripcion();
+            String rs = this.txtCod_Proveedor.getDescripcion();
             if (rs != null) {
                 this.txtTexto1.setText(rs);
                 this.txtNumTim.setEnabled(true);
                 this.txtNumTim.grabFocus();
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
-                    this.txtCod_Caja.setText("");
+                    this.txtCod_Proveedor.setText("");
                     this.txtTexto1.setText("");
-                    this.txtCod_Caja.grabFocus();
+                    this.txtCod_Proveedor.grabFocus();
                 } else {
                     this.Inicializar();
                 }
@@ -302,21 +284,21 @@ public final class Timbrados extends frm_Padre implements Metodos {
         } else if (valor == 1) {
             this.Inicializar();
         }
-    }//GEN-LAST:event_txtCod_CajaActionPerformed
+    }//GEN-LAST:event_txtCod_ProveedorActionPerformed
 
-    private void txtCod_CajaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_CajaKeyPressed
+    private void txtCod_ProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ProveedorKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {//Tecla F5
-            if (this.txtCod_Caja.getOperacion() == 'A') {
-                this.Buscar(this.txtCod_Caja.getBdTabla(), this.txtCod_Caja.isUsarEmpresa(),
-                        this.txtCod_Caja.isUsarSucursal(), this.txtCod_Caja.getBdCodigo(),
-                        this.txtCod_Caja.getBdDescrip(), this.txtCod_Caja.getBdTitulo());
-                this.txtCod_Caja.requestFocus();
+            if (this.txtCod_Proveedor.getOperacion() == 'A') {
+                this.Buscar(this.txtCod_Proveedor.getBdTabla(), this.txtCod_Proveedor.isUsarEmpresa(),
+                        this.txtCod_Proveedor.isUsarSucursal(), this.txtCod_Proveedor.getBdCodigo(),
+                        this.txtCod_Proveedor.getBdDescrip(), this.txtCod_Proveedor.getBdTitulo());
+                this.txtCod_Proveedor.requestFocus();
             }
         }
-    }//GEN-LAST:event_txtCod_CajaKeyPressed
+    }//GEN-LAST:event_txtCod_ProveedorKeyPressed
 
     private void txtNumTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumTimActionPerformed
-        int valor = this.txtCod_Caja.verificarVacioConMsj();
+        int valor = this.txtCod_Proveedor.verificarVacioConMsj();
         if (valor == 0) {
             if (this.txtNumTim.getText().length() != 8) {
                 int msn = MensajeSistema.MensajeOpciones(this, "La longitud debe de ser 8 Números.\nDesea Reintentar?",
@@ -327,7 +309,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
                     this.Inicializar();
                 }
             } else {
-                if (this.txtCod_Caja.getOperacion() == 'A') {
+                if (this.txtCod_Proveedor.getOperacion() == 'A') {
                     this.txtFecDesde.setEnabled(true);
                     this.txtFecDesde.grabFocus();
                 } else {
@@ -410,14 +392,8 @@ public final class Timbrados extends frm_Padre implements Metodos {
                         this.Inicializar();
                     }
                 } else {
-                    if (this.txtCod_Caja.getOperacion() == 'A') {
-                        this.cboEstado.setSelectedIndex(0);
-                        this.pnlABM.btnGrabar.setEnabled(true);
-                        this.pnlABM.btnGrabar.grabFocus();
-                    } else {
-                        this.cboEstado.setEnabled(true);
-                        this.cboEstado.grabFocus();
-                    }
+                    this.pnlABM.btnGrabar.setEnabled(true);
+                    this.pnlABM.btnGrabar.grabFocus();
                 }
             } else {
                 int msn = MensajeSistema.MensajeOpciones(this, "Debe ser mayor a Cero.\nDesea Reintentar?",
@@ -434,21 +410,14 @@ public final class Timbrados extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtNumHastaActionPerformed
 
-    private void cboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboEstadoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            this.pnlABM.btnGrabar.setEnabled(true);
-            this.pnlABM.btnGrabar.grabFocus();
-        }
-    }//GEN-LAST:event_cboEstadoKeyPressed
-
     private void txtNumTimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumTimKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            if (this.txtCod_Caja.getOperacion() != 'A') {
+            if (this.txtCod_Proveedor.getOperacion() != 'A') {
                 String sql = ConsultaSQL.getSelect(tablaConsultada,
                         new String[]{"fec_hasta", idConsultada},
                         new String[]{"Vencimiento", "Timbrado"},
-                        new String[]{EMP_CODIGO, SUC_CODIGO, this.txtCod_Caja.getBdCodigo(), "de_baja"},
-                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Caja.getText(), "1"},
+                        new String[]{EMP_CODIGO, Prov_Codigo},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Proveedor.getText()},
                         new String[]{"fec_hasta"});
                 this.Buscar(sql, TituloVentanaActual);
                 this.txtNumTim.requestFocus();
@@ -457,7 +426,7 @@ public final class Timbrados extends frm_Padre implements Metodos {
     }//GEN-LAST:event_txtNumTimKeyPressed
 
     private void txtNumTimFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumTimFocusGained
-        if (this.txtCod_Caja.getOperacion() != 'A') {
+        if (this.txtCod_Proveedor.getOperacion() != 'A') {
             if (!Configuracion.getCODIGO_BUSCAR().isEmpty()) {
                 this.txtNumTim.setText(Configuracion.getCODIGO_BUSCAR());
                 Configuracion.setCODIGO_BUSCAR("");
@@ -467,19 +436,17 @@ public final class Timbrados extends frm_Padre implements Metodos {
     }//GEN-LAST:event_txtNumTimFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.app.paleta.combo cboEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private com.app.botones.pnlABM pnlABM;
     private com.app.paleta.panel pnlDatos;
     private com.app.paleta.panelTitulo pnlTitulo;
-    private com.app.paleta.txtCodigo txtCod_Caja;
+    private com.app.paleta.txtCodigo txtCod_Proveedor;
     private com.app.paleta.txtFecha txtFecDesde;
     private com.app.paleta.txtFecha txtFecHasta;
     private com.app.paleta.txtNumerosFormato txtNumDesde;
@@ -510,63 +477,61 @@ public final class Timbrados extends frm_Padre implements Metodos {
 
     @Override
     public void Grabar() {
-        String vCaja = this.txtCod_Caja.getText();
+        String vProv = this.txtCod_Proveedor.getText();
         String vTim = this.txtNumTim.getText().trim();
         String vFDes = this.txtFecDesde.getFecha();
         String vFHas = this.txtFecHasta.getFecha();
         String vNDes = this.txtNumDesde.getNumeroString();
         String vNHas = this.txtNumHasta.getNumeroString();
-        String vBaja = this.cboEstado.getSelectCodigo();
-        if (this.txtCod_Caja.getOperacion() == 'A') {
+        if (this.txtCod_Proveedor.getOperacion() == 'A') {
             getConexion.insertar(this.tablaConsultada,
-                    new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Caja.getBdCodigo(),
-                        idConsultada, "fec_desde", "fec_hasta", "nro_desde", "nro_hasta", "de_baja", "Usu_Codigo"},
-                    new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(),
-                        vCaja, vTim, vFDes, vFHas, vNDes, vNHas, vBaja, Configuracion.getUSU_CODIGO()});
-        } else if (this.txtCod_Caja.getOperacion() == 'M') {
+                    new String[]{EMP_CODIGO, Prov_Codigo,
+                        idConsultada, "fec_desde", "fec_hasta", "nro_desde", "nro_hasta", "Usu_Codigo"},
+                    new String[]{Configuracion.getEMP_CODIGO(),
+                        vProv, vTim, vFDes, vFHas, vNDes, vNHas, Configuracion.getUSU_CODIGO()});
+        } else if (this.txtCod_Proveedor.getOperacion() == 'M') {
             getConexion.actualizar(this.tablaConsultada,
-                    new String[]{"fec_desde", "fec_hasta", "nro_desde", "nro_hasta", "de_baja"},
-                    new String[]{vFDes, vFHas, vNDes, vNHas, vBaja},
-                    new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Caja.getBdCodigo(), idConsultada},
-                    new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), vCaja, vTim});
+                    new String[]{"fec_desde", "fec_hasta", "nro_desde", "nro_hasta"},
+                    new String[]{vFDes, vFHas, vNDes, vNHas},
+                    new String[]{EMP_CODIGO, Prov_Codigo, idConsultada},
+                    new String[]{Configuracion.getEMP_CODIGO(), vProv, vTim});
         }
         Inicializar();
     }
 
     @Override
     public void Agregar() {
-        this.txtCod_Caja.setOperacion('A');
+        this.txtCod_Proveedor.setOperacion('A');
         this.pnlABM.ModoEdicion(false);
-        this.txtCod_Caja.setEnabled(true);
+        this.txtCod_Proveedor.setEnabled(true);
         this.pnlABM.btnGrabar.setEnabled(false);
-        this.txtCod_Caja.grabFocus();
+        this.txtCod_Proveedor.grabFocus();
     }
 
     @Override
     public void Editar(char c) {
-        this.txtCod_Caja.setOperacion(c);
+        this.txtCod_Proveedor.setOperacion(c);
         this.pnlABM.ModoEdicion(false);
-        this.txtCod_Caja.setEnabled(true);
+        this.txtCod_Proveedor.setEnabled(true);
         this.pnlABM.btnGrabar.setEnabled(false);
-        this.txtCod_Caja.grabFocus();
+        this.txtCod_Proveedor.grabFocus();
     }
 
     @Override
     public void RecuperarDatos(String codigo) {
         String[] resultado = getConexion.getDescripciones(this.tablaConsultada,
-                new String[]{"fec_desde", "fec_hasta", "nro_desde", "nro_hasta", "de_baja"},
-                new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Caja.getBdCodigo(), idConsultada},
-                new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Caja.getText(), codigo});
+                new String[]{"fec_desde", "fec_hasta", "nro_desde", "nro_hasta"},
+                new String[]{EMP_CODIGO, Prov_Codigo, idConsultada},
+                new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Proveedor.getText(), codigo});
         if (resultado[0] != null) {
             txtFecDesde.setFecha(resultado[0]);
             txtFecHasta.setFecha(resultado[1]);
             txtNumDesde.setNumero(resultado[2]);
             txtNumHasta.setNumero(resultado[3]);
-            cboEstado.setSelectCodigo(resultado[4]);
-            if (this.txtCod_Caja.getOperacion() == 'E') {
+            if (this.txtCod_Proveedor.getOperacion() == 'E') {
                 this.Borrar(this, tablaConsultada,
-                        new String[]{EMP_CODIGO, SUC_CODIGO, txtCod_Caja.getBdCodigo(), idConsultada},
-                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Caja.getText(), codigo});
+                        new String[]{EMP_CODIGO, Prov_Codigo, idConsultada},
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Proveedor.getText(), codigo});
                 Inicializar();
             } else {
                 this.txtFecDesde.setEnabled(true);

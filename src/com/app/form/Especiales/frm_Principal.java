@@ -34,7 +34,6 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
                 }
             }
         });
-        frm_Principal.jLabelTitulo.setText(Configuracion.getTITULO_VENTANA() + "...");
         frm_Principal.jLabelTitulo.setVisible(false);
         frm_Principal.btnCerrarSecion.setVisible(false);
         frm_Principal.jPanelLateral.setVisible(false);
@@ -137,6 +136,9 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5310.setEnabled(Configuracion.BuscarMenu(5310));
         jMenu5311.setEnabled(Configuracion.BuscarMenu(5311));
         jMenu5312.setEnabled(Configuracion.BuscarMenu(5312));
+        jMenu5320.setEnabled(Configuracion.BuscarMenu(5320));
+        jMenu5321.setEnabled(Configuracion.BuscarMenu(5321));
+        jMenu5322.setEnabled(Configuracion.BuscarMenu(5322));
         jMenu5400.setEnabled(Configuracion.BuscarMenu(5300));
         jMenu5410.setEnabled(Configuracion.BuscarMenu(5310));
         jMenu5420.setEnabled(Configuracion.BuscarMenu(5320));
@@ -144,6 +146,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     }
 
     public static void ubicarBotones() {
+        frm_Principal.jLabelTitulo.setText("    " + Configuracion.getEMP_NOMBRE() + "...");
         frm_Principal.jLabelTitulo.setVisible(true);
         frm_Principal.jPanelDatos.setVisible(true);
         frm_Principal.jPanelLateral.setVisible(true);
@@ -160,7 +163,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         frm_Principal.jPanelDatos.setVisible(false);
         callMenus.menu.CloseAllFrame(escritorio);
         frm_Principal.MenuBar.setVisible(false);
-        Acceso acceso = new Acceso();
+        AccesoSecundario acceso = new AccesoSecundario();
         acceso.setLocation((escritorio.getSize().width - acceso.getSize().width) / 2,
                 (escritorio.getSize().height - acceso.getSize().height) / 2);
         escritorio.add(acceso);
@@ -290,6 +293,9 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu5310 = new javax.swing.JMenu();
         jMenu5311 = new javax.swing.JMenuItem();
         jMenu5312 = new javax.swing.JMenuItem();
+        jMenu5320 = new javax.swing.JMenu();
+        jMenu5321 = new javax.swing.JMenuItem();
+        jMenu5322 = new javax.swing.JMenuItem();
         jMenu5400 = new javax.swing.JMenu();
         jMenu5410 = new javax.swing.JMenuItem();
         jMenu5420 = new javax.swing.JMenuItem();
@@ -1032,6 +1038,29 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
 
         jMenu5300.add(jMenu5310);
 
+        jMenu5320.setMnemonic('1');
+        jMenu5320.setText("2- Timbrados Prov.");
+
+        jMenu5321.setMnemonic('1');
+        jMenu5321.setText("1- Mantenimiento");
+        jMenu5321.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5321ActionPerformed(evt);
+            }
+        });
+        jMenu5320.add(jMenu5321);
+
+        jMenu5322.setMnemonic('2');
+        jMenu5322.setText("2- Consulta & Listado");
+        jMenu5322.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5322ActionPerformed(evt);
+            }
+        });
+        jMenu5320.add(jMenu5322);
+
+        jMenu5300.add(jMenu5320);
+
         jMenu5000.add(jMenu5300);
 
         jMenu5400.setMnemonic('3');
@@ -1295,6 +1324,14 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     private void jMenu5312ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5312ActionPerformed
         callMenus.Timbrados_Lst(5312);
     }//GEN-LAST:event_jMenu5312ActionPerformed
+
+    private void jMenu5321ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5321ActionPerformed
+        callMenus.TimbradosProv(5321);
+    }//GEN-LAST:event_jMenu5321ActionPerformed
+
+    private void jMenu5322ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5322ActionPerformed
+        callMenus.TimbradosProv_Lst(5322);
+    }//GEN-LAST:event_jMenu5322ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1420,6 +1457,9 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenu jMenu5310;
     public static javax.swing.JMenuItem jMenu5311;
     public static javax.swing.JMenuItem jMenu5312;
+    public static javax.swing.JMenu jMenu5320;
+    public static javax.swing.JMenuItem jMenu5321;
+    public static javax.swing.JMenuItem jMenu5322;
     public static javax.swing.JMenu jMenu5400;
     public static javax.swing.JMenuItem jMenu5410;
     public static javax.swing.JMenuItem jMenu5420;
@@ -1513,7 +1553,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
                 }
             }
             if (correcto) {
-                Acceso_Empresa ven = new Acceso_Empresa(Conexion, Pro);
+                Acceso ven = new Acceso(Conexion, Pro);
                 ven.setLocation((frm_Principal.escritorio.getSize().width - ven.getSize().width) / 2,
                         (frm_Principal.escritorio.getSize().height - ven.getSize().height) / 2);
                 frm_Principal.escritorio.add(ven);

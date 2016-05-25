@@ -1,5 +1,6 @@
 package com.app.paleta;
 
+import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.Buscar;
@@ -26,7 +27,7 @@ public class txtCodigo extends textoPadre {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == 116) {
+                if (e.getKeyCode() == ClaseTeclas.VK_F5()) {
                     Buscar();
                 }
             }
@@ -191,11 +192,31 @@ public class txtCodigo extends textoPadre {
     }
 
     /**
+     * Metodo que retorna la descripcion del codigo que se carga en el campo
+     *
+     * @return
+     */
+    public String getDescripcion() {
+        String[] condicion, valores;
+        if (this.isUsarEmpresa() && this.isUsarSucursal()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
+        } else if (this.isUsarEmpresa()) {
+            condicion = new String[]{frm_Padre.EMP_CODIGO};
+            valores = new String[]{Configuracion.getEMP_CODIGO()};
+        } else {
+            condicion = new String[]{null};
+            valores = new String[]{null};
+        }
+        return getConexion.getDescripcion(this.getBdTabla(), this.getBdDescrip(), condicion, valores);
+    }
+
+    /**
      * Metodo que es para mostrar el formulario de busqueda
      */
     public void Buscar() {
         if (operacion != 'A') {
-            Buscar buscar = new Buscar(null, true, getBdTabla(), UsarEmpresa, UsarSucursal,
+            Buscar buscar = new Buscar(null, true, getBdTabla(), isUsarEmpresa(), isUsarSucursal(),
                     getBdCodigo(), getBdDescrip(), getBdTitulo(), frm_Padre.getConexion);
             buscar.setVisible(true);
             this.requestFocus();

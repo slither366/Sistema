@@ -60,7 +60,7 @@ public class Buscar extends javax.swing.JDialog {
         super(ventana, modal);
         initComponents();
         this.setResizable(false);
-        this.setName("Buscar");
+        this.setName("Buscar");        
         this.setLocationRelativeTo(null);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -68,6 +68,7 @@ public class Buscar extends javax.swing.JDialog {
                 e.getWindow().dispose();
             }
         });
+        this.textTitulo.setText("Busqueda de " + titulo + "...");
         ConsultaBase = consulta;
         this.jTableConsulta.cargarDatos(conexion, ConsultaBase);
         this.CambiarTamañoColumnas();

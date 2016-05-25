@@ -12,6 +12,7 @@ import com.app.form.Productos_lst;
 import com.app.form.Stock_Ajuste;
 import com.app.form.adm.Perfiles;
 import com.app.form.adm.Timbrados;
+import com.app.form.adm.TimbradosProveedor;
 import com.app.form.cont.CotizacionSet;
 import com.app.form.cont.CotizacionSet_Lst;
 import com.app.form.herramientas.frm_Password;
@@ -267,6 +268,13 @@ public class callMenus {
     }
 
     public static void Timbrados_Lst(int cod_ventana) {
+
+    }
+    public static void TimbradosProv(int cod_ventana) {
+        menu.llamarInternalFrame(new TimbradosProveedor(cod_ventana), escritorio);
+    }
+
+    public static void TimbradosProv_Lst(int cod_ventana) {
 
     }
 }

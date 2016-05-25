@@ -13,7 +13,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author Diego
  */
-public class textoPadre extends javax.swing.JFormattedTextField {
+public class textoPadre extends javax.swing.JTextField {
 
     private final Dimension d = new Dimension(75, 20);
     private String placeHolder = "";
@@ -63,7 +63,7 @@ public class textoPadre extends javax.swing.JFormattedTextField {
             @Override
             public void changedUpdate(DocumentEvent de) {
             }
-        });       
+        });          
     }
 
     /**

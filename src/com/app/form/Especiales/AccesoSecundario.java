@@ -1,45 +1,22 @@
 package com.app.form.Especiales;
 
 import com.app.clases.ClaseCampos;
-import com.app.config.ConexionBD;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
-import com.app.clases.ClaseTeclas;
-import com.app.config.Propiedades;
+import java.util.ArrayList;
 
 /**
  *
  * @author Diego
  */
-public class Acceso_Empresa extends frm_Padre {
+public class AccesoSecundario extends frm_Padre {
 
     private int contador;
 
-    public Acceso_Empresa(ConexionBD conexion, Propiedades pro) {
+    public AccesoSecundario() {
         initComponents();
-        this.setName("acceso_empresa");
-        frm_Padre.getConexion = conexion;
-        this.getPropiedades = pro;
-        this.setLocation((frm_Principal.escritorio.getSize().width - this.getSize().width) / 2,
-                (frm_Principal.escritorio.getSize().height - this.getSize().height) / 2);
- 
-        this.txtCod_Empresa.setBdTabla("Adm_Empresas");
-        this.txtCod_Empresa.setBdCodigo("Emp_Codigo");
-        this.txtCod_Empresa.setBdDescrip("Emp_Descrip");
-        this.txtCod_Empresa.setBdTitulo("Empresas");
-        this.txtCod_Empresa.setUsarEmpresa(false);
-        this.txtCod_Empresa.setUsarSucursal(false);
-        this.txtCod_Empresa.setOperacion('x');        
-        
-        this.txtCod_Sucursal.setBdTabla("Adm_Sucursales");
-        this.txtCod_Sucursal.setBdCodigo("Suc_Codigo");
-        this.txtCod_Sucursal.setBdDescrip("denominacion");
-        this.txtCod_Sucursal.setBdTitulo("Sucursales");
-        this.txtCod_Sucursal.setUsarEmpresa(true);
-        this.txtCod_Sucursal.setUsarSucursal(false);
-        this.txtCod_Sucursal.setOperacion('x');
-        
-        this.txtCod_Usuario.setBdTabla("Acc_Usuarios");
+        this.setName("accesoSecundario");
+        this.txtCod_Usuario.setBdTabla("acc_usuarios");
         this.txtCod_Usuario.setBdCodigo("Usu_Codigo");
         this.txtCod_Usuario.setBdDescrip("Usu_Nombre");
         this.txtCod_Usuario.setBdTitulo("Usuarios");
@@ -62,12 +39,6 @@ public class Acceso_Empresa extends frm_Padre {
         jPanelTitulo = new javax.swing.JPanel();
         textTitulo = new javax.swing.JLabel();
         jPanelDatos = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txtCod_Empresa = new com.app.paleta.txtCodigo();
-        TextNom_Empresa = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtCod_Sucursal = new com.app.paleta.txtCodigo();
-        TextNom_Sucursal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new com.app.paleta.txtPassword();
@@ -77,11 +48,13 @@ public class Acceso_Empresa extends frm_Padre {
         btnAceptar = new com.app.botones.btnAceptar();
         btnCancelar = new com.app.botones.btnCancelar();
 
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jPanelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jPanelTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelTitulo.setMaximumSize(new java.awt.Dimension(422, 60));
-        jPanelTitulo.setMinimumSize(new java.awt.Dimension(422, 60));
-        jPanelTitulo.setPreferredSize(new java.awt.Dimension(422, 60));
+        jPanelTitulo.setMaximumSize(new java.awt.Dimension(378, 60));
 
         textTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         textTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,43 +66,18 @@ public class Acceso_Empresa extends frm_Padre {
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTituloLayout.setVerticalGroup(
             jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Empresa:");
-
-        txtCod_Empresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCod_EmpresaActionPerformed(evt);
-            }
-        });
-
-        TextNom_Empresa.setText("jLabel5");
-        TextNom_Empresa.setMaximumSize(new java.awt.Dimension(49, 27));
-        TextNom_Empresa.setPreferredSize(new java.awt.Dimension(49, 27));
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Sucursal:");
-
-        txtCod_Sucursal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCod_SucursalActionPerformed(evt);
-            }
-        });
-
-        TextNom_Sucursal.setText("jLabel5");
-        TextNom_Sucursal.setPreferredSize(new java.awt.Dimension(49, 27));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Usuario:");
@@ -158,41 +106,21 @@ public class Acceso_Empresa extends frm_Padre {
             .addGroup(jPanelDatosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addGroup(jPanelDatosLayout.createSequentialGroup()
-                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtCod_Empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCod_Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                            .addComponent(txtCod_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCod_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextNom_Empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextNom_Sucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textNom_Usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(textNom_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanelDatosLayout.setVerticalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCod_Empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TextNom_Empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCod_Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextNom_Sucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtCod_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,12 +129,11 @@ public class Acceso_Empresa extends frm_Padre {
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelBotones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnAceptar.setText("Ingresar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -225,9 +152,9 @@ public class Acceso_Empresa extends frm_Padre {
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelBotonesLayout.setVerticalGroup(
@@ -246,11 +173,10 @@ public class Acceso_Empresa extends frm_Padre {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -280,10 +206,6 @@ public class Acceso_Empresa extends frm_Padre {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Configuracion.setEMP_CODIGO(this.txtCod_Empresa.getText());
-        Configuracion.setEMP_NOMBRE(this.TextNom_Empresa.getText());
-        Configuracion.setSUC_CODIGO(this.txtCod_Sucursal.getText());
-        Configuracion.setSUC_NOMBRE(this.TextNom_Sucursal.getText());
         Configuracion.setUSU_CODIGO(this.txtCod_Usuario.getText());
         Configuracion.setUSU_NOMBRE(this.textNom_Usuario.getText());
         Configuracion.setIMPRESORA(getPropiedades.getImpresora());
@@ -297,8 +219,12 @@ public class Acceso_Empresa extends frm_Padre {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         int valor = this.txtPassword.verificarVacioConMsj();
         if (valor == 0) {
-            boolean vUser = getConexion.ValidarUsuario(Configuracion.getEMP_CODIGO(), this.txtCod_Usuario.getText(), this.txtPassword.getText());
-            if (vUser) {
+            String sql = "select " + txtCod_Usuario.getBdDescrip() + " from " + txtCod_Usuario.getBdTabla()
+                    + " where " + EMP_CODIGO + "=" + Configuracion.getEMP_CODIGO()
+                    + " and " + txtCod_Usuario.getBdCodigo() + "=" + this.txtCod_Usuario.getText()
+                    + " and clave=password('" + this.txtPassword.getText().trim() + "')";
+            ArrayList clave = getConexion.consultar(sql);
+            if (clave.size() > 0) {
                 contador = 0;
                 this.txtCod_Usuario.setEnabled(false);
                 this.txtPassword.setEnabled(false);
@@ -312,13 +238,13 @@ public class Acceso_Empresa extends frm_Padre {
                 if (preg == MensajeSistema.YES_OPTION()) {
                     if (contador == 3) {
                         MensajeSistema.MensajeVarios(this, "Expulsado!!!", MensajeSistema.INFORMATION_MESSAGE());
-                        System.exit(0);
+                        this.dispose();
                     } else {
                         this.txtPassword.setText("");
                         this.txtPassword.grabFocus();
                     }
                 } else {
-                    System.exit(0);
+                    this.dispose();
                 }
             }
         } else if (valor == 1) {
@@ -326,60 +252,8 @@ public class Acceso_Empresa extends frm_Padre {
         }
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void txtCod_EmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_EmpresaActionPerformed
-        int valor = this.txtCod_Empresa.verificarVacioConMsj();
-        if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(txtCod_Empresa.getBdTabla(), txtCod_Empresa.getBdDescrip(),
-                    new String[]{txtCod_Empresa.getBdCodigo()}, new String[]{this.txtCod_Empresa.getText()});
-            if (rs != null) {
-                this.TextNom_Empresa.setText(rs);
-                this.txtCod_Sucursal.setEnabled(true);
-                this.txtCod_Sucursal.grabFocus();
-            } else {
-                if (MensajeSistema.ConsultaSQLVacio(this)) {
-                    this.TextNom_Empresa.setText("");
-                    this.txtCod_Empresa.setText("");
-                    this.txtCod_Empresa.grabFocus();
-                } else {
-                    this.btnCancelar.doClick();
-                }
-            }
-        } else if (valor == 1) {
-            this.inicializar();
-        }
-    }//GEN-LAST:event_txtCod_EmpresaActionPerformed
-
-    private void txtCod_SucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_SucursalActionPerformed
-        int valor = this.txtCod_Sucursal.verificarVacioConMsj();
-        if (valor == 0) {
-            String[] rs = this.getConexion.getDescripciones(txtCod_Sucursal.getBdTabla(),
-                    new String[]{txtCod_Sucursal.getBdCodigo(), txtCod_Sucursal.getBdDescrip()},
-                    new String[]{EMP_CODIGO},
-                    new String[]{this.txtCod_Empresa.getText()});
-            if (rs[0] != null) {
-                this.TextNom_Sucursal.setText(rs[1]);
-                this.txtCod_Usuario.setEnabled(true);
-                this.txtCod_Empresa.setEnabled(false);
-                this.txtCod_Sucursal.setEnabled(false);
-                this.txtCod_Usuario.grabFocus();
-            } else {
-                if (MensajeSistema.ConsultaSQLVacio(this)) {
-                    this.TextNom_Sucursal.setText("");
-                    this.txtCod_Sucursal.setText("");
-                    this.txtCod_Sucursal.grabFocus();
-                } else {
-                    this.btnCancelar.doClick();
-                }
-            }
-        } else if (valor == 1) {
-            this.inicializar();
-        }
-    }//GEN-LAST:event_txtCod_SucursalActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        if (MensajeSistema.Cancelar(this)) {
-            this.inicializar();
-        }
+        this.inicializar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtCod_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_UsuarioActionPerformed
@@ -410,36 +284,27 @@ public class Acceso_Empresa extends frm_Padre {
     }//GEN-LAST:event_txtCod_UsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TextNom_Empresa;
-    private javax.swing.JLabel TextNom_Sucursal;
     private com.app.botones.btnAceptar btnAceptar;
     private com.app.botones.btnCancelar btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelDatos;
     private javax.swing.JPanel jPanelTitulo;
     private javax.swing.JLabel textNom_Usuario;
     private javax.swing.JLabel textTitulo;
-    private com.app.paleta.txtCodigo txtCod_Empresa;
-    private com.app.paleta.txtCodigo txtCod_Sucursal;
     private com.app.paleta.txtCodigo txtCod_Usuario;
     private com.app.paleta.txtPassword txtPassword;
     // End of variables declaration//GEN-END:variables
 
     private void inicializar() {
         ClaseCampos.setTextNull(jPanelDatos);
-        ClaseCampos.setEnabled(jPanelDatos, false);
         this.btnAceptar.setEnabled(false);
-        this.btnCancelar.setEnabled(true);
-        this.contador = 0;
-        this.TextNom_Empresa.setText("");
-        this.TextNom_Sucursal.setText("");
+        this.txtPassword.setEnabled(false);
+        this.txtCod_Usuario.setEnabled(true);
         this.textNom_Usuario.setText("");
-        this.txtCod_Empresa.setEnabled(true);
-        this.txtCod_Empresa.grabFocus();
+        this.contador = 0;
+        this.txtCod_Usuario.grabFocus();
     }
 }
