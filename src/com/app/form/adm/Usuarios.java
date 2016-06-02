@@ -387,7 +387,7 @@ public class Usuarios extends frm_Padre {
     }//GEN-LAST:event_txtCod_PerfilActionPerformed
 
     private void txtPass1_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPass1_UserActionPerformed
-        if (this.txtCodigo.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             int valor = txtPass1_User.verificarVacioConMsj();
             if (valor == 0) {
                 if (this.txtPass1_User.verificarCantidadMinima()) {
@@ -445,7 +445,7 @@ public class Usuarios extends frm_Padre {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtNom_User.grabFocus();
@@ -532,6 +532,9 @@ public class Usuarios extends frm_Padre {
         this.btnNuevo.setEnabled(Agrega_OK);
         this.btnModificar.setEnabled(Modifica_OK);
         this.btnBorrar.setEnabled(Borra_OK);
+        this.btnGrabar.setEnabled(false);
+        this.btnCancelar.setEnabled(false);
+        this.btnSalir.setEnabled(true);
         if (this.btnNuevo.isEnabled()) {
             this.btnNuevo.grabFocus();
         } else if (this.btnModificar.isEnabled()) {
@@ -548,7 +551,7 @@ public class Usuarios extends frm_Padre {
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtPass1_User.setEnabled(false);
         this.txtPass2_User.setEnabled(false);
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;
         this.txtCodigo.grabFocus();
     }
 
@@ -557,7 +560,7 @@ public class Usuarios extends frm_Padre {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             ClaseCampos.setEnabled(jPanelDatos, true);
             this.txtNom_User.setEnabled(true);
-            this.txtCodigo.setOperacion('A');
+            Operacion = 'A';
             this.txtNom_User.grabFocus();
         } else {
             Inicializar();
@@ -573,7 +576,7 @@ public class Usuarios extends frm_Padre {
             this.txtNom_User.setText(rs[1]);
             this.txtCod_Perfil.setText(rs[2]);
             this.textNomPerfil.setText(rs[3]);
-            if (this.txtCodigo.getOperacion() == 'M') {
+            if (Operacion == 'M') {
                 this.txtCodigo.setEnabled(false);
                 this.txtNom_User.setEnabled(true);
                 this.txtCod_Perfil.setEnabled(true);
@@ -593,7 +596,7 @@ public class Usuarios extends frm_Padre {
     }
 
     private void Grabar() {
-        if (this.txtCodigo.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 String sql = "INSERT INTO " + this.txtCodigo.getBdTabla() + " ";
                 sql += "(" + EMP_CODIGO + ", " + this.txtCodigo.getBdCodigo() + ", " + this.txtCodigo.getBdDescrip() + ", clave, " + this.txtCod_Perfil.getBdCodigo() + ") ";

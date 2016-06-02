@@ -159,11 +159,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboTipoProducto" min="-2" pref="119" max="-2" attributes="0"/>
+                                  <Component id="cboTipoProducto" min="-2" pref="119" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" pref="32" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboIva" min="-2" pref="88" max="-2" attributes="0"/>
+                                  <Component id="cboIva" min="-2" pref="88" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" pref="63" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -356,13 +356,13 @@
                               <Component id="jCheckPedesedero" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jCheckControlado" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jComboIva" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboTipoProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtEstante" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtFila" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtColumna" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cboTipoProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cboIva" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="110" max="-2" attributes="0"/>
@@ -404,7 +404,6 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Procedencia">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_ProcedenciaActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_ProcedenciaKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="textNom_Procedencia">
@@ -421,7 +420,6 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Envace">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_EnvaceActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_EnvaceKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="textNom_Envace">
@@ -438,7 +436,6 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Marca">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_MarcaActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_MarcaKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="textNom_Marca">
@@ -455,7 +452,6 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Linea">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_LineaActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_LineaKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="textNom_Linea">
@@ -555,22 +551,6 @@
                     <Property name="text" type="java.lang.String" value="IVA:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboIva">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jComboIvaFocusGained"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboIvaKeyPressed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
@@ -612,22 +592,6 @@
                     <Property name="text" type="java.lang.String" value="Tipo Producto:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboTipoProducto">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jComboTipoProductoFocusGained"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboTipoProductoKeyPressed"/>
-                  </Events>
-                </Component>
                 <Component class="com.app.paleta.txtNumeros" name="txtEstante">
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEstanteKeyPressed"/>
@@ -664,13 +628,24 @@
                 <Component class="com.app.paleta.txtCodigo" name="txtCod_Seccion">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCod_SeccionActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCod_SeccionKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="textNom_Seccion">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jLabel7"/>
                   </Properties>
+                </Component>
+                <Component class="com.app.paleta.combo" name="cboTipoProducto">
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cboTipoProductoFocusGained"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cboTipoProductoKeyPressed"/>
+                  </Events>
+                </Component>
+                <Component class="com.app.paleta.combo" name="cboIva">
+                  <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cboIvaFocusGained"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cboIvaKeyPressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

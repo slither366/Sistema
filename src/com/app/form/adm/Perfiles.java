@@ -30,6 +30,7 @@ public final class Perfiles extends frm_Padre implements Metodos {
         this.txtCod_Sucursal.setBdCodigo("Suc_Codigo");
         this.txtCod_Sucursal.setBdDescrip("denominacion");
         this.txtCod_Sucursal.setBdTitulo("Sucursales");
+        this.txtCod_Sucursal.setBuscar(true);
 
         this.txtNom_Sucursal.setEditable(false);
         this.txtNom_Sucursal.setEnMayuscula(true);
@@ -216,7 +217,7 @@ public final class Perfiles extends frm_Padre implements Metodos {
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
             this.txtCodigo.setEnabled(false);
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDescripcion.grabFocus();
@@ -293,6 +294,7 @@ public final class Perfiles extends frm_Padre implements Metodos {
         this.pnlABM.btnGrabar.setEnabled(false);
         this.pnlABM.btnCancelar.setEnabled(false);
         this.pnlABM.btnSalir.setEnabled(true);
+        this.txtCodigo.setBuscar(true);
         if (this.pnlABM.btnNuevo.isEnabled()) {
             this.pnlABM.btnNuevo.grabFocus();
         } else if (this.pnlABM.btnModificar.isEnabled()) {
@@ -310,11 +312,11 @@ public final class Perfiles extends frm_Padre implements Metodos {
         String xdes = this.txtDescripcion.getText().trim();
         String xCom = this.txtComentario.getText().trim();
         String xfor = this.txtCod_Sucursal.getCodigo() == 0 ? "null" : this.txtCod_Sucursal.getText();
-        if (this.txtCodigo.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             getConexion.insertar(this.txtCodigo.getBdTabla(),
                     new String[]{EMP_CODIGO, txtCodigo.getBdCodigo(), this.txtCodigo.getBdDescrip(), "comentario", this.txtCod_Sucursal.getBdCodigo()},
                     new String[]{Configuracion.getEMP_CODIGO(), xide, xdes, xCom, xfor});
-        } else if (this.txtCodigo.getOperacion() == 'M') {
+        } else if (Operacion == 'M') {
             getConexion.actualizar(this.txtCodigo.getBdTabla(),
                     new String[]{this.txtCodigo.getBdDescrip(), "comentario", this.txtCod_Sucursal.getBdCodigo()},
                     new String[]{xdes, xCom, xfor},
@@ -332,7 +334,8 @@ public final class Perfiles extends frm_Padre implements Metodos {
             this.pnlABM.ModoEdicion(false);
             this.pnlABM.btnGrabar.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
-            this.txtCodigo.setOperacion('A');
+            Operacion = 'A';
+            this.txtCodigo.setBuscar(false);
             this.txtDescripcion.grabFocus();
         } else {
             Inicializar();
@@ -341,7 +344,7 @@ public final class Perfiles extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;        
         this.pnlABM.ModoEdicion(false);
         this.txtCodigo.setEnabled(true);
         this.pnlABM.btnGrabar.setEnabled(false);
@@ -359,7 +362,7 @@ public final class Perfiles extends frm_Padre implements Metodos {
             txtComentario.setText(resultado[1]);
             txtCod_Sucursal.setText(resultado[2]);
             txtNom_Sucursal.setText(resultado[3]);
-            if (this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

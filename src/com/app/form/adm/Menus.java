@@ -2,7 +2,6 @@ package com.app.form.adm;
 
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
-import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre;
@@ -245,7 +244,7 @@ public class Menus extends frm_Padre {
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
             this.txtCodigo.setEnabled(false);
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 String resu = this.getConexion.getDescripcion(this.txtCodigo.getBdTabla(), this.txtCodigo.getBdDescrip(),
@@ -325,6 +324,7 @@ public class Menus extends frm_Padre {
         this.txtCodigo.setEnabled(false);
         this.txtDescripcion.setEnabled(false);
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, true);
+        this.txtCodigo.setBuscar(true);
         this.btnNuevo.setEnabled(true);
         this.btnModificar.setEnabled(true);
         this.btnBorrar.setEnabled(true);
@@ -337,7 +337,7 @@ public class Menus extends frm_Padre {
         if (ClaseCampos.setValidate(this.jPanelDatos)) {
             MensajeSistema.validarVacio(this);
         } else {
-            if (this.txtCodigo.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 if (MensajeSistema.Guardar(this)) {
                     if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                         getConexion.insertar(this.txtCodigo.getBdTabla(),
@@ -353,7 +353,7 @@ public class Menus extends frm_Padre {
                                 new String[]{this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     }
                 }
-            } else if (this.txtCodigo.getOperacion() == 'M') {
+            } else if (Operacion == 'M') {
                 if (MensajeSistema.Modificar(this)) {
                     if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                         getConexion.actualizar(this.txtCodigo.getBdTabla(), new String[]{this.txtCodigo.getBdDescrip()},
@@ -379,8 +379,9 @@ public class Menus extends frm_Padre {
     private void Agregar() {
         if (this.txtCodigo.autoNumerico()) {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
-            this.btnGrabar.setEnabled(false);            
-            this.txtCodigo.setOperacion('A');
+            this.btnGrabar.setEnabled(false);
+            Operacion = 'A';
+            this.txtCodigo.setBuscar(false);
             this.txtCodigo.setEnabled(true);
             this.txtCodigo.grabFocus();
         } else {
@@ -389,7 +390,7 @@ public class Menus extends frm_Padre {
     }
 
     private void Editar(char c) {
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCodigo.setEnabled(true);
         this.btnGrabar.setEnabled(false);
@@ -414,7 +415,7 @@ public class Menus extends frm_Padre {
         }
         if (resultado != null) {
             txtDescripcion.setText(resultado);
-            if (this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

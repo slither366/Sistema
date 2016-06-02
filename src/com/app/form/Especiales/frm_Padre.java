@@ -28,6 +28,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     public static Propiedades getPropiedades;
     public Image getIcono;
     public DefaultTableModel miTabla;
+    public char Operacion;
 
     public frm_Padre() {
         initComponents();
@@ -91,7 +92,7 @@ public class frm_Padre extends JInternalFrame implements ActionListener {
     }
 
     public void Salir(JInternalFrame ventana) {
-        if (MensajeSistema.Salir(ventana)) {            
+        if (MensajeSistema.Salir(ventana)) {
             callMenus.menu.CloseFrame(ventana);
         }
     }

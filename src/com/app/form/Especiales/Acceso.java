@@ -29,7 +29,7 @@ public class Acceso extends frm_Padre {
         this.txtCod_Sucursal.setBdTitulo("Sucursales");
         this.txtCod_Sucursal.setUsarEmpresa(true);
         this.txtCod_Sucursal.setUsarSucursal(false);
-        this.txtCod_Sucursal.setOperacion('x');
+        this.txtCod_Sucursal.setBuscar(true);
 
         this.txtCod_Usuario.setBdTabla("Acc_Usuarios");
         this.txtCod_Usuario.setBdCodigo("Usu_Codigo");
@@ -37,7 +37,7 @@ public class Acceso extends frm_Padre {
         this.txtCod_Usuario.setBdTitulo("Usuarios");
         this.txtCod_Usuario.setUsarEmpresa(true);
         this.txtCod_Usuario.setUsarSucursal(false);
-        this.txtCod_Usuario.setOperacion('x');
+        this.txtCod_Usuario.setBuscar(true);
 
         this.txtNomSucursal.setEditable(false);
         this.txtNomUsuario.setEditable(false);

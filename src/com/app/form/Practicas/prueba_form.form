@@ -44,48 +44,38 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="txtCodigo1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtTexto1" min="-2" pref="403" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtNumeros1" pref="218" max="32767" attributes="0"/>
+                          <Component id="txtNumeros2" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtFecha4" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFecha3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNumerosFormato1" min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace pref="335" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="txtFecha3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtFecha4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCodigo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTexto1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="155" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="txtNumeros1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="txtNumeros2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="txtNumerosFormato1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="133" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.app.paleta.txtFecha" name="txtFecha3">
+        <Component class="com.app.paleta.txtNumeros" name="txtNumeros1">
         </Component>
-        <Component class="com.app.paleta.txtFecha" name="txtFecha4">
+        <Component class="com.app.paleta.txtNumeros" name="txtNumeros2">
         </Component>
-        <Component class="com.app.paleta.txtCodigo" name="txtCodigo1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigo1ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="com.app.paleta.txtTexto" name="txtTexto1">
+        <Component class="com.app.paleta.txtNumerosFormato" name="txtNumerosFormato1">
         </Component>
       </SubComponents>
     </Container>

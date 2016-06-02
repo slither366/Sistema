@@ -92,8 +92,7 @@ public class txtCodigo extends textoPadre {
      * descripcion y titulo a cual va a representar
      */
     private String bdTabla, bdCodigo, bdDescrip, bdTitulo;
-    private boolean UsarEmpresa, UsarSucursal;
-    private char operacion;
+    private boolean UsarEmpresa = false, UsarSucursal = false, Buscar = true;
 
     /**
      * Metodo que retorna el nombre de la Tabla del campo
@@ -183,12 +182,12 @@ public class txtCodigo extends textoPadre {
         return this.UsarSucursal;
     }
 
-    public char getOperacion() {
-        return operacion;
+    public boolean isBuscar() {
+        return Buscar;
     }
 
-    public void setOperacion(char operacion) {
-        this.operacion = operacion;
+    public void setBuscar(boolean Buscar) {
+        this.Buscar = Buscar;
     }
 
     /**
@@ -199,14 +198,14 @@ public class txtCodigo extends textoPadre {
     public String getDescripcion() {
         String[] condicion, valores;
         if (this.isUsarEmpresa() && this.isUsarSucursal()) {
-            condicion = new String[]{frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO};
-            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO()};
+            condicion = new String[]{frm_Padre.EMP_CODIGO, frm_Padre.SUC_CODIGO, getBdCodigo()};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.getText()};
         } else if (this.isUsarEmpresa()) {
-            condicion = new String[]{frm_Padre.EMP_CODIGO};
-            valores = new String[]{Configuracion.getEMP_CODIGO()};
+            condicion = new String[]{frm_Padre.EMP_CODIGO, getBdCodigo()};
+            valores = new String[]{Configuracion.getEMP_CODIGO(), this.getText()};
         } else {
-            condicion = new String[]{null};
-            valores = new String[]{null};
+            condicion = new String[]{getBdCodigo()};
+            valores = new String[]{this.getText()};
         }
         return getConexion.getDescripcion(this.getBdTabla(), this.getBdDescrip(), condicion, valores);
     }
@@ -215,7 +214,7 @@ public class txtCodigo extends textoPadre {
      * Metodo que es para mostrar el formulario de busqueda
      */
     public void Buscar() {
-        if (operacion != 'A') {
+        if (isBuscar()) {
             Buscar buscar = new Buscar(null, true, getBdTabla(), isUsarEmpresa(), isUsarSucursal(),
                     getBdCodigo(), getBdDescrip(), getBdTitulo(), frm_Padre.getConexion);
             buscar.setVisible(true);

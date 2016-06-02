@@ -63,7 +63,7 @@ public class textoPadre extends javax.swing.JTextField {
             @Override
             public void changedUpdate(DocumentEvent de) {
             }
-        });          
+        });
     }
 
     /**
@@ -73,6 +73,7 @@ public class textoPadre extends javax.swing.JTextField {
     public void soloNumero(KeyEvent evt) {
         if ("0123456789.-".contains(String.valueOf(evt.getKeyChar())) == false) {
             evt.consume();
+            Toolkit.getDefaultToolkit().beep();
         }
     }
 

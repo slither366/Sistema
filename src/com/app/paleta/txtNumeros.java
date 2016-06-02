@@ -10,7 +10,7 @@ import java.awt.event.FocusEvent;
  */
 public class txtNumeros extends textoPadre {
 
-    private int CantNumero = 10;
+    private int CantEntero = 10;
     private boolean ConDecimal = false;
     private int CantDecimal = 0;
 
@@ -49,16 +49,16 @@ public class txtNumeros extends textoPadre {
                 String ParteEntera = getText().substring(0, punto < 0 ? getText().length() : punto);
                 String ParteDecimal = punto < 0 ? "" : getText().substring(punto);
                 int posicion = getCaretPosition();
-                if (getText().replaceAll(",", "").length() >= CantNumero) {
+                if (getText().replaceAll(",", "").length() >= (CantEntero + (ConDecimal ? CantDecimal + 1 : 0))) {
                     String numero = ParteEntera.substring(0, punto);
                     if (getCaretPosition() == getText().length()) {
                         evt.consume();
                         Toolkit.getDefaultToolkit().beep();
                     } else {
                         evt.consume();
-                        numero = numero.substring(0, posicion) + evt.getKeyChar() + ParteEntera.substring(posicion);
+                        numero = numero.substring(0, posicion) + valor + ParteEntera.substring(posicion);
                         try {
-                            setText(numero.substring(0, CantNumero - CantDecimal) + ParteDecimal);
+                            setText(numero.substring(0, punto) + ParteDecimal);
                         } catch (Exception e) {
                             setText(numero.substring(0, numero.length()) + ParteDecimal);
                         }
@@ -89,7 +89,7 @@ public class txtNumeros extends textoPadre {
                     }
                 }
                 setText(valor);
-                setSeleccionarCampo();
+                selectAll();
             }
 
             @Override
@@ -132,14 +132,14 @@ public class txtNumeros extends textoPadre {
 
     /**
      * Metodo que inicializa las variables
-     * <>CantNumero<> es la cantidad de caracteres que va aceptar el campo
-     * <>CantDecimal<> es la cantidad de caracteres decimales
+     * <>cantidad<> es la cantidad de caracteres que va aceptar el campo
+     * <>decimal<> es la cantidad de caracteres decimales
      *
      * @param cantidad El total de Numeros
      * @param decimal El total de la Parte decimal
      */
     public void setInicializar(int cantidad, int decimal) {
-        this.CantNumero = cantidad;
+        this.CantEntero = cantidad;
         this.CantDecimal = decimal;
         this.ConDecimal = decimal > 0;
     }

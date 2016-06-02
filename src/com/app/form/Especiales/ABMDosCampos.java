@@ -24,6 +24,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.txtCodigo.setBdTitulo(titulo);
         this.txtCodigo.setUsarEmpresa(empresa);
         this.txtCodigo.setUsarSucursal(sucursal);
+
         this.pnlTitulo1.setTextTitulo("Mantenimiento de " + titulo + "...");
         this.getPermisos(cod_ventana);
         this.txtDescripcion.setEnMayuscula(true);
@@ -166,7 +167,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
             this.txtCodigo.setEnabled(false);
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDescripcion.grabFocus();
@@ -210,6 +211,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         this.botonesABM.btnGrabar.setEnabled(false);
         this.botonesABM.btnCancelar.setEnabled(false);
         this.botonesABM.btnSalir.setEnabled(true);
+        this.txtCodigo.setBuscar(true);
         if (this.botonesABM.btnNuevo.isEnabled()) {
             this.botonesABM.btnNuevo.grabFocus();
         } else if (this.botonesABM.btnModificar.isEnabled()) {
@@ -226,7 +228,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         if (ClaseCampos.setValidate(this.jPanelDatos)) {
             MensajeSistema.validarVacio(this);
         } else {
-            if (this.txtCodigo.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 if (MensajeSistema.Guardar(this)) {
                     if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                         getConexion.insertar(this.txtCodigo.getBdTabla(),
@@ -242,7 +244,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
                                 new String[]{this.txtCodigo.getText(), this.txtDescripcion.getText()});
                     }
                 }
-            } else if (this.txtCodigo.getOperacion() == 'M') {
+            } else if (Operacion == 'M') {
                 if (MensajeSistema.Modificar(this)) {
                     if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                         getConexion.actualizar(this.txtCodigo.getBdTabla(), new String[]{txtCodigo.getBdDescrip()},
@@ -271,7 +273,8 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
             this.botonesABM.ModoEdicion(false);
             this.botonesABM.btnGrabar.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
-            this.txtCodigo.setOperacion('A');
+            Operacion = 'A';
+            this.txtCodigo.setBuscar(false);
             this.txtDescripcion.grabFocus();
         } else {
             Inicializar();
@@ -280,7 +283,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;
         this.botonesABM.ModoEdicion(false);
         this.txtCodigo.setEnabled(true);
         this.botonesABM.btnGrabar.setEnabled(false);
@@ -306,7 +309,7 @@ public final class ABMDosCampos extends frm_Padre implements Metodos {
         }
         if (resultado != null) {
             txtDescripcion.setText(resultado);
-            if (txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

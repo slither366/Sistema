@@ -444,6 +444,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenu1310">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="49"/>
                     <Property name="text" type="java.lang.String" value="1- Mantenimiento"/>
                   </Properties>
                   <Events>
@@ -455,6 +456,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenu1320">
                   <Properties>
+                    <Property name="mnemonic" type="int" value="50"/>
                     <Property name="text" type="java.lang.String" value="2- Cambio de Clave"/>
                   </Properties>
                   <Events>

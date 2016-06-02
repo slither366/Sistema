@@ -246,7 +246,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         int valor = this.txtFecha.verificarVacioConMsj();
         if (valor == 0) {
             this.txtFecha.setEnabled(false);
-            if (this.txtCod_Moneda.getOperacion() == 'M' || this.txtCod_Moneda.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCod_Moneda.getText());
             } else {
                 this.txtCompra.setEnabled(true);
@@ -305,6 +305,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         this.pnlBotones.btnGrabar.setEnabled(false);
         this.pnlBotones.btnCancelar.setEnabled(false);
         this.pnlBotones.btnSalir.setEnabled(true);
+        this.txtCod_Moneda.setBuscar(true);
         if (this.pnlBotones.btnNuevo.isEnabled()) {
             this.pnlBotones.btnNuevo.grabFocus();
         } else if (this.pnlBotones.btnModificar.isEnabled()) {
@@ -321,7 +322,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         if (this.pnlDatos.setValidate()) {
             MensajeSistema.validarVacio(this);
         } else {
-            if (this.txtCod_Moneda.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 if (MensajeSistema.Guardar(this)) {
                     getConexion.insertar(tablaConsutada,
                             new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha", "compra", "venta"},
@@ -347,13 +348,13 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         this.pnlBotones.ModoEdicion(false);
         this.pnlBotones.btnGrabar.setEnabled(false);
         this.txtCod_Moneda.setEnabled(true);
-        this.txtCod_Moneda.setOperacion('A');
+        Operacion='A';
         this.txtCod_Moneda.grabFocus();
     }
 
     @Override
     public void Editar(char c) {
-        this.txtCod_Moneda.setOperacion(c);
+        Operacion=c;
         this.pnlBotones.ModoEdicion(false);
         this.txtCod_Moneda.setEnabled(true);
         this.pnlBotones.btnGrabar.setEnabled(false);
@@ -369,7 +370,7 @@ public final class CotizacionSet extends frm_Padre implements Metodos {
         if (rs[0] != null) {
             txtCompra.setNumero(rs[0]);
             txtVenta.setNumero(rs[1]);
-            if (this.txtCod_Moneda.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.Borrar(this, tablaConsutada,
                         new String[]{EMP_CODIGO, this.txtCod_Moneda.getBdCodigo(), "fecha"},
                         new String[]{Configuracion.getEMP_CODIGO(), codigo, this.txtFecha.getFecha()});

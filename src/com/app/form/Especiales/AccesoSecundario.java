@@ -22,7 +22,7 @@ public class AccesoSecundario extends frm_Padre {
         this.txtCod_Usuario.setBdTitulo("Usuarios");
         this.txtCod_Usuario.setUsarEmpresa(true);
         this.txtCod_Usuario.setUsarSucursal(false);
-        this.txtCod_Usuario.setOperacion('x');
+        this.txtCod_Usuario.setBuscar(true);
         this.inicializar();
     }
 

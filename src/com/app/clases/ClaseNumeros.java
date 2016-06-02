@@ -73,7 +73,7 @@ public class ClaseNumeros {
         
     public static String formatoMiles(long numero) {
         NumberFormat nf = NumberFormat.getIntegerInstance(Locale.ENGLISH);
-        return nf.format(getNumerosSinDecimal(numero));
+        return nf.format(getNumerosSinDecimal(String.valueOf(numero)));
     }
 
     public static String formatoMiles(String numero) {

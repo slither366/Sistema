@@ -4,7 +4,6 @@ import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
 import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
-import com.app.config.ConsultaSQL;
 import com.app.config.MensajeSistema;
 import com.app.form.Especiales.frm_Padre.Metodos;
 import com.app.form.Especiales.frm_Padre;
@@ -51,26 +50,38 @@ public final class Productos extends frm_Padre implements Metodos {
         this.txtCod_Seccion.setBdCodigo("Sec_Codigo");
         this.txtCod_Seccion.setBdDescrip("Sec_Descrip");
         this.txtCod_Seccion.setBdTitulo("Secciones");
+        this.txtCod_Seccion.setUsarEmpresa(true);
+        this.txtCod_Seccion.setUsarSucursal(false);
 
         this.txtCod_Procedencia.setBdTabla("Ref_Nacionalidades");
         this.txtCod_Procedencia.setBdCodigo("Nac_Codigo");
         this.txtCod_Procedencia.setBdDescrip("Nac_Descrip");
         this.txtCod_Procedencia.setBdTitulo("Procedencias");
+        this.txtCod_Procedencia.setUsarEmpresa(true);
+        this.txtCod_Procedencia.setUsarSucursal(false);
 
         this.txtCod_Marca.setBdTabla("Ref_Marcas");
         this.txtCod_Marca.setBdCodigo("Mar_Codigo");
         this.txtCod_Marca.setBdDescrip("Mar_Descrip");
         this.txtCod_Marca.setBdTitulo("Marcas");
+        this.txtCod_Marca.setUsarEmpresa(true);
+        this.txtCod_Marca.setUsarSucursal(false);
 
         this.txtCod_Envace.setBdTabla("Ref_Envaces");
         this.txtCod_Envace.setBdCodigo("Env_Codigo");
         this.txtCod_Envace.setBdDescrip("Env_Descrip");
         this.txtCod_Envace.setBdTitulo("Envaces");
+        this.txtCod_Envace.setUsarEmpresa(true);
+        this.txtCod_Envace.setUsarSucursal(false);
 
         this.txtCod_Linea.setBdTabla("Ref_Lineas");
         this.txtCod_Linea.setBdCodigo("Lin_Codigo");
         this.txtCod_Linea.setBdDescrip("Lin_Descrip");
         this.txtCod_Linea.setBdTitulo("Lineas");
+        this.txtCod_Linea.setUsarEmpresa(true);
+        this.txtCod_Linea.setUsarSucursal(false);
+        this.cboTipoProducto.addItem(new String[]{"1", "2", "3", "4", "5"}, new String[]{"MERCADERIA", "SERVICIOS", "ACTIVO FIJO", "CONTRATO", "GASTOS"});
+        this.cboIva.addItem(new String[]{"1", "2", "3"}, new String[]{"EXENTA", "IVA 05 %", "IVA 10 %"});
 
         Inicializar();
     }
@@ -123,14 +134,12 @@ public final class Productos extends frm_Padre implements Metodos {
         jCheckPedesedero = new javax.swing.JCheckBox();
         jCheckControlado = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        jComboIva = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         txtStockMinimo = new com.app.paleta.txtNumeros();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComentario = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jComboTipoProducto = new javax.swing.JComboBox();
         txtEstante = new com.app.paleta.txtNumeros();
         txtColumna = new com.app.paleta.txtNumeros();
         txtFila = new com.app.paleta.txtNumeros();
@@ -139,6 +148,8 @@ public final class Productos extends frm_Padre implements Metodos {
         jLabel11 = new javax.swing.JLabel();
         txtCod_Seccion = new com.app.paleta.txtCodigo();
         textNom_Seccion = new javax.swing.JLabel();
+        cboTipoProducto = new com.app.paleta.combo();
+        cboIva = new com.app.paleta.combo();
         jPanel2 = new javax.swing.JPanel();
         jPanelBotones = new javax.swing.JPanel();
         btnImagen1 = new com.app.botones.btnImagen();
@@ -203,11 +214,6 @@ public final class Productos extends frm_Padre implements Metodos {
                 txtCod_ProcedenciaActionPerformed(evt);
             }
         });
-        txtCod_Procedencia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_ProcedenciaKeyPressed(evt);
-            }
-        });
 
         textNom_Procedencia.setText("jLabel7");
 
@@ -217,11 +223,6 @@ public final class Productos extends frm_Padre implements Metodos {
         txtCod_Envace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_EnvaceActionPerformed(evt);
-            }
-        });
-        txtCod_Envace.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_EnvaceKeyPressed(evt);
             }
         });
 
@@ -235,11 +236,6 @@ public final class Productos extends frm_Padre implements Metodos {
                 txtCod_MarcaActionPerformed(evt);
             }
         });
-        txtCod_Marca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_MarcaKeyPressed(evt);
-            }
-        });
 
         textNom_Marca.setText("jLabel7");
 
@@ -249,11 +245,6 @@ public final class Productos extends frm_Padre implements Metodos {
         txtCod_Linea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_LineaActionPerformed(evt);
-            }
-        });
-        txtCod_Linea.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_LineaKeyPressed(evt);
             }
         });
 
@@ -330,18 +321,6 @@ public final class Productos extends frm_Padre implements Metodos {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("IVA:");
 
-        jComboIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboIva.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jComboIvaFocusGained(evt);
-            }
-        });
-        jComboIva.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jComboIvaKeyPressed(evt);
-            }
-        });
-
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Ubicación:");
 
@@ -361,18 +340,6 @@ public final class Productos extends frm_Padre implements Metodos {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Tipo Producto:");
-
-        jComboTipoProducto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboTipoProducto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jComboTipoProductoFocusGained(evt);
-            }
-        });
-        jComboTipoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jComboTipoProductoKeyPressed(evt);
-            }
-        });
 
         txtEstante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -422,13 +389,30 @@ public final class Productos extends frm_Padre implements Metodos {
                 txtCod_SeccionActionPerformed(evt);
             }
         });
-        txtCod_Seccion.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        textNom_Seccion.setText("jLabel7");
+
+        cboTipoProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cboTipoProductoFocusGained(evt);
+            }
+        });
+        cboTipoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_SeccionKeyPressed(evt);
+                cboTipoProductoKeyPressed(evt);
             }
         });
 
-        textNom_Seccion.setText("jLabel7");
+        cboIva.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cboIvaFocusGained(evt);
+            }
+        });
+        cboIva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cboIvaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
         jPanelDatos.setLayout(jPanelDatosLayout);
@@ -447,11 +431,11 @@ public final class Productos extends frm_Padre implements Metodos {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboIva, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboIva, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -606,13 +590,13 @@ public final class Productos extends frm_Padre implements Metodos {
                     .addComponent(jCheckPedesedero)
                     .addComponent(jCheckControlado)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEstante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtColumna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -754,7 +738,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProductoActionPerformed
         int valor = this.txtCod_Producto.verificarVacioConMsj();
         if (valor == 0) {
-            if (this.txtCod_Producto.getOperacion() == 'M' || this.txtCod_Producto.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 if (this.recuperado) {
                     this.txtNombre_Producto.grabFocus();
                 } else {
@@ -784,7 +768,7 @@ public final class Productos extends frm_Padre implements Metodos {
         int valor = this.txtCod_Barra.verificarVacioConMsj();
         if (valor == 0) {
             //Cuando es Agregar se verifica si el codigo de barra ya existe en la base de datos
-            if (this.txtCod_Producto.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 String resu = this.getConexion.getDescripcion(this.txtCod_Producto.getBdTabla(), "Bar_Codigo",
                         new String[]{EMP_CODIGO, "Bar_Codigo"},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Barra.getText().trim()});
@@ -816,9 +800,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_ProcedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProcedenciaActionPerformed
         int valor = this.txtCod_Procedencia.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(this.txtCod_Procedencia.getBdTabla(), this.txtCod_Procedencia.getBdDescrip(),
-                    new String[]{EMP_CODIGO, this.txtCod_Procedencia.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Procedencia.getText()});
+            String rs = this.txtCod_Procedencia.getDescripcion();
             if (rs != null) {
                 this.textNom_Procedencia.setText(rs);
                 this.txtCod_Envace.grabFocus();
@@ -839,9 +821,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_EnvaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_EnvaceActionPerformed
         int valor = this.txtCod_Envace.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(this.txtCod_Envace.getBdTabla(), this.txtCod_Envace.getBdDescrip(),
-                    new String[]{EMP_CODIGO, this.txtCod_Envace.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Envace.getText()});
+            String rs = this.txtCod_Envace.getDescripcion();
             if (rs != null) {
                 this.textNom_Envace.setText(rs);
                 this.txtCod_Marca.grabFocus();
@@ -862,9 +842,7 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_MarcaActionPerformed
         int valor = this.txtCod_Marca.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(this.txtCod_Marca.getBdTabla(), this.txtCod_Marca.getBdDescrip(),
-                    new String[]{this.EMP_CODIGO, this.txtCod_Marca.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Marca.getText()});
+            String rs = this.txtCod_Marca.getDescripcion();
             if (rs != null) {
                 this.textNom_Marca.setText(rs);
                 this.txtCod_Linea.grabFocus();
@@ -885,12 +863,10 @@ public final class Productos extends frm_Padre implements Metodos {
     private void txtCod_LineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_LineaActionPerformed
         int valor = this.txtCod_Linea.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(this.txtCod_Linea.getBdTabla(), this.txtCod_Linea.getBdDescrip(),
-                    new String[]{EMP_CODIGO, this.txtCod_Linea.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Linea.getText()});
+            String rs = this.txtCod_Linea.getDescripcion();
             if (rs != null) {
                 this.textNom_Linea.setText(rs);
-                if (this.txtCod_Producto.getOperacion() == 'A') {
+                if (Operacion == 'A') {
                     this.txtFactor.setText("50");
                 }
                 this.txtFactor.grabFocus();
@@ -996,12 +972,12 @@ public final class Productos extends frm_Padre implements Metodos {
 
     private void jCheckControladoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckControladoKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_ENTER() || evt.getKeyCode() == ClaseTeclas.VK_SIGUIENTE()) {
-            this.jComboTipoProducto.grabFocus();
+            this.cboTipoProducto.grabFocus();
         } else if (evt.getKeyCode() == ClaseTeclas.VK_ATRAS()) {
             this.jCheckPedesedero.grabFocus();
         } else if (evt.getKeyCode() == ClaseTeclas.VK_ESPACIO()) {
             this.jCheckControlado.setSelected(true);
-            this.jComboTipoProducto.grabFocus();
+            this.cboTipoProducto.grabFocus();
         }
     }//GEN-LAST:event_jCheckControladoKeyPressed
 
@@ -1014,43 +990,13 @@ public final class Productos extends frm_Padre implements Metodos {
             if (this.txtStockMinimo.getText().isEmpty()) {
                 this.txtStockMinimo.setNumero(0);
             }
-            if (this.txtCod_Producto.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 this.txtCosto_Inicial.grabFocus();
             } else {
                 this.txtCosto_Actual.grabFocus();
             }
         }
     }//GEN-LAST:event_txtStockMinimoActionPerformed
-
-    private void jComboTipoProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboTipoProductoFocusGained
-        this.jComboTipoProducto.setPopupVisible(true);
-    }//GEN-LAST:event_jComboTipoProductoFocusGained
-
-    private void jComboTipoProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboTipoProductoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            if (this.jComboTipoProducto.getSelectedIndex() == 0) {
-                MensajeSistema.MensajeVarios(this, "Seleccione un registro y vuelva intentar...", MensajeSistema.ERROR_MESSAGE());
-                this.jComboTipoProducto.grabFocus();
-            } else {
-                this.jComboIva.grabFocus();
-            }
-        }
-    }//GEN-LAST:event_jComboTipoProductoKeyPressed
-
-    private void jComboIvaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboIvaFocusGained
-        this.jComboIva.setPopupVisible(true);
-    }//GEN-LAST:event_jComboIvaFocusGained
-
-    private void jComboIvaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboIvaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            if (this.jComboIva.getSelectedIndex() == 0) {
-                MensajeSistema.MensajeVarios(this, "Seleccione un registro y vuelva intentar...", MensajeSistema.ERROR_MESSAGE());
-                this.jComboIva.grabFocus();
-            } else {
-                this.txtEstante.grabFocus();
-            }
-        }
-    }//GEN-LAST:event_jComboIvaKeyPressed
 
     private void txtEstanteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstanteKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
@@ -1098,38 +1044,6 @@ public final class Productos extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtFilaKeyPressed
 
-    private void txtCod_ProcedenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ProcedenciaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Procedencia.getBdTabla(), true, false,
-                    this.txtCod_Procedencia.getBdCodigo(), this.txtCod_Procedencia.getBdDescrip(), this.txtCod_Procedencia.getBdTitulo());
-            this.txtCod_Procedencia.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_ProcedenciaKeyPressed
-
-    private void txtCod_EnvaceKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_EnvaceKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Envace.getBdTabla(), true, false, this.txtCod_Envace.getBdCodigo(),
-                    this.txtCod_Envace.getBdDescrip(), this.txtCod_Envace.getBdTitulo());
-            this.txtCod_Envace.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_EnvaceKeyPressed
-
-    private void txtCod_MarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_MarcaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Marca.getBdTabla(), true, false, this.txtCod_Marca.getBdCodigo(),
-                    this.txtCod_Marca.getBdDescrip(), this.txtCod_Marca.getBdTitulo());
-            this.txtCod_Marca.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_MarcaKeyPressed
-
-    private void txtCod_LineaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_LineaKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Linea.getBdTabla(), true, false, this.txtCod_Linea.getBdCodigo(),
-                    this.txtCod_Linea.getBdDescrip(), this.txtCod_Linea.getBdTitulo());
-            this.txtCod_Linea.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_LineaKeyPressed
-
     private void txtNombre_ProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre_ProductoKeyTyped
         this.txtNombre_Producto.CantidadLetras(evt, 250);
     }//GEN-LAST:event_txtNombre_ProductoKeyTyped
@@ -1157,14 +1071,6 @@ public final class Productos extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtCod_SeccionActionPerformed
 
-    private void txtCod_SeccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_SeccionKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Seccion.getBdTabla(), true, false, this.txtCod_Seccion.getBdCodigo(),
-                    this.txtCod_Seccion.getBdDescrip(), this.txtCod_Seccion.getBdTitulo());
-            this.txtCod_Seccion.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_SeccionKeyPressed
-
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.Agregar();
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -1189,6 +1095,26 @@ public final class Productos extends frm_Padre implements Metodos {
         Salir(this);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void cboTipoProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTipoProductoKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
+            this.cboIva.grabFocus();
+        }
+    }//GEN-LAST:event_cboTipoProductoKeyPressed
+
+    private void cboTipoProductoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboTipoProductoFocusGained
+        this.cboTipoProducto.setPopupVisible(true);
+    }//GEN-LAST:event_cboTipoProductoFocusGained
+
+    private void cboIvaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboIvaKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
+            this.txtEstante.grabFocus();
+        }
+    }//GEN-LAST:event_cboIvaKeyPressed
+
+    private void cboIvaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboIvaFocusGained
+        this.cboIva.setPopupVisible(true);
+    }//GEN-LAST:event_cboIvaFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.app.botones.btnBorrar btnBorrar;
     private com.app.botones.btnCancelar btnCancelar;
@@ -1197,10 +1123,10 @@ public final class Productos extends frm_Padre implements Metodos {
     private com.app.botones.btnEditar btnModificar;
     private com.app.botones.btnNuevo btnNuevo;
     private com.app.botones.btnSalir btnSalir;
+    private com.app.paleta.combo cboIva;
+    private com.app.paleta.combo cboTipoProducto;
     private javax.swing.JCheckBox jCheckControlado;
     private javax.swing.JCheckBox jCheckPedesedero;
-    private javax.swing.JComboBox jComboIva;
-    private javax.swing.JComboBox jComboTipoProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1258,7 +1184,7 @@ public final class Productos extends frm_Padre implements Metodos {
 
     @Override
     public void Inicializar() {
-        ClaseCampos.setAllNullComponents(jPanelDatos);
+        ClaseCampos.setTextNull(jPanelDatos);
         ClaseCampos.setEnabled(jPanelDatos, false);
         this.vTipo = 0;
         this.recuperado = false;
@@ -1277,6 +1203,7 @@ public final class Productos extends frm_Padre implements Metodos {
         this.btnGrabar.setEnabled(false);
         this.btnCancelar.setEnabled(false);
         this.btnSalir.setEnabled(true);
+        this.txtCod_Producto.setBuscar(true);
         if (this.btnNuevo.isEnabled()) {
             this.btnNuevo.grabFocus();
         } else if (this.btnModificar.isEnabled()) {
@@ -1299,9 +1226,9 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtCosto_Actual.setEnabled(false);
             this.txtPrecioV_Actual.setEnabled(false);
             this.btnGrabar.setEnabled(false);
+            this.txtCod_Producto.setBuscar(false);
             this.txtNombre_Producto.setEnabled(true);
-            this.txtCod_Producto.setOperacion('A');
-            this.cargarCombos();
+            Operacion = 'A';
             this.txtCod_Producto.setEnabled(false);
             this.txtNombre_Producto.grabFocus();
         } else {
@@ -1311,18 +1238,17 @@ public final class Productos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCod_Producto.setOperacion(c);
+        Operacion = c;
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCod_Producto.setEnabled(true);
         this.txtCod_Barra.setEnabled(true);
         this.btnGrabar.setEnabled(false);
-        this.cargarCombos();
         this.txtCod_Producto.grabFocus();
     }
 
     @Override
     public void Grabar() {
-        if (this.txtCod_Producto.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 if (getConexion.insertar(this.txtCod_Producto.getBdTabla(),
                         new String[]{EMP_CODIGO, this.txtCod_Producto.getBdCodigo(), "Bar_Codigo", this.txtCod_Producto.getBdDescrip(),
@@ -1330,31 +1256,31 @@ public final class Productos extends frm_Padre implements Metodos {
                             txtCod_Marca.getBdCodigo(), txtCod_Seccion.getBdCodigo(), "peresedero", "controlado", "ubi_estante", "ubi_columna",
                             "ubi_fila", "TIva_Codigo", "TProd_Codigo", "factor", "descuento", "costo_inicial",
                             "venta_inicial", "costo_actual", "venta_actual", "comentario", "stock_minimo", "Usu_Codigo"},
-                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Producto.getText(), this.txtCod_Barra.getText(),
-                            this.txtNombre_Producto.getText(), this.txtCod_Linea.getText(), this.txtCod_Procedencia.getText(),
-                            this.txtCod_Envace.getText(), this.txtCod_Marca.getText(), this.txtCod_Seccion.getText(),
-                            this.jCheckPedesedero.isSelected() ? "1" : "2", this.jCheckControlado.isSelected() ? "1" : "2", this.txtEstante.getNumeroInt() + "",
-                            this.txtColumna.getNumeroInt() + "", this.txtFila.getNumeroInt() + "", this.jComboIva.getSelectedIndex() + "",
-                            this.jComboTipoProducto.getSelectedIndex() + "", this.txtFactor.getNumeroInt() + "",
-                            this.txtDescuento.getNumeroInt() + "", this.txtCosto_Inicial.getNumeroInt() + "", this.txtPrecioV_Inicial.getNumeroInt() + "",
-                            this.txtCosto_Actual.getNumeroInt() + "", this.txtPrecioV_Actual.getNumeroInt() + "",
-                            this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroInt() + "", Configuracion.getUSU_CODIGO()})) {
+                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Producto.getText(),
+                            this.txtCod_Barra.getText(), this.txtNombre_Producto.getText(), this.txtCod_Linea.getText(),
+                            this.txtCod_Procedencia.getText(), this.txtCod_Envace.getText(), this.txtCod_Marca.getText(), this.txtCod_Seccion.getText(),
+                            this.jCheckPedesedero.isSelected() ? "1" : "2", this.jCheckControlado.isSelected() ? "1" : "2",
+                            this.txtEstante.getNumeroString(), this.txtColumna.getNumeroString(), this.txtFila.getNumeroString(),
+                            this.cboIva.getSelectCodigo(), this.cboTipoProducto.getSelectCodigo(), this.txtFactor.getNumeroString(),
+                            this.txtDescuento.getNumeroString(),this.txtCosto_Inicial.getNumeroString(),this.txtPrecioV_Inicial.getNumeroString(),
+                            this.txtCosto_Actual.getNumeroString(), this.txtPrecioV_Actual.getNumeroString(),
+                            this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroString(), Configuracion.getUSU_CODIGO()})) {
                 }
             }
-        } else if (this.txtCod_Producto.getOperacion() == 'M') {
+        } else {
             if (MensajeSistema.Modificar(this)) {
                 getConexion.actualizar(this.txtCod_Producto.getBdTabla(),
                         new String[]{"Bar_Codigo", this.txtCod_Producto.getBdDescrip(), txtCod_Linea.getBdCodigo(), txtCod_Procedencia.getBdCodigo(),
                             txtCod_Envace.getBdCodigo(), txtCod_Marca.getBdCodigo(), txtCod_Seccion.getBdCodigo(), "peresedero", "controlado", "ubi_estante",
                             "ubi_columna", "ubi_fila", "TIva_Codigo", "TProd_Codigo", "factor", "descuento", "costo_actual", "venta_actual",
-                            "comentario", "stock_minimo", "Usu_Codigo"},
+                            "comentario", "stock_minimo"},
                         new String[]{this.txtCod_Barra.getText(), this.txtNombre_Producto.getText(), this.txtCod_Linea.getText(),
                             this.txtCod_Procedencia.getText(), this.txtCod_Envace.getText(), this.txtCod_Marca.getText(), this.txtCod_Seccion.getText(),
                             this.jCheckPedesedero.isSelected() ? "1" : "2", this.jCheckControlado.isSelected() ? "1" : "2",
-                            this.txtEstante.getNumeroInt() + "", this.txtColumna.getNumeroInt() + "", this.txtFila.getNumeroInt() + "",
-                            this.jComboIva.getSelectedIndex() + "", this.jComboTipoProducto.getSelectedIndex() + "", this.txtFactor.getNumeroInt() + "",
-                            this.txtDescuento.getNumeroInt() + "", this.txtCosto_Actual.getNumeroInt() + "", this.txtPrecioV_Actual.getNumeroInt() + "",
-                            this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroInt() + "", Configuracion.getUSU_CODIGO()},
+                            this.txtEstante.getNumeroString(), this.txtColumna.getNumeroString(), this.txtFila.getNumeroString(),
+                            this.cboIva.getSelectCodigo(), this.cboTipoProducto.getSelectCodigo(), this.txtFactor.getNumeroString(),
+                            this.txtDescuento.getNumeroString(), this.txtCosto_Actual.getNumeroString(), this.txtPrecioV_Actual.getNumeroString(),
+                            this.txtComentario.getText().trim(), this.txtStockMinimo.getNumeroString()},
                         new String[]{this.EMP_CODIGO, this.txtCod_Producto.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Producto.getText()});
             }
@@ -1391,8 +1317,8 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtEstante.setText(resultado[15]);
             this.txtColumna.setText(resultado[16]);
             this.txtFila.setText(resultado[17]);
-            this.jComboIva.setSelectedIndex(Integer.parseInt(resultado[18]));
-            this.jComboTipoProducto.setSelectedIndex(Integer.parseInt(resultado[19]));
+            this.cboIva.setSelectCodigo(resultado[18]);
+            this.cboTipoProducto.setSelectCodigo(resultado[19]);
             this.txtFactor.setText(resultado[20]);
             this.txtDescuento.setText(resultado[21]);
             this.txtCosto_Inicial.setNumero(resultado[22]);
@@ -1401,7 +1327,7 @@ public final class Productos extends frm_Padre implements Metodos {
             this.txtPrecioV_Actual.setNumero(resultado[25]);
             this.txtComentario.setText(resultado[26]);
             this.txtStockMinimo.setText(resultado[27]);
-            if (this.txtCod_Producto.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCod_Producto.Borrar();
                 Inicializar();
             } else {
@@ -1430,20 +1356,5 @@ public final class Productos extends frm_Padre implements Metodos {
                 this.Inicializar();
             }
         }
-    }
-
-    private void cargarCombos() {
-        this.jComboTipoProducto.removeAllItems();
-        this.jComboTipoProducto.addItem("Seleccione...");
-        this.jComboTipoProducto.addItem("MERCADERIA");
-        this.jComboTipoProducto.addItem("SERVICIOS");
-        this.jComboTipoProducto.addItem("ACTIVO FIJO");
-        this.jComboTipoProducto.addItem("CONTRATO");
-        this.jComboTipoProducto.addItem("GASTOS");
-        this.jComboIva.removeAllItems();
-        this.jComboIva.addItem("Seleccione...");
-        this.jComboIva.addItem("EXENTA");
-        this.jComboIva.addItem("IVA 05 %");
-        this.jComboIva.addItem("IVA 10 %");
     }
 }

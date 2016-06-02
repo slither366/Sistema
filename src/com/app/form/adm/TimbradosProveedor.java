@@ -109,11 +109,6 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
                 txtCod_ProveedorActionPerformed(evt);
             }
         });
-        txtCod_Proveedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_ProveedorKeyPressed(evt);
-            }
-        });
 
         txtNumTim.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -286,17 +281,6 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtCod_ProveedorActionPerformed
 
-    private void txtCod_ProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ProveedorKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {//Tecla F5
-            if (this.txtCod_Proveedor.getOperacion() == 'A') {
-                this.Buscar(this.txtCod_Proveedor.getBdTabla(), this.txtCod_Proveedor.isUsarEmpresa(),
-                        this.txtCod_Proveedor.isUsarSucursal(), this.txtCod_Proveedor.getBdCodigo(),
-                        this.txtCod_Proveedor.getBdDescrip(), this.txtCod_Proveedor.getBdTitulo());
-                this.txtCod_Proveedor.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_txtCod_ProveedorKeyPressed
-
     private void txtNumTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumTimActionPerformed
         int valor = this.txtCod_Proveedor.verificarVacioConMsj();
         if (valor == 0) {
@@ -309,7 +293,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
                     this.Inicializar();
                 }
             } else {
-                if (this.txtCod_Proveedor.getOperacion() == 'A') {
+                if (Operacion == 'A') {
                     this.txtFecDesde.setEnabled(true);
                     this.txtFecDesde.grabFocus();
                 } else {
@@ -412,7 +396,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
 
     private void txtNumTimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumTimKeyPressed
         if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            if (this.txtCod_Proveedor.getOperacion() != 'A') {
+            if (Operacion != 'A') {
                 String sql = ConsultaSQL.getSelect(tablaConsultada,
                         new String[]{"fec_hasta", idConsultada},
                         new String[]{"Vencimiento", "Timbrado"},
@@ -426,7 +410,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
     }//GEN-LAST:event_txtNumTimKeyPressed
 
     private void txtNumTimFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumTimFocusGained
-        if (this.txtCod_Proveedor.getOperacion() != 'A') {
+        if (Operacion != 'A') {
             if (!Configuracion.getCODIGO_BUSCAR().isEmpty()) {
                 this.txtNumTim.setText(Configuracion.getCODIGO_BUSCAR());
                 Configuracion.setCODIGO_BUSCAR("");
@@ -464,6 +448,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
         this.pnlABM.btnGrabar.setEnabled(false);
         this.pnlABM.btnCancelar.setEnabled(false);
         this.pnlABM.btnSalir.setEnabled(true);
+        this.txtCod_Proveedor.setBuscar(true);
         if (this.pnlABM.btnNuevo.isEnabled()) {
             this.pnlABM.btnNuevo.grabFocus();
         } else if (this.pnlABM.btnModificar.isEnabled()) {
@@ -483,13 +468,13 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
         String vFHas = this.txtFecHasta.getFecha();
         String vNDes = this.txtNumDesde.getNumeroString();
         String vNHas = this.txtNumHasta.getNumeroString();
-        if (this.txtCod_Proveedor.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             getConexion.insertar(this.tablaConsultada,
                     new String[]{EMP_CODIGO, Prov_Codigo,
                         idConsultada, "fec_desde", "fec_hasta", "nro_desde", "nro_hasta", "Usu_Codigo"},
                     new String[]{Configuracion.getEMP_CODIGO(),
                         vProv, vTim, vFDes, vFHas, vNDes, vNHas, Configuracion.getUSU_CODIGO()});
-        } else if (this.txtCod_Proveedor.getOperacion() == 'M') {
+        } else if (Operacion == 'M') {
             getConexion.actualizar(this.tablaConsultada,
                     new String[]{"fec_desde", "fec_hasta", "nro_desde", "nro_hasta"},
                     new String[]{vFDes, vFHas, vNDes, vNHas},
@@ -501,7 +486,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
 
     @Override
     public void Agregar() {
-        this.txtCod_Proveedor.setOperacion('A');
+        Operacion = 'A';
         this.pnlABM.ModoEdicion(false);
         this.txtCod_Proveedor.setEnabled(true);
         this.pnlABM.btnGrabar.setEnabled(false);
@@ -510,7 +495,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCod_Proveedor.setOperacion(c);
+        Operacion = c;
         this.pnlABM.ModoEdicion(false);
         this.txtCod_Proveedor.setEnabled(true);
         this.pnlABM.btnGrabar.setEnabled(false);
@@ -528,7 +513,7 @@ public final class TimbradosProveedor extends frm_Padre implements Metodos {
             txtFecHasta.setFecha(resultado[1]);
             txtNumDesde.setNumero(resultado[2]);
             txtNumHasta.setNumero(resultado[3]);
-            if (this.txtCod_Proveedor.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.Borrar(this, tablaConsultada,
                         new String[]{EMP_CODIGO, Prov_Codigo, idConsultada},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Proveedor.getText(), codigo});

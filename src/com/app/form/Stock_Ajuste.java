@@ -21,22 +21,31 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         initComponents();
         this.setResizable(false);
         this.setName("Stock_Ajuste");
+        this.pnlTitulo.setTextTitulo("Ajuste de Stock...");
+        this.pnlTitulo.AlinearCentro();
+
         this.txtCod_Ajuste.setBdTabla("stock_ajuste");
         this.txtCod_Ajuste.setBdCodigo("Ajus_Codigo");
         this.txtCod_Ajuste.setBdDescrip("observacion");
         this.txtCod_Ajuste.setBdTitulo("Ajuste de Stock");
         this.txtCod_Ajuste.setUsarEmpresa(true);
         this.txtCod_Ajuste.setUsarSucursal(true);
-        this.pnlTitulo.setTextTitulo("Ajuste de Stock...");
-        this.pnlTitulo.AlinearCentro();
+
         this.txtCod_Producto.setBdTabla("mant_productos");
         this.txtCod_Producto.setBdCodigo("Prod_Codigo");
         this.txtCod_Producto.setBdDescrip("Prod_Descrip");
         this.txtCod_Producto.setBdTitulo("Productos");
+        this.txtCod_Producto.setUsarEmpresa(true);
+        this.txtCod_Producto.setUsarSucursal(false);
+
         this.txtCod_Lote.setBdTabla("mant_productos_lote");
         this.txtCod_Lote.setBdCodigo("Lot_Codigo");
         this.txtCod_Lote.setBdDescrip("nro_lote");
         this.txtCod_Lote.setBdTitulo("Lotes");
+        this.txtCod_Lote.setUsarEmpresa(true);
+        this.txtCod_Lote.setUsarSucursal(false);
+        this.txtCod_Lote.setBuscar(false);
+
         this.tblAjuste.setAncho(new int[]{0, 1, 2, 3, 4, 5, 6}, new int[]{50, 0, 200, 0, 70, 60, 50});
         this.tblAjuste.setOcultar(new int[]{1, 3});
         this.tblAjuste.formatearColumna(0, 0);
@@ -63,7 +72,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn4") == 0) {
             Grabar();
         } else if (Orden.compareTo("btn5") == 0) {
-            if (txtCod_Ajuste.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 if (MensajeSistema.Cancelar(this)) {
                     this.Inicializar();
                 }
@@ -177,11 +186,6 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         txtCod_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCod_ProductoActionPerformed(evt);
-            }
-        });
-        txtCod_Producto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_ProductoKeyPressed(evt);
             }
         });
 
@@ -421,7 +425,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
     private void txtCod_AjusteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_AjusteActionPerformed
         int valor = this.txtCod_Ajuste.verificarVacioConMsj();
         if (valor == 0) {
-            if (txtCod_Ajuste.getOperacion() == 'M' || txtCod_Ajuste.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCod_Ajuste.getText());
             } else {
                 this.txtObservacion.grabFocus();
@@ -468,13 +472,21 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
     private void txtCod_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProductoActionPerformed
         int valor = this.txtCod_Producto.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = getConexion.getDescripcion(txtCod_Producto.getBdTabla(), txtCod_Producto.getBdDescrip(),
-                    new String[]{EMP_CODIGO, txtCod_Producto.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), txtCod_Producto.getText()});
-            if (rs != null) {
-                this.lblProducto.setText(rs);
-                this.txtCod_Lote.setEnabled(true);
-                this.txtCod_Lote.grabFocus();
+            String[] rs = getConexion.getDescripciones(this.txtCod_Producto.getBdTabla(),
+                    new String[]{this.txtCod_Producto.getBdDescrip(), "peresedero"},
+                    new String[]{EMP_CODIGO, this.txtCod_Producto.getBdCodigo()},
+                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Producto.getText()});
+            if (rs[0] != null) {
+                this.lblProducto.setText(rs[0]);
+                if (rs[1].equals("1")) {
+                    this.txtCod_Lote.setEnabled(true);
+                    this.txtCod_Lote.grabFocus();
+                } else {
+                    this.txtCod_Lote.setText("1");
+                    this.lblLote.setText("Producto No Peresedero...");
+                    this.txtCantidad.setEnabled(true);
+                    this.txtCantidad.grabFocus();
+                }
             } else {
                 if (MensajeSistema.ConsultaSQLVacio(this)) {
                     this.txtCod_Producto.setText("");
@@ -488,14 +500,6 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
             this.InicializarAsto();
         }
     }//GEN-LAST:event_txtCod_ProductoActionPerformed
-
-    private void txtCod_ProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_ProductoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(this.txtCod_Producto.getBdTabla(), true, false, this.txtCod_Producto.getBdCodigo(),
-                    this.txtCod_Producto.getBdDescrip(), this.txtCod_Producto.getBdTitulo());
-            this.txtCod_Producto.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_ProductoKeyPressed
 
     private void txtCod_LoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_LoteActionPerformed
         int valor = this.txtCod_Lote.verificarVacioConMsj();
@@ -617,7 +621,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void Grabar() {
-        if (txtCod_Ajuste.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 int cantidadRow = this.tblAjuste.getRowCount();
                 this.getConexion.Begin();
@@ -690,7 +694,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
         if (this.txtCod_Ajuste.autoNumerico()) {
             this.pnlABM1.ModoEdicion(false);
             this.pnlABM1.btnGrabar.setEnabled(false);
-            txtCod_Ajuste.setOperacion('A');
+            Operacion = 'A';
             this.txtCod_Ajuste.setEnabled(false);
             this.txtFecha.setEnabled(true);
             this.txtObservacion.setEnabled(true);
@@ -703,7 +707,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        txtCod_Ajuste.setOperacion(c);
+        Operacion = c;
         this.pnlABM1.ModoEdicion(false);
         this.txtCod_Ajuste.setEnabled(true);
         this.pnlABM1.btnGrabar.setEnabled(false);
@@ -730,7 +734,7 @@ public final class Stock_Ajuste extends frm_Padre implements Metodos {
             this.tblAjuste.cargarDatos(getConexion, consulta);
             if (this.tblAjuste.getRowCount() > 0) {
                 this.tblAjuste.formatearColumna(5, 2);
-                if (txtCod_Ajuste.getOperacion() == 'E') {
+                if (Operacion == 'E') {
                     Borrar(this, "proc_delete_ajustes",
                             new String[]{Configuracion.getEMP_CODIGO(),
                                 Configuracion.getSUC_CODIGO(),

@@ -19,17 +19,23 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         initComponents();
         this.setResizable(false);
         this.setName(titulo);
+        this.Cod_Ventana = cod_ventana;
+
         this.txtCodigo.setBdTabla(tabla);
         this.txtCodigo.setBdCodigo(codigo);
         this.txtCodigo.setBdDescrip(descripcion);
         this.txtCodigo.setBdTitulo(titulo);
-        this.Cod_Ventana = cod_ventana;
+        this.txtCodigo.setUsarEmpresa(Empresa);
+        this.txtCodigo.setUsarSucursal(Sucursal);
+
         this.txtCod_Referencia.setBdTabla(tablaForaneo);
         this.txtCod_Referencia.setBdCodigo(codigoForaneo);
         this.txtCod_Referencia.setBdDescrip(descripcionForaneo);
         this.txtCod_Referencia.setBdTitulo(tituloForaneo);
         this.txtCod_Referencia.setUsarEmpresa(Empresa);
-        this.txtCod_Referencia.setUsarEmpresa(Sucursal);        
+        this.txtCod_Referencia.setUsarEmpresa(Sucursal);
+        this.txtCod_Referencia.setBuscar(true);
+
         this.getPermisos(this.Cod_Ventana);
         this.pnlABM.addListener(this);
         this.pnlTitulo1.setTextTitulo("Mantenimiento de " + titulo + "...");
@@ -196,23 +202,9 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
 
     private void txtCod_ReferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ReferenciaActionPerformed
         if (txtCod_Referencia.verificarVacioSinMsj()) {
-            String consulta;
-//            if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) {
-//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-//                        new String[]{EMP_CODIGO, SUC_CODIGO, this.txtCod_Referencia.getBdCodigo()},
-//                        new String[]{Configuracion.getEMP_CODIGO(), Configuracion.getSUC_CODIGO(), this.txtCod_Referencia.getText()});
-//            } else if (this.txtCodigo.isUsarEmpresa()) {
-//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-//                        new String[]{EMP_CODIGO, this.txtCod_Referencia.getBdCodigo()},
-//                        new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Referencia.getText()});
-//            } else {
-//                consulta = getConexion.getDescripcion(this.txtCod_Referencia.getBdTabla(), this.txtCod_Referencia.getBdDescrip(),
-//                        new String[]{this.txtCod_Referencia.getBdCodigo()},
-//                        new String[]{this.txtCod_Referencia.getText()});
-//            }
-            consulta=this.txtCod_Referencia.getDescripcion();
-            if (consulta != null) {
-                this.textNom_Referencia.setText(consulta);
+            String valor = this.txtCod_Referencia.getDescripcion();
+            if (valor != null) {
+                this.textNom_Referencia.setText(valor);
                 this.pnlABM.btnGrabar.setEnabled(true);
                 this.pnlABM.btnGrabar.grabFocus();
             } else {
@@ -227,7 +219,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.txtCodigo.setEnabled(false);
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
@@ -278,6 +270,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         this.pnlABM.btnGrabar.setEnabled(false);
         this.pnlABM.btnCancelar.setEnabled(false);
         this.pnlABM.btnSalir.setEnabled(true);
+        this.txtCodigo.setBuscar(true);
         if (this.pnlABM.btnNuevo.isEnabled()) {
             this.pnlABM.btnNuevo.grabFocus();
         } else if (this.pnlABM.btnModificar.isEnabled()) {
@@ -294,7 +287,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
         String xide = this.txtCodigo.getText();
         String xdes = this.txtDescripcion.getText().trim();
         String xfor = this.txtCod_Referencia.getText();
-        if (this.txtCodigo.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                 getConexion.insertar(txtCodigo.getBdTabla(),
                         new String[]{EMP_CODIGO, SUC_CODIGO, txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), this.txtCod_Referencia.getBdCodigo()},
@@ -308,7 +301,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
                         new String[]{txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), this.txtCod_Referencia.getBdCodigo()},
                         new String[]{xide, xdes, xfor});
             }
-        } else if (this.txtCodigo.getOperacion() == 'M') {
+        } else if (Operacion == 'M') {
             if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                 getConexion.actualizar(txtCodigo.getBdTabla(),
                         new String[]{txtCodigo.getBdDescrip(), this.txtCod_Referencia.getBdCodigo()},
@@ -337,8 +330,9 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
             this.pnlABM.ModoEdicion(false);
             this.txtCodigo.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
-            this.pnlABM.btnGrabar.setEnabled(false);           
-            this.txtCodigo.setOperacion('A');
+            this.pnlABM.btnGrabar.setEnabled(false);
+            Operacion = 'A';
+            this.txtCodigo.setBuscar(false);
             this.txtDescripcion.grabFocus();
         } else {
             Inicializar();
@@ -346,8 +340,8 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
     }
 
     @Override
-    public void Editar(char c) {        
-        this.txtCodigo.setOperacion(c);
+    public void Editar(char c) {
+        Operacion = c;
         this.pnlABM.ModoEdicion(false);
         this.pnlABM.btnGrabar.setEnabled(false);
         this.txtCodigo.setEnabled(true);
@@ -377,7 +371,7 @@ public final class ABMTresCamposFK extends frm_Padre implements Metodos {
             txtDescripcion.setText(resultado[0]);
             txtCod_Referencia.setText(resultado[1]);
             textNom_Referencia.setText(resultado[2]);
-            if (this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

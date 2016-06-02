@@ -335,7 +335,7 @@ public class Empresas extends frm_Padre {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         if (this.txtCodigo.verificarVacioSinMsj()) {
             this.txtCodigo.setEnabled(false);
-            if (txtCodigo.getOperacion() == 'M' || txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
                 this.txtDenominacion.setEnabled(true);
@@ -449,6 +449,10 @@ public class Empresas extends frm_Padre {
         this.btnNuevo.setEnabled(Agrega_OK);
         this.btnModificar.setEnabled(Modifica_OK);
         this.btnBorrar.setEnabled(Borra_OK);
+        this.btnGrabar.setEnabled(false);
+        this.btnCancelar.setEnabled(false);
+        this.btnSalir.setEnabled(false);
+        this.txtCodigo.setBuscar(true);
         if (this.btnNuevo.isEnabled()) {
             this.btnNuevo.grabFocus();
         } else if (this.btnModificar.isEnabled()) {
@@ -465,7 +469,7 @@ public class Empresas extends frm_Padre {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             this.btnGrabar.setEnabled(false);
             this.txtDenominacion.setEnabled(true);
-            this.txtCodigo.setOperacion('A');
+            Operacion = 'A';
             this.txtDenominacion.grabFocus();
         } else {
             Inicializar();
@@ -473,7 +477,7 @@ public class Empresas extends frm_Padre {
     }
 
     private void Editar(char c) {
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.txtCodigo.setEnabled(true);
         this.btnGrabar.setEnabled(false);
@@ -481,7 +485,7 @@ public class Empresas extends frm_Padre {
     }
 
     private void Grabar() {
-        if (txtCodigo.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 getConexion.insertar(txtCodigo.getBdTabla(),
                         new String[]{txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
@@ -490,7 +494,7 @@ public class Empresas extends frm_Padre {
                             this.txtRucRepre.getText(), this.jCheckAgenteRetentor.isSelected() ? "1" : "0"});
 
             }
-        } else if (txtCodigo.getOperacion() == 'M') {
+        } else if (Operacion == 'M') {
             if (MensajeSistema.Modificar(this)) {
                 getConexion.actualizar(txtCodigo.getBdTabla(),
                         new String[]{txtCodigo.getBdDescrip(), "ruc", "repre_legal", "ruc_repre_legal", "agente_retentor"},
@@ -514,7 +518,7 @@ public class Empresas extends frm_Padre {
             this.txtRepresentante.setText(resu[3]);
             this.txtRucRepre.setText(resu[4]);
             this.jCheckAgenteRetentor.setSelected(resu[5].equals("1"));
-            if (txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

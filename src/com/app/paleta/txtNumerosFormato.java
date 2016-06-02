@@ -6,10 +6,6 @@ package com.app.paleta;
  */
 public final class txtNumerosFormato extends txtNumeros {
 
-    private int CantNumero = 10;
-    private boolean ConDecimal = false;
-    private int CantDecimal = 0;
-
     public txtNumerosFormato() {
         setFormatear(false);
         setInicializar(getFormatoCantidad(), 0);
@@ -28,21 +24,19 @@ public final class txtNumerosFormato extends txtNumeros {
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 if (isEmpty() == false) {
-                    String valor = getText().trim();
-                    int num;
                     try {
-                        num = Integer.parseInt(valor);
-                    } catch (NumberFormatException ex) {
-                        num = 0;
-                    }
-                    if (num > 0 && valor.length() < FormatoCantidad) {
-                        for (int i = 0; i < FormatoCantidad; i++) {
-                            valor = "0" + valor;
-                            if (valor.length() == FormatoCantidad) {
-                                break;
+                        String valor = getText().trim();
+                        int num = Integer.parseInt(valor);
+                        if (num > 0 && valor.length() < FormatoCantidad) {
+                            for (int i = 0; i < FormatoCantidad; i++) {
+                                valor = "0" + valor;
+                                if (valor.length() == FormatoCantidad) {
+                                    break;
+                                }
                             }
+                            setText(valor);
                         }
-                        setText(valor);
+                    } catch (NumberFormatException ex) {
                     }
                 }
             }
@@ -80,12 +74,5 @@ public final class txtNumerosFormato extends txtNumeros {
     public void setFormatoCantidad(int FormatoCantidad) {
         this.FormatoCantidad = FormatoCantidad;
         this.setInicializar(FormatoCantidad, 0);
-    }
-
-    @Override
-    public void setInicializar(int cantidad, int decimal) {
-        this.CantNumero = cantidad;
-        this.CantDecimal = decimal;
-        this.ConDecimal = decimal > 0;
     }
 }

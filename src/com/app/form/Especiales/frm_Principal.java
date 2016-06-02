@@ -79,7 +79,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1260.setEnabled(Configuracion.BuscarMenu(1260));
         jMenu1261.setEnabled(Configuracion.BuscarMenu(1261));
         jMenu1262.setEnabled(Configuracion.BuscarMenu(1262));
-        jMenu1271.setEnabled(Configuracion.BuscarMenu(1270));
+        jMenu1270.setEnabled(Configuracion.BuscarMenu(1270));        
         jMenu1271.setEnabled(Configuracion.BuscarMenu(1271));
         jMenu1272.setEnabled(Configuracion.BuscarMenu(1272));
         jMenu1300.setEnabled(Configuracion.BuscarMenu(1300));
@@ -736,6 +736,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         jMenu1300.setMnemonic('3');
         jMenu1300.setText("3- Usuarios");
 
+        jMenu1310.setMnemonic('1');
         jMenu1310.setText("1- Mantenimiento");
         jMenu1310.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -744,6 +745,7 @@ public class frm_Principal extends javax.swing.JFrame implements Runnable {
         });
         jMenu1300.add(jMenu1310);
 
+        jMenu1320.setMnemonic('2');
         jMenu1320.setText("2- Cambio de Clave");
         jMenu1320.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

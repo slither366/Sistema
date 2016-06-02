@@ -3,7 +3,6 @@ package com.app.form;
 import com.app.form.Especiales.frm_Padre;
 import com.app.clases.ClaseBotones;
 import com.app.clases.ClaseCampos;
-import com.app.clases.ClaseTeclas;
 import com.app.config.Configuracion;
 import com.app.config.MensajeSistema;
 
@@ -12,7 +11,6 @@ import com.app.config.MensajeSistema;
  */
 public class Productos_Farm extends frm_Padre {
 
-    //private final String Tabla1, Tabla2, IdCod1, IdCod2, NomDesc1, NomDesc2, Titulo1, Titulo2;
     private final boolean UsarEmpresa, UsarSucursal;
 
     public Productos_Farm(String tablaPrin, int cod_ventana, boolean empresa, boolean sucursal,
@@ -323,7 +321,7 @@ public class Productos_Farm extends frm_Padre {
     private void txtCodigoPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPrincipalActionPerformed
         if (this.txtCodigoPrincipal.verificarVacioSinMsj()) {
             this.txtCodigoPrincipal.setEnabled(false);
-            if (this.txtCodigoPrincipal.getOperacion() == 'M' || this.txtCodigoPrincipal.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCodigoPrincipal.getText());
             } else {
                 this.txtCodigo1.setEnabled(true);
@@ -457,7 +455,7 @@ public class Productos_Farm extends frm_Padre {
         String vId1 = this.txtCodigo1.getText();
         String vId2 = this.txtCodigo2.getText();
         String vDes = this.txtObservacion.getText().trim();
-        if (this.txtCodigoPrincipal.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 if (this.txtCodigoPrincipal.isUsarEmpresa() && this.txtCodigoPrincipal.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                     getConexion.insertar(this.txtCodigoPrincipal.getBdTabla(),
@@ -476,7 +474,7 @@ public class Productos_Farm extends frm_Padre {
                             new String[]{vCod, vId1, vId2, vDes});
                 }
             }
-        } else if (this.txtCodigoPrincipal.getOperacion() == 'M') {
+        } else if (Operacion == 'M') {
             if (MensajeSistema.Modificar(this)) {
                 if (this.txtCodigoPrincipal.isUsarEmpresa() && this.txtCodigoPrincipal.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                     getConexion.actualizar(this.txtCodigoPrincipal.getBdTabla(),
@@ -503,7 +501,7 @@ public class Productos_Farm extends frm_Padre {
             ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
             this.btnGrabar.setEnabled(false);
             this.txtCodigo1.setEnabled(true);
-            this.txtCodigoPrincipal.setOperacion('A');
+            Operacion = 'A';
             this.txtCodigo1.grabFocus();
         } else {
             Inicializar();
@@ -511,7 +509,7 @@ public class Productos_Farm extends frm_Padre {
     }
 
     private void Editar(char c) {
-        this.txtCodigoPrincipal.setOperacion(c);
+        Operacion = c;
         ClaseBotones.modoEdicionABM(btnNuevo, btnModificar, btnBorrar, btnGrabar, btnCancelar, btnSalir, false);
         this.btnGrabar.setEnabled(false);
         this.txtCodigoPrincipal.setEnabled(true);
@@ -544,7 +542,7 @@ public class Productos_Farm extends frm_Padre {
             this.txtCodigo2.setText(resu[3]);
             this.textDescripcion2.setText(resu[4]);
             this.txtObservacion.setText(resu[5]);
-            if (this.txtCodigoPrincipal.getOperacion() == 'E') {
+            if (Operacion == 'E') {
                 this.txtCodigoPrincipal.Borrar();
                 Inicializar();
             } else {

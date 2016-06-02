@@ -189,7 +189,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         int valor = this.txtCodigo.verificarVacioConMsj();
         if (valor == 0) {
-            if (this.txtCodigo.getOperacion() == 'M' || this.txtCodigo.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.txtCodigo.setEnabled(false);
                 this.RecuperarDatos(this.txtCodigo.getText());
             } else {
@@ -247,6 +247,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
         this.pnlABM1.btnGrabar.setEnabled(false);
         this.pnlABM1.btnCancelar.setEnabled(false);
         this.pnlABM1.btnSalir.setEnabled(true);
+        this.txtCodigo.setBuscar(true);
         if (this.pnlABM1.btnNuevo.isEnabled()) {
             this.pnlABM1.btnNuevo.grabFocus();
         } else if (this.pnlABM1.btnModificar.isEnabled()) {
@@ -266,7 +267,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
             String xide = this.txtCodigo.getText();
             String xdes = this.txtDescripcion.getText().trim();
             String xfor = this.txtDescripcion2.getText();
-            if (this.txtCodigo.getOperacion() == 'A') { // Cuando se usar Empresa y Sucursal
+            if (Operacion == 'A') { // Cuando se usar Empresa y Sucursal
                 if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) {
                     getConexion.insertar(this.txtCodigo.getBdTabla(),
                             new String[]{EMP_CODIGO, SUC_CODIGO, this.txtCodigo.getBdCodigo(), this.txtCodigo.getBdDescrip(), descripcion2},
@@ -280,7 +281,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
                             new String[]{this.txtCodigo.getBdCodigo(), txtCodigo.getBdDescrip(), descripcion2},
                             new String[]{xide, xdes, xfor});
                 }
-            } else if (this.txtCodigo.getOperacion() == 'M') {
+            } else if (Operacion == 'M') {
                 if (this.txtCodigo.isUsarEmpresa() && this.txtCodigo.isUsarSucursal()) { // Cuando se usar Empresa y Sucursal
                     getConexion.actualizar(this.txtCodigo.getBdTabla(),
                             new String[]{this.txtCodigo.getBdDescrip(), descripcion2},
@@ -311,7 +312,8 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
             this.txtCodigo.setEnabled(false);
             this.txtDescripcion.setEnabled(true);
             this.pnlABM1.btnGrabar.setEnabled(false);
-            this.txtCodigo.setOperacion('A');
+            Operacion = 'A';
+            this.txtCodigo.setBuscar(false);
             this.txtDescripcion.grabFocus();
         } else {
             Inicializar();
@@ -320,7 +322,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCodigo.setOperacion(c);
+        Operacion = c;
         this.pnlABM1.ModoEdicion(false);
         this.pnlABM1.btnGrabar.setEnabled(false);
         this.txtCodigo.setEnabled(true);
@@ -346,7 +348,7 @@ public final class ABMTresCampos extends frm_Padre implements Metodos {
         if (resultado[0] != null) {
             txtDescripcion.setText(resultado[0]);
             txtDescripcion2.setText(resultado[1]);
-            if (this.txtCodigo.getOperacion() == 'E') {                
+            if (Operacion == 'E') {
                 this.txtCodigo.Borrar();
                 Inicializar();
             } else {

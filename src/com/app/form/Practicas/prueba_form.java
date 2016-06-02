@@ -20,14 +20,10 @@ public class prueba_form extends javax.swing.JFrame implements ActionListener{
                 new String[]{"codigo", "descripcion"},
                 new String[]{},
                 new String[]{});
-        this.txtCodigo1.setUsarEmpresa(true);
-        this.txtCodigo1.setUsarSucursal(false);
-        this.txtCodigo1.setBdTabla("adm_sucursales");
-        this.txtCodigo1.setBdCodigo("Suc_Codigo");
-        this.txtCodigo1.setBdDescrip("denominacion");
-        this.txtCodigo1.setBdTitulo("Sucursales");
-        this.txtCodigo1.setOperacion('M');
-        this.txtCodigo1.setText("");
+        this.txtNumeros1.setFormatear(true);
+        this.txtNumeros1.setInicializar(18, 0);
+        this.txtNumeros2.setInicializar(18, 0);
+        this.txtNumerosFormato1.setFormatoCantidad(7);
     }
 
     public void agregar() {
@@ -60,48 +56,37 @@ public class prueba_form extends javax.swing.JFrame implements ActionListener{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtFecha3 = new com.app.paleta.txtFecha();
-        txtFecha4 = new com.app.paleta.txtFecha();
-        txtCodigo1 = new com.app.paleta.txtCodigo();
-        txtTexto1 = new com.app.paleta.txtTexto();
+        txtNumeros1 = new com.app.paleta.txtNumeros();
+        txtNumeros2 = new com.app.paleta.txtNumeros();
+        txtNumerosFormato1 = new com.app.paleta.txtNumerosFormato();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        txtCodigo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigo1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(123, 123, 123)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFecha4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNumeros1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(txtNumeros2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNumerosFormato1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(txtFecha3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtFecha4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(txtNumeros1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(txtNumeros2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNumerosFormato1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,15 +102,6 @@ public class prueba_form extends javax.swing.JFrame implements ActionListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo1ActionPerformed
-        int valor=this.txtCodigo1.verificarVacioConMsj();
-        if(valor==0){
-            this.txtTexto1.setText(this.txtCodigo1.getDescripcion());
-        }else{
-            System.out.println("cancelar");
-        }
-    }//GEN-LAST:event_txtCodigo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,10 +145,9 @@ public class prueba_form extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private com.app.paleta.txtCodigo txtCodigo1;
-    private com.app.paleta.txtFecha txtFecha3;
-    private com.app.paleta.txtFecha txtFecha4;
-    private com.app.paleta.txtTexto txtTexto1;
+    private com.app.paleta.txtNumeros txtNumeros1;
+    private com.app.paleta.txtNumeros txtNumeros2;
+    private com.app.paleta.txtNumerosFormato txtNumerosFormato1;
     // End of variables declaration//GEN-END:variables
 
     @Override

@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 
 /**
  *
- * @author Diego
+ * @author dramosort
  */
 public final class Contactos extends frm_Padre implements Metodos {
 
@@ -30,16 +30,27 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.txtCod_Contacto.setUsarSucursal(false);
         this.txtRazonSocial.setEnMayuscula(true);
         this.txtCINumero.setFormatear(false);
+        this.txtCINumero.setInicializar(15, 0);
 
         this.txtCod_Nacionalidad.setBdTabla("Ref_Nacionalidades");
         this.txtCod_Nacionalidad.setBdCodigo("Nac_Codigo");
         this.txtCod_Nacionalidad.setBdDescrip("Nac_Descrip");
         this.txtCod_Nacionalidad.setBdTitulo("Nacionalidades");
-
+        this.txtCod_Nacionalidad.setUsarEmpresa(true);
+        this.txtCod_Nacionalidad.setUsarSucursal(false);
+        this.textNacionalidad.setEditable(false);
+        
         this.txtCod_Ciudad.setBdTabla("ref_ciudades");
         this.txtCod_Ciudad.setBdCodigo("Ciu_Codigo");
         this.txtCod_Ciudad.setBdDescrip("Ciu_Descrip");
         this.txtCod_Ciudad.setBdTitulo("Ciudades");
+        this.txtCod_Ciudad.setUsarEmpresa(true);
+        this.txtCod_Ciudad.setUsarSucursal(false);
+        this.textCiudad.setEditable(false);
+        
+        this.cboEstado.addItem(new String[]{"1", "2"}, new String[]{"Activo", "Inactivo"});
+        this.cboACredito.addItem(new String[]{"1", "2"}, new String[]{"Si", "No"});
+        this.cboRetentor.addItem(new String[]{"1", "2"}, new String[]{"Si", "No"});
         this.pnlABM1.addListener(this);
         this.getPermisos(cod_ventana);
         Inicializar();
@@ -57,7 +68,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         } else if (Orden.compareTo("btn4") == 0) {
             Grabar();
         } else if (Orden.compareTo("btn5") == 0) {
-            if (this.txtCod_Contacto.getOperacion() == 'A') {
+            if (Operacion == 'A') {
                 if (MensajeSistema.Cancelar(this)) {
                     this.Inicializar();
                 }
@@ -106,13 +117,13 @@ public final class Contactos extends frm_Padre implements Metodos {
         jLabel15 = new javax.swing.JLabel();
         txtCod_Ciudad = new com.app.paleta.txtCodigo();
         jLabel16 = new javax.swing.JLabel();
-        cboEstado = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
-        cboACredito = new javax.swing.JComboBox();
         jLabel20 = new javax.swing.JLabel();
-        cboRetentor = new javax.swing.JComboBox();
         textNacionalidad = new com.app.paleta.txtTexto();
         textCiudad = new com.app.paleta.txtTexto();
+        cboEstado = new com.app.paleta.combo();
+        cboACredito = new com.app.paleta.combo();
+        cboRetentor = new com.app.paleta.combo();
         pnlVentas = new javax.swing.JPanel();
         textTitulo1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -240,11 +251,6 @@ public final class Contactos extends frm_Padre implements Metodos {
                 txtCod_NacionalidadActionPerformed(evt);
             }
         });
-        txtCod_Nacionalidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_NacionalidadKeyPressed(evt);
-            }
-        });
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Ciudad:");
@@ -254,16 +260,16 @@ public final class Contactos extends frm_Padre implements Metodos {
                 txtCod_CiudadActionPerformed(evt);
             }
         });
-        txtCod_Ciudad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCod_CiudadKeyPressed(evt);
-            }
-        });
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Estado:");
 
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "ACTIVO", "INACTIVO" }));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("a Crédito:");
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Retentor:");
+
         cboEstado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cboEstadoFocusGained(evt);
@@ -275,10 +281,6 @@ public final class Contactos extends frm_Padre implements Metodos {
             }
         });
 
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel17.setText("a Crédito:");
-
-        cboACredito.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "SI", "NO" }));
         cboACredito.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cboACreditoFocusGained(evt);
@@ -290,10 +292,6 @@ public final class Contactos extends frm_Padre implements Metodos {
             }
         });
 
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("Retentor:");
-
-        cboRetentor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "SI", "NO" }));
         cboRetentor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 cboRetentorFocusGained(evt);
@@ -320,26 +318,24 @@ public final class Contactos extends frm_Padre implements Metodos {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMantenimientoLayout.createSequentialGroup()
-                        .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboACredito, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlMantenimientoLayout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(81, 81, 81)))
-                        .addComponent(cboRetentor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167))
+                    .addGroup(pnlMantenimientoLayout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboACredito, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboRetentor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(189, 189, 189))
+                    .addGroup(pnlMantenimientoLayout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(358, 358, 358))
                     .addGroup(pnlMantenimientoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -347,7 +343,7 @@ public final class Contactos extends frm_Padre implements Metodos {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCINumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCINumero, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -422,10 +418,10 @@ public final class Contactos extends frm_Padre implements Metodos {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(cboACredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboACredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboRetentor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -580,19 +576,11 @@ public final class Contactos extends frm_Padre implements Metodos {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboEstadoFocusGained
-        this.cboEstado.setPopupVisible(true);
-    }//GEN-LAST:event_cboEstadoFocusGained
-
-    private void cboACreditoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboACreditoFocusGained
-        this.cboACredito.setPopupVisible(true);
-    }//GEN-LAST:event_cboACreditoFocusGained
-
     private void txtCod_ContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ContactoActionPerformed
         int valor = this.txtCod_Contacto.verificarVacioConMsj();
         if (valor == 0) {
             this.txtCod_Contacto.setEnabled(false);
-            if (this.txtCod_Contacto.getOperacion() == 'M' || this.txtCod_Contacto.getOperacion() == 'E') {
+            if (Operacion == 'M' || Operacion == 'E') {
                 this.RecuperarDatos(this.txtCod_Contacto.getText());
             } else {
                 this.txtCINumero.grabFocus();
@@ -646,9 +634,7 @@ public final class Contactos extends frm_Padre implements Metodos {
     private void txtCod_NacionalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_NacionalidadActionPerformed
         int valor = this.txtCod_Nacionalidad.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(txtCod_Nacionalidad.getBdTabla(), txtCod_Nacionalidad.getBdDescrip(),
-                    new String[]{EMP_CODIGO, txtCod_Nacionalidad.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Nacionalidad.getText()});
+            String rs = this.txtCod_Nacionalidad.getDescripcion();
             if (rs != null) {
                 this.textNacionalidad.setText(rs);
                 this.txtCod_Ciudad.grabFocus();
@@ -669,9 +655,7 @@ public final class Contactos extends frm_Padre implements Metodos {
     private void txtCod_CiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_CiudadActionPerformed
         int valor = this.txtCod_Ciudad.verificarVacioConMsj();
         if (valor == 0) {
-            String rs = this.getConexion.getDescripcion(txtCod_Ciudad.getBdTabla(), txtCod_Ciudad.getBdDescrip(),
-                    new String[]{EMP_CODIGO, txtCod_Ciudad.getBdCodigo()},
-                    new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Ciudad.getText()});
+            String rs = this.txtCod_Ciudad.getDescripcion();
             if (rs != null) {
                 this.textCiudad.setText(rs);
                 this.cboEstado.grabFocus();
@@ -688,60 +672,6 @@ public final class Contactos extends frm_Padre implements Metodos {
             this.Inicializar();
         }
     }//GEN-LAST:event_txtCod_CiudadActionPerformed
-
-    private void txtCod_NacionalidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_NacionalidadKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(txtCod_Nacionalidad.getBdTabla(), true, false,
-                    txtCod_Nacionalidad.getBdCodigo(), txtCod_Nacionalidad.getBdDescrip(), txtCod_Nacionalidad.getBdTitulo());
-            this.txtCod_Nacionalidad.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_NacionalidadKeyPressed
-
-    private void txtCod_CiudadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCod_CiudadKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_F5()) {
-            this.Buscar(txtCod_Ciudad.getBdTabla(), true, false,
-                    txtCod_Ciudad.getBdCodigo(), txtCod_Ciudad.getBdDescrip(), txtCod_Ciudad.getBdTitulo());
-            this.txtCod_Ciudad.requestFocus();
-        }
-    }//GEN-LAST:event_txtCod_CiudadKeyPressed
-
-    private void cboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboEstadoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            if (this.cboEstado.getSelectedIndex() == 0) {
-                MensajeSistema.MensajeVarios(this, "Seleccione un registro...", MensajeSistema.ERROR_MESSAGE());
-                this.cboEstado.grabFocus();
-            } else {
-                this.cboACredito.grabFocus();
-            }
-        }
-    }//GEN-LAST:event_cboEstadoKeyPressed
-
-    private void cboACreditoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboACreditoKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            if (this.cboACredito.getSelectedIndex() == 0) {
-                MensajeSistema.MensajeVarios(this, "Seleccione un registro...", MensajeSistema.ERROR_MESSAGE());
-                this.cboACredito.grabFocus();
-            } else {
-                this.cboRetentor.grabFocus();
-            }
-        }
-    }//GEN-LAST:event_cboACreditoKeyPressed
-
-    private void cboRetentorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboRetentorFocusGained
-        this.cboRetentor.setPopupVisible(true);
-    }//GEN-LAST:event_cboRetentorFocusGained
-
-    private void cboRetentorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboRetentorKeyPressed
-        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
-            if (this.cboRetentor.getSelectedIndex() == 0) {
-                MensajeSistema.MensajeVarios(this, "Seleccione un registro...", MensajeSistema.ERROR_MESSAGE());
-                this.cboRetentor.grabFocus();
-            } else {
-                this.pnlABM1.btnGrabar.setEnabled(true);
-                this.pnlABM1.btnGrabar.grabFocus();
-            }
-        }
-    }//GEN-LAST:event_cboRetentorKeyPressed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         int valor = this.txtTelefono.verificarVacioConMsj();
@@ -774,10 +704,41 @@ public final class Contactos extends frm_Padre implements Metodos {
         }
     }//GEN-LAST:event_txtRucActionPerformed
 
+    private void cboEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboEstadoKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
+            this.cboACredito.grabFocus();
+        }
+    }//GEN-LAST:event_cboEstadoKeyPressed
+
+    private void cboEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboEstadoFocusGained
+        this.cboEstado.setPopupVisible(true);
+    }//GEN-LAST:event_cboEstadoFocusGained
+
+    private void cboACreditoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboACreditoKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
+            this.cboRetentor.grabFocus();
+        }
+    }//GEN-LAST:event_cboACreditoKeyPressed
+
+    private void cboACreditoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboACreditoFocusGained
+        this.cboACredito.setPopupVisible(true);
+    }//GEN-LAST:event_cboACreditoFocusGained
+
+    private void cboRetentorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboRetentorKeyPressed
+        if (evt.getKeyCode() == ClaseTeclas.VK_ENTER()) {
+            this.pnlABM1.btnGrabar.setEnabled(true);
+            this.pnlABM1.btnGrabar.grabFocus();
+        }
+    }//GEN-LAST:event_cboRetentorKeyPressed
+
+    private void cboRetentorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboRetentorFocusGained
+        this.cboRetentor.setPopupVisible(true);
+    }//GEN-LAST:event_cboRetentorFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cboACredito;
-    private javax.swing.JComboBox cboEstado;
-    private javax.swing.JComboBox cboRetentor;
+    private com.app.paleta.combo cboACredito;
+    private com.app.paleta.combo cboEstado;
+    private com.app.paleta.combo cboRetentor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -840,6 +801,7 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.pnlABM1.btnGrabar.setEnabled(false);
         this.pnlABM1.btnCancelar.setEnabled(false);
         this.pnlABM1.btnSalir.setEnabled(true);
+        this.txtCod_Contacto.setBuscar(true);
         if (this.pnlABM1.btnNuevo.isEnabled()) {
             this.pnlABM1.btnNuevo.grabFocus();
         } else if (this.pnlABM1.btnModificar.isEnabled()) {
@@ -856,12 +818,12 @@ public final class Contactos extends frm_Padre implements Metodos {
         this.jTab.setSelectedIndex(0);
         this.jTab.setEnabledAt(1, false);
         this.jTab.setEnabledAt(2, false);
-        if (getConexion.autoNumerico(this.txtCod_Contacto.getBdTabla(), this.txtCod_Contacto.getBdCodigo(),
-                new String[]{EMP_CODIGO}, new String[]{Configuracion.getEMP_CODIGO()}, this.txtCod_Contacto)) {
+        if (this.txtCod_Contacto.autoNumerico()) {
             this.pnlABM1.ModoEdicion(false);
             ClaseCampos.setEnabled(pnlMantenimiento, true);
             this.pnlABM1.btnGrabar.setEnabled(false);
-            this.txtCod_Contacto.setOperacion('A');
+            this.txtCod_Contacto.setBuscar(false);
+            Operacion = 'A';
             this.txtCod_Contacto.grabFocus();
         } else {
             Inicializar();
@@ -870,7 +832,7 @@ public final class Contactos extends frm_Padre implements Metodos {
 
     @Override
     public void Grabar() {
-        if (this.txtCod_Contacto.getOperacion() == 'A') {
+        if (Operacion == 'A') {
             if (MensajeSistema.Guardar(this)) {
                 getConexion.insertar(this.txtCod_Contacto.getBdTabla(),
                         new String[]{EMP_CODIGO, this.txtCod_Contacto.getBdCodigo(), this.txtCod_Contacto.getBdDescrip(), "nro_ruc",
@@ -881,8 +843,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                             this.txtRazonSocial.getText(), this.txtRuc.getText(), this.txtCINumero.getText(),
                             this.txtTelefono.getText().trim(), this.txtCelular.getText(), this.txtDireccion.getText(),
                             this.txtEmail.getText().trim(), this.txtTelefax.getText().trim(),
-                            this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
-                            this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + "",
+                            this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectCodigo(),
+                            this.cboEstado.getSelectCodigo(), this.cboACredito.getSelectCodigo(),
                             Configuracion.getUSU_CODIGO()});
             }
         } else {
@@ -895,8 +857,8 @@ public final class Contactos extends frm_Padre implements Metodos {
                         new String[]{this.txtRazonSocial.getText(), this.txtRuc.getText(), this.txtCINumero.getText(),
                             this.txtTelefono.getText().trim(), this.txtCelular.getText(), this.txtDireccion.getText(),
                             this.txtEmail.getText().trim(), this.txtTelefax.getText().trim(),
-                            this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectedIndex() + "",
-                            this.cboEstado.getSelectedIndex() + "", this.cboACredito.getSelectedIndex() + ""},
+                            this.txtCod_Nacionalidad.getText(), this.txtCod_Ciudad.getText(), this.cboRetentor.getSelectCodigo(),
+                            this.cboEstado.getSelectCodigo(), this.cboACredito.getSelectCodigo()},
                         new String[]{EMP_CODIGO, this.txtCod_Contacto.getBdCodigo()},
                         new String[]{Configuracion.getEMP_CODIGO(), this.txtCod_Contacto.getText()});
             }
@@ -906,7 +868,7 @@ public final class Contactos extends frm_Padre implements Metodos {
 
     @Override
     public void Editar(char c) {
-        this.txtCod_Contacto.setOperacion(c);
+        Operacion = c;
         this.pnlABM1.ModoEdicion(false);
         this.txtCod_Contacto.setEnabled(true);
         this.pnlABM1.btnGrabar.setEnabled(false);
@@ -935,10 +897,10 @@ public final class Contactos extends frm_Padre implements Metodos {
             this.textNacionalidad.setText(rs[11]);
             this.txtCod_Ciudad.setText(rs[12]);
             this.textCiudad.setText(rs[13]);
-            this.cboRetentor.setSelectedIndex(Integer.parseInt(rs[14]));
-            this.cboEstado.setSelectedIndex(Integer.parseInt(rs[15]));
-            this.cboACredito.setSelectedIndex(Integer.parseInt(rs[16]));
-            if (this.txtCod_Contacto.getOperacion() == 'E') {
+            this.cboRetentor.setSelectCodigo(rs[14]);
+            this.cboEstado.setSelectCodigo(rs[15]);
+            this.cboACredito.setSelectCodigo(rs[16]);
+            if (Operacion == 'E') {
                 this.txtCod_Contacto.Borrar();
                 Inicializar();
             } else {
